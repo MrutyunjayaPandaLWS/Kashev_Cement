@@ -1,0 +1,129 @@
+
+/* Class = "UIButton"; normalTitle = "Register"; ObjectID = "0ip-5U-lzQ"; */
+"0ip-5U-lzQ.normalTitle" = "Register";
+
+/* Class = "UITextField"; placeholder = "Mobile No / Membership ID"; ObjectID = "0mz-yd-dQ8"; */
+"0mz-yd-dQ8.placeholder" = "Mobile No / Membership ID";
+
+/* Class = "UIButton"; normalTitle = "Set password"; ObjectID = "1vJ-Fz-315"; */
+"1vJ-Fz-315.normalTitle" = "Set password";
+
+/* Class = "UILabel"; text = "Still Not Activate Your Account ?"; ObjectID = "4Er-Lm-Mdp"; */
+"4Er-Lm-Mdp.text" = "Still Not Activate Your Account ?";
+
+/* Class = "UILabel"; text = "Select Language"; ObjectID = "54Q-Z5-AQT"; */
+"54Q-Z5-AQT.text" = "Select Language";
+
+/* Class = "UILabel"; text = "Don't Have an Account ?"; ObjectID = "57n-ct-Grz"; */
+"57n-ct-Grz.text" = "Don't Have an Account ?";
+
+/* Class = "UILabel"; text = "Please select your user type to Keshav Application."; ObjectID = "5Il-aK-OmJ"; */
+"5Il-aK-OmJ.text" = "Please select your user type to Keshav Application.";
+
+/* Class = "UIButton"; normalTitle = "Submit"; ObjectID = "8WA-Ed-aRE"; */
+"8WA-Ed-aRE.normalTitle" = "Submit";
+
+/* Class = "UILabel"; text = "Enter confirm password"; ObjectID = "9Mw-4M-Ve7"; */
+"9Mw-4M-Ve7.text" = "Enter confirm password";
+
+/* Class = "UITextField"; placeholder = "Enter new password"; ObjectID = "9Pq-3d-jP6"; */
+"9Pq-3d-jP6.placeholder" = "Enter new password";
+
+/* Class = "UILabel"; text = "Mobile No / Membership ID"; ObjectID = "9yA-v4-8zY"; */
+"9yA-v4-8zY.text" = "Mobile No / Membership ID";
+
+/* Class = "UILabel"; text = "OTP"; ObjectID = "Bht-5g-6PJ"; */
+"Bht-5g-6PJ.text" = "OTP";
+
+/* Class = "UIButton"; normalTitle = "Hindi"; ObjectID = "Cfo-f9-JCO"; */
+"Cfo-f9-JCO.normalTitle" = "Hindi";
+
+/* Class = "UILabel"; text = "Activate Now"; ObjectID = "Ciu-b5-5GV"; */
+"Ciu-b5-5GV.text" = "Activate Now";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "DWd-Q3-Ff5"; */
+"DWd-Q3-Ff5.placeholder" = "Password";
+
+/* Class = "UILabel"; text = "Support Executive"; ObjectID = "E1N-gF-368"; */
+"E1N-gF-368.text" = "Support Executive";
+
+/* Class = "UILabel"; text = "Engineer"; ObjectID = "EXH-fC-ph3"; */
+"EXH-fC-ph3.text" = "Engineer";
+
+/* Class = "UILabel"; text = "Welcome!"; ObjectID = "FRz-XL-78H"; */
+"FRz-XL-78H.text" = "Welcome!";
+
+/* Class = "UILabel"; text = "Engineer"; ObjectID = "GC2-PT-lcA"; */
+"GC2-PT-lcA.text" = "Engineer";
+
+/* Class = "UIButton"; normalTitle = "Forgot Password ?"; ObjectID = "Vmr-Fz-CGD"; */
+"Vmr-Fz-CGD.normalTitle" = "Forgot Password ?";
+
+/* Class = "UIButton"; normalTitle = "English"; ObjectID = "YsD-9J-1H9"; */
+"YsD-9J-1H9.normalTitle" = "English";
+
+/* Class = "UILabel"; text = "Please Enter the given details to log in"; ObjectID = "ZVQ-6P-2sl"; */
+"ZVQ-6P-2sl.text" = "Please Enter the given details to log in";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "Ztc-QY-ToZ"; */
+"Ztc-QY-ToZ.text" = "Password";
+
+/* Class = "UILabel"; text = "Mobile No"; ObjectID = "ahH-fb-OZP"; */
+"ahH-fb-OZP.text" = "Mobile No";
+
+/* Class = "UILabel"; text = "00:00"; ObjectID = "avy-iD-lMW"; */
+"avy-iD-lMW.text" = "00:00";
+
+/* Class = "UITextField"; placeholder = "Enter confirm password"; ObjectID = "baF-qN-tNv"; */
+"baF-qN-tNv.placeholder" = "Enter confirm password";
+
+/* Class = "UILabel"; text = "Set New Password"; ObjectID = "c2n-Jm-hgz"; */
+"c2n-Jm-hgz.text" = "Set New Password";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "cbe-GB-ny8"; */
+"cbe-GB-ny8.normalTitle" = "Login";
+
+/* Class = "UILabel"; text = "OTP send to 999203802390823"; ObjectID = "eD3-5C-tMv"; */
+"eD3-5C-tMv.text" = "OTP send to 999203802390823";
+
+/* Class = "UILabel"; text = "Please Enter the given details to Register"; ObjectID = "eQq-kb-W6D"; */
+"eQq-kb-W6D.text" = "Please Enter the given details to Register";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "gfD-q5-8VC"; */
+"gfD-q5-8VC.normalTitle" = "Login";
+
+/* Class = "UITextField"; placeholder = "Mobile No / Membership ID"; ObjectID = "hV6-7R-cHQ"; */
+"hV6-7R-cHQ.placeholder" = "Mobile No / Membership ID";
+
+/* Class = "UILabel"; text = "Engineer"; ObjectID = "iEH-Wh-AhY"; */
+"iEH-Wh-AhY.text" = "Engineer";
+
+/* Class = "UILabel"; text = "Sub Dealer"; ObjectID = "kNr-HS-Q5C"; */
+"kNr-HS-Q5C.text" = "Sub Dealer";
+
+/* Class = "UIButton"; normalTitle = "Kannada"; ObjectID = "lc7-pz-O7y"; */
+"lc7-pz-O7y.normalTitle" = "Kannada";
+
+/* Class = "UIButton"; normalTitle = "Resend OTP ?"; ObjectID = "luC-Qy-eJC"; */
+"luC-Qy-eJC.normalTitle" = "Resend OTP ?";
+
+/* Class = "UILabel"; text = "Enter new password"; ObjectID = "mtO-mt-Q3z"; */
+"mtO-mt-Q3z.text" = "Enter new password";
+
+/* Class = "UILabel"; text = "My Profile"; ObjectID = "nVi-ps-oYB"; */
+"nVi-ps-oYB.text" = "My Profile";
+
+/* Class = "UILabel"; text = "Login"; ObjectID = "qXN-Jl-TK3"; */
+"qXN-Jl-TK3.text" = "Login";
+
+/* Class = "UILabel"; text = "Dealer"; ObjectID = "qZu-5h-UOx"; */
+"qZu-5h-UOx.text" = "Dealer";
+
+/* Class = "UILabel"; text = "Activate"; ObjectID = "rz2-H9-6IP"; */
+"rz2-H9-6IP.text" = "Activate";
+
+/* Class = "UILabel"; text = "Already Have an Account ?"; ObjectID = "ynF-4w-Xcb"; */
+"ynF-4w-Xcb.text" = "Already Have an Account ?";
+
+/* Class = "UILabel"; text = "Mason"; ObjectID = "zI6-kg-Gx7"; */
+"zI6-kg-Gx7.text" = "Mason";

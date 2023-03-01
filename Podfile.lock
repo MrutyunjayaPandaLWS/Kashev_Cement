@@ -1,0 +1,73 @@
+PODS:
+  - Alamofire (4.9.1)
+  - AlamofireImage (3.6.0):
+    - Alamofire (~> 4.9)
+  - DPOTPView (1.5.12)
+  - EasyTipView (2.0.4)
+  - GSMessages (1.7.5)
+  - ImageSlideshow/Alamofire (1.8.3):
+    - AlamofireImage (~> 3.0)
+    - ImageSlideshow/Core
+  - ImageSlideshow/Core (1.8.3)
+  - IQKeyboardManagerSwift (6.5.10)
+  - Kingfisher (7.5.0)
+  - lottie-ios (3.5.0)
+  - QCropper (0.1.7)
+  - SDWebImage (5.13.4):
+    - SDWebImage/Core (= 5.13.4)
+  - SDWebImage/Core (5.13.4)
+  - SlideMenuControllerSwift (4.0.0)
+  - SVPinView (1.0.11)
+  - Toast-Swift (5.0.1)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.0)
+  - DPOTPView
+  - EasyTipView (~> 2.0.4)
+  - GSMessages
+  - ImageSlideshow/Alamofire
+  - IQKeyboardManagerSwift
+  - Kingfisher (~> 7.0)
+  - lottie-ios
+  - QCropper
+  - SDWebImage
+  - SlideMenuControllerSwift
+  - SVPinView (~> 1.0)
+  - Toast-Swift (~> 5.0.1)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - AlamofireImage
+    - DPOTPView
+    - EasyTipView
+    - GSMessages
+    - ImageSlideshow
+    - IQKeyboardManagerSwift
+    - Kingfisher
+    - lottie-ios
+    - QCropper
+    - SDWebImage
+    - SlideMenuControllerSwift
+    - SVPinView
+    - Toast-Swift
+
+SPEC CHECKSUMS:
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  AlamofireImage: be9963c6582d68b39e89191f64c82a7d7bf40fdd
+  DPOTPView: 28d8a0a84a2ff4b1e4a7712065aba1cbb14e2704
+  EasyTipView: 4f8beae0a82db2ca4a9b5fd658785fc5f61d296b
+  GSMessages: ff0397d30b804fa38c6026fb080b8ad6f7454ab6
+  ImageSlideshow: 4694d7d699a1549582e7cc631fb392d8f91630f3
+  IQKeyboardManagerSwift: 52962c76ab33532f15ad9f3ff4e5715eda5335bb
+  Kingfisher: b9c2a4a4af2990a768445c277359b27bde287d71
+  lottie-ios: c55158d67d0629a260625cc2ded2052b829e3c3e
+  QCropper: aef6bad1e683e62b501fb8258359ccd10c68b4f2
+  SDWebImage: e5cc87bf736e60f49592f307bdf9e157189298a3
+  SlideMenuControllerSwift: 021d6318201c53d4d4d3710517d43d6c556c7dd0
+  SVPinView: 9b538d0ba68cdb092afe4f0f67ec84cbed079466
+  Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
+
+PODFILE CHECKSUM: 487404df38eca5ab71eb8b9a0be9925ffc725b88
+
+COCOAPODS: 1.11.3

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Arimo-Regular.ttf">
+            <string>Arimo-Regular</string>
+        </array>
+        <array key="Arimo-SemiBold.ttf">
+            <string>Arimo-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HR_RedemptionPlannerTVC" rowHeight="109" id="KGk-i7-Jjw" customClass="HR_RedemptionPlannerTVC" customModule="KeshavCement" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="498" height="155"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="498" height="155"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q0r-Ix-IHh">
+                        <rect key="frame" x="10" y="10" width="478" height="135"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_default_img" translatesAutoresizingMaskIntoConstraints="NO" id="NbN-vV-Xzc">
+                                <rect key="frame" x="8" y="8" width="140" height="119"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="140" id="is0-t7-spl"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GLN-Q8-WrT">
+                                <rect key="frame" x="448" y="10" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="K2c-1d-vkH"/>
+                                    <constraint firstAttribute="width" constant="20" id="V7q-1K-Hwi"/>
+                                </constraints>
+                                <state key="normal" image="removeCart"/>
+                                <connections>
+                                    <action selector="removeProductsBTN:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="58f-1X-gYP"/>
+                                </connections>
+                            </button>
+                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HeU-gv-TEn">
+                                <rect key="frame" x="350" y="97" width="120" height="30"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="fP2-hm-fUC"/>
+                                    <constraint firstAttribute="height" constant="30" id="fdF-ww-YQh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Arimo-Regular" family="Arimo" pointSize="14"/>
+                                <state key="normal" title="Redeem Now">
+                                    <color key="titleColor" red="0.99095040560000003" green="0.96875542400000003" blue="0.97261005639999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                        <color key="value" red="0.90187913180000001" green="0.10598800329999999" blue="0.13241013879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                        <color key="value" red="0.72156862749999995" green="0.015686274510000001" blue="0.043137254899999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="redeemProducts:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="P9d-tN-T7c"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22/02/2022" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAR-Pz-uFa">
+                                <rect key="frame" x="356" y="69" width="112" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="K0m-9R-oQn"/>
+                                    <constraint firstAttribute="width" constant="112" id="jIt-im-eIM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Arimo-Regular" family="Arimo" pointSize="13"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Desired Date" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LNr-ny-qoE">
+                                <rect key="frame" x="356" y="55" width="112" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="P4f-G6-7MC"/>
+                                    <constraint firstAttribute="width" constant="112" id="fpn-d0-X6i"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Arimo-Regular" family="Arimo" pointSize="12"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MOTOROLA HEADPHONES WITH MIC" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jKv-RX-JHF">
+                                <rect key="frame" x="156" y="16" width="287" height="16.5"/>
+                                <fontDescription key="fontDescription" name="Arimo-SemiBold" family="Arimo" pointSize="14"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Points" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mb8-iw-92w">
+                                <rect key="frame" x="156" y="78" width="39.5" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="hD6-dh-ABZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Arimo-Regular" family="Arimo" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKp-Zc-lpE">
+                                <rect key="frame" x="156" y="98" width="150" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="NOe-2y-jqR"/>
+                                    <constraint firstAttribute="width" constant="150" id="fiX-sk-RTx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Arimo-Regular" family="Arimo" pointSize="15"/>
+                                <color key="textColor" red="0.92941176469999998" green="0.10980392160000001" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="HeU-gv-TEn" secondAttribute="bottom" constant="8" id="0md-JY-gXA"/>
+                            <constraint firstItem="LNr-ny-qoE" firstAttribute="top" secondItem="GLN-Q8-WrT" secondAttribute="bottom" constant="25" id="1ie-bo-cZI"/>
+                            <constraint firstAttribute="bottom" secondItem="NbN-vV-Xzc" secondAttribute="bottom" constant="8" id="A6e-ai-IIP"/>
+                            <constraint firstAttribute="trailing" secondItem="YAR-Pz-uFa" secondAttribute="trailing" constant="10" id="Cpm-eX-Y7p"/>
+                            <constraint firstItem="GLN-Q8-WrT" firstAttribute="leading" secondItem="jKv-RX-JHF" secondAttribute="trailing" constant="5" id="EKC-bx-3d1"/>
+                            <constraint firstAttribute="bottom" secondItem="mKp-Zc-lpE" secondAttribute="bottom" constant="20" id="EKY-nm-fN5"/>
+                            <constraint firstItem="mKp-Zc-lpE" firstAttribute="top" secondItem="Mb8-iw-92w" secondAttribute="bottom" constant="5" id="GRA-wv-4zV"/>
+                            <constraint firstItem="jKv-RX-JHF" firstAttribute="leading" secondItem="NbN-vV-Xzc" secondAttribute="trailing" constant="8" id="KGC-9t-und"/>
+                            <constraint firstItem="YAR-Pz-uFa" firstAttribute="top" secondItem="LNr-ny-qoE" secondAttribute="bottom" constant="2" id="OgK-co-IC4"/>
+                            <constraint firstItem="NbN-vV-Xzc" firstAttribute="leading" secondItem="q0r-Ix-IHh" secondAttribute="leading" constant="8" id="X0o-DY-cBq"/>
+                            <constraint firstItem="jKv-RX-JHF" firstAttribute="top" secondItem="q0r-Ix-IHh" secondAttribute="top" constant="16" id="dwb-fn-zpO"/>
+                            <constraint firstAttribute="trailing" secondItem="HeU-gv-TEn" secondAttribute="trailing" constant="8" id="eGX-Ih-JhL"/>
+                            <constraint firstAttribute="trailing" secondItem="GLN-Q8-WrT" secondAttribute="trailing" constant="10" id="esX-dG-LfR"/>
+                            <constraint firstItem="Mb8-iw-92w" firstAttribute="leading" secondItem="NbN-vV-Xzc" secondAttribute="trailing" constant="8" id="gL1-tH-og5"/>
+                            <constraint firstItem="NbN-vV-Xzc" firstAttribute="top" secondItem="q0r-Ix-IHh" secondAttribute="top" constant="8" id="hK9-8c-LyJ"/>
+                            <constraint firstAttribute="trailing" secondItem="LNr-ny-qoE" secondAttribute="trailing" constant="10" id="trP-5X-PfD"/>
+                            <constraint firstItem="GLN-Q8-WrT" firstAttribute="top" secondItem="q0r-Ix-IHh" secondAttribute="top" constant="10" id="vOt-S9-ewh"/>
+                            <constraint firstItem="mKp-Zc-lpE" firstAttribute="leading" secondItem="NbN-vV-Xzc" secondAttribute="trailing" constant="8" id="xLH-hY-Clb"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="12"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" systemColor="systemGray6Color"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="0.5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="q0r-Ix-IHh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="F8a-i9-2fs"/>
+                    <constraint firstItem="q0r-Ix-IHh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="ZZh-yz-XTT"/>
+                    <constraint firstAttribute="trailing" secondItem="q0r-Ix-IHh" secondAttribute="trailing" constant="10" id="b9x-af-haQ"/>
+                    <constraint firstAttribute="bottom" secondItem="q0r-Ix-IHh" secondAttribute="bottom" constant="10" id="fEH-xU-77f"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" red="0.16862745100000001" green="0.16862745100000001" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <connections>
+                <outlet property="dateTitle" destination="LNr-ny-qoE" id="Tmx-RD-jWF"/>
+                <outlet property="desiredDate" destination="YAR-Pz-uFa" id="uaj-A5-rZa"/>
+                <outlet property="productImage" destination="NbN-vV-Xzc" id="MD8-kV-gBM"/>
+                <outlet property="productName" destination="jKv-RX-JHF" id="lIo-Pb-1S1"/>
+                <outlet property="productPoints" destination="mKp-Zc-lpE" id="Q4l-2w-Iu4"/>
+                <outlet property="productView" destination="q0r-Ix-IHh" id="93O-RP-KA2"/>
+                <outlet property="redeemBTN" destination="HeU-gv-TEn" id="XdU-ty-sC3"/>
+                <outlet property="removeButton" destination="GLN-Q8-WrT" id="eFo-9v-hHV"/>
+            </connections>
+            <point key="canvasLocation" x="-340.57971014492756" y="120.87053571428571"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ic_default_img" width="400" height="255"/>
+        <image name="removeCart" width="32" height="32"/>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

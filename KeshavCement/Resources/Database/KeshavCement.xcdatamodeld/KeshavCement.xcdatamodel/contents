@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22D68" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AddToCART" representedClassName="AddToCART" syncable="YES" codeGenerationType="class">
+        <attribute name="catalogueId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="categoryID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="categoryName" optional="YES" attributeType="String"/>
+        <attribute name="deliveryType" optional="YES" attributeType="String"/>
+        <attribute name="merchantID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="merchantName" optional="YES" attributeType="String"/>
+        <attribute name="pointsRequired" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="productCode" optional="YES" attributeType="String"/>
+        <attribute name="productDesc" optional="YES" attributeType="String"/>
+        <attribute name="productImage" optional="YES" attributeType="String"/>
+        <attribute name="productName" optional="YES" attributeType="String"/>
+        <attribute name="quantity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="termsCondition" optional="YES" attributeType="String"/>
+        <attribute name="totalPoints" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="userID" optional="YES" attributeType="String"/>
+        <attribute name="vendorid" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="vendorName" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="PendingClaimPurcase" representedClassName="PendingClaimPurcase" syncable="YES" codeGenerationType="class">
+        <attribute name="locationName" optional="YES" attributeType="String"/>
+        <attribute name="memberName" optional="YES" attributeType="String"/>
+        <attribute name="memberType" optional="YES" attributeType="String"/>
+        <attribute name="productName" optional="YES" attributeType="String"/>
+        <attribute name="quantity" optional="YES" attributeType="String"/>
+        <attribute name="remarks" optional="YES" attributeType="String"/>
+        <attribute name="temperId" optional="YES" attributeType="String"/>
+        <attribute name="transactionDate" optional="YES" attributeType="String"/>
+    </entity>
+</model>

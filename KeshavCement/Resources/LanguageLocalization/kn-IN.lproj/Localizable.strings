@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  KeshavCement
+
+  Created by ADMIN on 30/12/2022.
+  
+*/
+"Welcome" = "ಸ್ವಾಗತ";
+"infoText" = "ದಯವಿಟ್ಟು ಕೇಶವ್ ಅಪ್ಲಿಕೇಶನ್‌ಗೆ ನಿಮ್ಮ ಬಳಕೆದಾರ ಪ್ರಕಾರವನ್ನು ಆಯ್ಕೆಮಾಡಿ";
+"Engineer" = "ಇಂಜಿನಿಯರ್";
+"Mason" = "ಮೇಸನ್";
+"Dealer" = "ಡೀಲರ್";
+"SubDealer" = "ಉಪ ಡೀಲರ್";
+"SupExecu" = "ಬೆಂಬಲ ಕಾರ್ಯನಿರ್ವಾಹಕ";
