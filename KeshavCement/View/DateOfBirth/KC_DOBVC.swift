@@ -18,6 +18,7 @@ class KC_DOBVC: UIViewController {
     let nameFormatter = DateFormatter()
     var selectedDate = ""
     var isComeFrom = ""
+    var receivedDate = ""
     var delegate: DateSelectedDelegate!
     
     
@@ -43,6 +44,18 @@ class KC_DOBVC: UIViewController {
         if isComeFrom == "DOB"{
             if datePicker.date > sevenDaysBeforeToday{
                 let alert = UIAlertController(title: "", message: "It seems you are less than 18 years of age. You can apply for Keshav membership only if you are 18 years and above", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }else{
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd"
+                selectedDate = formatter.string(from: datePicker.date)
+                self.delegate.acceptDate(self)
+                self.dismiss(animated: true, completion: nil)
+            }
+        }else if isComeFrom == "ANNIVERSARY"{
+            if datePicker.date > sevenDaysBeforeToday{
+                let alert = UIAlertController(title: "", message: "It seems you are less than 18 years of age.", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }else{

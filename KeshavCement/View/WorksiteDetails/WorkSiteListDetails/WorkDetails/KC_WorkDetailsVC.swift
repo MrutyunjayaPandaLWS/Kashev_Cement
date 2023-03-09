@@ -14,6 +14,7 @@ class KC_WorkDetailsVC: BaseViewController, DateSelectedDelegate, SelectedDataDe
         self.selectLevelLbl.text = vc.selectedWorkLevelTitle
         self.selectLevelLbl.textColor = .darkGray
     }
+    func didTapCityName(_ vc: KC_DropDownVC){}
     func didTapHelpTopic(_ vc: KC_DropDownVC) {}
     func didTapCustomerType(_ vc: KC_DropDownVC) {}
     func didTapMappedUserName(_ vc: KC_DropDownVC) {}

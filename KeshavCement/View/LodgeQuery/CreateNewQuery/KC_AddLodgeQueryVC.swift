@@ -10,6 +10,7 @@ import Photos
 import AVFoundation
 //import LanguageManager_iOS
 class KC_AddLodgeQueryVC: BaseViewController, SelectedDataDelegate{
+    func didTapCityName(_ vc: KC_DropDownVC){}
     func didTapHelpTopic(_ vc: KC_DropDownVC) {
         self.selectedItem = vc.helpTopicName
         self.selectedQueryID = vc.helpTopicId

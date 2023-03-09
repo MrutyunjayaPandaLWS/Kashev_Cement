@@ -9,6 +9,7 @@ import UIKit
 import DPOTPView
 class KC_NewSaleVC: BaseViewController, SelectedDataDelegate, DPOTPViewDelegate{
     func didTapHelpTopic(_ vc: KC_DropDownVC) {}
+    func didTapCityName(_ vc: KC_DropDownVC){}
     func didTapCustomerType(_ vc: KC_DropDownVC) {
         self.selectTypeLbl.text = vc.selectedCustomerType
         self.selectedUserTypeName = vc.selectedCustomerType

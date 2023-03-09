@@ -8,7 +8,7 @@
 import UIKit
 
 
-protocol SelectedDataDelegate: class{
+protocol SelectedDataDelegate: AnyObject{
     
     func didTapCustomerType(_ vc: KC_DropDownVC)
     func didTapState(_ vc: KC_DropDownVC)
@@ -19,6 +19,7 @@ protocol SelectedDataDelegate: class{
     func didTapProductName(_ vc: KC_DropDownVC)
     func didTapWorkLevel(_ vc: KC_DropDownVC)
     func didTapHelpTopic(_ vc: KC_DropDownVC)
+    func didTapCityName(_ vc: KC_DropDownVC)
 }
 
 class KC_DropDownVC: BaseViewController,UISearchBarDelegate {
@@ -70,6 +71,9 @@ class KC_DropDownVC: BaseViewController,UISearchBarDelegate {
     var selectedWorkLevelTitle = ""
     var selectedWorkLevelId = -1
     
+    var selectedCityId = -1
+    var selectedCityName = ""
+    
 //    Engineer - 1
 //    Mason - 2
 //    Dealer - 3
@@ -101,6 +105,8 @@ class KC_DropDownVC: BaseViewController,UISearchBarDelegate {
             self.workLevelApi()
         }else if self.itsFrom == "NEWQUERY"{
             self.queryTopicListApi()
+        }else if self.itsFrom == "CITY"{
+            cityListingAPI(stateID: self.selectedStateId)
         }
         
     }
@@ -191,6 +197,18 @@ class KC_DropDownVC: BaseViewController,UISearchBarDelegate {
         ] as [String: Any]
         self.VM.queryTopicListAPI(parameter: parameter)
     }
+    
+    func cityListingAPI(stateID: Int){
+        let parameterJSON = [
+                "ActionType": "2",
+                "IsActive": "true",
+                "SortColumn": "CITY_NAME",
+                "SortOrder": "ASC",
+                "StartIndex": "1",
+                "StateId": stateID
+            ] as  [String:Any]
+            self.VM.citylisting(parameters: parameterJSON)
+    }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if self.VM.mappedListArray.count > 0 {
             let arr = self.VM.mappedListArray.filter{ ($0.firstName!.localizedCaseInsensitiveContains(searchBar.text!))}
@@ -243,6 +261,8 @@ extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
             return self.VM.workLevelListArray.count
         }else if self.itsFrom == "NEWQUERY"{
             return self.VM.queryTopicListArray.count
+        }else if self.itsFrom == "CITY"{
+            return self.VM.cityArray.count
         }else if self.itsFrom == "USERTYPE"{
             if self.customerType == "Engineer" || self.customerType == "Mason"{
                 return self.engineerandMasonArray.count
@@ -261,6 +281,8 @@ extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
             cell.selectedTitleLbl.text = self.VM.customerTypeArray[indexPath.row].attributeValue ?? ""
         }else if self.itsFrom == "STATE"{
             cell.selectedTitleLbl.text = self.VM.stateListArray[indexPath.row].stateName ?? ""
+        }else if self.itsFrom == "CITY"{
+            cell.selectedTitleLbl.text = self.VM.cityArray[indexPath.row].cityName ?? ""
         }else if self.itsFrom == "DISTRICT"{
             cell.selectedTitleLbl.text = self.VM.districtListArray[indexPath.row].districtName ?? ""
         }else if self.itsFrom == "TALUK"{
@@ -386,6 +408,11 @@ extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
             self.helpTopicId = self.VM.queryTopicListArray[indexPath.row].helpTopicId ?? -1
             self.helpTopicName = self.VM.queryTopicListArray[indexPath.row].helpTopicName ?? ""
             self.delegate?.didTapHelpTopic(self)
+            self.dismiss(animated: true)
+        }else if self.itsFrom == "CITY"{
+            self.selectedCityId = self.VM.cityArray[indexPath.row].cityId ?? 0
+            self.selectedCityName = self.VM.cityArray[indexPath.row].cityName ?? ""
+            self.delegate?.didTapCityName(self)
             self.dismiss(animated: true)
         }
         

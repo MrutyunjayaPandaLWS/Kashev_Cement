@@ -708,6 +708,20 @@ class RestAPI_Requests {
         }
     }
     
+    func city_Post_API(parameters: JSON, completion: @escaping (CityListModels?, Error?) -> ()) -> URLSessionDataTask? {
+        return client.load(path: city_URLMethod, method: .post, params: parameters) { data, error in
+            do{
+//                print(data)
+                if data != nil{
+                    let result1 =  try JSONDecoder().decode(CityListModels?.self, from: data as! Data)
+                    completion(result1, nil)
+                }
+            }catch{
+                completion(nil, error)
+            }
+        }
+    }
+    
     
     
     

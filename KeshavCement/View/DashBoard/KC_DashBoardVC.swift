@@ -138,7 +138,7 @@ class KC_DashBoardVC: BaseViewController{
     }
     
     @IBAction func claimPurchaseBTn(_ sender: Any) {
-        if self.customerTypeId == "1" || self.customerTypeId == "2"{
+        if self.customerTypeIds == 1 || self.customerTypeIds == 2{
             let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_ClaimPurchaseVC") as! KC_ClaimPurchaseVC
             vc.customerType = self.customerType
             self.navigationController?.pushViewController(vc, animated: true)

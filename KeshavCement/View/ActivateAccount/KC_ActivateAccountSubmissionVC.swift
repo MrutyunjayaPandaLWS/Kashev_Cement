@@ -9,6 +9,11 @@ import UIKit
 
 class KC_ActivateAccountSubmissionVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegate, UITextFieldDelegate {
     func didTapMappedUserName(_ vc: KC_DropDownVC) {}
+    func didTapCityName(_ vc: KC_DropDownVC) {
+           self.selectedCityName = vc.selectedCityName
+           self.selectedCityId = vc.selectedCityId
+           self.cityLbl.text = vc.selectedCityName
+       }
     func didTapHelpTopic(_ vc: KC_DropDownVC) {}
     func didTapWorkLevel(_ vc: KC_DropDownVC) {}
     func didTapUserType(_ vc: KC_DropDownVC) {}
@@ -46,18 +51,32 @@ class KC_ActivateAccountSubmissionVC: BaseViewController, SelectedDataDelegate, 
         self.selectStateLbl.text = vc.selectedStateName
         self.selectedStateName = vc.selectedStateName
         self.selectedStateId = vc.selectedStateId
+        self.selectedDistrictId = -1
+        self.selectedCityId = -1
+        self.selectedTalukId = -1
+        self.selectDistrictLbl.text = "Select District"
+        self.selectTalukLbl.text = "Select Taluk"
+        self.cityLbl.text = "Select City"
     }
     
     func didTapDistrict(_ vc: KC_DropDownVC) {
         self.selectDistrictLbl.text = vc.selectedDistrictName
         self.selectedDistrictName = vc.selectedDistrictName
         self.selectedDistrictId = vc.selectedDistrictId
+        self.selectedCityId = -1
+        self.selectedTalukId = -1
+        self.selectTalukLbl.text = "Select Taluk"
+        self.cityLbl.text = "Select City"
+
     }
     
     func didTapTaluk(_ vc: KC_DropDownVC) {
         self.selectTalukLbl.text = vc.selectedTalukName
         self.selectedTalukName = vc.selectedTalukName
         self.selectedTalukId = vc.selectedTalukId
+        self.selectedCityId = -1
+        self.cityLbl.text = "Select City"
+
     }
     
 
@@ -93,6 +112,7 @@ class KC_ActivateAccountSubmissionVC: BaseViewController, SelectedDataDelegate, 
     @IBOutlet weak var dobLbl: UILabel!
     @IBOutlet weak var dateOfAnniversaryLbl: UILabel!
    
+    @IBOutlet weak var cityLbl: UILabel!
     
     var receiverName = ""
     var address = ""
@@ -127,6 +147,9 @@ class KC_ActivateAccountSubmissionVC: BaseViewController, SelectedDataDelegate, 
     var selectedDOB = ""
     var selectedAnniversary = ""
     var enteredMobileNumber = ""
+    
+    var selectedCityName = ""
+    var selectedCityId = -1
     
     var VM = KC_ActivateAccountSubmissionVM()
     
@@ -178,24 +201,49 @@ class KC_ActivateAccountSubmissionVC: BaseViewController, SelectedDataDelegate, 
     }
     
     @IBAction func selectDistrictBtn(_ sender: Any) {
-        let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
-        vc.itsFrom = "DISTRICT"
-        vc.delegate = self
-        vc.selectedStateId = self.selectedStateId
-        vc.modalTransitionStyle = .coverVertical
-        vc.modalPresentationStyle = .overFullScreen
-        self.present(vc, animated: true)
+        if self.selectedStateId == -1{
+            self.view.makeToast("Select State", duration: 2.0, position: .bottom)
+        }else{
+            
+            let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
+            vc.itsFrom = "DISTRICT"
+            vc.delegate = self
+            vc.selectedStateId = self.selectedStateId
+            vc.modalTransitionStyle = .coverVertical
+            vc.modalPresentationStyle = .overFullScreen
+            self.present(vc, animated: true)
+        }
     }
     
     @IBAction func selectTalukBtn(_ sender: Any) {
-        let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
-        vc.itsFrom = "TALUK"
-        vc.delegate = self
-        vc.selectedDistrictId = self.selectedDistrictId
-        vc.modalTransitionStyle = .coverVertical
-        vc.modalPresentationStyle = .overFullScreen
-        self.present(vc, animated: true)
+        if self.selectedDistrictId == -1{
+            self.view.makeToast("Select District", duration: 2.0, position: .bottom)
+        }else{
+            let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
+            vc.itsFrom = "TALUK"
+            vc.delegate = self
+            vc.selectedDistrictId = self.selectedDistrictId
+            vc.modalTransitionStyle = .coverVertical
+            vc.modalPresentationStyle = .overFullScreen
+            self.present(vc, animated: true)
+        }
     }
+    
+    @IBAction func cityButton(_ sender: Any) {
+        if self.selectedStateId == -1{
+            self.view.makeToast("Select State", duration: 2.0, position: .bottom)
+        }else{
+            let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
+            vc.itsFrom = "CITY"
+            vc.delegate = self
+            vc.selectedStateId = self.selectedStateId
+            vc.modalTransitionStyle = .coverVertical
+            vc.modalPresentationStyle = .overFullScreen
+            self.present(vc, animated: true)
+        }
+    }
+    
+    
     
     @IBAction func dobButton(_ sender: Any) {
         let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DOBVC") as! KC_DOBVC

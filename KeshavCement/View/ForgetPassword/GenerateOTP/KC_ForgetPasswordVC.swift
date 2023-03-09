@@ -59,30 +59,30 @@ class KC_ForgetPasswordVC: BaseViewController, DPOTPViewDelegate{
     
     @IBAction func userNameEditingDidEnd(_ sender: Any) {
         
-        if self.mobileNumberTF.text?.count == 0 {
-            self.view.makeToast("Enter mobile number/ member ID", duration: 2.0, position: .bottom)
-        }
-        else if self.mobileNumberTF.text?.count != 10 {
-            self.view.makeToast("Enter valid mobile number", duration: 2.0, position: .bottom)
-        }
-        else{
-            let mobilenumber = self.mobileNumberTF.text ?? ""
-            
-            let getLastFour = String(mobilenumber.suffix(4))
-            print(getLastFour)
-            self.otpInfoLbl2.text = getLastFour
-            
-            let parameter = [
-                "ActionType":"65",
-                "ActorId": self.categoryId,
-                "Location":[
-                    "UserName":"\(self.mobileNumberTF.text ?? "")"
-                ]
-            ] as [String: Any]
-            print(parameter)
-            self.VM.verifyMobileNumberAPI(paramters: parameter)
-            
-        }
+//        if self.mobileNumberTF.text?.count == 0 {
+//            self.view.makeToast("Enter mobile number/ member ID", duration: 2.0, position: .bottom)
+//        }
+//        else if self.mobileNumberTF.text?.count != 10 {
+//            self.view.makeToast("Enter valid mobile number", duration: 2.0, position: .bottom)
+//        }
+//        else{
+//            let mobilenumber = self.mobileNumberTF.text ?? ""
+//
+//            let getLastFour = String(mobilenumber.suffix(4))
+//            print(getLastFour)
+//            self.otpInfoLbl2.text = getLastFour
+//
+//            let parameter = [
+//                "ActionType":"65",
+//                "ActorId": self.categoryId,
+//                "Location":[
+//                    "UserName":"\(self.mobileNumberTF.text ?? "")"
+//                ]
+//            ] as [String: Any]
+//            print(parameter)
+//            self.VM.verifyMobileNumberAPI(paramters: parameter)
+//
+//        }
     }
     @IBAction func backBtn(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -101,16 +101,28 @@ class KC_ForgetPasswordVC: BaseViewController, DPOTPViewDelegate{
             
             if self.generateOTPBtn.currentTitle == "Generate OTP"{
                 if self.mobileNumberTF.text?.count == 0 {
-                    self.view.makeToast("Enter mobile number", duration: 2.0, position: .bottom)
-                }else if self.mobileNumberTF.text?.count != 10 {
+                    self.view.makeToast("Enter mobile number/ member ID", duration: 2.0, position: .bottom)
+                }
+                else if self.mobileNumberTF.text?.count != 10 {
                     self.view.makeToast("Enter valid mobile number", duration: 2.0, position: .bottom)
-                }else if self.mobileNumberTF.text?.count == 10{
+                }
+                else{
                     let mobilenumber = self.mobileNumberTF.text ?? ""
                     
                     let getLastFour = String(mobilenumber.suffix(4))
                     print(getLastFour)
-                    self.otpInfoLbl.text = getLastFour
-                    self.generateOTPApi()
+                    self.otpInfoLbl2.text = getLastFour
+                    
+                    let parameter = [
+                        "ActionType":"65",
+                        "ActorId": self.categoryId,
+                        "Location":[
+                            "UserName":"\(self.mobileNumberTF.text ?? "")"
+                        ]
+                    ] as [String: Any]
+                    print(parameter)
+                    self.VM.verifyMobileNumberAPI(paramters: parameter)
+                    
                 }
             }else if self.generateOTPBtn.currentTitle == "Submit"{
                 print(self.enteredValue, "- Entered Value")

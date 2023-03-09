@@ -87,22 +87,30 @@ class KC_RegisterVC:  BaseViewController, UITextFieldDelegate {
     }
     
     @IBAction func generateOTPActionBtn(_ sender: Any) {
-        
         if self.generateOTPBtn.currentTitle == "Generate OTP"{
-            if self.mobileNumberTF.text?.count == 0 {
-                self.view.makeToast("Enter mobile number", duration: 2.0, position: .bottom)
-            }else if self.mobileNumberTF.text?.count != 10 {
-                self.view.makeToast("Enter valid mobile number", duration: 2.0, position: .bottom)
-            }else if self.categoryId == -1{
-                self.view.makeToast("Select customer type", duration: 2.0, position: .bottom)
-            }else if self.mobileNumberTF.text?.count == 10{
-                let mobilenumber = self.mobileNumberTF.text ?? ""
-                
-                let getLastFour = String(mobilenumber.suffix(4))
-                print(getLastFour)
-                self.otpInfoLbl.text = getLastFour
-                self.generateOTPApi()
-            }
+        if self.mobileNumberTF.text?.count == 0 {
+            self.view.makeToast("Enter mobile number", duration: 2.0, position: .bottom)
+        }else if self.mobileNumberTF.text?.count != 10 {
+            self.view.makeToast("Enter valid mobile number", duration: 2.0, position: .bottom)
+        }else if self.categoryId == -1{
+            self.view.makeToast("Select customer type", duration: 2.0, position: .bottom)
+        }else{
+            let mobilenumber = self.mobileNumberTF.text ?? ""
+            
+            let getLastFour = String(mobilenumber.suffix(4))
+            print(getLastFour)
+            self.otpInfoLbl.text = getLastFour
+            
+            let parameter = [
+                "ActionType":"65",
+                "ActorId": self.categoryId,
+                "Location":[
+                    "UserName":"\(self.mobileNumberTF.text ?? "")"
+                ]
+            ] as [String: Any]
+            print(parameter)
+            self.VM.verifyMobileNumberAPI(paramters: parameter)
+        }
         }else if self.generateOTPBtn.currentTitle == "Submit"{
             print(self.enteredValue, "- Entered Value")
             if self.enteredValue.count == 0 {
@@ -115,6 +123,8 @@ class KC_RegisterVC:  BaseViewController, UITextFieldDelegate {
                 self.VM.timer.invalidate()
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_RegistrationReferralCodeVC") as! KC_RegistrationReferralCodeVC
                 vc.referralCode = "Check"
+                vc.enteredMobile = self.mobileNumberTF.text ?? ""
+                vc.customerTypeName = self.filterLbl.text ?? ""
                 self.navigationController?.pushViewController(vc, animated: true)
             }
 
@@ -155,29 +165,29 @@ class KC_RegisterVC:  BaseViewController, UITextFieldDelegate {
     
     @IBAction func userNameEditingDidEnd(_ sender: Any) {
         
-        if self.mobileNumberTF.text?.count == 0 {
-            self.view.makeToast("Enter mobile number", duration: 2.0, position: .bottom)
-        }else if self.mobileNumberTF.text?.count != 10 {
-            self.view.makeToast("Enter valid mobile number", duration: 2.0, position: .bottom)
-        }else if self.categoryId == -1{
-            self.view.makeToast("Select customer type", duration: 2.0, position: .bottom)
-        }else{
-            let mobilenumber = self.mobileNumberTF.text ?? ""
-            
-            let getLastFour = String(mobilenumber.suffix(4))
-            print(getLastFour)
-            self.otpInfoLbl.text = getLastFour
-            
-            let parameter = [
-                "ActionType":"65",
-                "ActorId": self.categoryId,
-                "Location":[
-                    "UserName":"\(self.mobileNumberTF.text ?? "")"
-                ]
-            ] as [String: Any]
-            print(parameter)
-            self.VM.verifyMobileNumberAPI(paramters: parameter)
-        }
+//        if self.mobileNumberTF.text?.count == 0 {
+//            self.view.makeToast("Enter mobile number", duration: 2.0, position: .bottom)
+//        }else if self.mobileNumberTF.text?.count != 10 {
+//            self.view.makeToast("Enter valid mobile number", duration: 2.0, position: .bottom)
+//        }else if self.categoryId == -1{
+//            self.view.makeToast("Select customer type", duration: 2.0, position: .bottom)
+//        }else{
+//            let mobilenumber = self.mobileNumberTF.text ?? ""
+//            
+//            let getLastFour = String(mobilenumber.suffix(4))
+//            print(getLastFour)
+//            self.otpInfoLbl.text = getLastFour
+//            
+//            let parameter = [
+//                "ActionType":"65",
+//                "ActorId": self.categoryId,
+//                "Location":[
+//                    "UserName":"\(self.mobileNumberTF.text ?? "")"
+//                ]
+//            ] as [String: Any]
+//            print(parameter)
+//            self.VM.verifyMobileNumberAPI(paramters: parameter)
+//        }
     }
     
     func customerTypeApi(){

@@ -54,6 +54,11 @@ class KC_ReferandEarnVC: BaseViewController, UITextFieldDelegate {
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction func shareBtn(_ sender: Any) {
+        let text = "\(referralCode)"
+            let textShare = [ text ]
+            let activityViewController = UIActivityViewController(activityItems: textShare , applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = self.view
+            self.present(activityViewController, animated: true, completion: nil)
     }
     @IBAction func copyReferralCodeBtn(_ sender: Any) {
         self.view.makeToast("Text Copied", duration: 2.0,position: .bottom)

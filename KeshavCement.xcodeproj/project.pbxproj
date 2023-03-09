@@ -125,6 +125,8 @@
 		8457DBD92995238D007F6A43 /* CustomerTypeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8457DBD72995238C007F6A43 /* CustomerTypeModels.swift */; };
 		8457DBDB29952600007F6A43 /* KC_WelcomeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8457DBDA29952600007F6A43 /* KC_WelcomeTVC.swift */; };
 		8457DBDE29952856007F6A43 /* KC_CustomerTypeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8457DBDD29952856007F6A43 /* KC_CustomerTypeVM.swift */; };
+		845882AF29B5B57900C1BB6F /* CityListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845882AD29B5B57800C1BB6F /* CityListModels.swift */; };
+		845882B029B5B57900C1BB6F /* CityList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845882AE29B5B57800C1BB6F /* CityList.swift */; };
 		8462394B296426C000D19D97 /* KC_ClaimPurchaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8462394A296426C000D19D97 /* KC_ClaimPurchaseVC.swift */; };
 		84741DBD299F358C00F0A53E /* UserList1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84741DBB299F358C00F0A53E /* UserList1.swift */; };
 		84741DBE299F358C00F0A53E /* ForgetPasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84741DBC299F358C00F0A53E /* ForgetPasswordModel.swift */; };
@@ -451,6 +453,8 @@
 		8457DBD72995238C007F6A43 /* CustomerTypeModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerTypeModels.swift; sourceTree = "<group>"; };
 		8457DBDA29952600007F6A43 /* KC_WelcomeTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_WelcomeTVC.swift; sourceTree = "<group>"; };
 		8457DBDD29952856007F6A43 /* KC_CustomerTypeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_CustomerTypeVM.swift; sourceTree = "<group>"; };
+		845882AD29B5B57800C1BB6F /* CityListModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityListModels.swift; sourceTree = "<group>"; };
+		845882AE29B5B57800C1BB6F /* CityList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityList.swift; sourceTree = "<group>"; };
 		8462394A296426C000D19D97 /* KC_ClaimPurchaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_ClaimPurchaseVC.swift; sourceTree = "<group>"; };
 		84741DBB299F358C00F0A53E /* UserList1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserList1.swift; sourceTree = "<group>"; };
 		84741DBC299F358C00F0A53E /* ForgetPasswordModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordModel.swift; sourceTree = "<group>"; };
@@ -772,6 +776,7 @@
 		25DC5C17295C1B1900818258 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				845882AC29B5B56D00C1BB6F /* CityModels */,
 				84DA347329AF83CE00078CF2 /* GetAccountDetailsForActivateModel */,
 				84DA347029AF802800078CF2 /* ActivateSubmissionModel */,
 				84DA346429AF72C700078CF2 /* AccountDeactivatedModel */,
@@ -879,6 +884,7 @@
 		25DC5C19295C1B2900818258 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				845882F229B618AC00C1BB6F /* DreamGift */,
 				84DA342B29AF25AD00078CF2 /* ChatDetails */,
 				848A4EEB299E57CC002280C0 /* DateOfBirth */,
 				843395DD299BB9F00041685B /* DropDown */,
@@ -1414,6 +1420,22 @@
 				8457DBDD29952856007F6A43 /* KC_CustomerTypeVM.swift */,
 			);
 			path = CustomerTypeVM;
+			sourceTree = "<group>";
+		};
+		845882AC29B5B56D00C1BB6F /* CityModels */ = {
+			isa = PBXGroup;
+			children = (
+				845882AE29B5B57800C1BB6F /* CityList.swift */,
+				845882AD29B5B57800C1BB6F /* CityListModels.swift */,
+			);
+			path = CityModels;
+			sourceTree = "<group>";
+		};
+		845882F229B618AC00C1BB6F /* DreamGift */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DreamGift;
 			sourceTree = "<group>";
 		};
 		84623949296426A000D19D97 /* ClaimPurchase */ = {
@@ -2808,6 +2830,7 @@
 				84CA8E41299CA8D0000692F4 /* StateListModel.swift in Sources */,
 				84DA344D29AF2ED700078CF2 /* NewChatSubmitModel.swift in Sources */,
 				848A4EEA299E5524002280C0 /* KC_SignUpSuccessPopVC.swift in Sources */,
+				845882B029B5B57900C1BB6F /* CityList.swift in Sources */,
 				840CC62E29A733E0005B438D /* ProductAddToCartModel.swift in Sources */,
 				84DA341B29AF113B00078CF2 /* ObjCustomerAllQueryJsonList.swift in Sources */,
 				25DC5C49295C1C4B00818258 /* TapGestureExtension.swift in Sources */,
@@ -2819,6 +2842,7 @@
 				840F706329640606004A5D36 /* KC_CategoryCVC.swift in Sources */,
 				848EF1C7296C4CC60091ADB7 /* KC_HelplineVC.swift in Sources */,
 				842BAFA829AA053A003BD356 /* KC_MappedCustomerTVC.swift in Sources */,
+				845882AF29B5B57900C1BB6F /* CityListModels.swift in Sources */,
 				84741DE4299F8DC600F0A53E /* KC_SideMenuVM.swift in Sources */,
 				8451D555296BF72A00208317 /* KC_WorkDetailsVC.swift in Sources */,
 				84A95B1A2966DDE800C44122 /* KC_ProductCatalogueVC.swift in Sources */,
@@ -3154,11 +3178,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = XAVVX55AD4;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HG885J5KS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KeshavCement/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Kashev Cement";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -3173,6 +3200,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "loyltwo3ks-Pvt-Ltd.KeshavCement";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Kashev_Dev_Cer;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3185,11 +3214,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = XAVVX55AD4;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HG885J5KS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KeshavCement/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Kashev Cement";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -3204,6 +3236,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "loyltwo3ks-Pvt-Ltd.KeshavCement";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Kashev_Dev_Cer;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

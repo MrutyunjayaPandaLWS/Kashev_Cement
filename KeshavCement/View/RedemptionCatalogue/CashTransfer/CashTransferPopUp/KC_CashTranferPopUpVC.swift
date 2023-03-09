@@ -11,6 +11,7 @@ class KC_CashTranferPopUpVC: BaseViewController, DPOTPViewDelegate, SelectedData
     func didTapHelpTopic(_ vc: KC_DropDownVC) {}
     func didTapCustomerType(_ vc: KC_DropDownVC) {}
     func didTapWorkLevel(_ vc: KC_DropDownVC) {}
+    func didTapCityName(_ vc: KC_DropDownVC){}
     func didTapMappedUserName(_ vc: KC_DropDownVC) {
         self.nameTF.text = vc.mappedUsername
         self.mappedName = vc.mappedUsername

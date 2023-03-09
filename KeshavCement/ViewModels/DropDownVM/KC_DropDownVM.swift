@@ -21,7 +21,51 @@ class KC_DropDownVM{
     var claimProductListArray = [LstAttributesDetails12]()
     var workLevelListArray = [LstAttributesDetails]()
     var queryTopicListArray = [ObjHelpTopicList]()
+    var cityListArray = [CityList]()
+    var cityArray = [CityList]()
     
+    func citylisting(parameters:JSON){
+        self.VC?.startLoading()
+        print(parameters)
+        self.requestAPIs.city_Post_API(parameters: parameters) { (result, error) in
+            if error == nil {
+                if result != nil{
+                    DispatchQueue.main.async {
+                        self.VC?.stopLoading()
+                        self.cityArray = result?.cityList ?? []
+                        print(self.cityArray.count, "City Count")
+                        self.cityListArray = self.cityArray
+                        if self.cityListArray.count != 0 {
+                            self.VC?.dropDownTableView.isHidden = false
+                            self.VC?.noDataFoundLbl.isHidden = true
+                            if self.cityListArray.count <= 20{
+                                self.VC!.tableViewHeightConstraint.constant = CGFloat(self.cityListArray.count * 40)
+                            }else{
+                                self.VC!.tableViewHeightConstraint.constant = CGFloat(500)
+                            }
+                            self.VC?.dropDownTableView.reloadData()
+                        }else{
+                            self.VC?.dropDownTableView.isHidden = true
+                            self.VC?.noDataFoundLbl.isHidden = false
+                        }
+
+                    }
+                }else{
+                    print("NO RESPONSE")
+                    DispatchQueue.main.async {
+                        self.VC?.stopLoading()
+                    }
+                }
+            }else{
+                print("ERROR_ \(error)")
+                DispatchQueue.main.async {
+                    self.VC?.stopLoading()
+                }
+
+            }
+
+        }
+    }
     func queryTopicListAPI(parameter: JSON){
         
         DispatchQueue.main.async {

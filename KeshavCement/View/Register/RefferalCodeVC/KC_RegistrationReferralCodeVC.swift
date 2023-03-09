@@ -14,6 +14,8 @@ class KC_RegistrationReferralCodeVC: BaseViewController {
     @IBOutlet weak var referralCodeTF: UITextField!
     @IBOutlet weak var skipLbl: UILabel!
     var referralCode = ""
+    var enteredMobile = ""
+    var customerTypeName = ""
     let token = UserDefaults.standard.string(forKey: "TOKEN") ?? ""
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +25,8 @@ class KC_RegistrationReferralCodeVC: BaseViewController {
 
     @IBAction func skipButton(_ sender: Any) {
         let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_SignUpVC") as! KC_SignUpVC
+        vc.enteredMobile = self.enteredMobile
+        vc.customerTypeName = self.customerTypeName
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -79,6 +83,8 @@ class KC_RegistrationReferralCodeVC: BaseViewController {
                     DispatchQueue.main.async {
                         let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_SignUpVC") as! KC_SignUpVC
                         vc.referralCode = self.referralCodeTF.text ?? ""
+                        vc.enteredMobile = self.enteredMobile
+                        vc.customerTypeName = self.customerTypeName
                         self.navigationController?.pushViewController(vc, animated: true)
                     }
                 }
