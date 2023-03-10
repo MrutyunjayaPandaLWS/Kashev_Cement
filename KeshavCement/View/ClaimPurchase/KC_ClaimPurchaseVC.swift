@@ -77,11 +77,16 @@ class KC_ClaimPurchaseVC: BaseViewController, SelectedDataDelegate{
     
     var VM = KC_ClaimPurchaseVM()
     
+    let date = Date()
+    let formatter = DateFormatter()
+    var saveTodaysDates = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.VM.VC = self
-        
+        formatter.dateFormat = "dd/MM/yyyy"
+        let result = formatter.string(from: date)
+        self.saveTodaysDates = result
         mainview.clipsToBounds = false
         mainview.layer.cornerRadius = 36
         mainview.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]

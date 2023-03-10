@@ -19,6 +19,16 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
         if vc.isComeFrom == "DOB"{
             self.dobTF.text = vc.selectedDate
             self.selectedDOB = vc.selectedDate
+        }else if vc.isComeFrom == "ANNIVERSARY"{
+            print(dobTF.text)
+            print(vc.selectedDate)
+            if self.dobTF.text ?? "" >= vc.selectedDate{
+                vc.selectedDate = ""
+                self.view.makeToast("Anniversary date should be more then a Date of birth", duration: 2.0, position: .bottom)
+            }else{
+                self.dateOfAnniverseryTF.text = vc.selectedDate
+                self.anniversary = vc.selectedDate
+            }
         }
     }
     
@@ -91,6 +101,7 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
     
     @IBOutlet weak var dobTF: UITextField!
     
+    @IBOutlet weak var dateOfAnniverseryTF: UITextField!
     
     var address = ""
     var selectedDOB = ""
@@ -105,11 +116,11 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
     var zip = ""
     var aadharNumber = ""
     var dob = ""
+    var anniversary = ""
     var companyName = ""
     var GSTNumber = ""
     var selectedCustomerTypeId = ""
     var selectedCustomerTypeName = ""
-    
     
     let picker = UIImagePickerController()
     var strBase64 = ""
@@ -217,6 +228,14 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
         self.present(vc, animated: true)
     }
     
+    @IBAction func doAButton(_ sender: Any) {
+        let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DOBVC") as! KC_DOBVC
+        vc.isComeFrom = "ANNIVERSARY"
+        vc.delegate = self
+        vc.modalTransitionStyle = .coverVertical
+        vc.modalPresentationStyle = .overFullScreen
+        self.present(vc, animated: true)
+    }
     
     @IBAction func saveChangesBTN(_ sender: Any) {
         if self.customerTypeTF.text?.count == 0{

@@ -116,6 +116,10 @@ class KC_NewSaleVC: BaseViewController, SelectedDataDelegate, DPOTPViewDelegate{
         otpView.textEdgeInsets = UIEdgeInsets(top: 0, left: -1, bottom: 0, right: 0)
         otpView.editingTextEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
+        
+        if self.customerTypeId == "5"{
+            self.headerText.text = "Claim"
+        }
     }
     
 

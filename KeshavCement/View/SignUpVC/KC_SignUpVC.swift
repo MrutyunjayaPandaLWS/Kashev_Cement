@@ -25,8 +25,15 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
             self.selectedDOB = vc.selectedDate
             
         }else if vc.isComeFrom == "ANNIVERSARY"{
-            self.dateOfAnniversaryLbl.text = vc.selectedDate
-            self.selectedAnniversary = vc.selectedDate
+            print(dobLbl.text)
+            print(vc.selectedDate)
+            if self.dobLbl.text ?? "" >= vc.selectedDate{
+                vc.selectedDate = ""
+                self.view.makeToast("Anniversary date should be more then a Date of birth", duration: 2.0, position: .bottom)
+            }else{
+                self.dateOfAnniversaryLbl.text = vc.selectedDate
+                self.selectedAnniversary = vc.selectedDate
+            }
         }
     }
     
@@ -280,6 +287,7 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
             vc.modalTransitionStyle = .coverVertical
             vc.modalPresentationStyle = .overFullScreen
             self.present(vc, animated: true)
+            
         }
         
     }

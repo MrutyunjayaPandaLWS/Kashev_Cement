@@ -90,7 +90,7 @@ class KC_LoginVM {
                             
                             if loginResponse[0].result ?? -1 != 1{
                                 self.VC!.view.makeToast("Password is invalid!", duration: 2.0, position: .bottom)
-                            }else if loginResponse[0].isDelete ?? -1 == 1 || loginResponse[0].isUserActive ?? -1 == 0 && loginResponse[0].verifiedStatus ?? -1 == 3{
+                            }else if loginResponse[0].isDelete ?? -1 == 1 || loginResponse[0].isUserActive ?? -1 == 0 && loginResponse[0].verifiedStatus ?? -1 == 3 || loginResponse[0].verifiedStatus ?? -1 == 4{
                                 self.VC!.view.makeToast("Your account is verification pending! Kindly contact your administrator.", duration: 2.0, position: .bottom)
                             }else if loginResponse[0].isUserActive ?? -1 == 1 && loginResponse[0].verifiedStatus ?? -1 == 0 || loginResponse[0].isUserActive ?? -1 == 0 && loginResponse[0].verifiedStatus ?? -1 == 0{
                                 self.VC!.view.makeToast("Your account is not activated! Kindly activate your account.", duration: 2.0, position: .bottom)

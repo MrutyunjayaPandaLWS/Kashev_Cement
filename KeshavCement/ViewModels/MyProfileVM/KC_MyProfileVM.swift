@@ -46,7 +46,10 @@ class KC_MyProfileVM{
                             self.VC?.districtId = "\(response[0].districtId ?? -1)"
                             self.VC?.stateId = "\(response[0].stateId ?? -1)"
                             self.VC?.talukId = "\(response[0].talukId ?? -1)"
-                            
+                            let dateOfBirth = (response[0].jdob)?.split(separator: " ")
+                            let aniv = (response[0].anniversary)?.split(separator: " ")
+                            self.VC?.dobTF.text = "\(dateOfBirth?[0] ?? "")"
+                            self.VC?.dateOfAnniverseryTF.text = "\(aniv?[0] ?? "")"
                             
                             let customerImage = String(response[0].profilePicture ?? "").dropFirst(1)
                             self.VC!.profileImage.kf.setImage(with: URL(string: PROMO_IMG1 + "\(customerImage)"), placeholder: UIImage(named: "ic_default_img"))

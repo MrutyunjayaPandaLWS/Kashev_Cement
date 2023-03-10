@@ -149,6 +149,31 @@ class KC_DashBoardVM: SendNewPasswordDelegate{
                         }else if result?.lstCustomerFeedBackJsonApi?[0].customerTypeId ?? -1 == 3 || result?.lstCustomerFeedBackJsonApi?[0].customerTypeId ?? -1 == 4{
                             self.VC?.whenPurchaseLbl.text = "Sales & Earn"
                             self.VC?.claimPurchaseLbl.text = "Start Earning"
+                        }else if result?.lstCustomerFeedBackJsonApi?[0].customerTypeId ?? -1 == 5{
+                            DispatchQueue.main.async {
+                                if result?.lstCustomerFeedBackJsonApi?[0].customerTypeId == 5{
+                                    self.VC?.sideMenuBTN.isHidden = true
+                                    self.VC?.supportImageView.isHidden = false
+                                    self.VC?.raiseaTicketView.isHidden = true
+                                    self.VC?.logoutBtn.isHidden = false
+                                    
+                                    let mappedData = (result?.lstCustomerFeedBackJsonApi?[0].mappedCustomerName ?? "").split(separator: "~")
+                                    let mappedCustomerType = result?.lstCustomerFeedBackJsonApi?[0].mappedCustomerType ?? ""
+                                    
+                                    self.VC?.whenPurchaseLbl.text = "Start Selling"
+                                    self.VC?.claimPurchaseLbl.text = "Click here"
+                                    self.VC?.pointBalanceLbl.text = "\(mappedCustomerType) "+"\(mappedData[1])"
+                                    self.VC?.pointBalanceTitle.text = "Created By"
+                                    
+                                    self.VC?.pointBalanceIcon.isHidden = true
+                                    
+                                }else{
+                                    self.VC?.sideMenuBTN.isHidden = false
+                                    self.VC?.supportImageView.isHidden = true
+                                    self.VC?.raiseaTicketView.isHidden = false
+                                    self.VC?.logoutBtn.isHidden = true
+                                }
+                            }
                         }
                         UserDefaults.standard.setValue(result?.lstCustomerFeedBackJsonApi?[0].customerId, forKey: "customerId")
                             UserDefaults.standard.setValue(result?.lstCustomerFeedBackJsonApi?[0].firstName, forKey: "FirstName")

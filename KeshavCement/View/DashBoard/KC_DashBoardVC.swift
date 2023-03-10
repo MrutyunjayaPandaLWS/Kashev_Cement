@@ -42,10 +42,12 @@ class KC_DashBoardVC: BaseViewController{
     @IBOutlet weak var raiseaTicketView: UIView!
 
     @IBOutlet weak var supportImage: UIImageView!
-    
     @IBOutlet weak var logoutBtn: UIButton!
     
+    @IBOutlet var pointBalanceIcon: UIImageView!
     
+    @IBOutlet var supportImageView: UIImageView!
+    @IBOutlet weak var sideMenuBTN: UIButton!
    // var userID = UserDefaults.standard.string(forKey: "UserID") ?? ""
     var sourceArray = [AlamofireSource]()
     var offerimgArray = [ObjImageGalleryList]()
@@ -55,10 +57,14 @@ class KC_DashBoardVC: BaseViewController{
     var engineerTopicArray = ["My Purchase Claim", "Redemption Catalogue", "My Redemption", "My Earning", "Offers and Promotions", "Worksite Details", "Refer and Earn"]
     var engineerImageArray = ["Group 359", "Group 355", "Group 355","Group 355","Group 355","Group 355","Group 355"]
     
-    
     var dealerTopicArray = ["Enrollment", "Pending Claim Request","Cash Transfer Approval","Redemption Catalogue", "My Redemption", "My Earning", "Offers and Promotions"]
     
     var dealerImageArray = ["Group 359", "Group 355", "Group 355","Group 355","Group 355","Group 355","Group 355"]
+    
+    
+    var supportExecutive = ["Enrollment","Pending Request","My Activity"]
+    var supportExecutiveImage = ["Group 7795","Group 7761", "Group 7761"]
+    
 //    var customerType = ""
     var customerTypeIds = -1
     var customerMobileNumber = ""
@@ -135,6 +141,41 @@ class KC_DashBoardVC: BaseViewController{
         self.openLeft()
     }
     @IBAction func notificationButton(_ sender: Any) {
+    }
+    
+    @IBAction func logoutActionBTN(_ sender: Any) {
+        
+        UserDefaults.standard.set(false, forKey: "IsloggedIn?")
+        UserDefaults.standard.set(false, forKey: "UpdatePassword")
+        
+        if #available(iOS 13.0, *) {
+            DispatchQueue.main.async {
+                let pushID = UserDefaults.standard.string(forKey: "UD_DEVICE_TOKEN") ?? ""
+                let domain = Bundle.main.bundleIdentifier!
+                UserDefaults.standard.removePersistentDomain(forName: domain)
+                UserDefaults.standard.synchronize()
+                UserDefaults.standard.setValue(pushID, forKey: "UD_DEVICE_TOKEN")
+                let sceneDelegate = self.view.window?.windowScene?.delegate as! SceneDelegate
+                sceneDelegate.setInitialViewAsRootViewController()
+             //   self.clearTable2()
+            }
+        } else {
+            DispatchQueue.main.async {
+                let pushID = UserDefaults.standard.string(forKey: "UD_DEVICE_TOKEN") ?? ""
+                let domain = Bundle.main.bundleIdentifier!
+                UserDefaults.standard.removePersistentDomain(forName: domain)
+                UserDefaults.standard.synchronize()
+                UserDefaults.standard.setValue(pushID, forKey: "UD_DEVICE_TOKEN")
+                if #available(iOS 13.0, *) {
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    appDelegate.setInitialViewAsRootViewController()
+                } else {
+                    // Fallback on earlier versions
+                }
+                
+              //  self.clearTable2()
+            }
+        }
     }
     
     @IBAction func claimPurchaseBTn(_ sender: Any) {
@@ -264,8 +305,11 @@ extension KC_DashBoardVC: UICollectionViewDelegate, UICollectionViewDataSource{
             return self.engineerTopicArray.count
         }else if self.customerTypeIds == 3 || self.customerTypeIds == 4{
             return self.dealerTopicArray.count
+        }else if self.customerTypeIds == 5{
+            return self.supportExecutive.count
         }else{
             return 1
+            
         }
         
     }
@@ -278,6 +322,9 @@ extension KC_DashBoardVC: UICollectionViewDelegate, UICollectionViewDataSource{
         }else if self.customerTypeIds == 3 || self.customerTypeIds == 4{
             cell.categoryTitleLbl.text = self.dealerTopicArray[indexPath.row]
             cell.categoryImage.image = UIImage(named: "\(self.dealerImageArray[indexPath.row])")
+        }else if self.customerTypeIds == 5{
+            cell.categoryTitleLbl.text = self.supportExecutive[indexPath.row]
+            cell.categoryImage.image = UIImage(named: "\(self.supportExecutiveImage[indexPath.row])")
         }
         
         return cell
@@ -334,6 +381,23 @@ extension KC_DashBoardVC: UICollectionViewDelegate, UICollectionViewDataSource{
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_OffersandpromotionsVC") as! KC_OffersandpromotionsVC
                 self.navigationController?.pushViewController(vc, animated: true)
             }
+        }else if self.customerTypeIds == 5{
+            self.selectedTitle = self.supportExecutive[indexPath.row]
+            
+            if self.selectedTitle == "Enrollment"{
+                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_EnrollmentListVC") as! KC_EnrollmentListVC
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+            }else if self.selectedTitle == "Pending Request"{
+                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_PendingClaimVC") as! KC_PendingClaimVC
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+            }else if self.selectedTitle == "My Activity" {
+                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyActivityVC") as! KC_MyActivityVC
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            
+            
         }
         
         

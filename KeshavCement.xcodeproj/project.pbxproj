@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		25102340295C756200028D09 /* KC_LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2510233F295C756200028D09 /* KC_LoginVC.swift */; };
 		251C4D29295C201B007939F3 /* PersistanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251C4D28295C201B007939F3 /* PersistanceService.swift */; };
+		2598BF4829BA11C2003CD01E /* KC_MyActivityTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2598BF4729BA11C2003CD01E /* KC_MyActivityTVC.swift */; };
+		2598BF4B29BA12A5003CD01E /* KC_MyActivityVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2598BF4A29BA12A4003CD01E /* KC_MyActivityVM.swift */; };
 		25DC5BE2295C1A3F00818258 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DC5BE1295C1A3F00818258 /* AppDelegate.swift */; };
 		25DC5BE4295C1A3F00818258 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DC5BE3295C1A3F00818258 /* SceneDelegate.swift */; };
 		25DC5BE6295C1A3F00818258 /* KC_WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DC5BE5295C1A3F00818258 /* KC_WelcomeVC.swift */; };
@@ -325,6 +327,8 @@
 /* Begin PBXFileReference section */
 		2510233F295C756200028D09 /* KC_LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_LoginVC.swift; sourceTree = "<group>"; };
 		251C4D28295C201B007939F3 /* PersistanceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistanceService.swift; sourceTree = "<group>"; };
+		2598BF4729BA11C2003CD01E /* KC_MyActivityTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_MyActivityTVC.swift; sourceTree = "<group>"; };
+		2598BF4A29BA12A4003CD01E /* KC_MyActivityVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_MyActivityVM.swift; sourceTree = "<group>"; };
 		25DC5BDE295C1A3F00818258 /* KeshavCement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeshavCement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25DC5BE1295C1A3F00818258 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25DC5BE3295C1A3F00818258 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -694,6 +698,23 @@
 			path = GoogleServices;
 			sourceTree = "<group>";
 		};
+		2598BF4629BA117F003CD01E /* MyActivity */ = {
+			isa = PBXGroup;
+			children = (
+				8432DFA729717F2100AA2079 /* KC_MyActivityVC.swift */,
+				2598BF4729BA11C2003CD01E /* KC_MyActivityTVC.swift */,
+			);
+			path = MyActivity;
+			sourceTree = "<group>";
+		};
+		2598BF4929BA127F003CD01E /* MyActivityVM */ = {
+			isa = PBXGroup;
+			children = (
+				2598BF4A29BA12A4003CD01E /* KC_MyActivityVM.swift */,
+			);
+			path = MyActivityVM;
+			sourceTree = "<group>";
+		};
 		25DC5BD5295C1A3F00818258 = {
 			isa = PBXGroup;
 			children = (
@@ -840,6 +861,7 @@
 		25DC5C18295C1B2000818258 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				2598BF4929BA127F003CD01E /* MyActivityVM */,
 				84DA346B29AF767F00078CF2 /* ActivateAccountVM */,
 				84DA345E29AF6A1800078CF2 /* ReferandEarnVM */,
 				84DA345329AF350C00078CF2 /* MyEarningVM */,
@@ -1680,7 +1702,7 @@
 		848EF1D1296C52E00091ADB7 /* MyActivity */ = {
 			isa = PBXGroup;
 			children = (
-				8432DFA729717F2100AA2079 /* KC_MyActivityVC.swift */,
+				2598BF4629BA117F003CD01E /* MyActivity */,
 				848EF1D0296C52D70091ADB7 /* CashTranferHistory */,
 				848EF1CF296C52B70091ADB7 /* ClaimHistory */,
 			);
@@ -2819,6 +2841,7 @@
 				8421F4362969968400E116AA /* KC_EditAddressVC.swift in Sources */,
 				8478CF1C296823BA0088C521 /* MyVouchersTVC.swift in Sources */,
 				84AF555E296BE93D00D52E44 /* KC_WorkSiteListDetailsVC.swift in Sources */,
+				2598BF4829BA11C2003CD01E /* KC_MyActivityTVC.swift in Sources */,
 				842BAFA629AA042E003BD356 /* KC_MappedCustomerListVC.swift in Sources */,
 				84F316B029692C17000C7B77 /* KC_MyCartVC.swift in Sources */,
 				848EA5C92968180C004B6620 /* KC_VouchersDetailsVC.swift in Sources */,
@@ -2897,6 +2920,7 @@
 				84B87DC629A5012B00CF5226 /* LstWorkSiteInfo.swift in Sources */,
 				84741DE9299FA6BF00F0A53E /* ClaimPurchaseNameListModel.swift in Sources */,
 				844E58802966E9CE006D952E /* KC_ProductsCatelogueCVC.swift in Sources */,
+				2598BF4B29BA12A5003CD01E /* KC_MyActivityVM.swift in Sources */,
 				84BD411F296304A50046D507 /* KC_DashBoardVC.swift in Sources */,
 				840CC62A29A73358005B438D /* ObjCatalogueList.swift in Sources */,
 				84A628CE296844D2005A2044 /* KC_CashTransferVC.swift in Sources */,
