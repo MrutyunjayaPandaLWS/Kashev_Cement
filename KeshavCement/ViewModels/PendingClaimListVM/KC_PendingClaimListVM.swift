@@ -55,6 +55,7 @@ class KC_PendingClaimListVM{
                                 pendingClaimList.quantity = "\(Int(data.quantity!))"
                                 pendingClaimList.transactionDate = data.tranDate ?? ""
                                 pendingClaimList.temperId = "\(data.ltyTranTempID ?? 0)"
+                                pendingClaimList.productImage = data.productImage
                                 Persistanceservice.saveContext()
                                 self.VC!.fetchCartDetails()
                             }

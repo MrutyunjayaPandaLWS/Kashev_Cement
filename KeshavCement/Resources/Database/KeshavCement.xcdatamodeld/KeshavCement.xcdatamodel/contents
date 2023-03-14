@@ -23,6 +23,7 @@
         <attribute name="locationName" optional="YES" attributeType="String"/>
         <attribute name="memberName" optional="YES" attributeType="String"/>
         <attribute name="memberType" optional="YES" attributeType="String"/>
+        <attribute name="productImage" optional="YES" attributeType="String"/>
         <attribute name="productName" optional="YES" attributeType="String"/>
         <attribute name="quantity" optional="YES" attributeType="String"/>
         <attribute name="remarks" optional="YES" attributeType="String"/>

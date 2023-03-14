@@ -39,6 +39,7 @@ class KC_NewSaleVC: BaseViewController, SelectedDataDelegate, DPOTPViewDelegate{
         self.pleaseSelectProductLbl.text = vc.selectedProductName
         self.selectedProductName = vc.selectedProductName
         self.selectedProductId = vc.selectedProductId
+        self.selectedProductCode = vc.selectedProductCode
         
     }
     func didTapState(_ vc: KC_DropDownVC) {}
@@ -80,7 +81,7 @@ class KC_NewSaleVC: BaseViewController, SelectedDataDelegate, DPOTPViewDelegate{
     
     var selectedUserTypeName = ""
     var selectedUserTypeId = -1
-    
+    var selectedProductCode = ""
     
     var mappedLoyaltyId = ""
     var mappedName = ""
@@ -135,7 +136,7 @@ class KC_NewSaleVC: BaseViewController, SelectedDataDelegate, DPOTPViewDelegate{
     @IBAction func selectCutomerTypeBtn(_ sender: Any) {
      
             let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
-        if self.customerTypeId == "3"{
+        if self.customerTypeId == "3" || self.customerTypeId == "5"{
             vc.itsFrom = "CUSTOMERTYPE3"
         }else{
             vc.itsFrom = "CUSTOMERTYPE4"
@@ -274,8 +275,8 @@ class KC_NewSaleVC: BaseViewController, SelectedDataDelegate, DPOTPViewDelegate{
             self.view.makeToast("Quantity shouln't be 0", duration: 2.0, position: .bottom)
             
         }else{
-            self.VM.timer.invalidate()
-            self.generateOTPApi()
+            self.validatePointBalanceApi()
+            
         }
     }
     @IBAction func otpSubmitBtn(_ sender: Any) {
@@ -287,25 +288,7 @@ class KC_NewSaleVC: BaseViewController, SelectedDataDelegate, DPOTPViewDelegate{
         }else if self.receivedOTP != self.enteredValue{
             self.view.makeToast("Enter correct OTP", duration: 2.0, position: .bottom)
         }else{
-            let yesterday = "\(Calendar.current.date(byAdding: .day, value: 0, to: Date())!)"
-            let today = yesterday.split(separator: " ")
-            let desiredDateFormat = self.convertDateFormater("\(today[0])", fromDate: "yyyy-MM-dd", toDate: "yyyy-MM-dd")
-           print("\(desiredDateFormat)")
-            let parameter = [
-                "ActorId": self.userID,
-                "ProductSaveDetailList": [
-                    [
-                        "ProductCode": self.selectedProductName,
-                        "Quantity": self.quantity
-                    ]
-                ],
-                "RitailerId": self.mappedUserId,
-                "SourceDevice": 1,
-                "TranDate": "\(desiredDateFormat)",
-                "Approval_Status": "1"
-            ] as [String: Any]
-            print(parameter)
-            self.VM.claimPurchaseSubmissionApi(parameter: parameter)
+            self.claimSubmissionWithOTP()
         }
         
         
@@ -329,24 +312,124 @@ class KC_NewSaleVC: BaseViewController, SelectedDataDelegate, DPOTPViewDelegate{
             let today = yesterday.split(separator: " ")
             let desiredDateFormat = self.convertDateFormater("\(today[0])", fromDate: "yyyy-MM-dd", toDate: "yyyy-MM-dd")
            print("\(desiredDateFormat)")
+            
+            if self.customerTypeId == "5"{
+                let parameter = [
+                    "ActorId": self.mappedUserId,
+                    "ProductSaveDetailList": [
+                        [
+                            "ProductCode": self.selectedProductCode,
+                            "Quantity": self.quantity
+                        ]
+                    ],
+                    "RitailerId": UserDefaults.standard.string(forKey: "mappedCustomerId") ?? "",
+                    "SourceDevice": 1,
+                    "TranDate": "\(desiredDateFormat)",
+                    "Approval_Status": "-1"
+                ] as [String: Any]
+                print(parameter)
+                self.VM.claimPurchaseSubmissionApi(parameter: parameter)
+            }else{
+                let parameter = [
+                    "ActorId": self.mappedUserId,
+                    "ProductSaveDetailList": [
+                        [
+                            "ProductCode": self.selectedProductCode,
+                            "Quantity": self.quantity
+                        ]
+                    ],
+                    "RitailerId": self.userID,
+                    "SourceDevice": 1,
+                    "TranDate": "\(desiredDateFormat)",
+                    "Approval_Status": "-1"
+                ] as [String: Any]
+                print(parameter)
+                self.VM.claimPurchaseSubmissionApi(parameter: parameter)
+            }
+            
+        }
+        
+    }
+    
+    func validatePointBalanceApi(){
+        if self.customerTypeId == "5"{
             let parameter = [
-                "ActorId": self.userID,
+                "ActorId": UserDefaults.standard.string(forKey: "mappedCustomerId") ?? "",
                 "ProductSaveDetailList": [
                     [
-                        "ProductCode": self.selectedProductName,
+                        "ProductCode": self.selectedProductCode,
+                        "Quantity": self.quantity
+                    ]
+                ],
+                "RitailerId": UserDefaults.standard.string(forKey: "mappedCustomerId") ?? "",
+                "Approval_Status": "5"
+            ] as [String: Any]
+            print(parameter)
+            self.VM.checkPointBalanceApi(parameter: parameter)
+        }else{
+            let parameter = [
+                "ActorId":  self.userID,
+                "ProductSaveDetailList": [
+                    [
+                        "ProductCode": self.selectedProductCode,
+                        "Quantity": self.quantity
+                    ]
+                ],
+                "RitailerId":  self.userID,
+                "Approval_Status": "5"
+            ] as [String: Any]
+            print(parameter)
+            self.VM.checkPointBalanceApi(parameter: parameter)
+        }
+        
+       
+        
+        
+    }
+    
+    func claimSubmissionWithOTP(){
+        let yesterday = "\(Calendar.current.date(byAdding: .day, value: 0, to: Date())!)"
+        let today = yesterday.split(separator: " ")
+        let desiredDateFormat = self.convertDateFormater("\(today[0])", fromDate: "yyyy-MM-dd", toDate: "yyyy-MM-dd")
+       print("\(desiredDateFormat)")
+        
+        
+        
+        if self.customerTypeId == "5"{
+            let parameter = [
+                "ActorId": UserDefaults.standard.string(forKey: "mappedCustomerId") ?? "",
+                "ProductSaveDetailList": [
+                    [
+                        "ProductCode": self.selectedProductCode,
                         "Quantity": self.quantity
                     ]
                 ],
                 "RitailerId": self.mappedUserId,
                 "SourceDevice": 1,
                 "TranDate": "\(desiredDateFormat)",
-                "Approval_Status": "-1"
+                "Approval_Status": "1"
+            ] as [String: Any]
+            print(parameter)
+            self.VM.claimPurchaseSubmissionApi(parameter: parameter)
+        }else{
+            let parameter = [
+                "ActorId": self.mappedUserId,
+                "ProductSaveDetailList": [
+                    [
+                        "ProductCode": self.selectedProductCode,
+                        "Quantity": self.quantity
+                    ]
+                ],
+                "RitailerId": self.userID,
+                "SourceDevice": 1,
+                "TranDate": "\(desiredDateFormat)",
+                "Approval_Status": "1"
             ] as [String: Any]
             print(parameter)
             self.VM.claimPurchaseSubmissionApi(parameter: parameter)
         }
-        
     }
+    
     func generateOTPApi(){
         let parameter = [
             "MerchantUserName": "KeshavCementDemo",

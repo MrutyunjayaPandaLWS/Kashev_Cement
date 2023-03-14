@@ -20,14 +20,21 @@ class KC_NewEnrollementVC: BaseViewController, SelectedDataDelegate, DateSelecte
     func didTapUserType(_ vc: KC_DropDownVC) {}
     
     func acceptDate(_ vc: KC_DOBVC) {
-//        if vc.isComeFrom == "DOB"{
-//            self.dobLbl.text = vc.selectedDate
-//            self.selectedDOB = vc.selectedDate
-//
-//        }else{
-//            self.dateOfAnniversaryLbl.text = vc.selectedDate
-//            self.selectedAnniversary = vc.selectedDate
-//        }
+        if vc.isComeFrom == "DOB"{
+            self.dobLbl.text = vc.selectedDate
+            self.selectedDOB = vc.selectedDate
+            
+        }else if vc.isComeFrom == "ANNIVERSARY"{
+            print(dobLbl.text)
+            print(vc.selectedDate)
+            if self.dobLbl.text ?? "" >= vc.selectedDate{
+                vc.selectedDate = ""
+                self.view.makeToast("Anniversary date should be more then a Date of birth", duration: 2.0, position: .bottom)
+            }else{
+                self.dateOfAnniversaryLbl.text = vc.selectedDate
+                self.selectedAnniversary = vc.selectedDate
+            }
+        }
     }
     
     func declineDate(_ vc: KC_DOBVC) {}
@@ -42,6 +49,10 @@ class KC_NewEnrollementVC: BaseViewController, SelectedDataDelegate, DateSelecte
             self.selectedCustomerTypeId = 2
         }else if self.selectedCustomerTypeName == "Sub Dealer"{
             self.selectedCustomerTypeId = 4
+        }else if self.selectedCustomerTypeName == "Dealer"{
+            self.selectedCustomerTypeId = 3
+        }else{
+            self.selectedCustomerTypeId = 5
         }
     }
     
@@ -52,24 +63,24 @@ class KC_NewEnrollementVC: BaseViewController, SelectedDataDelegate, DateSelecte
         self.selectedDistrictId = -1
         self.selectedCityId = -1
         self.selectedTalukId = -1
-        self.districtLbl.text = "Select District"
-        self.talukLbl.text = "Select Taluk"
+        self.selectDistrictLBl.text = "Select District"
+        self.selectTaluk.text = "Select Taluk"
         self.cityLbl.text = "Select City"
     }
     
     func didTapDistrict(_ vc: KC_DropDownVC) {
-        self.districtLbl.text = vc.selectedDistrictName
+        self.selectDistrictLBl.text = vc.selectedDistrictName
         self.selectedDistrictName = vc.selectedDistrictName
         self.selectedDistrictId = vc.selectedDistrictId
         self.selectedCityId = -1
         self.selectedTalukId = -1
-        self.talukLbl.text = "Select Taluk"
+        self.selectTaluk.text = "Select Taluk"
         self.cityLbl.text = "Select City"
 
     }
     
     func didTapTaluk(_ vc: KC_DropDownVC) {
-        self.talukLbl.text = vc.selectedTalukName
+        self.selectTaluk.text = vc.selectedTalukName
         self.selectedTalukName = vc.selectedTalukName
         self.selectedTalukId = vc.selectedTalukId
         self.selectedCityId = -1
@@ -103,6 +114,9 @@ class KC_NewEnrollementVC: BaseViewController, SelectedDataDelegate, DateSelecte
     @IBOutlet weak var cityLbl: UILabel!
     @IBOutlet weak var submitButton: UIButton!
     
+    @IBOutlet weak var dobLbl: UILabel!
+    @IBOutlet weak var dateOfAnniversaryLbl: UILabel!
+    
     var referralCode = ""
     var selectedCustomerTypeName = ""
     var selectedCustomerTypeId = -1
@@ -133,6 +147,14 @@ class KC_NewEnrollementVC: BaseViewController, SelectedDataDelegate, DateSelecte
         self.navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func emailValidationDidEnd(_ sender: Any) {
+        if self.emailTF.text!.count != 0{
+            if !isValidEmail(self.emailTF.text ?? "") {
+                self.emailTF.text = ""
+                self.view.makeToast("Enter valid email", duration: 2.0, position: .bottom)
+            }
+        }
+    }
     @IBAction func backBTn(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -143,6 +165,8 @@ class KC_NewEnrollementVC: BaseViewController, SelectedDataDelegate, DateSelecte
             vc.itsFrom = "CUSTOMERTYPE3"
         }else if self.customerTypeId == "4"{
             vc.itsFrom = "CUSTOMERTYPE4"
+        }else if self.customerTypeId == "5"{
+            vc.itsFrom = "CUSTOMERTYPE3"
         }
         
         vc.delegate = self
@@ -201,6 +225,32 @@ class KC_NewEnrollementVC: BaseViewController, SelectedDataDelegate, DateSelecte
             self.present(vc, animated: true)
         }
     }
+    
+    @IBAction func dobButton(_ sender: Any) {
+        let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DOBVC") as! KC_DOBVC
+        vc.isComeFrom = "DOB"
+        vc.delegate = self
+        vc.modalTransitionStyle = .coverVertical
+        vc.modalPresentationStyle = .overFullScreen
+        self.present(vc, animated: true)
+    }
+    
+    @IBAction func dateOfAnniversaryButton(_ sender: Any) {
+        if self.dobLbl.text!.count == 0{
+            self.view.makeToast("Please select date of birth", duration: 2.0, position: .bottom)
+        }else{
+            let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DOBVC") as! KC_DOBVC
+            vc.isComeFrom = "ANNIVERSARY"
+            vc.delegate = self
+            vc.receivedDate = self.dobLbl.text ?? ""
+            vc.modalTransitionStyle = .coverVertical
+            vc.modalPresentationStyle = .overFullScreen
+            self.present(vc, animated: true)
+            
+        }
+        
+    }
+    
     @IBAction func submitBtn(_ sender: Any) {
         
         if self.selectedCustomerTypeId == -1{
@@ -211,10 +261,6 @@ class KC_NewEnrollementVC: BaseViewController, SelectedDataDelegate, DateSelecte
             self.view.makeToast("Enter firm name", duration: 2.0, position: .bottom)
         }else if self.mobileTF.text?.count == 0{
             self.view.makeToast("Enter mobile number", duration: 2.0, position: .bottom)
-        }else if self.emailTF.text?.count != 0 {
-            if !isValidEmail(self.emailTF.text ?? "") {
-                self.view.makeToast("Enter valid email", duration: 2.0, position: .bottom)
-            }
         }else if self.addressTF.text?.count == 0{
             self.view.makeToast("Enter address", duration: 2.0, position: .bottom)
         }else if self.pincodeTF.text?.count == 0{
@@ -226,11 +272,22 @@ class KC_NewEnrollementVC: BaseViewController, SelectedDataDelegate, DateSelecte
         }else if self.selectedTalukId == -1{
             self.view.makeToast("Select Taluk", duration: 2.0, position: .bottom)
         }else{
+            
+            if self.customerTypeId == "5"{
+                self.newCustomerSubmissionApi(customerID: UserDefaults.standard.string(forKey: "mappedCustomerId") ?? "")
+                
+            }else{
+                self.newCustomerSubmissionApi(customerID: self.userID)
+            }
+        }
+    }
+        
+        func newCustomerSubmissionApi(customerID: String){
             let parameter = [
                 
                     "ActionType": "0",
                     "HierarchyMapDetails": [
-                        "CustomerUserID": "\(self.userID)"
+                        "CustomerUserID": customerID
                     ],
                     "ObjCustomer": [
                         "Address": "\(self.addressTF.text ?? "")",
@@ -244,7 +301,9 @@ class KC_NewEnrollementVC: BaseViewController, SelectedDataDelegate, DateSelecte
                         "IsActive": "1",
                         "MerchantId": "1",
                         "RegistrationSource": "3",
-                        "TalukId": "\(self.selectedTalukId)"
+                        "TalukId": "\(self.selectedTalukId)",
+                        "Anniversary": "\(self.selectedAnniversary)",
+                        "DOB": "\(self.selectedDOB)"
                     ],
                     "ObjCustomerOfficalInfo": [
                         "CompanyName": "\(self.firmNameTF.text ?? "")"
@@ -253,8 +312,6 @@ class KC_NewEnrollementVC: BaseViewController, SelectedDataDelegate, DateSelecte
             print(parameter)
             self.VM.registrationSubmission(parameter: parameter)
         }
-        
-    }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
       let aSet = NSCharacterSet(charactersIn:"0123456789").inverted
       let compSepByCharInSet = string.components(separatedBy: aSet)

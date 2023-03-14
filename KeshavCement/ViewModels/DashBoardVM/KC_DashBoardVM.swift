@@ -156,7 +156,7 @@ class KC_DashBoardVM: SendNewPasswordDelegate{
                                     self.VC?.supportImageView.isHidden = false
                                     self.VC?.raiseaTicketView.isHidden = true
                                     self.VC?.logoutBtn.isHidden = false
-                                    
+                                    UserDefaults.standard.set(result?.lstCustomerFeedBackJsonApi?[0].mappedCustomerId ?? -1, forKey: "mappedCustomerId")
                                     let mappedData = (result?.lstCustomerFeedBackJsonApi?[0].mappedCustomerName ?? "").split(separator: "~")
                                     let mappedCustomerType = result?.lstCustomerFeedBackJsonApi?[0].mappedCustomerType ?? ""
                                     

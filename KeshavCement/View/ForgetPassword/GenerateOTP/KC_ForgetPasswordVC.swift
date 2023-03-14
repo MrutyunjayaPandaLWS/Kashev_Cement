@@ -90,8 +90,6 @@ class KC_ForgetPasswordVC: BaseViewController, DPOTPViewDelegate{
     @IBAction func resendButton(_ sender: Any) {
         if self.mobileNumberTF.text?.count == 0 {
             self.view.makeToast("Enter mobile number", duration: 2.0, position: .bottom)
-        }else if self.mobileNumberTF.text?.count != 10 {
-            self.view.makeToast("Enter valid mobile number", duration: 2.0, position: .bottom)
         }else{
             self.generateOTPApi()
         }
@@ -103,9 +101,7 @@ class KC_ForgetPasswordVC: BaseViewController, DPOTPViewDelegate{
                 if self.mobileNumberTF.text?.count == 0 {
                     self.view.makeToast("Enter mobile number/ member ID", duration: 2.0, position: .bottom)
                 }
-                else if self.mobileNumberTF.text?.count != 10 {
-                    self.view.makeToast("Enter valid mobile number", duration: 2.0, position: .bottom)
-                }
+               
                 else{
                     let mobilenumber = self.mobileNumberTF.text ?? ""
                     

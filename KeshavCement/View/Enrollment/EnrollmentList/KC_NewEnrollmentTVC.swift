@@ -7,8 +7,13 @@
 
 import UIKit
 
+protocol DialPadDelegate: AnyObject{
+    
+    func didTapDialPad(_ cell:KC_NewEnrollmentTVC)
+}
 class KC_NewEnrollmentTVC: UITableViewCell {
 
+    @IBOutlet weak var dialPadBtn: UIButton!
     @IBOutlet weak var categoryLbl: UILabel!
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var ptslbl: UILabel!
@@ -17,6 +22,8 @@ class KC_NewEnrollmentTVC: UITableViewCell {
     @IBOutlet weak var membershipIdLbl: UILabel!
     @IBOutlet weak var lastPurchaseDateLbl: UILabel!
     @IBOutlet weak var lastRedemptionDateLbl: UILabel!
+    
+    var delegate: DialPadDelegate!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,4 +36,7 @@ class KC_NewEnrollmentTVC: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func dialPadButton(_ sender: Any) {
+        self.delegate.didTapDialPad(self)
+    }
 }

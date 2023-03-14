@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 import DPOTPView
+import Kingfisher
 class KC_PendingClaimVC: BaseViewController, DataUpdateDelegate, DPOTPViewDelegate{
     func didTapPlusButton(_ cell: KC_PendingClaimTVC) {
         guard let tappedIndexPath = self.pendingClaimTableView.indexPath(for: cell) else{return}
@@ -308,7 +309,15 @@ extension KC_PendingClaimVC: UITableViewDelegate, UITableViewDataSource{
         }else{
             cell.claimDateLbl.text = "-"
         }
-        
+        if self.claimPurchaseListArray[indexPath.row].productImage ?? "" != ""{
+            
+            let receivedImage = String(self.claimPurchaseListArray[indexPath.row].productImage ?? "").dropFirst(1)
+            let userImage = URL(string: "\(PROMO_IMG1)\(receivedImage)")
+            cell.claimImage.kf.setImage(with: userImage, placeholder: UIImage(named: "ic_default_img"))
+            
+        }else{
+            cell.claimImage.image = UIImage(named: "ic_default_img")
+        }
         cell.categoryTypeLbl.text = self.claimPurchaseListArray[indexPath.row].memberType ?? ""
         cell.userNameLbl.text = self.claimPurchaseListArray[indexPath.row].memberName ?? ""
         cell.locationLbl.text = self.claimPurchaseListArray[indexPath.row].locationName ?? ""

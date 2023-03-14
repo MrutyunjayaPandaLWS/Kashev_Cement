@@ -67,6 +67,7 @@ class KC_DropDownVC: BaseViewController,UISearchBarDelegate {
     
     var selectedProductId = -1
     var selectedProductName = ""
+    var selectedProductCode = ""
     
     var selectedWorkLevelTitle = ""
     var selectedWorkLevelId = -1
@@ -147,11 +148,7 @@ class KC_DropDownVC: BaseViewController,UISearchBarDelegate {
     }
     func districtListApi(){
         let parameter = [
-            "ActionType":"1",
-            "StateID": self.selectedStateId,
-            "SortColumn":"DISTRICT_NAME",
-            "SortOrder":"ASC",
-            "IsActive":"true"
+            "StateID": self.selectedStateId
         ] as [String: Any]
         print(parameter)
         self.VM.districtListApi(parameter: parameter)
@@ -397,6 +394,7 @@ extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
         }else if self.itsFrom == "CLAIMPRODUCTLIST"{
             self.selectedProductId = self.VM.claimProductListArray[indexPath.row].attributeId ?? -1
             self.selectedProductName = self.VM.claimProductListArray[indexPath.row].attributeValue ?? ""
+            self.selectedProductCode = self.VM.claimProductListArray[indexPath.row].attributeContents ?? ""
             self.delegate?.didTapProductName(self)
             self.dismiss(animated: true)
         }else if self.itsFrom == "WORKLEVEL"{

@@ -77,6 +77,8 @@
 		8419A4D4295EDFF8000A0AAB /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8419A4CE295EDFF8000A0AAB /* Poppins-Regular.ttf */; };
 		8419A4D9295EE671000A0AAB /* KC_MyProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8419A4D8295EE671000A0AAB /* KC_MyProfileVC.swift */; };
 		8419A4DC295EF192000A0AAB /* KC_LanguageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8419A4DB295EF192000A0AAB /* KC_LanguageVC.swift */; };
+		841AE9FA29C039AF008C45A2 /* KC_LanguageTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841AE9F929C039AF008C45A2 /* KC_LanguageTVC.swift */; };
+		841AE9FD29C07086008C45A2 /* Json4Swift_Base-66.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841AE9FC29C07086008C45A2 /* Json4Swift_Base-66.swift */; };
 		841C096429697EA600B70F5C /* KC_OrderConfirmationTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841C096329697EA600B70F5C /* KC_OrderConfirmationTVC.swift */; };
 		8421F4362969968400E116AA /* KC_EditAddressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F4352969968400E116AA /* KC_EditAddressVC.swift */; };
 		842668C029718BA400AE48AD /* KC_NewEnrollmentTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842668BF29718BA400AE48AD /* KC_NewEnrollmentTVC.swift */; };
@@ -400,6 +402,8 @@
 		8419A4CE295EDFF8000A0AAB /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		8419A4D8295EE671000A0AAB /* KC_MyProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_MyProfileVC.swift; sourceTree = "<group>"; };
 		8419A4DB295EF192000A0AAB /* KC_LanguageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_LanguageVC.swift; sourceTree = "<group>"; };
+		841AE9F929C039AF008C45A2 /* KC_LanguageTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_LanguageTVC.swift; sourceTree = "<group>"; };
+		841AE9FC29C07086008C45A2 /* Json4Swift_Base-66.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Json4Swift_Base-66.swift"; sourceTree = "<group>"; };
 		841C096329697EA600B70F5C /* KC_OrderConfirmationTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_OrderConfirmationTVC.swift; sourceTree = "<group>"; };
 		8421F4352969968400E116AA /* KC_EditAddressVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_EditAddressVC.swift; sourceTree = "<group>"; };
 		842668BF29718BA400AE48AD /* KC_NewEnrollmentTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_NewEnrollmentTVC.swift; sourceTree = "<group>"; };
@@ -797,6 +801,7 @@
 		25DC5C17295C1B1900818258 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				841AE9FB29C07076008C45A2 /* StockDetailsModel */,
 				845882AC29B5B56D00C1BB6F /* CityModels */,
 				84DA347329AF83CE00078CF2 /* GetAccountDetailsForActivateModel */,
 				84DA347029AF802800078CF2 /* ActivateSubmissionModel */,
@@ -1221,8 +1226,17 @@
 			isa = PBXGroup;
 			children = (
 				8419A4DB295EF192000A0AAB /* KC_LanguageVC.swift */,
+				841AE9F929C039AF008C45A2 /* KC_LanguageTVC.swift */,
 			);
 			path = Language;
+			sourceTree = "<group>";
+		};
+		841AE9FB29C07076008C45A2 /* StockDetailsModel */ = {
+			isa = PBXGroup;
+			children = (
+				841AE9FC29C07086008C45A2 /* Json4Swift_Base-66.swift */,
+			);
+			path = StockDetailsModel;
 			sourceTree = "<group>";
 		};
 		8421F434296995CE00E116AA /* EditAddress */ = {
@@ -2788,6 +2802,7 @@
 				84F8420329A87BE500377B26 /* KC_RedemptionPlannerVM.swift in Sources */,
 				84A5BBF32972C5A5003AFBB7 /* KC_CashTransferApprovalTVC.swift in Sources */,
 				84F841FC29A87A1400377B26 /* HR_RedemptionPlannerDetailsVC.swift in Sources */,
+				841AE9FA29C039AF008C45A2 /* KC_LanguageTVC.swift in Sources */,
 				25DC5C4C295C1C4B00818258 /* ViewExtension.swift in Sources */,
 				84C1E3A72975535900D188C5 /* KC_TermsandconditionVC.swift in Sources */,
 				84DA345D29AF52A800078CF2 /* ProfileUpdateModel.swift in Sources */,
@@ -3006,6 +3021,7 @@
 				84AAEA5429645A8E00F930D9 /* KC_MyRedemptionTVC.swift in Sources */,
 				84DA344A29AF2E3300078CF2 /* ObjQueryResponseJsonList.swift in Sources */,
 				8432DFA029717EC600AA2079 /* KC_NewEnrollementVC.swift in Sources */,
+				841AE9FD29C07086008C45A2 /* Json4Swift_Base-66.swift in Sources */,
 				84F8432B2968320B000ABA34 /* KC_EvoucherPopUpVC.swift in Sources */,
 				843395D9299BAA140041685B /* UserList.swift in Sources */,
 				25DC5C4D295C1C4B00818258 /* ColorExtension.swift in Sources */,

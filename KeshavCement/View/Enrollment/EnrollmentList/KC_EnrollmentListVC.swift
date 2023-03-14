@@ -7,7 +7,9 @@
 
 import UIKit
 import Kingfisher
-class KC_EnrollmentListVC: BaseViewController {
+class KC_EnrollmentListVC: BaseViewController, DialPadDelegate {
+  
+    
 
     @IBOutlet weak var noDataFoundLbl: UILabel!
     @IBOutlet weak var enrollmentListTableView: UITableView!
@@ -25,7 +27,12 @@ class KC_EnrollmentListVC: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.VM.enrollmentListArray.removeAll()
-        self.enrollmentListApi(startIndex: self.startIndex, SearchText: self.searchTF.text ?? "")
+        if self.customerTypeId == "5"{
+            self.enrollmentListApi(startIndex: self.startIndex, SearchText: self.searchTF.text ?? "", userID: String(UserDefaults.standard.string(forKey: "mappedCustomerId") ?? ""))
+        }else{
+            self.enrollmentListApi(startIndex: self.startIndex, SearchText: self.searchTF.text ?? "", userID: self.userID)
+        }
+        
     }
     
     @IBAction func backBTn(_ sender: Any) {
@@ -35,7 +42,11 @@ class KC_EnrollmentListVC: BaseViewController {
     @IBAction func searchByEditingDidEnd(_ sender: Any) {
         self.VM.enrollmentListArray.removeAll()
         self.startIndex = 1
-        self.enrollmentListApi(startIndex: self.startIndex, SearchText: self.searchTF.text ?? "")
+        if self.customerTypeId == "5"{
+            self.enrollmentListApi(startIndex: self.startIndex, SearchText: self.searchTF.text ?? "", userID: String(UserDefaults.standard.string(forKey: "mappedCustomerId") ?? ""))
+        }else{
+            self.enrollmentListApi(startIndex: self.startIndex, SearchText: self.searchTF.text ?? "", userID: self.userID)
+        }
     }
     @IBAction func addCustomerBtn(_ sender: Any) {
         
@@ -43,10 +54,10 @@ class KC_EnrollmentListVC: BaseViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    func enrollmentListApi(startIndex: Int, SearchText: String){
+    func enrollmentListApi(startIndex: Int, SearchText: String, userID: String){
         let parameter = [
             "ActionType": 15,
-            "ActorId": "\(self.userID)",
+            "ActorId": userID,
             "SearchText": "\(self.searchTF.text ?? "")",
             "StartIndex": self.startIndex,
             "PageSize": 10
@@ -56,6 +67,22 @@ class KC_EnrollmentListVC: BaseViewController {
         
     }
     
+    // Delegate: -
+    func didTapDialPad(_ cell: KC_NewEnrollmentTVC) {
+        guard let tappedIndexpath = self.enrollmentListTableView.indexPath(for: cell) else{return}
+        
+        if cell.dialPadBtn.tag == tappedIndexpath.row{
+            if let phoneCallURL = URL(string: "tel://\(self.VM.enrollmentListArray[tappedIndexpath.row].mobile ?? "")") {
+                
+                let application:UIApplication = UIApplication.shared
+                if (application.canOpenURL(phoneCallURL)) {
+                    application.open(phoneCallURL, options: [:], completionHandler: nil)
+                    
+                }
+            }
+        }
+        
+    }
 }
 extension KC_EnrollmentListVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -66,13 +93,26 @@ extension KC_EnrollmentListVC: UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "KC_NewEnrollmentTVC", for: indexPath) as! KC_NewEnrollmentTVC
         cell.selectionStyle = .none
         cell.categoryLbl.text = self.VM.enrollmentListArray[indexPath.row].customerType ?? ""
-//        cell.userImage.image = ""
+        cell.delegate = self
+        cell.dialPadBtn.tag = indexPath.row
+        if self.VM.enrollmentListArray[indexPath.row].customerImage ?? "" != ""{
+            
+            let receivedImage = String(self.VM.enrollmentListArray[indexPath.row].customerImage ?? "").dropFirst(1)
+            let userImage = URL(string: "\(PROMO_IMG1)\(receivedImage)")
+            cell.userImage.kf.setImage(with: userImage, placeholder: UIImage(named: "ic_default_img"))
+            
+        }else{
+            cell.userImage.image = UIImage(named: "ic_default_img")
+        }
+        
+        
         cell.ptslbl.text = "\(self.VM.enrollmentListArray[indexPath.row].totalPointsBalance ?? 0)"
         cell.userNameLbl.text = self.VM.enrollmentListArray[indexPath.row].firstName ?? ""
         cell.mobileLbl.text = self.VM.enrollmentListArray[indexPath.row].mobile ?? ""
         cell.membershipIdLbl.text = self.VM.enrollmentListArray[indexPath.row].loyaltyID ?? ""
         cell.lastPurchaseDateLbl.text = self.VM.enrollmentListArray[indexPath.row].lastPurchaseDate ?? ""
         cell.lastRedemptionDateLbl.text = self.VM.enrollmentListArray[indexPath.row].lastRedemptionDate ?? ""
+        
         
         return cell
     }
@@ -85,10 +125,18 @@ extension KC_EnrollmentListVC: UITableViewDelegate, UITableViewDataSource{
             if indexPath.row == self.VM.enrollmentListArray.count - 1{
                 if self.noofelements == 10{
                     self.startIndex = self.startIndex + 1
-                    self.enrollmentListApi(startIndex: self.startIndex, SearchText: self.searchTF.text ?? "")
+                    if self.customerTypeId == "5"{
+                        self.enrollmentListApi(startIndex: self.startIndex, SearchText: self.searchTF.text ?? "", userID: String(UserDefaults.standard.string(forKey: "mappedCustomerId") ?? ""))
+                    }else{
+                        self.enrollmentListApi(startIndex: self.startIndex, SearchText: self.searchTF.text ?? "", userID: self.userID)
+                    }
                 }else if self.noofelements > 10{
                     self.startIndex = self.startIndex + 1
-                    self.enrollmentListApi(startIndex: self.startIndex, SearchText: self.searchTF.text ?? "")
+                    if self.customerTypeId == "5"{
+                        self.enrollmentListApi(startIndex: self.startIndex, SearchText: self.searchTF.text ?? "", userID: String(UserDefaults.standard.string(forKey: "mappedCustomerId") ?? ""))
+                    }else{
+                        self.enrollmentListApi(startIndex: self.startIndex, SearchText: self.searchTF.text ?? "", userID: self.userID)
+                    }
                 }else if self.noofelements < 10{
                     print("no need to hit API")
                     return

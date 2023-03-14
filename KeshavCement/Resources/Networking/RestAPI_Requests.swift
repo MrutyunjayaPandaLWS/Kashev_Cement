@@ -223,6 +223,18 @@ class RestAPI_Requests {
             }
         }
     }
+    func checkQuantityApi(parameters: JSON, completion: @escaping (StockDetailsModel?, Error?) -> ()) -> URLSessionDataTask? {
+        return client.load(path: claimPurchaseSubmission_URLMethod, method: .post, params: parameters) { data, error in
+            do{
+                if data != nil{
+                    let result1 =  try JSONDecoder().decode(StockDetailsModel?.self, from: data as! Data)
+                    completion(result1, nil)
+                }
+            }catch{
+                completion(nil, error)
+            }
+        }
+    }
     
     func myClaimPurchaseListApi(parameters: JSON, completion: @escaping (MyPurchaseClaimListModel?, Error?) -> ()) -> URLSessionDataTask? {
         return client.load(path: myPurchaseClaimList_URLMethod, method: .post, params: parameters) { data, error in

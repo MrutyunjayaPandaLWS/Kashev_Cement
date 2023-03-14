@@ -65,6 +65,55 @@ class KC_NewSaleVM{
         }
     }
     
+    
+    func checkPointBalanceApi(parameter: JSON){
+        
+        DispatchQueue.main.async {
+            self.VC?.startLoading()
+        }
+        
+        self.requestAPIs.checkQuantityApi(parameters: parameter) { (result, error) in
+            
+            if result == nil{
+                
+                DispatchQueue.main.async {
+                    self.VC?.stopLoading()
+                }
+            }else{
+                if error == nil{
+                    DispatchQueue.main.async {
+                        self.VC?.stopLoading()
+                        print(result?.pointsBalance ?? 0, "point Balance")
+                        if result?.pointsBalance ?? 0 > 0{
+                            self.timer.invalidate()
+                            self.VC!.generateOTPApi()
+                            
+                        }else{
+                            self.VC!.qtyTF.text = "0"
+                            self.VC?.quantity = 0
+                            self.VC?.count = 0
+                            self.VC?.selectTypeLbl.text = "Select Type"
+                            self.VC?.searchTF.placeholder = "Search"
+                            self.VC?.searchTF.text = ""
+                            self.VC?.pleaseSelectProductLbl.text = "Please select product"
+                            self.VC?.mappedUserId = -1
+                            self.VC?.selectedProductId = -1
+                            self.VC!.successPopUpView.isHidden = true
+                            self.VC!.otpPopUpView.isHidden = true
+                            self.VC!.view.makeToast("Insufficient quantity !!", duration: 3.0, position: .bottom)
+                        }
+                    }
+                }else{
+                    DispatchQueue.main.async {
+                        print(error)
+                        self.VC?.stopLoading()
+                    }
+                }
+            }
+        }
+        
+    }
+    
     func claimPurchaseSubmissionApi(parameter: JSON){
         
         DispatchQueue.main.async {
@@ -86,6 +135,11 @@ class KC_NewSaleVM{
                         if result?.returnMessage ?? "" == "1"{
                             self.VC!.successPopUpView.isHidden = false
                             self.VC!.otpPopUpView.isHidden = true
+                            
+                        }else if result?.returnMessage ?? "" == "2"{
+                            self.VC!.successPopUpView.isHidden = true
+                            self.VC!.otpPopUpView.isHidden = true
+                            self.VC!.view.makeToast("Insufficient quantity!!", duration: 2.0, position: .bottom)
                             
                         }else{
                             self.VC!.successPopUpView.isHidden = true

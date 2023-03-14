@@ -13,31 +13,31 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 import Foundation
 struct PendingClaimRequestModel : Codable {
-	let lstTransactionApprovalDetails : [LstTransactionApprovalDetails2]?
-	let lstCustOrderDeliveryDetails : String?
-	let rewardPoints : Double?
-	let returnValue : Int?
-	let returnMessage : String?
-	let totalRecords : Int?
+    let lstTransactionApprovalDetails : [LstTransactionApprovalDetails2]?
+    let lstCustOrderDeliveryDetails : String?
+    let rewardPoints : Double?
+    let returnValue : Int?
+    let returnMessage : String?
+    let totalRecords : Int?
 
-	enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
 
-		case lstTransactionApprovalDetails = "lstTransactionApprovalDetails"
-		case lstCustOrderDeliveryDetails = "lstCustOrderDeliveryDetails"
-		case rewardPoints = "rewardPoints"
-		case returnValue = "returnValue"
-		case returnMessage = "returnMessage"
-		case totalRecords = "totalRecords"
-	}
+        case lstTransactionApprovalDetails = "lstTransactionApprovalDetails"
+        case lstCustOrderDeliveryDetails = "lstCustOrderDeliveryDetails"
+        case rewardPoints = "rewardPoints"
+        case returnValue = "returnValue"
+        case returnMessage = "returnMessage"
+        case totalRecords = "totalRecords"
+    }
 
-	init(from decoder: Decoder) throws {
-		let values = try decoder.container(keyedBy: CodingKeys.self)
-		lstTransactionApprovalDetails = try values.decodeIfPresent([LstTransactionApprovalDetails2].self, forKey: .lstTransactionApprovalDetails)
-		lstCustOrderDeliveryDetails = try values.decodeIfPresent(String.self, forKey: .lstCustOrderDeliveryDetails)
-		rewardPoints = try values.decodeIfPresent(Double.self, forKey: .rewardPoints)
-		returnValue = try values.decodeIfPresent(Int.self, forKey: .returnValue)
-		returnMessage = try values.decodeIfPresent(String.self, forKey: .returnMessage)
-		totalRecords = try values.decodeIfPresent(Int.self, forKey: .totalRecords)
-	}
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        lstTransactionApprovalDetails = try values.decodeIfPresent([LstTransactionApprovalDetails2].self, forKey: .lstTransactionApprovalDetails)
+        lstCustOrderDeliveryDetails = try values.decodeIfPresent(String.self, forKey: .lstCustOrderDeliveryDetails)
+        rewardPoints = try values.decodeIfPresent(Double.self, forKey: .rewardPoints)
+        returnValue = try values.decodeIfPresent(Int.self, forKey: .returnValue)
+        returnMessage = try values.decodeIfPresent(String.self, forKey: .returnMessage)
+        totalRecords = try values.decodeIfPresent(Int.self, forKey: .totalRecords)
+    }
 
 }
