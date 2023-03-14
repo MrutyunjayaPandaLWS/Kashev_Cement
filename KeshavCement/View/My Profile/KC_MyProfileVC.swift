@@ -268,7 +268,7 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
             self.view.makeToast("Select Taluk", duration: 2.0, position: .bottom)
         }else{
             let parameter = [
-                "mailto:actiontype": "262",
+                "actiontype": "262",
                 "actorid": "\(self.userID)",
                 "objcustomerjson": [
                     "address1": "\(self.addressTextView.text ?? "")",
