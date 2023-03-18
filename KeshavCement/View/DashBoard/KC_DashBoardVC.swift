@@ -15,6 +15,7 @@ import Alamofire
 class KC_DashBoardVC: BaseViewController{
     
 
+    @IBOutlet weak var gradeIcon: UIImageView!
     @IBOutlet weak var defaultImage: UIImageView!
     @IBOutlet weak var bannerImage: ImageSlideshow!
     @IBOutlet weak var countLbl: UILabel!
@@ -46,6 +47,7 @@ class KC_DashBoardVC: BaseViewController{
     
     @IBOutlet var pointBalanceIcon: UIImageView!
     
+    @IBOutlet weak var languagePopUpView: UIView!
     @IBOutlet var supportImageView: UIImageView!
     @IBOutlet weak var sideMenuBTN: UIButton!
    // var userID = UserDefaults.standard.string(forKey: "UserID") ?? ""
@@ -55,15 +57,17 @@ class KC_DashBoardVC: BaseViewController{
     var selectedTitle = ""
     var newPassword = ""
     var engineerTopicArray = ["My Purchase Claim", "Redemption Catalogue", "My Redemption", "My Earning", "Offers and Promotions", "Worksite Details", "Refer and Earn"]
-    var engineerImageArray = ["Group 359", "Group 355", "Group 355","Group 355","Group 355","Group 355","Group 355"]
+    var engineerImageArray = ["Group 359", "Group 355", "Group 7794", "Group 7804", "Group 7760", "Group 7761", "Group 7762"]
     
     var dealerTopicArray = ["Enrollment", "Pending Claim Request","Cash Transfer Approval","Redemption Catalogue", "My Redemption", "My Earning", "Offers and Promotions"]
     
-    var dealerImageArray = ["Group 359", "Group 355", "Group 355","Group 355","Group 355","Group 355","Group 355"]
+    var dealerImageArray = ["Group 8853", "Group 7797", "Group 7798","Group 355","Group 7794","Group 7804","Group 7760"]
     
+    var subDealerTopicArray = ["Enrollment", "Pending Claim Request","Cash Transfer Approval", "Purchase Request","Redemption Catalogue", "My Redemption", "My Earning", "Offers and Promotions"]
+    var subDealerImageArray = ["Group 8853", "Group 7797", "Group 7798","Group 7797","Group 355","Group 7794","Group 7804","Group 7760"]
     
     var supportExecutive = ["Enrollment","Pending Request","My Activity"]
-    var supportExecutiveImage = ["Group 7795","Group 7761", "Group 7761"]
+    var supportExecutiveImage = ["Group 8853","Group 7797", "Group 7761"]
     
 //    var customerType = ""
     var customerTypeIds = -1
@@ -73,9 +77,11 @@ class KC_DashBoardVC: BaseViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.VM.VC = self
+        self.languagePopUpView.isHidden = true
         self.dashBoardId = -1
         categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self
+        self.countLbl.isHidden = true
         self.supportImage.isHidden = true
         mainView.clipsToBounds = false
         mainView.layer.cornerRadius = 36
@@ -143,43 +149,61 @@ class KC_DashBoardVC: BaseViewController{
     @IBAction func notificationButton(_ sender: Any) {
     }
     
-    @IBAction func logoutActionBTN(_ sender: Any) {
-        
-        UserDefaults.standard.set(false, forKey: "IsloggedIn?")
-        UserDefaults.standard.set(false, forKey: "UpdatePassword")
-        
-        if #available(iOS 13.0, *) {
-            DispatchQueue.main.async {
-                let pushID = UserDefaults.standard.string(forKey: "UD_DEVICE_TOKEN") ?? ""
-                let domain = Bundle.main.bundleIdentifier!
-                UserDefaults.standard.removePersistentDomain(forName: domain)
-                UserDefaults.standard.synchronize()
-                UserDefaults.standard.setValue(pushID, forKey: "UD_DEVICE_TOKEN")
-                let sceneDelegate = self.view.window?.windowScene?.delegate as! SceneDelegate
-                sceneDelegate.setInitialViewAsRootViewController()
-             //   self.clearTable2()
-            }
-        } else {
-            DispatchQueue.main.async {
-                let pushID = UserDefaults.standard.string(forKey: "UD_DEVICE_TOKEN") ?? ""
-                let domain = Bundle.main.bundleIdentifier!
-                UserDefaults.standard.removePersistentDomain(forName: domain)
-                UserDefaults.standard.synchronize()
-                UserDefaults.standard.setValue(pushID, forKey: "UD_DEVICE_TOKEN")
-                if #available(iOS 13.0, *) {
-                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                    appDelegate.setInitialViewAsRootViewController()
-                } else {
-                    // Fallback on earlier versions
-                }
-                
-              //  self.clearTable2()
-            }
-        }
+    @IBAction func englishButton(_ sender: Any) {
+        UserDefaults.standard.set("1", forKey: "LanguageLocalizable")
+        UserDefaults.standard.synchronize()
+        self.languagePopUpView.isHidden = true
+    }
+    @IBAction func hindiButton(_ sender: Any) {
+            UserDefaults.standard.set("2", forKey: "LanguageLocalizable")
+            UserDefaults.standard.synchronize()
+        self.languagePopUpView.isHidden = true
+    }
+    @IBAction func kannadaButton(_ sender: Any) {
+        UserDefaults.standard.set("3", forKey: "LanguageLocalizable")
+        UserDefaults.standard.synchronize()
+        self.languagePopUpView.isHidden = true
     }
     
+    
+    
+//    @IBAction func logoutActionBTN(_ sender: Any) {
+//
+//        UserDefaults.standard.set(false, forKey: "IsloggedIn?")
+//        UserDefaults.standard.set(false, forKey: "UpdatePassword")
+//
+//        if #available(iOS 13.0, *) {
+//            DispatchQueue.main.async {
+//                let pushID = UserDefaults.standard.string(forKey: "UD_DEVICE_TOKEN") ?? ""
+//                let domain = Bundle.main.bundleIdentifier!
+//                UserDefaults.standard.removePersistentDomain(forName: domain)
+//                UserDefaults.standard.synchronize()
+//                UserDefaults.standard.setValue(pushID, forKey: "UD_DEVICE_TOKEN")
+//                let sceneDelegate = self.view.window?.windowScene?.delegate as! SceneDelegate
+//                sceneDelegate.setInitialViewAsRootViewController()
+//             //   self.clearTable2()
+//            }
+//        } else {
+//            DispatchQueue.main.async {
+//                let pushID = UserDefaults.standard.string(forKey: "UD_DEVICE_TOKEN") ?? ""
+//                let domain = Bundle.main.bundleIdentifier!
+//                UserDefaults.standard.removePersistentDomain(forName: domain)
+//                UserDefaults.standard.synchronize()
+//                UserDefaults.standard.setValue(pushID, forKey: "UD_DEVICE_TOKEN")
+//                if #available(iOS 13.0, *) {
+//                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//                    appDelegate.setInitialViewAsRootViewController()
+//                } else {
+//                    // Fallback on earlier versions
+//                }
+//
+//              //  self.clearTable2()
+//            }
+//        }
+//    }
+    
     @IBAction func claimPurchaseBTn(_ sender: Any) {
-        if self.customerTypeIds == 1 || self.customerTypeIds == 2{
+        if self.customerTypeId == "1" || self.customerTypeId == "2"{
             let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_ClaimPurchaseVC") as! KC_ClaimPurchaseVC
             vc.customerType = self.customerType
             self.navigationController?.pushViewController(vc, animated: true)
@@ -192,6 +216,14 @@ class KC_DashBoardVC: BaseViewController{
         
     }
     
+    @IBAction func languageChangeBTN(_ sender: Any) {
+        if self.languagePopUpView.isHidden == false{
+            self.languagePopUpView.isHidden = true
+        }else{
+            self.languagePopUpView.isHidden = false
+        }
+        
+    }
     @IBAction func raiseTicketBtn(_ sender: Any) {
         
         let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_LodgeQueryVC") as! KC_LodgeQueryVC
@@ -301,11 +333,14 @@ class KC_DashBoardVC: BaseViewController{
 }
 extension KC_DashBoardVC: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if self.customerTypeIds == 1 || self.customerTypeIds == 2{
+        print(self.customerTypeId, "Customer Type ID")
+        if self.customerTypeId == "1" || self.customerTypeId == "2"{
             return self.engineerTopicArray.count
-        }else if self.customerTypeIds == 3 || self.customerTypeIds == 4{
+        }else if self.customerTypeId == "3"{
             return self.dealerTopicArray.count
-        }else if self.customerTypeIds == 5{
+        }else if  self.customerTypeId == "4"{
+            return self.subDealerTopicArray.count
+        }else if self.customerTypeId == "5"{
             return self.supportExecutive.count
         }else{
             return 1
@@ -316,13 +351,16 @@ extension KC_DashBoardVC: UICollectionViewDelegate, UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "KC_CategoryCVC", for: indexPath) as! KC_CategoryCVC
-        if self.customerTypeIds == 1 || self.customerTypeIds == 2{
+        if self.customerTypeId == "1" || self.customerTypeId == "2"{
             cell.categoryTitleLbl.text = self.engineerTopicArray[indexPath.row]
             cell.categoryImage.image = UIImage(named: "\(self.engineerImageArray[indexPath.row])")
-        }else if self.customerTypeIds == 3 || self.customerTypeIds == 4{
+        }else if self.customerTypeId == "3"{
             cell.categoryTitleLbl.text = self.dealerTopicArray[indexPath.row]
             cell.categoryImage.image = UIImage(named: "\(self.dealerImageArray[indexPath.row])")
-        }else if self.customerTypeIds == 5{
+        }else if self.customerTypeId == "4"{
+            cell.categoryTitleLbl.text = self.subDealerTopicArray[indexPath.row]
+            cell.categoryImage.image = UIImage(named: "\(self.subDealerImageArray[indexPath.row])")
+        }else if self.customerTypeId == "5"{
             cell.categoryTitleLbl.text = self.supportExecutive[indexPath.row]
             cell.categoryImage.image = UIImage(named: "\(self.supportExecutiveImage[indexPath.row])")
         }
@@ -331,7 +369,7 @@ extension KC_DashBoardVC: UICollectionViewDelegate, UICollectionViewDataSource{
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if self.customerTypeIds == 1 || self.customerTypeIds == 2{
+        if self.customerTypeId == "1" || self.customerTypeId == "2"{
             self.selectedTitle = self.engineerTopicArray[indexPath.row]
             if self.selectedTitle == "My Purchase Claim"{
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyPurchaseClaimVC") as! KC_MyPurchaseClaimVC
@@ -355,7 +393,7 @@ extension KC_DashBoardVC: UICollectionViewDelegate, UICollectionViewDataSource{
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_ReferandEarnVC") as! KC_ReferandEarnVC
                 self.navigationController?.pushViewController(vc, animated: true)
             }
-        }else if self.customerTypeIds == 3 || self.customerTypeIds == 4{
+        }else if self.customerTypeId == "3"{
             self.selectedTitle = self.dealerTopicArray[indexPath.row]
 //
 //            var dealerTopicArray = ["Enrollment", "Pending Claim Request","Cash Transfer Approval","Redemption Catalogue", "My Redemption", "My Earning", "Offers and Promotions"]
@@ -381,7 +419,36 @@ extension KC_DashBoardVC: UICollectionViewDelegate, UICollectionViewDataSource{
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_OffersandpromotionsVC") as! KC_OffersandpromotionsVC
                 self.navigationController?.pushViewController(vc, animated: true)
             }
-        }else if self.customerTypeIds == 5{
+        }else if self.customerTypeId == "4"{
+            self.selectedTitle = self.subDealerTopicArray[indexPath.row]
+//
+//            var dealerTopicArray = ["Enrollment", "Pending Claim Request","Cash Transfer Approval","Redemption Catalogue", "My Redemption", "My Earning", "Offers and Promotions"]
+            if indexPath.row == 0{
+                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_EnrollmentListVC") as! KC_EnrollmentListVC
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else if indexPath.row == 1{
+                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_PendingClaimVC") as! KC_PendingClaimVC
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else if indexPath.row == 2{
+                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_CashTranferApprovalVC") as! KC_CashTranferApprovalVC
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else if indexPath.row == 3{
+                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_NewSaleVC") as! KC_NewSaleVC
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else if indexPath.row == 4{
+                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_RedemptionCataloguesVC") as! KC_RedemptionCataloguesVC
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else if indexPath.row == 5{
+                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyRedemptionVC") as! KC_MyRedemptionVC
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else if indexPath.row == 6{
+                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyEarningVC") as! KC_MyEarningVC
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else if indexPath.row == 7{
+                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_OffersandpromotionsVC") as! KC_OffersandpromotionsVC
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }else if self.customerTypeId == "5"{
             self.selectedTitle = self.supportExecutive[indexPath.row]
             
             if self.selectedTitle == "Enrollment"{

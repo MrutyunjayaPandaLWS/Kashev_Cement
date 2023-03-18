@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Toast_Swift
 
 class KC_CashTranferApprovalVC: BaseViewController {
 
@@ -18,6 +19,8 @@ class KC_CashTranferApprovalVC: BaseViewController {
 
         self.cashTransferApprovalTableView.delegate = self
         self.cashTransferApprovalTableView.dataSource = self
+        self.cashTransferApprovalTableView.isHidden = true
+        self.view.makeToast("No Data Found!!", duration: 5.0, position: .bottom)
     }
     @IBAction func backBtn(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)

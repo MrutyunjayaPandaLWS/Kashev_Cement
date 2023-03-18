@@ -7,7 +7,23 @@
 
 import UIKit
 
-class KC_MyPurchaseClaimVC: BaseViewController, DateSelectedDelegate {
+class KC_MyPurchaseClaimVC: BaseViewController, DateSelectedDelegate, DialPadsDelegate {
+    func dialPadDidTap(_ cell: KC_MyPurchaseClaimTVC) {
+        guard let tappedIndexpath = self.purchaseClaimTableView.indexPath(for: cell) else{return}
+        
+        if cell.dialPadButton.tag == tappedIndexpath.row{
+            if let phoneCallURL = URL(string: "tel://\(self.VM.myPurchaseListArray[tappedIndexpath.row].mobile ?? "")") {
+                
+                let application:UIApplication = UIApplication.shared
+                if (application.canOpenURL(phoneCallURL)) {
+                    application.open(phoneCallURL, options: [:], completionHandler: nil)
+                    
+                }
+            }
+        }
+        
+    }
+    
     func acceptDate(_ vc: KC_DOBVC) {
         if vc.isComeFrom == "1"{
             self.selectedFromDate = vc.selectedDate
@@ -202,14 +218,17 @@ extension KC_MyPurchaseClaimVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "KC_MyPurchaseClaimTVC", for: indexPath) as! KC_MyPurchaseClaimTVC
         cell.selectionStyle = .none
+        cell.delegate = self
         cell.createdDateLbl.text = self.VM.myPurchaseListArray[indexPath.row].createdDate ?? "-"
         cell.categoryLbl.text = self.VM.myPurchaseListArray[indexPath.row].customer_Type ?? ""
         cell.requestedToLbl.text = self.VM.myPurchaseListArray[indexPath.row].requestTo ?? ""
         cell.productNameLbl.text = self.VM.myPurchaseListArray[indexPath.row].productName ?? ""
-        cell.orderQtyLbl.text = String(self.VM.myPurchaseListArray[indexPath.row].quantity ?? 0.0)
+        cell.orderQtyLbl.text = String(Int(self.VM.myPurchaseListArray[indexPath.row].quantity ?? 0.0) ?? 0)
+        let convertFormat = Int(self.VM.myPurchaseListArray[indexPath.row].approvedQuantity ?? "0.0") ?? 0
         cell.approvedQTYLbl.text = "\(self.VM.myPurchaseListArray[indexPath.row].approvedQuantity ?? "0.0")"
         cell.remarks.text = self.VM.myPurchaseListArray[indexPath.row].claimedRemarks ?? "-"
-        
+        cell.mobileNumberLbl.text = self.VM.myPurchaseListArray[indexPath.row].mobile ?? "-"
+        cell.dialPadButton.tag = indexPath.row
         let status = self.VM.myPurchaseListArray[indexPath.row].status ?? ""
         cell.statusLbl.setTitle(status, for: .normal)
         if self.VM.myPurchaseListArray[indexPath.row].status ?? "" == "Approved"{
@@ -228,9 +247,7 @@ extension KC_MyPurchaseClaimVC: UITableViewDelegate, UITableViewDataSource{
     
         return cell
     }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 280
-    }
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
        
             if indexPath.row == self.VM.myPurchaseListArray.count - 1{

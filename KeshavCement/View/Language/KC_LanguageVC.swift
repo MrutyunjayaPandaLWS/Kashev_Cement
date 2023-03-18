@@ -20,6 +20,10 @@ class KC_LanguageVC: BaseViewController, UITableViewDelegate, UITableViewDataSou
         self.languageTableView.delegate = self
         self.languageTableView.dataSource = self
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.tokendata()
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.languageListArray.count
@@ -64,28 +68,46 @@ class KC_LanguageVC: BaseViewController, UITableViewDelegate, UITableViewDataSou
         
     }
     
+    func tokendata(){
+            if MyCommonFunctionalUtilities.isInternetCallTheApi() == false{
+            }else{
+                let parameters : Data = "username=\(username)&password=\(password)&grant_type=password".data(using: .utf8)!
+
+            let url = URL(string: tokenURL)!
+            let session = URLSession.shared
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+
+            do {
+                request.httpBody = parameters
+            } catch let error {
+                print(error.localizedDescription)
+            }
+            request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+           
+            let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
+
+                guard error == nil else {
+                    return
+                }
+                guard let data = data else {
+                    return
+                }
+                do{
+                    let parseddata = try JSONDecoder().decode(TokenModels.self, from: data)
+                        print(parseddata.access_token ?? "")
+                        UserDefaults.standard.setValue(parseddata.access_token ?? "", forKey: "TOKEN")
+//                    self.customerTypeApi()
+                     }catch let parsingError {
+                    print("Error", parsingError)
+                }
+            })
+            task.resume()
+        }
+        }
     
-    
-    
-//    @IBAction func englishBtn(_ sender: Any) {
-//        UserDefaults.standard.set("1", forKey: "LanguageLocalizable")
-//        UserDefaults.standard.synchronize()
-//        let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_WelcomeVC") as! KC_WelcomeVC
-//        self.navigationController?.pushViewController(vc, animated: true)
-//    }
-//
-//    @IBAction func hindiBtn(_ sender: Any) {
-//        UserDefaults.standard.set("2", forKey: "LanguageLocalizable")
-//        UserDefaults.standard.synchronize()
-//        let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_WelcomeVC") as! KC_WelcomeVC
-//        self.navigationController?.pushViewController(vc, animated: true)
-//    }
-//    @IBAction func kanndaBtn(_ sender: Any) {
-//        UserDefaults.standard.set("3", forKey: "LanguageLocalizable")
-//        UserDefaults.standard.synchronize()
-//        let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_WelcomeVC") as! KC_WelcomeVC
-//        self.navigationController?.pushViewController(vc, animated: true)
-//    }
+
 
     
 

@@ -9,22 +9,22 @@ import UIKit
 //import SDWebImage
 //import Firebase
 
-class KC_OffersandpromotionsVC: BaseViewController{
-//    func moveToNext(_ cell: MSP_OfferandPromotionTVC) {
-//        guard let tappedIndexPath = self.offersandPromotionTableView.indexPath(for: cell) else{return}
-//        if cell.viewBtn.tag == tappedIndexPath.row{
-//            let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "MSP_OffersandPromotionsDetailsVC") as! MSP_OffersandPromotionsDetailsVC
-//            vc.productName = self.VM.offersandPromotionsArray[tappedIndexPath.row].promotionName ?? ""
-//            let receivedImg = (self.VM.offersandPromotionsArray[tappedIndexPath.row].proImage ?? "").dropFirst(3)
-//            let totalImgURLs = PROMO_IMG1 + receivedImg
-//
-//            vc.productImg = totalImgURLs
-//            vc.shortDesc = self.VM.offersandPromotionsArray[tappedIndexPath.row].proShortDesc ?? ""
-//            vc.longDesc = self.VM.offersandPromotionsArray[tappedIndexPath.row].proLongDesc ?? ""
-//            self.navigationController?.pushViewController(vc, animated: true)
-//        }
-//
-//    }
+class KC_OffersandpromotionsVC: BaseViewController, PromotionDelegate{
+    func moveToNext(_ cell: KC_OffersandpromotionsTVC) {
+        guard let tappedIndexPath = self.offersandPromotionTableView.indexPath(for: cell) else{return}
+        if cell.viewBtn.tag == tappedIndexPath.row{
+            let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "MSP_OffersandPromotionsDetailsVC") as! KC_OffersandPromotionsDetailsVC
+            vc.productName = self.VM.offersandPromotionsArray[tappedIndexPath.row].promotionName ?? ""
+            let receivedImg = (self.VM.offersandPromotionsArray[tappedIndexPath.row].proImage ?? "").dropFirst(3)
+            let totalImgURLs = PROMO_IMG1 + receivedImg
+
+            vc.productImg = totalImgURLs
+            vc.shortDesc = self.VM.offersandPromotionsArray[tappedIndexPath.row].proShortDesc ?? ""
+            vc.longDesc = self.VM.offersandPromotionsArray[tappedIndexPath.row].proLongDesc ?? ""
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+
+    }
     
     @IBOutlet weak var headerTitle: UILabel!
     
@@ -32,15 +32,15 @@ class KC_OffersandpromotionsVC: BaseViewController{
     @IBOutlet weak var offersandPromotionTableView: UITableView!
     @IBOutlet weak var noDataFound: UILabel!
     
-//    var VM = OffersListViewModel()
-//    let userID = UserDefaults.standard.string(forKey: "UserID") ?? ""
-//    var pointBalance = UserDefaults.standard.string(forKey: "RedeemablePointBalance") ?? ""
+    var VM = OffersListViewModel()
+  //  let userID = UserDefaults.standard.string(forKey: "UserID") ?? ""
+    var pointBalance = UserDefaults.standard.string(forKey: "RedeemablePointBalance") ?? ""
 //    var fromSideMenu = ""
 //    var VM1 = HistoryNotificationsViewModel()
 //    let loyaltyId = UserDefaults.standard.string(forKey: "LoyaltyID") ?? ""
     override func viewDidLoad() {
         super.viewDidLoad()
-      //  self.VM.VC = self
+        self.VM.VC = self
         self.offersandPromotionTableView.register(UINib(nibName: "KC_OffersandpromotionsTVC", bundle: nil), forCellReuseIdentifier: "KC_OffersandpromotionsTVC")
         self.offersandPromotionTableView.delegate = self
         self.offersandPromotionTableView.dataSource = self
@@ -49,7 +49,7 @@ class KC_OffersandpromotionsVC: BaseViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 //        self.notificationListApi()
-//        self.offersandPromotionsApi()
+        self.offersandPromotionsApi()
 //        guard let tracker = GAI.sharedInstance().defaultTracker else { return }
 //        tracker.set(kGAIScreenName, value: "Offers & Promotion")
 //
@@ -73,30 +73,30 @@ class KC_OffersandpromotionsVC: BaseViewController{
     
     
     //Api:-
-//    func offersandPromotionsApi(){
-//        let parameters = [
-//            "ActionType": "99",
-//            "ActorId": "\(self.userID)"
-//        ] as [String: Any]
-//        print(parameters)
-//        self.VM.offersandPromotions(parameters: parameters) { response in
-//            self.VM.offersandPromotionsArray = response?.lstPromotionJsonList ?? []
-//            DispatchQueue.main.async {
-//                if self.VM.offersandPromotionsArray.count != 0 {
-//                    self.offersandPromotionTableView.isHidden = false
-//                    self.noDataFound.isHidden = true
-//                    self.noDataFound.textColor = .white
-//                    self.offersandPromotionTableView.reloadData()
-//                }else{
-//                    self.noDataFound.isHidden = false
-//                    self.offersandPromotionTableView.isHidden = true
-//                    self.noDataFound.textColor = .white
-//                   // self.playAnimation()
-//                }
-//                self.stopLoading()
-//            }
-//        }
-//    }
+    func offersandPromotionsApi(){
+        let parameters = [
+            "ActionType": "99",
+            "ActorId": "\(self.userID)"
+        ] as [String: Any]
+        print(parameters)
+        self.VM.offersandPromotions(parameters: parameters) { response in
+            self.VM.offersandPromotionsArray = response?.lstPromotionJsonList ?? []
+            DispatchQueue.main.async {
+                if self.VM.offersandPromotionsArray.count != 0 {
+                    self.offersandPromotionTableView.isHidden = false
+                    self.noDataFound.isHidden = true
+                    self.noDataFound.textColor = .white
+                    self.offersandPromotionTableView.reloadData()
+                }else{
+                    self.noDataFound.isHidden = false
+                    self.offersandPromotionTableView.isHidden = true
+                    self.noDataFound.textColor = .white
+                   // self.playAnimation()
+                }
+                self.stopLoading()
+            }
+        }
+    }
     
 //    func notificationListApi(){
 //        let parameters = [
@@ -132,16 +132,16 @@ class KC_OffersandpromotionsVC: BaseViewController{
 }
 extension KC_OffersandpromotionsVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return VM.offersandPromotionsArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "KC_OffersandpromotionsTVC") as? KC_OffersandpromotionsTVC
-//        cell?.delegate = self
-//        cell?.titleLbl.text = VM.offersandPromotionsArray[indexPath.row].promotionName ?? ""
-//        let receivedImage = (self.VM.offersandPromotionsArray[indexPath.row].proImage ?? "").dropFirst(3)
-//        let totalImgURL = PROMO_IMG1 + receivedImage
-//        cell?.productImage.sd_setImage(with: URL(string: totalImgURL), placeholderImage: UIImage(named: "ic_default_img"))
+        cell?.delegate = self
+        cell?.titleLbl.text = VM.offersandPromotionsArray[indexPath.row].promotionName ?? ""
+        let receivedImage = (self.VM.offersandPromotionsArray[indexPath.row].proImage ?? "").dropFirst(3)
+        let totalImgURL = PROMO_IMG1 + receivedImage
+        cell?.productImage.sd_setImage(with: URL(string: totalImgURL), placeholderImage: UIImage(named: "ic_default_img"))
         cell?.viewBtn.tag = indexPath.row
         return cell!
     }

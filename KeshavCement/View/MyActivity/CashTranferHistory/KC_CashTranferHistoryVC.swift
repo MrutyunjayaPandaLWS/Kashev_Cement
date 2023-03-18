@@ -43,6 +43,8 @@ class KC_CashTranferHistoryVC: BaseViewController {
         self.filterView.isHidden = true
         self.cashHistoryTableView.delegate = self
         self.cashHistoryTableView.dataSource = self
+        self.cashHistoryTableView.isHidden = true
+        self.view.makeToast("No Data Found!!", duration: 5.0, position: .bottom)
     }
 
     @IBAction func backBtn(_ sender: Any) {

@@ -34,7 +34,7 @@ class KC_MyProfileVM{
                             self.VC?.fullNameTF.text = response[0].firstName ?? ""
                             self.VC?.firmTF.text = response[0].firstName ?? ""
                             self.VC?.mobileNumberTF.text = response[0].mobile ?? ""
-                            self.VC?.aadharNumberTF.text = response[0].aadharNumber ?? ""
+                           
                             self.VC?.emailTF.text = response[0].email ?? ""
                             self.VC?.addressTextView.text = response[0].address1 ?? ""
                             self.VC?.pincodeTF.text = response[0].zip ?? ""
@@ -54,7 +54,21 @@ class KC_MyProfileVM{
                             let customerImage = String(response[0].profilePicture ?? "").dropFirst(1)
                             self.VC!.profileImage.kf.setImage(with: URL(string: PROMO_IMG1 + "\(customerImage)"), placeholder: UIImage(named: "ic_default_img"))
                         }
-
+                      
+                        
+                        
+                        if self.VC?.customerTypeId == "1" || self.VC?.customerTypeId == "2"{
+                            let response2 = result?.lstCustomerIdentityInfo ?? []
+                            if response2.count != 0 {
+                                self.VC?.aadharNumberTF.text = response2[0].identityNo ?? ""
+                            }
+                            
+                        }else{
+                            let response1 = result?.lstCustomerOfficalInfoJson ?? []
+                            if response1.count != 0 {
+                                    self.VC?.aadharNumberTF.text = response1[0].gstNumber ?? ""
+                                }
+                        }
                         
                     }
                 }else{

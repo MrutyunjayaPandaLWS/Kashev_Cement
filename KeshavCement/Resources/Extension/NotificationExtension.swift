@@ -28,6 +28,8 @@ extension Notification.Name{
     static let querySubmission = Notification.Name(rawValue: "querySubmission")
     
     static let deactivatedAcc = Notification.Name(rawValue: "deactivatedAcc")
+    static let removeDreamGiftDetails = Notification.Name(rawValue: "removeDreamGiftDetails")
     
-    
+    static let dreamGiftRemoved = Notification.Name(rawValue: "dreamGiftRemoved")
+    static let showPopUp = Notification.Name(rawValue: "showPopUp")
 }

@@ -18,6 +18,9 @@ class BaseViewController: UIViewController {
     var userID = UserDefaults.standard.string(forKey: "UserID") ?? ""
     var customerTypeId = UserDefaults.standard.string(forKey: "customerTypeId") ?? ""
     var customerType = UserDefaults.standard.string(forKey: "customerType") ?? ""
+    var userFullName = UserDefaults.standard.string(forKey: "FirstName") ?? ""
+    var totalPtss = UserDefaults.standard.string(forKey: "RedeemablePointBalance") ?? ""
+    var overAllPts = UserDefaults.standard.string(forKey: "OverallPoints") ?? ""
     override func viewDidLoad() {
         super.viewDidLoad()
     }

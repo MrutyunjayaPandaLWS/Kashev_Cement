@@ -25,6 +25,7 @@ class KC_ClaimPurchaseVC: BaseViewController, SelectedDataDelegate{
         self.pleaseSelectProductLbl.text = vc.selectedProductName
         self.selectedProductName = vc.selectedProductName
         self.selectedProductId = vc.selectedProductId
+        self.selectedProductCode = vc.selectedProductCode
         
     }
     func didTapState(_ vc: KC_DropDownVC) {}
@@ -72,7 +73,7 @@ class KC_ClaimPurchaseVC: BaseViewController, SelectedDataDelegate{
     
     var quantity = 0
     var count = 0
-
+    var selectedProductCode = ""
     
     
     var VM = KC_ClaimPurchaseVM()
@@ -228,7 +229,7 @@ class KC_ClaimPurchaseVC: BaseViewController, SelectedDataDelegate{
                 "ActorId": self.userID,
                 "ProductSaveDetailList": [
                     [
-                        "ProductCode": self.selectedProductName,
+                        "ProductCode": self.selectedProductCode,
                         "Quantity": self.quantity
                     ]
                 ],

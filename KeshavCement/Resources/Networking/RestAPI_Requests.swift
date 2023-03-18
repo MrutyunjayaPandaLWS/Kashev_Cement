@@ -668,6 +668,62 @@ class RestAPI_Requests {
             }
         }
     }
+    //OFFERS AND PROMOTIONS LIST
+    func offersandPromotions(parameters: JSON, completion: @escaping (OffersandPromotionsVM?, Error?) -> ()) -> URLSessionDataTask? {
+       return client.load(path: offersandPromotions_URLMethod, method: .post, params: parameters) { data, error in
+           do{
+               if data != nil{
+                   let result1 =  try JSONDecoder().decode(OffersandPromotionsVM?.self, from: data as! Data)
+                   completion(result1, nil)
+               }
+           }catch{
+               completion(nil, error)
+           }
+       }
+    }
+    
+    // MARK : - MY DREAM GIFT LISTING
+     func myDreamGiftList(parameters: JSON, completion: @escaping (MyDreamGiftModels?, Error?) -> ()) -> URLSessionDataTask? {
+             return client.load(path: myDreamGiftList_URLMethod, method: .post, params: parameters) { data, error in
+                 do{
+                     if data != nil{
+                         let result1 =  try JSONDecoder().decode(MyDreamGiftModels?.self, from: data as! Data)
+                         completion(result1, nil)
+                     }
+                 }catch{
+                     completion(nil, error)
+                 }
+             }
+         }
+    
+    //REMOVE DREAM GIFT
+    func removeDreamGifts(parameters: JSON, completion: @escaping (RemoveGiftModels?, Error?) -> ()) -> URLSessionDataTask? {
+            return client.load(path: removeDreamGift_URLMethod, method: .post, params: parameters) { data, error in
+                do{
+                    if data != nil{
+                        let result1 =  try JSONDecoder().decode(RemoveGiftModels?.self, from: data as! Data)
+                        completion(result1, nil)
+                    }
+                }catch{
+                    completion(nil, error)
+                }
+            }
+        }
+    
+    //MY DREAM GIFT DETAILS
+    func myDreamGiftDetails(parameters: JSON, completion: @escaping (DetailsGiftModels?, Error?) -> ()) -> URLSessionDataTask? {
+            return client.load(path: myDreamGiftList_URLMethod, method: .post, params: parameters) { data, error in
+                do{
+                    if data != nil{
+                        let result1 =  try JSONDecoder().decode(DetailsGiftModels?.self, from: data as! Data)
+                        completion(result1, nil)
+                    }
+                }catch{
+                    completion(nil, error)
+                }
+            }
+        }
+    
     func referralCodeSubmissionApi(parameters: JSON, completion: @escaping (ReferandEarnSubmissionModel?, Error?) -> ()) -> URLSessionDataTask? {
         return client.load(path: referandEarnURLMethod, method: .post, params: parameters) { data, error in
             do{
@@ -1367,16 +1423,53 @@ class RestAPI_Requests {
 //            }
 //        }
 //    }
-//    func adhaarCardExistApi(parameters: JSON, completion: @escaping (AdhaarCardExistsModels?, Error?) -> ()) -> URLSessionDataTask? {
-//        return client.load(path: preferredLanguage_URLMethod, method: .post, params: parameters) { data, error in
-//            do{
-//                if data != nil{
-//                    let result1 =  try JSONDecoder().decode(AdhaarCardExistsModels.self, from: data as! Data)
-//                    completion(result1, nil)
-//                }
-//            }catch{
-//                completion(nil, error)
-//            }
-//        }
-//    }
+    func adhaarCardExistApi(parameters: JSON, completion: @escaping (AdhaarCardExistsModels?, Error?) -> ()) -> URLSessionDataTask? {
+        return client.load(path: preferredLanguage_URLMethod, method: .post, params: parameters) { data, error in
+            do{
+                if data != nil{
+                    let result1 =  try JSONDecoder().decode(AdhaarCardExistsModels.self, from: data as! Data)
+                    completion(result1, nil)
+                }
+            }catch{
+                completion(nil, error)
+            }
+        }
+    }
+    func redeemVoucher(parameters: JSON, completion: @escaping (VoucherRedemptionModels?, Error?) -> ()) -> URLSessionDataTask? {
+        return client.load(path: voucherRedeem_URLMethodName, method: .post, params: parameters) { data, error in
+            do{
+                if data != nil{
+                    let result1 =  try JSONDecoder().decode(VoucherRedemptionModels.self, from: data as! Data)
+                    completion(result1, nil)
+                }
+            }catch{
+                completion(nil, error)
+            }
+        }
+    }
+    func evoucherListApi(parameters: JSON, completion: @escaping (EvoucherListModels?, Error?) -> ()) -> URLSessionDataTask? {
+        return client.load(path: evoucherList_MethodName, method: .post, params: parameters) { data, error in
+            do{
+                if data != nil{
+                    let result1 =  try JSONDecoder().decode(EvoucherListModels.self, from: data as! Data)
+                    completion(result1, nil)
+                }
+            }catch{
+                completion(nil, error)
+            }
+        }
+    }
+    // MARK : - VOUCHER SUBMISSION
+    func voucherSubmission_Post_API(parameters: JSON, completion: @escaping (SubmitVoucherModels?, Error?) -> ()) -> URLSessionDataTask? {
+        return client.load(path: voucherSubmit_URLMethod, method: .post, params: parameters) { data, error in
+            do{
+                if data != nil{
+                    let result1 =  try JSONDecoder().decode(SubmitVoucherModels?.self, from: data as! Data)
+                    completion(result1, nil)
+                }
+            }catch{
+                completion(nil, error)
+            }
+        }
+    }
 }

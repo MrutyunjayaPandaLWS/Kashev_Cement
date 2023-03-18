@@ -61,6 +61,13 @@ class KC_ForgetPasswordVM{
                        
                         self.VC?.generateOTPApi()
                     }
+                }else if str ?? "" == "2"{
+                    DispatchQueue.main.async{
+                        self.VC?.stopLoading()
+                        self.VC?.view.makeToast("Your account has been deactivated..", duration: 2.0, position: .bottom)
+                        self.VC?.generateOTPBtn.setTitle("Generate OTP", for: .normal)
+                        self.VC?.mobileNumberTF.text = ""
+                    }
                 }else if str ?? "" == "3"{
                     DispatchQueue.main.async{
                         self.VC?.stopLoading()
@@ -147,24 +154,24 @@ class KC_ForgetPasswordVM{
                         self.VC?.stopLoading()
                         if loginResponse.count != 0{
 //
-//                            if loginResponse[0].result ?? -1 != 1{
-//                                self.VC!.view.makeToast("Password is invalid!", duration: 2.0, position: .bottom)
-//                            }else if loginResponse[0].isDelete ?? -1 == 1 || loginResponse[0].isUserActive ?? -1 == 0 && loginResponse[0].verifiedStatus ?? -1 == 3{
-//                                self.VC!.view.makeToast("Your account is verification pending! Kindly contact your administrator.", duration: 2.0, position: .bottom)
-//                            }else if loginResponse[0].isUserActive ?? -1 == 1 && loginResponse[0].verifiedStatus ?? -1 == 0 || loginResponse[0].isUserActive ?? -1 == 0 && loginResponse[0].verifiedStatus ?? -1 == 0{
-//                                self.VC!.view.makeToast("Your account is not activated! Kindly activate your account.", duration: 2.0, position: .bottom)
-//                            }else if loginResponse[0].isUserActive ?? -1 == 0 && loginResponse[0].verifiedStatus ?? -1 == 1 || loginResponse[0].isUserActive ?? -1 == 0 && loginResponse[0].verifiedStatus ?? -1 == 4{
-//                                self.VC!.view.makeToast("Your account has been deactivated! Kindly contact your administrator.", duration: 2.0, position: .bottom)
-//                            }else if loginResponse[0].verifiedStatus ?? -1 == 2 {
-//                                self.VC!.view.makeToast("Your account verification is failed!, Kindly contact your administrator.", duration: 2.0, position: .bottom)
-//                            }else{
-//                                if loginResponse[0].result ?? -1 == 1 || loginResponse[0].isUserActive ?? -1 == 1 && loginResponse[0].verifiedStatus ?? -1 == 1 && loginResponse[0].result ?? -1 == 1{
+                            if loginResponse[0].result ?? -1 != 1{
+                                self.VC!.view.makeToast("Your account is verification pending! Kindly contact your administrator.", duration: 2.0, position: .bottom)
+                            }else if loginResponse[0].isDelete ?? -1 == 1 || loginResponse[0].isUserActive ?? -1 == 0 && loginResponse[0].verifiedStatus ?? -1 == 3{
+                                self.VC!.view.makeToast("Your account is verification pending! Kindly contact your administrator.", duration: 2.0, position: .bottom)
+                            }else if loginResponse[0].isUserActive ?? -1 == 1 && loginResponse[0].verifiedStatus ?? -1 == 0 || loginResponse[0].isUserActive ?? -1 == 0 && loginResponse[0].verifiedStatus ?? -1 == 0{
+                                self.VC!.view.makeToast("Your account is not activated! Kindly activate your account.", duration: 2.0, position: .bottom)
+                            }else if loginResponse[0].isUserActive ?? -1 == 0 && loginResponse[0].verifiedStatus ?? -1 == 1 || loginResponse[0].isUserActive ?? -1 == 0 && loginResponse[0].verifiedStatus ?? -1 == 4{
+                                self.VC!.view.makeToast("Your account has been deactivated! Kindly contact your administrator.", duration: 2.0, position: .bottom)
+                            }else if loginResponse[0].verifiedStatus ?? -1 == 2 {
+                                self.VC!.view.makeToast("Your account verification is failed!, Kindly contact your administrator.", duration: 2.0, position: .bottom)
+                            }else{
+                                if loginResponse[0].result ?? -1 == 1 || loginResponse[0].isUserActive ?? -1 == 1 && loginResponse[0].verifiedStatus ?? -1 == 1 && loginResponse[0].result ?? -1 == 1{
                                     UserDefaults.standard.setValue(loginResponse[0].userId ?? -1, forKey: "UserID")
                                     UserDefaults.standard.setValue(true, forKey: "IsloggedIn?")
                                     UserDefaults.standard.set(true, forKey: "UpdatePassword")
                                     UserDefaults.standard.synchronize()
                                     DispatchQueue.main.async {
-//                                        NotificationCenter.default.post(name: .navigateToChangePassword, object: nil)
+                                        //                                        NotificationCenter.default.post(name: .navigateToChangePassword, object: nil)
                                         if #available(iOS 13.0, *) {
                                             let sceneDelegate = self.VC!.view.window!.windowScene!.delegate as! SceneDelegate
                                             sceneDelegate.setHomeAsRootViewController()
@@ -173,9 +180,8 @@ class KC_ForgetPasswordVM{
                                             appDelegate.setHomeAsRootViewController()
                                         }
                                     }
-//                                }
-//
-//                            }
+                                }
+                            }
 //
                         }else{
                             self.VC!.view.makeToast("Something went wrong. Try again later!", duration: 2.0, position: .bottom)

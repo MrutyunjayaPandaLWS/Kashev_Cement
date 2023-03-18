@@ -26,7 +26,7 @@ class KC_SideMenuVM{
                     if dashboardDetails.count != 0 {
                         
                        
-                        self.VC?.ptsBalanceLbl.text = "\(result?.objCustomerDashboardList?[0].redeemablePointsBalance ?? 0)"
+                        self.VC?.ptsBalanceLbl.text = "\(Int(result?.objCustomerDashboardList?[0].redeemablePointsBalance ?? 0.0) ?? 0)"
                     }
                     
                     let customerFeedbakcJSON = result?.lstCustomerFeedBackJsonApi ?? []

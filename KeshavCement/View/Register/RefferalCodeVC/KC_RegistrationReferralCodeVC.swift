@@ -82,6 +82,7 @@ class KC_RegistrationReferralCodeVC: BaseViewController {
                 }else{
                     DispatchQueue.main.async {
                         let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_SignUpVC") as! KC_SignUpVC
+                        vc.itsFrom = "ReferralCode"
                         vc.referralCode = self.referralCodeTF.text ?? ""
                         vc.enteredMobile = self.enteredMobile
                         vc.customerTypeName = self.customerTypeName

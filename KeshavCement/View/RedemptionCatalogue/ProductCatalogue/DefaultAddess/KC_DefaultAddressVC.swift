@@ -36,6 +36,8 @@ class KC_DefaultAddressVC: BaseViewController, SendUpdatedAddressDelegate {
     @IBOutlet weak var headerLbl: UILabel!
     
     var VM = KC_DefaultAddressVM()
+    var isComingFrom = ""
+    var redemptionTypeId = 0
     var receiverName = ""
     var address = ""
     var stateID = -1
@@ -52,6 +54,13 @@ class KC_DefaultAddressVC: BaseViewController, SendUpdatedAddressDelegate {
     var redemptionDate = ""
     var totalPoints = 0
     var mobile = ""
+    var totalPoint = 0
+    
+    var dreamGiftID = 0
+    var giftName = ""
+    var contractorName = ""
+    var giftStatusId = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

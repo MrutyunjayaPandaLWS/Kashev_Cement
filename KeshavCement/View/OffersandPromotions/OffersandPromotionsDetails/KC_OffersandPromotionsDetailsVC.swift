@@ -24,16 +24,16 @@ class KC_OffersandPromotionsDetailsVC: BaseViewController {
 //    var VM1 = HistoryNotificationsViewModel()
 //    let loyaltyId = UserDefaults.standard.string(forKey: "LoyaltyID") ?? ""
 //    let userID = UserDefaults.standard.string(forKey: "UserID") ?? ""
-//    var shortDesc = ""
-//    var longDesc = ""
-//    var productImg = ""
-//    var productName = ""
+    var shortDesc = ""
+    var longDesc = ""
+    var productImg = ""
+    var productName = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.productNameLbl.text = self.productName
-//        self.shortDescriptionLbl.text = self.shortDesc
-//        self.productImage.sd_setImage(with: URL(string: productImg), placeholderImage: UIImage(named: "ic_default_img"))
-//        self.descriptionWK.loadHTMLString(self.longDesc, baseURL: nil)
+        self.productNameLbl.text = self.productName
+        self.shortDescriptionLbl.text = self.shortDesc
+        self.productImage.sd_setImage(with: URL(string: productImg), placeholderImage: UIImage(named: "ic_default_img"))
+        self.descriptionWK.loadHTMLString(self.longDesc, baseURL: nil)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

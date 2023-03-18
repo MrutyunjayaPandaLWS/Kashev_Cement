@@ -15,7 +15,7 @@ import Foundation
 struct MyEarningListModel : Codable {
 	let lstRewardTransDetails : String?
 	let lstRewardTransJsonDetails : [LstRewardTransJsonDetails]?
-	let lstRewardTransactionBasedonProduct : [String]?
+	let lstRewardTransactionBasedonProduct : [LstRewardTransactionBasedonProduct]?
 	let pdf : String?
 	let totalRewardPoints : Int?
 	let returnValue : Int?
@@ -38,7 +38,7 @@ struct MyEarningListModel : Codable {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
 		lstRewardTransDetails = try values.decodeIfPresent(String.self, forKey: .lstRewardTransDetails)
 		lstRewardTransJsonDetails = try values.decodeIfPresent([LstRewardTransJsonDetails].self, forKey: .lstRewardTransJsonDetails)
-		lstRewardTransactionBasedonProduct = try values.decodeIfPresent([String].self, forKey: .lstRewardTransactionBasedonProduct)
+		lstRewardTransactionBasedonProduct = try values.decodeIfPresent([LstRewardTransactionBasedonProduct].self, forKey: .lstRewardTransactionBasedonProduct)
 		pdf = try values.decodeIfPresent(String.self, forKey: .pdf)
 		totalRewardPoints = try values.decodeIfPresent(Int.self, forKey: .totalRewardPoints)
 		returnValue = try values.decodeIfPresent(Int.self, forKey: .returnValue)

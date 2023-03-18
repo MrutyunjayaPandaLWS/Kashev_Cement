@@ -52,6 +52,9 @@ class KC_RedemptionCataloguesVC: BaseViewController {
             let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_ProductCatalogueVC") as! KC_ProductCatalogueVC
             vc.partyLoyaltyId = ""
             self.navigationController?.pushViewController(vc, animated: true)
+        }else if self.itsFrom == "eVoucher"{
+            let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "QS_MyVouchers_VC") as! QS_MyVouchers_VC
+            self.navigationController?.pushViewController(vc, animated: true)
         }else{
             let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "HR_RedemptionPlannerVC") as! HR_RedemptionPlannerVC
             vc.partyLoyaltyId = ""
@@ -116,7 +119,7 @@ extension KC_RedemptionCataloguesVC: UICollectionViewDelegate, UICollectionViewD
         if self.customerTypeId == "3"{
             switch self.categoryListingArray1[indexPath.row]{
             case "Products":
-                if self.customerType == "1" || self.customerType == "2"{
+                if self.customerTypeId == "1" || self.customerTypeId == "2"{
                     let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_ProductCatalogueVC") as! KC_ProductCatalogueVC
                     self.navigationController?.pushViewController(vc, animated: true)
                 }else{
@@ -125,8 +128,13 @@ extension KC_RedemptionCataloguesVC: UICollectionViewDelegate, UICollectionViewD
                 }
                 
             case "eVouchers":
-                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_EvoucherVC") as! KC_EvoucherVC
-                self.navigationController?.pushViewController(vc, animated: true)
+                if self.customerTypeId == "1" || self.customerTypeId == "2"{
+                    let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "QS_MyVouchers_VC") as! QS_MyVouchers_VC
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }else{
+                    self.itsFrom = "eVoucher"
+                    self.deliveryTypeView.isHidden = false
+                }
             case "Cash Voucher":
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_CashTransferVC") as! KC_CashTransferVC
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -144,7 +152,7 @@ extension KC_RedemptionCataloguesVC: UICollectionViewDelegate, UICollectionViewD
         }else{
             switch self.categoryListingArray[indexPath.row]{
             case "Products":
-                if self.customerType == "1" || self.customerType == "2"{
+                if self.customerTypeId == "1" || self.customerTypeId == "2"{
                     let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_ProductCatalogueVC") as! KC_ProductCatalogueVC
                     self.navigationController?.pushViewController(vc, animated: true)
                 }else{
@@ -153,13 +161,18 @@ extension KC_RedemptionCataloguesVC: UICollectionViewDelegate, UICollectionViewD
                 }
                 
             case "eVouchers":
-                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_EvoucherVC") as! KC_EvoucherVC
-                self.navigationController?.pushViewController(vc, animated: true)
+                if self.customerTypeId == "1" || self.customerTypeId == "2"{
+                    let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "QS_MyVouchers_VC") as! QS_MyVouchers_VC
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }else{
+                    self.itsFrom = "eVoucher"
+                    self.deliveryTypeView.isHidden = false
+                }
             case "Cash Transfer":
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_CashTransferVC") as! KC_CashTransferVC
                 self.navigationController?.pushViewController(vc, animated: true)
             case "Wishlist":
-                if self.customerType == "1" || self.customerType == "2"{
+                if self.customerTypeId == "1" || self.customerTypeId == "2"{
                     let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "HR_RedemptionPlannerVC") as! HR_RedemptionPlannerVC
                     self.navigationController?.pushViewController(vc, animated: true)
                 }else{

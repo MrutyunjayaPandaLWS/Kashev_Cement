@@ -143,7 +143,7 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
     var enteredMobile = ""
     var customerTypeName = ""
     
-    
+    var itsFrom = ""
     var VM = KC_SignUpVM()
     
     override func viewDidLoad() {

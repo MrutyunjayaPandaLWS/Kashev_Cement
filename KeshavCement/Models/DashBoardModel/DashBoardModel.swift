@@ -23,9 +23,12 @@ struct DashBoardModel : Codable {
 	let lstCustomerFeedBackJsonApi : [LstCustomerFeedBackJsonApi]?
 	let lstLoyaltyProgramReport : [LstLoyaltyProgramReport]?
 	let objImageGalleryList : String?
-	let objCatalogueDetailsForCustomer : String?
+	let objCatalogueDetailsForCustomer : [ObjCatalogueDetailsForCustomer]?
 	let activeStatus : Bool?
 	let objProductList : String?
+	let sessionID : String?
+	let deviceID : String?
+	let loggedDeviceName : String?
 	let returnValue : Int?
 	let returnMessage : String?
 	let totalRecords : Int?
@@ -45,6 +48,9 @@ struct DashBoardModel : Codable {
 		case objCatalogueDetailsForCustomer = "objCatalogueDetailsForCustomer"
 		case activeStatus = "activeStatus"
 		case objProductList = "objProductList"
+		case sessionID = "sessionID"
+		case deviceID = "deviceID"
+		case loggedDeviceName = "loggedDeviceName"
 		case returnValue = "returnValue"
 		case returnMessage = "returnMessage"
 		case totalRecords = "totalRecords"
@@ -62,9 +68,12 @@ struct DashBoardModel : Codable {
 		lstCustomerFeedBackJsonApi = try values.decodeIfPresent([LstCustomerFeedBackJsonApi].self, forKey: .lstCustomerFeedBackJsonApi)
 		lstLoyaltyProgramReport = try values.decodeIfPresent([LstLoyaltyProgramReport].self, forKey: .lstLoyaltyProgramReport)
 		objImageGalleryList = try values.decodeIfPresent(String.self, forKey: .objImageGalleryList)
-		objCatalogueDetailsForCustomer = try values.decodeIfPresent(String.self, forKey: .objCatalogueDetailsForCustomer)
+		objCatalogueDetailsForCustomer = try values.decodeIfPresent([ObjCatalogueDetailsForCustomer].self, forKey: .objCatalogueDetailsForCustomer)
 		activeStatus = try values.decodeIfPresent(Bool.self, forKey: .activeStatus)
 		objProductList = try values.decodeIfPresent(String.self, forKey: .objProductList)
+		sessionID = try values.decodeIfPresent(String.self, forKey: .sessionID)
+		deviceID = try values.decodeIfPresent(String.self, forKey: .deviceID)
+		loggedDeviceName = try values.decodeIfPresent(String.self, forKey: .loggedDeviceName)
 		returnValue = try values.decodeIfPresent(Int.self, forKey: .returnValue)
 		returnMessage = try values.decodeIfPresent(String.self, forKey: .returnMessage)
 		totalRecords = try values.decodeIfPresent(Int.self, forKey: .totalRecords)

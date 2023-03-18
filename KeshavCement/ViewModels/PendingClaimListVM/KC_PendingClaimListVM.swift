@@ -56,6 +56,7 @@ class KC_PendingClaimListVM{
                                 pendingClaimList.transactionDate = data.tranDate ?? ""
                                 pendingClaimList.temperId = "\(data.ltyTranTempID ?? 0)"
                                 pendingClaimList.productImage = data.productImage
+                                pendingClaimList.productCode = data.prodCode
                                 Persistanceservice.saveContext()
                                 self.VC!.fetchCartDetails()
                             }
@@ -132,6 +133,56 @@ class KC_PendingClaimListVM{
             self.VC?.resendOTPBtn.isHidden = false
             self.timer.invalidate()
         }
+    }
+    
+    func checkPointBalanceApi(parameter: JSON){
+        
+        DispatchQueue.main.async {
+            self.VC?.startLoading()
+        }
+        
+        self.requestAPIs.checkQuantityApi(parameters: parameter) { (result, error) in
+            
+            if result == nil{
+                
+                DispatchQueue.main.async {
+                    self.VC?.stopLoading()
+                }
+            }else{
+                if error == nil{
+                    DispatchQueue.main.async {
+                        self.VC?.stopLoading()
+                        print(result?.pointsBalance ?? 0, "point Balance")
+                        if result?.pointsBalance ?? 0 > 0{
+                            self.timer.invalidate()
+                            self.VC!.generateOTPApi()
+                            
+                        }else{
+                            self.VC!.successPopupView.isHidden = true
+                            self.VC!.otpPopUpView.isHidden = true
+//                            self.VC!.qtyTF.text = "0"
+//                            self.VC?.quantity = 0
+//                            self.VC?.count = 0
+//                            self.VC?.selectTypeLbl.text = "Select Type"
+//                            self.VC?.searchTF.placeholder = "Search"
+//                            self.VC?.searchTF.text = ""
+//                            self.VC?.pleaseSelectProductLbl.text = "Please select product"
+//                            self.VC?.mappedUserId = -1
+//                            self.VC?.selectedProductId = -1
+////                            self.VC!.successPopUpView.isHidden = true
+//                            self.VC!.otpPopUpView.isHidden = true
+                            self.VC!.view.makeToast("Insufficient quantity !!", duration: 3.0, position: .bottom)
+                        }
+                    }
+                }else{
+                    DispatchQueue.main.async {
+                        print(error)
+                        self.VC?.stopLoading()
+                    }
+                }
+            }
+        }
+        
     }
     
     func pendingClaimSubmission(parameter: JSON){

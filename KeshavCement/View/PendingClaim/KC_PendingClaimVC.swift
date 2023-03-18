@@ -58,13 +58,15 @@ class KC_PendingClaimVC: BaseViewController, DataUpdateDelegate, DPOTPViewDelega
         guard let tappedIndexPath = self.pendingClaimTableView.indexPath(for: cell) else{return}
         if cell.approve.tag == tappedIndexPath.row{
             self.successPopupView.isHidden = true
-            self.otpPopUpView.isHidden = false
+            self.otpPopUpView.isHidden = true
             self.temperId = Int(self.claimPurchaseListArray[tappedIndexPath.row].temperId ?? "")!
             self.quantity = Int(self.claimPurchaseListArray[tappedIndexPath.row].quantity ?? "")!
             self.approvedStatus = "1"
             self.remarks = self.claimPurchaseListArray[tappedIndexPath.row].remarks ?? ""
             
-            self.generateOTPApi()
+            self.validatePointBalanceApi(productCode: self.claimPurchaseListArray[tappedIndexPath.row].productCode ?? "", quantity: String(self.quantity))
+            
+            
         }
     }
     
@@ -263,6 +265,42 @@ class KC_PendingClaimVC: BaseViewController, DataUpdateDelegate, DPOTPViewDelega
         self.VM.pendingClaimSubmission(parameter: parameter)
     }
  
+    func validatePointBalanceApi(productCode: String, quantity: String){
+        if self.customerTypeId == "5"{
+            let parameter = [
+                "ActorId": UserDefaults.standard.string(forKey: "mappedCustomerId") ?? "",
+                "ProductSaveDetailList": [
+                    [
+                        "ProductCode": productCode,
+                        "Quantity":quantity
+                    ]
+                ],
+                "RitailerId": UserDefaults.standard.string(forKey: "mappedCustomerId") ?? "",
+                "Approval_Status": "5"
+            ] as [String: Any]
+            print(parameter)
+            self.VM.checkPointBalanceApi(parameter: parameter)
+        }else{
+            let parameter = [
+                "ActorId":  self.userID,
+                "ProductSaveDetailList": [
+                    [
+                        "ProductCode": productCode,
+                        "Quantity":quantity
+                    ]
+                ],
+                "RitailerId":  self.userID,
+                "Approval_Status": "5"
+            ] as [String: Any]
+            print(parameter)
+            self.VM.checkPointBalanceApi(parameter: parameter)
+        }
+        
+       
+        
+        
+    }
+    
     func generateOTPApi(){
         let parameter = [
             "MerchantUserName": "KeshavCementDemo",

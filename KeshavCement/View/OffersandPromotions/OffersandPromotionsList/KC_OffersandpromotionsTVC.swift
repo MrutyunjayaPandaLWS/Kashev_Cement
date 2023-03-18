@@ -6,9 +6,9 @@
 //
 
 import UIKit
-//protocol PromotionDelegate: class{
-//    func moveToNext(_ cell: MSP_OfferandPromotionTVC)
-//}
+protocol PromotionDelegate: class{
+    func moveToNext(_ cell: KC_OffersandpromotionsTVC)
+}
 class KC_OffersandpromotionsTVC: UITableViewCell {
 
     @IBOutlet weak var viewBtn: GradientButton!
@@ -16,7 +16,7 @@ class KC_OffersandpromotionsTVC: UITableViewCell {
     
     @IBOutlet weak var titleLbl: UILabel!
     
-//    var delegate: PromotionDelegate!
+    var delegate: PromotionDelegate!
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .none
@@ -28,7 +28,7 @@ class KC_OffersandpromotionsTVC: UITableViewCell {
         // Configure the view for the selected state
     }
     @IBAction func viewButton(_ sender: Any) {
-//        self.delegate.moveToNext(self)
+        self.delegate.moveToNext(self)
     }
     
 }

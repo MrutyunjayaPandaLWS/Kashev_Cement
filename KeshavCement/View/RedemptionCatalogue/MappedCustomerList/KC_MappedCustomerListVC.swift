@@ -7,7 +7,7 @@
 
 import UIKit
 import Kingfisher
-
+import SDWebImage
 class KC_MappedCustomerListVC: BaseViewController {
 
     @IBOutlet weak var noDataFoundLbl: UILabel!
@@ -69,6 +69,10 @@ extension KC_MappedCustomerListVC: UITableViewDelegate, UITableViewDataSource{
         cell.selectionStyle = .none
         cell.categoryLbl.text = self.VM.mappedCustomerListArray[indexPath.row].customerType ?? ""
 //        cell.userImage.image = ""
+        let receivedImage = String(self.VM.mappedCustomerListArray[indexPath.row].customerImage ?? "").dropFirst(1)
+        let totalImgURL = PROMO_IMG1 + receivedImage
+        print(totalImgURL)
+        cell.userImage.sd_setImage(with: URL(string: totalImgURL), placeholderImage: UIImage(named: "ic_default_img"))
         cell.ptslbl.text = "\(self.VM.mappedCustomerListArray[indexPath.row].totalPointsBalance ?? 0)"
         cell.userNameLbl.text = self.VM.mappedCustomerListArray[indexPath.row].firstName ?? ""
         cell.mobileLbl.text = self.VM.mappedCustomerListArray[indexPath.row].mobile ?? ""
@@ -82,6 +86,10 @@ extension KC_MappedCustomerListVC: UITableViewDelegate, UITableViewDataSource{
         switch self.itsFrom {
         case "CATALOGUE":
             let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_ProductCatalogueVC") as! KC_ProductCatalogueVC
+            vc.partyLoyaltyId = self.VM.mappedCustomerListArray[indexPath.row].loyaltyID ?? ""
+            self.navigationController?.pushViewController(vc, animated: true)
+        case "eVoucher":
+            let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "QS_MyVouchers_VC") as! QS_MyVouchers_VC
             vc.partyLoyaltyId = self.VM.mappedCustomerListArray[indexPath.row].loyaltyID ?? ""
             self.navigationController?.pushViewController(vc, animated: true)
         case "WISHLIST":

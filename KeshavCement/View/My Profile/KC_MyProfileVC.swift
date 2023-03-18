@@ -19,8 +19,9 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
         if vc.isComeFrom == "DOB"{
             self.dobTF.text = vc.selectedDate
             self.selectedDOB = vc.selectedDate
+            print(selectedDOB, "Selected Date")
         }else if vc.isComeFrom == "ANNIVERSARY"{
-            print(dobTF.text)
+            
             print(vc.selectedDate)
             if self.dobTF.text ?? "" >= vc.selectedDate{
                 vc.selectedDate = ""
@@ -125,6 +126,8 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
     let picker = UIImagePickerController()
     var strBase64 = ""
     var VM = KC_MyProfileVM()
+    var aadharcarNumber = ""
+    var gstNumber = ""
 //    var loyaltyId = UserDefaults.standard.string(forKey: "LoyaltyId") ?? ""
 //    var userID = UserDefaults.standard.string(forKey: "UserID") ?? ""
     override func viewDidLoad() {
@@ -143,7 +146,6 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
         headerView.layer.shadowColor = UIColor.gray.cgColor
         headerView.layer.shadowOffset = CGSize(width: 0 , height:2)
         self.picker.delegate = self
-        self.myProfileDetailsApi()
         if self.customerTypeId == "1" || self.customerTypeId == "2"{
             self.aadharNumberLbl.text = "Aadhar Number"
             self.aadharNumberTF.placeholder = "Enter aadhar number"
@@ -151,6 +153,9 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
             self.aadharNumberLbl.text = "GST Number"
             self.aadharNumberTF.placeholder = "Enter GST number"
         }
+        self.myProfileDetailsApi()
+        self.selectedCustomerTypeId = self.customerTypeId
+        
     }
     @IBAction func backBtn(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -236,6 +241,24 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
         vc.modalPresentationStyle = .overFullScreen
         self.present(vc, animated: true)
     }
+    @IBAction func AadharNumberEditingDidEnd(_ sender: Any) {
+        if self.selectedCustomerTypeId == "1" || self.selectedCustomerTypeId == "2"{
+            if self.aadharNumberTF.text!.count != 12{
+                self.view.makeToast("Aadhar card number should be 12 digits", duration: 2.0, position: .bottom)
+                self.aadharNumberTF.text = ""
+            }else{
+                self.aadharcarNumber = self.aadharNumberTF.text ?? ""
+            }
+        }else{
+        
+            if self.aadharNumberTF.text!.count != 15{
+                self.view.makeToast("GST number should be 15 digits", duration: 2.0, position: .bottom)
+                self.aadharNumberTF.text = ""
+            }else{
+                self.gstNumber = self.aadharNumberTF.text ?? ""
+            }
+        }
+    }
     
     @IBAction func saveChangesBTN(_ sender: Any) {
         if self.customerTypeTF.text?.count == 0{
@@ -267,32 +290,64 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
         }else if self.talukTF.text?.count == 0 {
             self.view.makeToast("Select Taluk", duration: 2.0, position: .bottom)
         }else{
-            let parameter = [
-                "actiontype": "262",
-                "actorid": "\(self.userID)",
-                "objcustomerjson": [
-                    "address1": "\(self.addressTextView.text ?? "")",
-                    "addressid": self.addressId,
-                    "customerid": self.customerId,
-                    "districtid": self.districtId,
-                    "email": self.emailTF.text ?? "",
-                    "FirstName": self.fullNameTF.text ?? "",
-                    "Mobile": self.mobileNumberTF.text ?? "",
-                    "RELATED_PROJECT_TYPE": "KESHAV_CEMENT",
-                    "StateId": "\(self.stateId)",
-                    "TalukId": "\(self.talukId)",
-                    "Zip": self.pincodeTF.text ?? "",
-                    "AadharNumber": self.aadharNumberTF.text ?? "",
-                    "DOB":self.selectedDOB
-                ],
-                "lstCustomerOfficalInfoJson": [
-                    "CompanyName": self.firmTF.text ?? "",
-                    "GSTNumber": "",
-                    "SapNo": "null"
-                ]
-            ] as [String: Any]
-            print(parameter)
-            self.VM.myProfileDetailsUpdateApi(parameter: parameter)
+            print(self.selectedCustomerTypeId)
+            if self.selectedCustomerTypeId == "1" || self.selectedCustomerTypeId == "2"{
+                let parameter = [
+                    "actiontype": "262",
+                    "actorid": "\(self.userID)",
+                    "objcustomerjson": [
+                        "address1": "\(self.addressTextView.text ?? "")",
+                        "addressid": self.addressId,
+                        "customerid": self.customerId,
+                        "districtid": self.districtId,
+                        "email": self.emailTF.text ?? "",
+                        "FirstName": self.fullNameTF.text ?? "",
+                        "Mobile": self.mobileNumberTF.text ?? "",
+                        "RELATED_PROJECT_TYPE": "KESHAV_CEMENT",
+                        "StateId": "\(self.stateId)",
+                        "TalukId": "\(self.talukId)",
+                        "Zip": self.pincodeTF.text ?? "",
+                        "AadharNumber": self.aadharNumberTF.text ?? "",
+                        "DOB":self.selectedDOB
+                    ],
+                    "lstCustomerOfficalInfoJson": [
+                        "CompanyName": self.firmTF.text ?? "",
+                        "GSTNumber": "",
+                        "SapNo": "null"
+                    ]
+                ] as [String: Any]
+                print(parameter)
+                self.VM.myProfileDetailsUpdateApi(parameter: parameter)
+            }else if self.selectedCustomerTypeId == "3" || self.selectedCustomerTypeId == "4"{
+            
+                let parameter = [
+                    "actiontype": "262",
+                    "actorid": "\(self.userID)",
+                    "objcustomerjson": [
+                        "address1": "\(self.addressTextView.text ?? "")",
+                        "addressid": self.addressId,
+                        "customerid": self.customerId,
+                        "districtid": self.districtId,
+                        "email": self.emailTF.text ?? "",
+                        "FirstName": self.fullNameTF.text ?? "",
+                        "Mobile": self.mobileNumberTF.text ?? "",
+                        "RELATED_PROJECT_TYPE": "KESHAV_CEMENT",
+                        "StateId": "\(self.stateId)",
+                        "TalukId": "\(self.talukId)",
+                        "Zip": self.pincodeTF.text ?? "",
+                        "AadharNumber": "",
+                        "DOB":self.selectedDOB
+                    ],
+                    "lstCustomerOfficalInfoJson": [
+                        "CompanyName": self.firmTF.text ?? "",
+                        "GSTNumber": self.aadharNumberTF.text ?? "",
+                        "SapNo": "null"
+                    ]
+                ] as [String: Any]
+                print(parameter)
+                self.VM.myProfileDetailsUpdateApi(parameter: parameter)
+            }
+           
         }
         
     }

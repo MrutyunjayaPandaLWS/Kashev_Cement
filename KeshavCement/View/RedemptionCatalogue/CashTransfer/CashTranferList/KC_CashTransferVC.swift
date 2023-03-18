@@ -108,7 +108,7 @@ class KC_CashTransferVC: BaseViewController, CashTranferDelegate{
             "ObjCatalogueDetails": [
                 "MerchantId": 1,
                 "CatogoryId": categoryId,
-                "CatalogueType": 1
+                "CatalogueType": 9
             ],
             "StartIndex": startIndex,
             "NoOfRows": 10,

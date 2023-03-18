@@ -7,8 +7,16 @@
 
 import UIKit
 import Toast_Swift
-class KC_LoginVC: BaseViewController, UITextFieldDelegate{
-
+class KC_LoginVC: BaseViewController, UITextFieldDelegate, CheckBoxSelectDelegate{
+    func accept(_ vc: HR_TermsandCondtionVC) {
+        self.termsandConditionBtn.setImage(UIImage(named: "black-check-box-with-white-check 1"), for: .normal)
+        self.status = 1
+    }
+    
+    func decline(_ vc: HR_TermsandCondtionVC) {
+        self.termsandConditionBtn.setImage(UIImage(named: "check-box-empty"), for: .normal)
+        self.status = 0
+    }
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var loginInfoLbl: UILabel!
     @IBOutlet weak var loginLbl: UILabel!
@@ -38,16 +46,18 @@ class KC_LoginVC: BaseViewController, UITextFieldDelegate{
     
     @IBOutlet weak var activateStatckView: UIView!
     
-    @IBOutlet weak var filterTableViewHeightContraint: NSLayoutConstraint!
+    @IBOutlet weak var termsandConditionBtn: UIButton!
     
     @IBOutlet weak var commonImage: UIImageView!
     
+    @IBOutlet weak var eyeButton: UIButton!
     @IBOutlet weak var supportImage: UIImageView!
     var categoryTitle = ""
     var categoryId = -1
     var filterTopicArray = ["Select","Engineer", "Mason", "Dealer", "Subdealer", "Support Executive"]
-    
+    var boolResult:Bool = false
     var VM = KC_LoginVM()
+    var status = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +72,9 @@ class KC_LoginVC: BaseViewController, UITextFieldDelegate{
         self.supportImage.isHidden = true
         self.mobileTF.delegate = self
         self.selectionSetUp()
+        self.eyeButton.setImage(UIImage(named: "hidden"), for: .normal)
+        self.termsandConditionBtn.setImage(UIImage(named: "check-box-empty"), for: .normal)
+        self.status = 0
         
     }
     
@@ -71,24 +84,47 @@ class KC_LoginVC: BaseViewController, UITextFieldDelegate{
         self.tokendata()
         self.customerTypeApi()
     }
+    
+    @IBAction func passwordSecureButton(_ sender: Any) {
+        if passwordTF.isSecureTextEntry {
+            passwordTF.isSecureTextEntry = false
+            self.eyeButton.setImage(UIImage(named: "view"), for: .normal)
+         
+        } else {
+            passwordTF.isSecureTextEntry = true
+            self.eyeButton.setImage(UIImage(named: "hidden"), for: .normal)
+          
+        }
+        
+    }
 
+    @IBAction func termsandCondBtn(_ sender: Any) {
+        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "HR_TermsandCondtionVC") as! HR_TermsandCondtionVC
+        vc.delegate = self
+        vc.modalTransitionStyle = .coverVertical
+        vc.modalPresentationStyle = .overFullScreen
+        self.present(vc, animated: true, completion: nil)
+        
+    }
     @IBAction func filterDropDownBtn(_ sender: Any) {
         if self.subView.isHidden == false{
             self.subView.isHidden = true
         }else{
             self.subView.isHidden = false
+           // self.filterTableViewHeightContraint.constant = CGFloat(25 * 5)
         }
     }
     @IBAction func loginBtn(_ sender: Any) {
         
         if self.mobileTF.text?.count == 0 {
             self.view.makeToast("Enter mobile number / membership Id", duration: 2.0, position: .bottom)
-        }else if self.mobileTF.text!.count > 10{
-            self.view.makeToast("Enter valid mobile number / membership Id", duration: 2.0, position: .bottom)
+            self.passwordTF.text = ""
         }else if self.passwordTF.text?.count == 0 {
             self.view.makeToast("Enter password", duration: 2.0, position: .bottom)
         }else if self.categoryId == -1 {
             self.view.makeToast("Select customer type", duration: 2.0, position: .bottom)
+        }else if self.status != 1 {
+            self.view.makeToast("Accept Terms and conditions !!", duration: 2.0, position: .bottom)
         }else{
             let parameter = [
                 "Password": "\(self.passwordTF.text ?? "")",
@@ -105,6 +141,8 @@ class KC_LoginVC: BaseViewController, UITextFieldDelegate{
         
     }
     @IBAction func forgetPwd(_ sender: Any) {
+        
+        
         let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_ForgetPasswordVC") as! KC_ForgetPasswordVC
         vc.categoryId = self.categoryId
         vc.enteredMobileNumber = self.mobileTF.text ?? ""
@@ -113,11 +151,25 @@ class KC_LoginVC: BaseViewController, UITextFieldDelegate{
     
     @IBAction func registerButton(_ sender: Any) {
         
-        let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_RegisterVC") as! KC_RegisterVC
-        vc.enteredMobile = self.mobileTF.text ?? ""
-        vc.categoryId = self.categoryId
-        vc.categoryTitle = self.categoryTitle
-        self.navigationController?.pushViewController(vc, animated: true)
+            let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_RegisterVC") as! KC_RegisterVC
+            vc.enteredMobile = self.mobileTF.text ?? ""
+            vc.categoryId = self.categoryId
+            vc.categoryTitle = self.categoryTitle
+            self.navigationController?.pushViewController(vc, animated: true)
+//        }else{
+//            let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_SignUpVC") as! KC_SignUpVC
+//            vc.itsFrom = "LoginVC"
+//            vc.enteredMobile = self.mobileTF.text ?? ""
+//            vc.customerTypeName = self.categoryTitle
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        }
+        
+    }
+    @IBAction func passwordTFEditingDidEnd(_ sender: Any) {
+        if self.mobileTF.text?.count == 0 {
+            self.view.makeToast("Enter mobile number / membership Id", duration: 2.0, position: .bottom)
+            self.passwordTF.text = ""
+        }
     }
     
     @IBAction func activateNowBtn(_ sender: Any) {
@@ -130,8 +182,7 @@ class KC_LoginVC: BaseViewController, UITextFieldDelegate{
         
         if self.mobileTF.text?.count == 0 {
             self.view.makeToast("Enter mobile number / membership Id", duration: 2.0, position: .bottom)
-        }else if self.mobileTF.text!.count > 10{
-            self.view.makeToast("Enter valid mobile number / membership Id", duration: 2.0, position: .bottom)
+            self.passwordTF.text = ""
         }else if self.categoryId == -1 {
             self.view.makeToast("Select customer type", duration: 2.0, position: .bottom)
         }else{
@@ -146,6 +197,8 @@ class KC_LoginVC: BaseViewController, UITextFieldDelegate{
             self.VM.verifyMobileNumberAPI(paramters: parameter)
         }
     }
+    
+    
     
     
     func customerTypeApi(){
@@ -228,6 +281,8 @@ extension KC_LoginVC: UITableViewDataSource, UITableViewDelegate {
         self.filterLbl.text = self.VM.customerTypeArray[indexPath.row].attributeValue ?? ""
         self.categoryTitle = self.VM.customerTypeArray[indexPath.row].attributeValue ?? ""
         self.categoryId = self.VM.customerTypeArray[indexPath.row].attributeId ?? -1
+        self.mobileTF.text = ""
+        self.passwordTF.text = ""
         self.subView.isHidden = true
         self.selectionSetUp()
     }

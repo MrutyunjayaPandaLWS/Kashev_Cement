@@ -131,8 +131,36 @@ extension KC_MyEarningVC : UITableViewDelegate,UITableViewDataSource{
             cell.dateHeaderLbl.text = "-"
             cell.timeLbl.text = "-"
         }
-        cell.pointsLbl.text = "\(self.VM.myEarningListArray[indexPath.row].rewardPoints ?? 0.0)"
-        cell.remarksDetailsLbl.text = self.VM.myEarningListArray[indexPath.row].remarks ?? ""
+        cell.pointsLbl.text = "\(Int(self.VM.myEarningListArray[indexPath.row].rewardPoints ?? 0.0))"
+        
+        if self.VM.myEarningListArray[indexPath.row].transactionType ?? "" == "BONUS"{
+            cell.remarksDetailsLbl.text = self.VM.myEarningListArray[indexPath.row].bonusName ?? ""
+        }else if self.VM.myEarningListArray[indexPath.row].transactionType ?? "" == "Referral"{
+            cell.remarksDetailsLbl.text = "Referral Complimentary"
+        }else if self.VM.myEarningListArray[indexPath.row].transactionType ?? "" == "Enrollment Complimentary"{
+            cell.remarksDetailsLbl.text = "Enrollment Complimentary"
+        }else{
+            if self.VM.myEarningListArray[indexPath.row].invoiceNo ?? "" == "--"{
+                cell.remarksDetailsLbl.text = "Reward Adjusted"
+            }else{
+                cell.remarksDetailsLbl.text = self.VM.myEarningListArray[indexPath.row].remarks ?? ""
+            }
+        }
+        
+        if String(self.VM.myEarningListArray[indexPath.row].loyaltyId ?? "").prefix(1) == "~"{
+            let filterType = String(self.VM.myEarningListArray[indexPath.row].loyaltyId ?? "").split(separator: "~")
+            if filterType.count != 0 {
+                if filterType.count == 1{
+                    cell.dealerTypeLbl.text = "\(filterType[1])"
+                }else{
+                    cell.customerTypeNameLbl.text = "\(filterType[2])"
+                }
+            }
+        }else{
+            cell.dealerTypeLbl.text = self.customerType
+            cell.customerTypeNameLbl.text = self.userFullName
+        }
+       
         return cell
     }
     

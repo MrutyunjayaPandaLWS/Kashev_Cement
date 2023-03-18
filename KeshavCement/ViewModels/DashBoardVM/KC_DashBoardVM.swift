@@ -118,14 +118,20 @@ class KC_DashBoardVM: SendNewPasswordDelegate{
                 DispatchQueue.main.async {
                    let dashboardDetails = result?.objCustomerDashboardList ?? []
                     if dashboardDetails.count != 0 {
-                        
+                        if result?.objCustomerDashboardList?[0].notificationCount ?? 0 != 0{
+                            self.VC?.countLbl.isHidden = false
+                        }else{
+                            self.VC?.countLbl.isHidden = true
+                        }
                         UserDefaults.standard.setValue(result?.objCustomerDashboardList?[0].memberSince, forKey: "MemberSince")
                         print(result?.objCustomerDashboardList?[0].memberSince ?? "", "Membersince")
                         print(result?.objCustomerDashboardList?[0].notificationCount ?? "", "NotificationCount")
                         print(result?.objCustomerDashboardList?[0].redeemablePointsBalance ?? "", "totalpoints")
-                        UserDefaults.standard.setValue(result?.objCustomerDashboardList?[0].redeemablePointsBalance ?? 0, forKey: "RedeemablePointBalance")
+                        UserDefaults.standard.setValue(Int(result?.objCustomerDashboardList?[0].redeemablePointsBalance ?? 0.0) ?? 0, forKey: "RedeemablePointBalance")
+                        
+                        UserDefaults.standard.setValue(Int(result?.objCustomerDashboardList?[0].overAllPoints ?? 0) ?? 0, forKey: "OverallPoints")
                         UserDefaults.standard.synchronize()
-                        self.VC?.pointBalanceLbl.text = "\(result?.objCustomerDashboardList?[0].redeemablePointsBalance ?? 0)"
+                        self.VC?.pointBalanceLbl.text = "\(Int(result?.objCustomerDashboardList?[0].redeemablePointsBalance ?? 0.0) ?? 0)"
                     }
                     
                     let customerFeedbakcJSON = result?.lstCustomerFeedBackJsonApi ?? []
@@ -142,7 +148,23 @@ class KC_DashBoardVM: SendNewPasswordDelegate{
                         UserDefaults.standard.setValue(result?.lstCustomerFeedBackJsonApi?[0].customerType ?? "", forKey: "customerType")
                         UserDefaults.standard.setValue(result?.lstCustomerFeedBackJsonApi?[0].customerTypeId ?? -1, forKey: "customerTypeId")
                         print(result?.lstCustomerFeedBackJsonApi?[0].customerTypeId ?? -1)
+                        self.VC?.customerTypeId = "\(result?.lstCustomerFeedBackJsonApi?[0].customerTypeId ?? -1)"
+                        UserDefaults.standard.setValue(result?.lstCustomerFeedBackJsonApi?[0].customerGrade ?? "", forKey: "CustomerGrade")
+                        self.VC?.categoryCollectionView.reloadData()
+                        if result?.lstCustomerFeedBackJsonApi?[0].customerGrade ?? "" == "Gold"{
+                            self.VC!.gradeIcon.image = UIImage(named: "Gold")
+                        }else if result?.lstCustomerFeedBackJsonApi?[0].customerGrade ?? "" == "Silver"{
+                            self.VC!.gradeIcon.image = UIImage(named: "Silver")
+                        }else if result?.lstCustomerFeedBackJsonApi?[0].customerGrade ?? "" == "Platinum"{
+                            self.VC!.gradeIcon.image = UIImage(named: "Platinum")
+                        }else{
+                            self.VC!.gradeIcon.image = UIImage(named: "Bronze")
+                        }
+                        UserDefaults.standard.synchronize()
+                            
+                        
                         self.VC?.customerTypeIds = result?.lstCustomerFeedBackJsonApi?[0].customerTypeId ?? -1
+                        print(self.VC?.customerTypeIds, "")
                         if result?.lstCustomerFeedBackJsonApi?[0].customerTypeId ?? -1 == 1 || result?.lstCustomerFeedBackJsonApi?[0].customerTypeId ?? -1 == 2{
                             self.VC?.whenPurchaseLbl.text = "Earn Points When Purchase"
                             self.VC?.claimPurchaseLbl.text = "Claim Purchase"
@@ -207,6 +229,7 @@ class KC_DashBoardVM: SendNewPasswordDelegate{
                         
                         UserDefaults.standard.set(result?.lstCustomerFeedBackJsonApi?[0].cityID ?? "", forKey: "cityID")
                         UserDefaults.standard.set(result?.lstCustomerFeedBackJsonApi?[0].cityName ?? "", forKey: "cityName")
+                        UserDefaults.standard.synchronize()
                         let imageurl = "\(result?.lstCustomerFeedBackJsonApi?[0].customerImage ?? "")".dropFirst(1)
                         let imageData = imageurl.split(separator: "~")
                         if imageData.count >= 2 {
@@ -233,11 +256,9 @@ class KC_DashBoardVM: SendNewPasswordDelegate{
                             self.VC!.present(vc, animated: true)
                         }
                     }
+                    self.VC?.stopLoading()
                     self.VC?.categoryCollectionView.reloadData()
                 }
-                    DispatchQueue.main.async {
-                    self.VC?.stopLoading()
-                    }
                 }else{
                     DispatchQueue.main.async {
                     self.VC?.stopLoading()

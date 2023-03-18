@@ -6,9 +6,14 @@
 //
 
 import UIKit
+protocol DialPadsDelegate: AnyObject{
+    func dialPadDidTap(_ cell:KC_MyPurchaseClaimTVC)
+}
 
 class KC_MyPurchaseClaimTVC: UITableViewCell {
 
+    @IBOutlet weak var dialPadButton: UIButton!
+    @IBOutlet weak var mobileNumberLbl: UILabel!
     @IBOutlet weak var approvedQTYHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var createdDateLbl: UILabel!
     @IBOutlet weak var categoryLbl: UILabel!
@@ -19,6 +24,8 @@ class KC_MyPurchaseClaimTVC: UITableViewCell {
     @IBOutlet weak var approvedQTYView: UIView!
     @IBOutlet weak var approvedQTYLbl: UILabel!
     @IBOutlet weak var remarks: UILabel!
+    
+    var delegate: DialPadsDelegate!
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .none
@@ -31,4 +38,7 @@ class KC_MyPurchaseClaimTVC: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func dialPadBTN(_ sender: Any) {
+        self.delegate.dialPadDidTap(self)
+    }
 }

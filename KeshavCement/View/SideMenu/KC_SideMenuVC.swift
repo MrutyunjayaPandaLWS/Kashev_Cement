@@ -64,7 +64,7 @@ class KC_SideMenuVC: BaseViewController {
         self.addItemsIntoArray()
      
         if self.customerTypeIds == 1 || self.customerTypeIds == 2{
-            self.sideMenuTableViewHeightConstratin.constant = 650
+            self.sideMenuTableViewHeightConstratin.constant = 635
         }else {
             self.sideMenuTableViewHeightConstratin.constant = 800
         }
@@ -127,19 +127,20 @@ class KC_SideMenuVC: BaseViewController {
             
             if self.customerTypeIds == 1 || self.customerTypeIds == 2{
                 
-                self.sideMenuItems.append(SideMenuModel(parentName: "Claim Purchase", parentList:  [], parentID: 1, parentExpand: false, parentImage: "Claim Purchase"))
+                self.sideMenuItems.append(SideMenuModel(parentName: "Purchase Request", parentList:  [], parentID: 1, parentExpand: false, parentImage: "Claim Purchase"))
                 self.sideMenuItems.append(SideMenuModel(parentName: "My Purchase Claim", parentList:  [], parentID: 2, parentExpand: false, parentImage: "My Purchase Claim"))
                 self.sideMenuItems.append(SideMenuModel(parentName: "Redemption Catalogue", parentList:  [], parentID: 3, parentExpand: false, parentImage: "Redemption Catalogue"))
-                self.sideMenuItems.append(SideMenuModel(parentName: "My Redemption", parentList:  [], parentID: 4, parentExpand: false, parentImage: "My Redemption"))
-                self.sideMenuItems.append(SideMenuModel(parentName: "My Earning", parentList:  [], parentID: 5, parentExpand: false, parentImage: "My Earning"))
-                self.sideMenuItems.append(SideMenuModel(parentName: "Worksite Details", parentList:  [], parentID: 6, parentExpand: false, parentImage: "Worksite Details"))
-                self.sideMenuItems.append(SideMenuModel(parentName: "Refer and Earn", parentList:  [], parentID: 7, parentExpand: false, parentImage: "Refer and Earn"))
-                self.sideMenuItems.append(SideMenuModel(parentName: "Helpline", parentList:  [], parentID: 8, parentExpand: false, parentImage: "Helpline"))
-                self.sideMenuItems.append(SideMenuModel(parentName: "Offers and Promotions", parentList:  [], parentID: 9, parentExpand: false, parentImage: "Offers and Promotions"))
-                self.sideMenuItems.append(SideMenuModel(parentName: "Lodge Query", parentList:  [], parentID: 10, parentExpand: false, parentImage: "Lodge Query"))
-                self.sideMenuItems.append(SideMenuModel(parentName: "Terms and Conditions", parentList:  [], parentID: 11, parentExpand: false, parentImage: "Lodge Query"))
+                self.sideMenuItems.append(SideMenuModel(parentName: "Dream Gift", parentList:  [], parentID: 4, parentExpand: false, parentImage: "Redemption Catalogue"))
+                self.sideMenuItems.append(SideMenuModel(parentName: "My Redemption", parentList:  [], parentID: 5, parentExpand: false, parentImage: "My Redemption"))
+                self.sideMenuItems.append(SideMenuModel(parentName: "My Earning", parentList:  [], parentID: 6, parentExpand: false, parentImage: "My Earning"))
+                self.sideMenuItems.append(SideMenuModel(parentName: "Worksite Details", parentList:  [], parentID: 7, parentExpand: false, parentImage: "Worksite Details"))
+                self.sideMenuItems.append(SideMenuModel(parentName: "Refer and Earn", parentList:  [], parentID: 8, parentExpand: false, parentImage: "Refer and Earn"))
+                self.sideMenuItems.append(SideMenuModel(parentName: "Helpline", parentList:  [], parentID: 9, parentExpand: false, parentImage: "Helpline"))
+                self.sideMenuItems.append(SideMenuModel(parentName: "Offers and Promotions", parentList:  [], parentID: 10, parentExpand: false, parentImage: "Offers and Promotions"))
+                self.sideMenuItems.append(SideMenuModel(parentName: "Lodge Query", parentList:  [], parentID: 11, parentExpand: false, parentImage: "Lodge Query"))
+                self.sideMenuItems.append(SideMenuModel(parentName: "Terms and Conditions", parentList:  [], parentID: 12, parentExpand: false, parentImage: "Lodge Query"))
                 
-            } else if self.customerTypeIds == 3 || self.customerTypeIds == 4{
+            } else if self.customerTypeIds == 3{
                 
                 self.benefitsItem.append(SecondMenuList(sideMenuItem: "Claim History", sideMenuID: 21, sidemenuImage: "Lodge Query"))
                 self.benefitsItem.append(SecondMenuList(sideMenuItem: "Claim Transfer History", sideMenuID: 22, sidemenuImage: "Lodge Query"))
@@ -150,6 +151,29 @@ class KC_SideMenuVC: BaseViewController {
                 self.sideMenuItems.append(SideMenuModel(parentName: "Cash Transfer Approval", parentList:  [], parentID: 3, parentExpand: false, parentImage: "Redemption Catalogue"))
                 self.sideMenuItems.append(SideMenuModel(parentName: "My Purchase Claim", parentList:  [], parentID: 4, parentExpand: false, parentImage: "My Redemption"))
                 self.sideMenuItems.append(SideMenuModel(parentName: "Claim Purchase", parentList:  [], parentID: 5, parentExpand: false, parentImage: "Claim Purchase"))
+                self.sideMenuItems.append(SideMenuModel(parentName: "Redemption Catalogue", parentList:  [], parentID: 6, parentExpand: false, parentImage: "My Redemption"))
+                self.sideMenuItems.append(SideMenuModel(parentName: "My Redemption", parentList:  [], parentID: 7, parentExpand: false, parentImage: "My Earning"))
+                self.sideMenuItems.append(SideMenuModel(parentName: "My Earning", parentList:  [], parentID: 8, parentExpand: false, parentImage: "Worksite Details"))
+                self.sideMenuItems.append(SideMenuModel(parentName: "My Activity", parentList:    self.benefitsItem, parentID: 9, parentExpand: false, parentImage: "Refer and Earn", parentDropDownImage: "caret-down 1"))
+                self.sideMenuItems.append(SideMenuModel(parentName: "Offers and Promotions", parentList:  [], parentID: 10, parentExpand: false, parentImage: "Helpline"))
+                self.sideMenuItems.append(SideMenuModel(parentName: "Refer and Earn", parentList:  [], parentID: 11, parentExpand: false, parentImage: "Offers and Promotions"))
+                self.sideMenuItems.append(SideMenuModel(parentName: "Helpline", parentList:  [], parentID: 12, parentExpand: false, parentImage: "Lodge Query"))
+                self.sideMenuItems.append(SideMenuModel(parentName: "My Support Executive", parentList:  [], parentID: 13, parentExpand: false, parentImage: "Lodge Query"))
+                self.sideMenuItems.append(SideMenuModel(parentName: "Lodge Query", parentList:  [], parentID: 14, parentExpand: false, parentImage: "Lodge Query"))
+                self.sideMenuItems.append(SideMenuModel(parentName: "Terms and Conditions", parentList:  [], parentID: 15, parentExpand: false, parentImage: "Lodge Query"))
+                
+            }else if self.customerTypeIds == 4{
+                
+                self.benefitsItem.append(SecondMenuList(sideMenuItem: "Claim History", sideMenuID: 21, sidemenuImage: "Lodge Query"))
+                self.benefitsItem.append(SecondMenuList(sideMenuItem: "Claim Transfer History", sideMenuID: 22, sidemenuImage: "Lodge Query"))
+                
+                
+                self.sideMenuItems.append(SideMenuModel(parentName: "Enrollment", parentList:  [], parentID: 1, parentExpand: false, parentImage: "Claim Purchase"))
+                self.sideMenuItems.append(SideMenuModel(parentName: "Pending Claim Request", parentList:  [], parentID: 2, parentExpand: false, parentImage: "My Purchase Claim"))
+                self.sideMenuItems.append(SideMenuModel(parentName: "Cash Transfer Approval", parentList:  [], parentID: 3, parentExpand: false, parentImage: "Redemption Catalogue"))
+                self.sideMenuItems.append(SideMenuModel(parentName: "Purchase Request", parentList:  [], parentID: 4, parentExpand: false, parentImage: "Claim Purchase"))
+                self.sideMenuItems.append(SideMenuModel(parentName: "My Purchase Claim", parentList:  [], parentID: 5, parentExpand: false, parentImage: "My Redemption"))
+
                 self.sideMenuItems.append(SideMenuModel(parentName: "Redemption Catalogue", parentList:  [], parentID: 6, parentExpand: false, parentImage: "My Redemption"))
                 self.sideMenuItems.append(SideMenuModel(parentName: "My Redemption", parentList:  [], parentID: 7, parentExpand: false, parentImage: "My Earning"))
                 self.sideMenuItems.append(SideMenuModel(parentName: "My Earning", parentList:  [], parentID: 8, parentExpand: false, parentImage: "Worksite Details"))
@@ -190,8 +214,20 @@ extension KC_SideMenuVC: UITableViewDelegate, UITableViewDataSource{
                print(sideMenuItems[indexPath.section].parentList![indexPath.row].sideMenuItem ?? "", "Sidemenu title")
                 cell?.categoryImage.image = UIImage(named: sideMenuItems[indexPath.section].parentList![indexPath.row].sidemenuImage ?? "")
              //   cell?.leadingConstrain.constant = 30
-                
+                cell?.leadingSpaceConstraint.constant = 30
+                cell?.dropDownImage.isHidden = false
+                if self.customerTypeIds == 3 || self.customerTypeIds == 4{
+                    if sideMenuItems[indexPath.section].parentList![indexPath.row].sideMenuItem ?? "" == "My Activity"{
+                        cell?.dropDownImage.isHidden = false
+                    }else{
+                        cell?.dropDownImage.isHidden = true
+                    }
+                    
+                }
             }
+           
+        }else{
+            cell?.leadingSpaceConstraint.constant = 8
            
         }
         return cell!
@@ -266,21 +302,26 @@ extension KC_SideMenuVC: UITableViewDelegate, UITableViewDataSource{
                 //            vc.fromSideMenu = "SideMenu"
                 self.navigationController?.pushViewController(vc, animated: true)
             }else if sender.tag == 4{
+                //  self.closeLeft()
+                  let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "MSP_MyDreamGiftVC") as! MSP_MyDreamGiftVC
+                  //            vc.fromSideMenu = "SideMenu"
+                  self.navigationController?.pushViewController(vc, animated: true)
+              }else if sender.tag == 5{
               //  self.closeLeft()
                 let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyRedemptionVC") as! KC_MyRedemptionVC
                 //  vc.fromSideMenu = "SideMenu"
                 self.navigationController?.pushViewController(vc, animated: true)
-            }else if sender.tag == 5{
+            }else if sender.tag == 6{
               //  self.closeLeft()
                 let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyEarningVC") as! KC_MyEarningVC
                 // vc.fromSideMenu = "SideMenu"
                 self.navigationController?.pushViewController(vc, animated: true)
-            }else if sender.tag == 6{
+            }else if sender.tag == 7{
               //  self.closeLeft()
                 let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_WorksiteDetailsVC") as! KC_WorksiteDetailsVC
                 //            vc.fromSideMenu = "SideMenu"
                 self.navigationController?.pushViewController(vc, animated: true)
-            }else if sender.tag == 7{
+            }else if sender.tag == 8{
                 
               //  self.closeLeft()
                 let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_ReferandEarnVC") as! KC_ReferandEarnVC
@@ -288,27 +329,27 @@ extension KC_SideMenuVC: UITableViewDelegate, UITableViewDataSource{
                 self.navigationController?.pushViewController(vc, animated: true)
                 
                 
-            }else if sender.tag == 8{
+            }else if sender.tag == 9{
               //  self.closeLeft()
                 let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_HelplineVC") as! KC_HelplineVC
                 //            vc.fromSideMenu = "SideMenu"
                 self.navigationController?.pushViewController(vc, animated: true)
-            }else if sender.tag == 9{
+            }else if sender.tag == 10{
               //  self.closeLeft()
                 let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_OffersandpromotionsVC") as! KC_OffersandpromotionsVC
                 //            vc.fromSideMenu = "SideMenu"
                 self.navigationController?.pushViewController(vc, animated: true)
-            }else if sender.tag == 10{
+            }else if sender.tag == 11{
               //  self.closeLeft()
                 let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_LodgeQueryVC") as! KC_LodgeQueryVC
                 //            vc.fromSideMenu = "SideMenu"
                 self.navigationController?.pushViewController(vc, animated: true)
-            }else if sender.tag == 11{
+            }else if sender.tag == 12{
                 let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_TermsandconditionVC") as! KC_TermsandconditionVC
                 //vc.fromSideMenu = "SideMenu"
                 self.navigationController?.pushViewController(vc, animated: true)
             }
-        }else if self.customerTypeIds == 3 || self.customerTypeIds == 4{
+        }else if self.customerTypeIds == 3{
             if sender.tag == 1{
               //  self.closeLeft()
                 let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_EnrollmentListVC") as! KC_EnrollmentListVC
@@ -326,12 +367,104 @@ extension KC_SideMenuVC: UITableViewDelegate, UITableViewDataSource{
                 let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_CashTranferApprovalVC") as! KC_CashTranferApprovalVC
                 //            vc.fromSideMenu = "SideMenu"
                 self.navigationController?.pushViewController(vc, animated: true)
-            }else if sender.tag == 4{
+            }else if sender.tag == 5{
               //  self.closeLeft()
                 let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyPurchaseClaimVC") as! KC_MyPurchaseClaimVC
                 //  vc.fromSideMenu = "SideMenu"
                 self.navigationController?.pushViewController(vc, animated: true)
+            }else if sender.tag == 4{
+              //  self.closeLeft()
+                let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_ClaimPurchaseVC") as! KC_ClaimPurchaseVC
+                // vc.fromSideMenu = "SideMenu"
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else if sender.tag == 6{
+              //  self.closeLeft()
+                let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_RedemptionCataloguesVC") as! KC_RedemptionCataloguesVC
+                //            vc.fromSideMenu = "SideMenu"
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else if sender.tag == 7{
+                
+              //  self.closeLeft()
+                let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyRedemptionVC") as! KC_MyRedemptionVC
+                //                vc.fromSideMenu = "SideMenu"
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+                
+            }else if sender.tag == 8{
+              //  self.closeLeft()
+                let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyEarningVC") as! KC_MyEarningVC
+                //            vc.fromSideMenu = "SideMenu"
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else if sender.tag == 9{
+              //  self.closeLeft()
+                if let index = sideMenuItems.firstIndex{$0.parentID == sender.tag}{
+                    if sideMenuItems[index].parentExpand == false{
+                        sideMenuItems[index].parentExpand = true
+                        print("hide")
+                        
+                        
+                        self.sideMenuTableView.reloadData()
+                    }else{
+                        sideMenuItems[index].parentExpand = false
+                        print("Expanded")
+                        self.sideMenuTableView.reloadData()
+                    }
+                  
+                }
+            }else if sender.tag == 10{
+              //  self.closeLeft()
+                let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_OffersandpromotionsVC") as! KC_OffersandpromotionsVC
+                //            vc.fromSideMenu = "SideMenu"
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else if sender.tag == 11{
+              //  self.closeLeft()
+                let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_ReferandEarnVC") as! KC_ReferandEarnVC
+                //            vc.fromSideMenu = "SideMenu"
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else if sender.tag == 12{
+              //  self.closeLeft()
+                let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_HelplineVC") as! KC_HelplineVC
+                //            vc.fromSideMenu = "SideMenu"
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else if sender.tag == 13{
+              //  self.closeLeft()
+                let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_SupportExecutiveVC") as! KC_SupportExecutiveVC
+                //            vc.fromSideMenu = "SideMenu"
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else if sender.tag == 14{
+              //  self.closeLeft()
+                let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_LodgeQueryVC") as! KC_LodgeQueryVC
+                //            vc.fromSideMenu = "SideMenu"
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else if sender.tag == 15{
+                let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_TermsandconditionVC") as! KC_TermsandconditionVC
+                //vc.fromSideMenu = "SideMenu"
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }else if self.customerTypeIds == 4{
+            if sender.tag == 1{
+              //  self.closeLeft()
+                let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_EnrollmentListVC") as! KC_EnrollmentListVC
+                //vc.fromSideMenu = "SideMenu"
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+                
+            }else if sender.tag == 2{
+              //  self.closeLeft()
+                let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_PendingClaimVC") as! KC_PendingClaimVC
+                //            vc.fromSideMenu = "SideMenu"
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else if sender.tag == 3{
+              //  self.closeLeft()
+                let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_CashTranferApprovalVC") as! KC_CashTranferApprovalVC
+                //            vc.fromSideMenu = "SideMenu"
+                self.navigationController?.pushViewController(vc, animated: true)
             }else if sender.tag == 5{
+              //  self.closeLeft()
+                let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyPurchaseClaimVC") as! KC_MyPurchaseClaimVC
+                //  vc.fromSideMenu = "SideMenu"
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else if sender.tag == 4{
               //  self.closeLeft()
                 let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_ClaimPurchaseVC") as! KC_ClaimPurchaseVC
                 // vc.fromSideMenu = "SideMenu"
