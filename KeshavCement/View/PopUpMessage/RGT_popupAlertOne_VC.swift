@@ -21,6 +21,7 @@ class RGT_popupAlertOne_VC: BaseViewController {
     var delegate:popUpAlertDelegate?
     var itsComeFrom = ""
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         self.descriptionn.text = descriptionInfo
         self.ok.setTitle("OK", for: .normal)
