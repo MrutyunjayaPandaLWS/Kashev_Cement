@@ -47,6 +47,7 @@ class KC_DashBoardVC: BaseViewController{
     
     @IBOutlet var pointBalanceIcon: UIImageView!
     
+    @IBOutlet weak var languageTrailingSpace: NSLayoutConstraint!
     @IBOutlet weak var languagePopUpView: UIView!
     @IBOutlet var supportImageView: UIImageView!
     @IBOutlet weak var sideMenuBTN: UIButton!
@@ -77,6 +78,7 @@ class KC_DashBoardVC: BaseViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.VM.VC = self
+        self.languageTrailingSpace.constant = 16
         self.languagePopUpView.isHidden = true
         self.dashBoardId = -1
         categoryCollectionView.delegate = self
@@ -167,40 +169,40 @@ class KC_DashBoardVC: BaseViewController{
     
     
     
-//    @IBAction func logoutActionBTN(_ sender: Any) {
-//
-//        UserDefaults.standard.set(false, forKey: "IsloggedIn?")
-//        UserDefaults.standard.set(false, forKey: "UpdatePassword")
-//
-//        if #available(iOS 13.0, *) {
-//            DispatchQueue.main.async {
-//                let pushID = UserDefaults.standard.string(forKey: "UD_DEVICE_TOKEN") ?? ""
-//                let domain = Bundle.main.bundleIdentifier!
-//                UserDefaults.standard.removePersistentDomain(forName: domain)
-//                UserDefaults.standard.synchronize()
-//                UserDefaults.standard.setValue(pushID, forKey: "UD_DEVICE_TOKEN")
-//                let sceneDelegate = self.view.window?.windowScene?.delegate as! SceneDelegate
-//                sceneDelegate.setInitialViewAsRootViewController()
-//             //   self.clearTable2()
-//            }
-//        } else {
-//            DispatchQueue.main.async {
-//                let pushID = UserDefaults.standard.string(forKey: "UD_DEVICE_TOKEN") ?? ""
-//                let domain = Bundle.main.bundleIdentifier!
-//                UserDefaults.standard.removePersistentDomain(forName: domain)
-//                UserDefaults.standard.synchronize()
-//                UserDefaults.standard.setValue(pushID, forKey: "UD_DEVICE_TOKEN")
-//                if #available(iOS 13.0, *) {
-//                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//                    appDelegate.setInitialViewAsRootViewController()
-//                } else {
-//                    // Fallback on earlier versions
-//                }
-//
-//              //  self.clearTable2()
-//            }
-//        }
-//    }
+    @IBAction func logoutActionBTN(_ sender: Any) {
+
+        UserDefaults.standard.set(false, forKey: "IsloggedIn?")
+        UserDefaults.standard.set(false, forKey: "UpdatePassword")
+
+        if #available(iOS 13.0, *) {
+            DispatchQueue.main.async {
+                let pushID = UserDefaults.standard.string(forKey: "UD_DEVICE_TOKEN") ?? ""
+                let domain = Bundle.main.bundleIdentifier!
+                UserDefaults.standard.removePersistentDomain(forName: domain)
+                UserDefaults.standard.synchronize()
+                UserDefaults.standard.setValue(pushID, forKey: "UD_DEVICE_TOKEN")
+                let sceneDelegate = self.view.window?.windowScene?.delegate as! SceneDelegate
+                sceneDelegate.setInitialViewAsRootViewController()
+             //   self.clearTable2()
+            }
+        } else {
+            DispatchQueue.main.async {
+                let pushID = UserDefaults.standard.string(forKey: "UD_DEVICE_TOKEN") ?? ""
+                let domain = Bundle.main.bundleIdentifier!
+                UserDefaults.standard.removePersistentDomain(forName: domain)
+                UserDefaults.standard.synchronize()
+                UserDefaults.standard.setValue(pushID, forKey: "UD_DEVICE_TOKEN")
+                if #available(iOS 13.0, *) {
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    appDelegate.setInitialViewAsRootViewController()
+                } else {
+                    // Fallback on earlier versions
+                }
+
+              //  self.clearTable2()
+            }
+        }
+    }
     
     @IBAction func claimPurchaseBTn(_ sender: Any) {
         if self.customerTypeId == "1" || self.customerTypeId == "2"{

@@ -178,6 +178,7 @@ class KC_DashBoardVM: SendNewPasswordDelegate{
                                     self.VC?.supportImageView.isHidden = false
                                     self.VC?.raiseaTicketView.isHidden = true
                                     self.VC?.logoutBtn.isHidden = false
+                                    self.VC?.languageTrailingSpace.constant = 62
                                     UserDefaults.standard.set(result?.lstCustomerFeedBackJsonApi?[0].mappedCustomerId ?? -1, forKey: "mappedCustomerId")
                                     let mappedData = (result?.lstCustomerFeedBackJsonApi?[0].mappedCustomerName ?? "").split(separator: "~")
                                     let mappedCustomerType = result?.lstCustomerFeedBackJsonApi?[0].mappedCustomerType ?? ""
@@ -194,6 +195,7 @@ class KC_DashBoardVM: SendNewPasswordDelegate{
                                     self.VC?.supportImageView.isHidden = true
                                     self.VC?.raiseaTicketView.isHidden = false
                                     self.VC?.logoutBtn.isHidden = true
+                                    self.VC?.languageTrailingSpace.constant = 16
                                 }
                             }
                         }
