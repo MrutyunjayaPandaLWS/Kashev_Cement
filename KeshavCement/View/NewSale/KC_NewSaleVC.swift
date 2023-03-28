@@ -9,6 +9,7 @@ import UIKit
 import DPOTPView
 class KC_NewSaleVC: BaseViewController, SelectedDataDelegate, DPOTPViewDelegate{
     func didTapHelpTopic(_ vc: KC_DropDownVC) {}
+    func didTapAmount(_ vc: KC_DropDownVC){}
     func didTapCityName(_ vc: KC_DropDownVC){}
     func didTapCustomerType(_ vc: KC_DropDownVC) {
         self.selectTypeLbl.text = vc.selectedCustomerType
@@ -117,7 +118,7 @@ class KC_NewSaleVC: BaseViewController, SelectedDataDelegate, DPOTPViewDelegate{
         otpView.textEdgeInsets = UIEdgeInsets(top: 0, left: -1, bottom: 0, right: 0)
         otpView.editingTextEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
-        
+        self.qtyTF.keyboardType = .asciiCapableNumberPad
         if self.customerTypeId == "5"{
             self.headerText.text = "Claim"
         }

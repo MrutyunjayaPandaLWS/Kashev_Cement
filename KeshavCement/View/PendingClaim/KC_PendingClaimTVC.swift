@@ -34,6 +34,7 @@ class KC_PendingClaimTVC: UITableViewCell {
     @IBOutlet weak var locationLbl: UILabel!
     @IBOutlet weak var claimDateLbl: UILabel!
     
+    @IBOutlet weak var claimIdLbl: UILabel!
     var delegate: DataUpdateDelegate!
     override func awakeFromNib() {
         super.awakeFromNib()

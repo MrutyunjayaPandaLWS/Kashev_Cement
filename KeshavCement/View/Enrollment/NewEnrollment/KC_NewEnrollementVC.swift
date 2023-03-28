@@ -10,6 +10,7 @@ import UIKit
 class KC_NewEnrollementVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegate, UITextFieldDelegate {
     func didTapHelpTopic(_ vc: KC_DropDownVC) {}
     func didTapWorkLevel(_ vc: KC_DropDownVC) {}
+    func didTapAmount(_ vc: KC_DropDownVC){}
    func didTapMappedUserName(_ vc: KC_DropDownVC) {}
     func didTapCityName(_ vc: KC_DropDownVC) {
            self.selectedCityName = vc.selectedCityName

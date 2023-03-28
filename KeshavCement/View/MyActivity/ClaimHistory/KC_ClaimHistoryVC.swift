@@ -20,7 +20,7 @@ class KC_ClaimHistoryVC: BaseViewController, DateSelectedDelegate {
     
     func declineDate(_ vc: KC_DOBVC) {}
     
-
+    
     @IBOutlet weak var subDealerButton: UIButton!
     @IBOutlet weak var engineerButton: UIButton!
     @IBOutlet weak var masonBtn: UIButton!
@@ -55,6 +55,7 @@ class KC_ClaimHistoryVC: BaseViewController, DateSelectedDelegate {
     var noofelements = 0
     var startIndex = 1
     var selectedStatus = "-3"
+    var customerTypeIds = "-1"
     var selectedFromDate = ""
     var selectedToDate = ""
     var VM = KC_ClaimHistoryVM()
@@ -62,11 +63,13 @@ class KC_ClaimHistoryVC: BaseViewController, DateSelectedDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.VM.VC = self
+        self.selectFromDateLbl.text = "From Date"
+        self.selectToDateLbl.text = "To Date"
         self.noDataFoundLbl.isHidden = true
         self.filterView.isHidden = true
         self.claimHistoryTableView.delegate = self
         self.claimHistoryTableView.dataSource = self
-        self.claimHistoryListApi(status: "-3", startIndex: 1, fromDate: "", toDate: "", customerTypeId: "")
+        self.claimHistoryListApi(status:self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: self.customerTypeIds)
     }
 
     @IBAction func backBtn(_ sender: Any) {
@@ -78,15 +81,20 @@ class KC_ClaimHistoryVC: BaseViewController, DateSelectedDelegate {
             self.filterView.isHidden = true
         }else{
             self.filterView.isHidden = false
-            self.approvedBtn.backgroundColor = UIColor(hexString: "565656")
-            self.pendingBtn.backgroundColor = UIColor(hexString: "565656")
-            self.rejectedBtn.backgroundColor = UIColor(hexString: "565656")
-            
-            self.pendingBtn.setTitleColor(.white, for: .normal)
-            self.approvedBtn.setTitleColor(.white, for: .normal)
-            self.rejectedBtn.setTitleColor(.white, for: .normal)
-            self.VM.claimHistoryListArray.removeAll()
-            self.claimHistoryListApi(status: "-3", startIndex: 1, fromDate: "", toDate: "", customerTypeId: "")
+//            self.approvedBtn.backgroundColor = UIColor(hexString: "565656")
+//            self.pendingBtn.backgroundColor = UIColor(hexString: "565656")
+//            self.rejectedBtn.backgroundColor = UIColor(hexString: "565656")
+//
+//            self.pendingBtn.setTitleColor(.white, for: .normal)
+//            self.approvedBtn.setTitleColor(.white, for: .normal)
+//            self.rejectedBtn.setTitleColor(.white, for: .normal)
+//            self.selectedStatus = "-3"
+//            self.startIndex = 1
+//            self.selectedFromDate = ""
+//            self.selectedToDate = ""
+//            self.customerTypeIds = "-1"
+//            self.VM.claimHistoryListArray.removeAll()
+//            self.claimHistoryListApi(status:self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: self.customerTypeIds)
         }
     }
     
@@ -116,12 +124,10 @@ class KC_ClaimHistoryVC: BaseViewController, DateSelectedDelegate {
         self.subDealerButton.setTitleColor(.darkGray, for: .normal)
         self.engineerButton.setTitleColor(.white, for: .normal)
         self.masonBtn.setTitleColor(.white, for: .normal)
-        
-        self.selectedStatus = "-3"
-        self.selectFromDateLbl.text = "From Date"
-        self.selectToDateLbl.text = "To Date"
-        self.VM.claimHistoryListArray.removeAll()
-        self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: "4")
+
+        self.customerTypeIds = "4"
+//        self.VM.claimHistoryListArray.removeAll()
+//        self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: self.customerTypeIds)
     }
     @IBAction func engineerBtn(_ sender: Any) {
         self.subDealerButton.backgroundColor = UIColor(hexString: "565656")
@@ -132,12 +138,9 @@ class KC_ClaimHistoryVC: BaseViewController, DateSelectedDelegate {
         self.engineerButton.setTitleColor(.darkGray, for: .normal)
         self.masonBtn.setTitleColor(.white, for: .normal)
         
-        self.selectedStatus = "-3"
-        self.selectFromDateLbl.text = "From Date"
-        self.selectToDateLbl.text = "To Date"
-        self.VM.claimHistoryListArray.removeAll()
-        self.VM.claimHistoryListArray.removeAll()
-        self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: "1")
+        self.customerTypeIds = "1"
+//        self.VM.claimHistoryListArray.removeAll()
+//        self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: self.customerTypeIds)
     }
     @IBAction func masonBtn(_ sender: Any) {
         self.subDealerButton.backgroundColor = UIColor(hexString: "565656")
@@ -147,14 +150,9 @@ class KC_ClaimHistoryVC: BaseViewController, DateSelectedDelegate {
         self.subDealerButton.setTitleColor(.white, for: .normal)
         self.engineerButton.setTitleColor(.white, for: .normal)
         self.masonBtn.setTitleColor(.darkGray, for: .normal)
-        
-        
-        self.selectedStatus = "-3"
-        self.selectFromDateLbl.text = "From Date"
-        self.selectToDateLbl.text = "To Date"
-        self.VM.claimHistoryListArray.removeAll()
-        self.VM.claimHistoryListArray.removeAll()
-        self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: "2")
+        self.customerTypeIds = "2"
+//        self.VM.claimHistoryListArray.removeAll()
+//        self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: self.customerTypeIds)
     }
     
     @IBAction func clearButton(_ sender: Any) {
@@ -173,20 +171,23 @@ class KC_ClaimHistoryVC: BaseViewController, DateSelectedDelegate {
         self.pendingBtn.setTitleColor(.white, for: .normal)
         self.approvedBtn.setTitleColor(.white, for: .normal)
         self.rejectedBtn.setTitleColor(.white, for: .normal)
+        self.customerTypeIds = "-1"
         self.selectedStatus = "-3"
+        self.selectedToDate = ""
+        self.selectedFromDate = ""
         self.selectFromDateLbl.text = "From Date"
         self.selectToDateLbl.text = "To Date"
         self.VM.claimHistoryListArray.removeAll()
-        self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: "")
+        self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: self.customerTypeIds)
             self.filterView.isHidden = true
     }
     
     @IBAction func applyFilterButton(_ sender: Any) {
-        if self.selectedStatus == "-3" && self.selectedFromDate == "" && self.selectedToDate == ""{
+        if self.selectedStatus == "-3" && self.selectedFromDate == "" && self.selectedToDate == "" && self.customerTypeIds == "-1"{
             self.view.makeToast("Select any select or date range", duration: 2.0, position: .bottom)
-        }else if self.selectedFromDate == "" && self.selectedToDate == "" && self.selectedStatus != "-3"{
+        }else if self.selectedFromDate == "" && self.selectedToDate == "" && self.selectedStatus != "-3" && self.customerTypeIds != "-1" || self.selectedFromDate == "" && self.selectedToDate == "" && self.selectedStatus != "-3" && self.customerTypeIds == "-1" || self.selectedFromDate == "" && self.selectedToDate == "" && self.selectedStatus == "-3" && self.customerTypeIds != "-1"{
             self.VM.claimHistoryListArray.removeAll()
-            self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: "")
+            self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: self.customerTypeIds)
         }else if self.selectedFromDate != "" && self.selectedToDate == ""{
             self.view.makeToast("Select To date", duration: 2.0, position: .bottom)
         }else if self.selectedFromDate == "" && self.selectedToDate != ""{
@@ -196,8 +197,8 @@ class KC_ClaimHistoryVC: BaseViewController, DateSelectedDelegate {
                 self.view.makeToast("To date shouldn't greater than From date", duration: 2.0, position: .bottom)
             }else{
                 self.VM.claimHistoryListArray.removeAll()
-                self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: "")
-//                    self.filterView.isHidden = true
+                self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: self.customerTypeIds)
+                    self.filterView.isHidden = true
             }
         }
     }
@@ -214,9 +215,8 @@ class KC_ClaimHistoryVC: BaseViewController, DateSelectedDelegate {
         self.approvedBtn.setTitleColor(.darkGray, for: .normal)
         self.rejectedBtn.setTitleColor(.white, for: .normal)
         self.selectedStatus = "1"
-        self.VM.claimHistoryListArray.removeAll()
-        self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: "")
-//            self.filterView.isHidden = true
+        //self.VM.claimHistoryListArray.removeAll()
+//        self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: self.customerTypeIds)
         
     }
     
@@ -229,8 +229,8 @@ class KC_ClaimHistoryVC: BaseViewController, DateSelectedDelegate {
         self.pendingBtn.setTitleColor(.darkGray, for: .normal)
         self.rejectedBtn.setTitleColor(.white, for: .normal)
         self.selectedStatus = "0"
-        self.VM.claimHistoryListArray.removeAll()
-        self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: "")
+//        self.VM.claimHistoryListArray.removeAll()
+//        self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: self.customerTypeIds)
 //            self.filterView.isHidden = true
     }
     
@@ -243,15 +243,15 @@ class KC_ClaimHistoryVC: BaseViewController, DateSelectedDelegate {
         self.rejectedBtn.setTitleColor(.darkGray, for: .normal)
         self.pendingBtn.setTitleColor(.white, for: .normal)
         self.selectedStatus = "-1"
-        self.VM.claimHistoryListArray.removeAll()
-        self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: "")
+//        self.VM.claimHistoryListArray.removeAll()
+//        self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: self.customerTypeIds)
 //            self.filterView.isHidden = true
     }
     
 
     func claimHistoryListApi(status: String, startIndex: Int, fromDate: String, toDate: String, customerTypeId: String){
         let parameter = [
-            "ActionType": 6,
+            "ActionType": 8,
             "ActiveStatus": status,
             "FromDate": fromDate,
             "PageSize": 10,
@@ -287,16 +287,18 @@ extension KC_ClaimHistoryVC: UITableViewDelegate, UITableViewDataSource{
         }else if self.self.VM.claimHistoryListArray[indexPath.row].status ?? "" == "Rejected"{
             cell.statusLbl.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
             cell.statusLbl.textColor = #colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1)
-
         }else{
-            cell.statusLbl.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
-            cell.statusLbl.textColor = #colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 1)
+            cell.statusLbl.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
+            cell.statusLbl.textColor = #colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1)
         }
         cell.statusLbl.text = self.VM.claimHistoryListArray[indexPath.row].status ?? ""
         cell.productNameLbl.text =  self.VM.claimHistoryListArray[indexPath.row].productName ?? ""
         cell.orderedQty.text = "\(Int(self.VM.claimHistoryListArray[indexPath.row].quantity ?? 0.0))"
-        cell.qtyLb.text = self.VM.claimHistoryListArray[indexPath.row].approvedQuantity ?? "0"
-        cell.remarks.text = "  \(self.VM.claimHistoryListArray[indexPath.row].remarks ?? "")"
+        let approvedQTY: Float = Float(Double(self.VM.claimHistoryListArray[indexPath.row].approvedQuantity ?? "0")!)
+        print(approvedQTY, "Approved QTY")
+        cell.qtyLb.text = "\(Int(approvedQTY))"
+        cell.remarks.text = "  \(self.VM.claimHistoryListArray[indexPath.row].remarks ?? "-")"
+        cell.claimIdLbl.text = "\(self.VM.claimHistoryListArray[indexPath.row].invoiceNo ?? "-")"
         return cell
     }
     
@@ -310,10 +312,10 @@ extension KC_ClaimHistoryVC: UITableViewDelegate, UITableViewDataSource{
             if indexPath.row == self.VM.claimHistoryListArray.count - 1{
                 if self.noofelements == 10{
                     self.startIndex = self.startIndex + 1
-                    self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: "")
+                    self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: self.customerTypeIds)
                 }else if self.noofelements > 10{
                     self.startIndex = self.startIndex + 1
-                    self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: "")
+                    self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: self.customerTypeIds)
                 }else if self.noofelements < 10{
                     print("no need to hit API")
                     return

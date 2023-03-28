@@ -154,9 +154,10 @@ class KC_ForgetPasswordVM{
                         self.VC?.stopLoading()
                         if loginResponse.count != 0{
 //
-                            if loginResponse[0].result ?? -1 != 1{
-                                self.VC!.view.makeToast("Your account is verification pending! Kindly contact your administrator.", duration: 2.0, position: .bottom)
-                            }else if loginResponse[0].isDelete ?? -1 == 1 || loginResponse[0].isUserActive ?? -1 == 0 && loginResponse[0].verifiedStatus ?? -1 == 3{
+//                            if loginResponse[0].result ?? -1 != 1{
+//                                self.VC!.view.makeToast("Your account is verification pending! Kindly contact your administrator.", duration: 2.0, position: .bottom)
+//                            }
+                            if loginResponse[0].isDelete ?? -1 == 1 || loginResponse[0].isUserActive ?? -1 == 0 && loginResponse[0].verifiedStatus ?? -1 == 3{
                                 self.VC!.view.makeToast("Your account is verification pending! Kindly contact your administrator.", duration: 2.0, position: .bottom)
                             }else if loginResponse[0].isUserActive ?? -1 == 1 && loginResponse[0].verifiedStatus ?? -1 == 0 || loginResponse[0].isUserActive ?? -1 == 0 && loginResponse[0].verifiedStatus ?? -1 == 0{
                                 self.VC!.view.makeToast("Your account is not activated! Kindly activate your account.", duration: 2.0, position: .bottom)
@@ -165,7 +166,7 @@ class KC_ForgetPasswordVM{
                             }else if loginResponse[0].verifiedStatus ?? -1 == 2 {
                                 self.VC!.view.makeToast("Your account verification is failed!, Kindly contact your administrator.", duration: 2.0, position: .bottom)
                             }else{
-                                if loginResponse[0].result ?? -1 == 1 || loginResponse[0].isUserActive ?? -1 == 1 && loginResponse[0].verifiedStatus ?? -1 == 1 && loginResponse[0].result ?? -1 == 1{
+                                if loginResponse[0].result ?? -1 == 1 || loginResponse[0].isUserActive ?? -1 == 1 && loginResponse[0].verifiedStatus ?? -1 == 1 && loginResponse[0].result ?? -1 == 1 || loginResponse[0].isUserActive ?? -1 == 1 && loginResponse[0].verifiedStatus ?? -1 == 1{
                                     UserDefaults.standard.setValue(loginResponse[0].userId ?? -1, forKey: "UserID")
                                     UserDefaults.standard.setValue(true, forKey: "IsloggedIn?")
                                     UserDefaults.standard.set(true, forKey: "UpdatePassword")

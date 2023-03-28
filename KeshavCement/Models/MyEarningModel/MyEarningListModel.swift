@@ -13,37 +13,37 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 import Foundation
 struct MyEarningListModel : Codable {
-	let lstRewardTransDetails : String?
-	let lstRewardTransJsonDetails : [LstRewardTransJsonDetails]?
-	let lstRewardTransactionBasedonProduct : [LstRewardTransactionBasedonProduct]?
-	let pdf : String?
-	let totalRewardPoints : Int?
-	let returnValue : Int?
-	let returnMessage : String?
-	let totalRecords : Int?
+    let lstRewardTransDetails : String?
+    let lstRewardTransJsonDetails : [LstRewardTransJsonDetails]?
+    let lstRewardTransactionBasedonProduct : [LstRewardTransactionBasedonProduct]?
+    let pdf : String?
+    let totalRewardPoints : Int?
+    let returnValue : Int?
+    let returnMessage : String?
+    let totalRecords : Int?
 
-	enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
 
-		case lstRewardTransDetails = "lstRewardTransDetails"
-		case lstRewardTransJsonDetails = "lstRewardTransJsonDetails"
-		case lstRewardTransactionBasedonProduct = "lstRewardTransactionBasedonProduct"
-		case pdf = "pdf"
-		case totalRewardPoints = "totalRewardPoints"
-		case returnValue = "returnValue"
-		case returnMessage = "returnMessage"
-		case totalRecords = "totalRecords"
-	}
+        case lstRewardTransDetails = "lstRewardTransDetails"
+        case lstRewardTransJsonDetails = "lstRewardTransJsonDetails"
+        case lstRewardTransactionBasedonProduct = "lstRewardTransactionBasedonProduct"
+        case pdf = "pdf"
+        case totalRewardPoints = "totalRewardPoints"
+        case returnValue = "returnValue"
+        case returnMessage = "returnMessage"
+        case totalRecords = "totalRecords"
+    }
 
-	init(from decoder: Decoder) throws {
-		let values = try decoder.container(keyedBy: CodingKeys.self)
-		lstRewardTransDetails = try values.decodeIfPresent(String.self, forKey: .lstRewardTransDetails)
-		lstRewardTransJsonDetails = try values.decodeIfPresent([LstRewardTransJsonDetails].self, forKey: .lstRewardTransJsonDetails)
-		lstRewardTransactionBasedonProduct = try values.decodeIfPresent([LstRewardTransactionBasedonProduct].self, forKey: .lstRewardTransactionBasedonProduct)
-		pdf = try values.decodeIfPresent(String.self, forKey: .pdf)
-		totalRewardPoints = try values.decodeIfPresent(Int.self, forKey: .totalRewardPoints)
-		returnValue = try values.decodeIfPresent(Int.self, forKey: .returnValue)
-		returnMessage = try values.decodeIfPresent(String.self, forKey: .returnMessage)
-		totalRecords = try values.decodeIfPresent(Int.self, forKey: .totalRecords)
-	}
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        lstRewardTransDetails = try values.decodeIfPresent(String.self, forKey: .lstRewardTransDetails)
+        lstRewardTransJsonDetails = try values.decodeIfPresent([LstRewardTransJsonDetails].self, forKey: .lstRewardTransJsonDetails)
+        lstRewardTransactionBasedonProduct = try values.decodeIfPresent([LstRewardTransactionBasedonProduct].self, forKey: .lstRewardTransactionBasedonProduct)
+        pdf = try values.decodeIfPresent(String.self, forKey: .pdf)
+        totalRewardPoints = try values.decodeIfPresent(Int.self, forKey: .totalRewardPoints)
+        returnValue = try values.decodeIfPresent(Int.self, forKey: .returnValue)
+        returnMessage = try values.decodeIfPresent(String.self, forKey: .returnMessage)
+        totalRecords = try values.decodeIfPresent(Int.self, forKey: .totalRecords)
+    }
 
 }

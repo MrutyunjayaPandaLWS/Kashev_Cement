@@ -27,6 +27,8 @@ class KC_ForgetPwdSuccessVC: BaseViewController {
         }else if self.itsComeFrom == "ACCOUNTDEACTIVATE"{
             self.newPwdInfo.text = "Your account is deactivated please check with the administrator"
             self.infoLbl.text = "Account Deactivated!!"
+        }else if self.itsComeFrom == "CASHTRANSFER"{
+            self.newPwdInfo.text = "Cash Transferred Successfully! "
         }
 //        else if self.itsComeFrom == "REDEMPTIONSUBMISSION"{
 //            self.newPwdInfo.text = "You have successfully redeemed a products"

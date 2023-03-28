@@ -11,6 +11,7 @@ import QCropper
 class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelegate, SelectedDataDelegate {
     func didTapMappedUserName(_ vc: KC_DropDownVC) {}
     func didTapCityName(_ vc: KC_DropDownVC){}
+    func didTapAmount(_ vc: KC_DropDownVC){}
     func didTapHelpTopic(_ vc: KC_DropDownVC) {}
     func didTapWorkLevel(_ vc: KC_DropDownVC) {}
     func didTapUserType(_ vc: KC_DropDownVC) {}

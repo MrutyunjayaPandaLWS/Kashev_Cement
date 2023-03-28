@@ -20,7 +20,9 @@ protocol SelectedDataDelegate: AnyObject{
     func didTapWorkLevel(_ vc: KC_DropDownVC)
     func didTapHelpTopic(_ vc: KC_DropDownVC)
     func didTapCityName(_ vc: KC_DropDownVC)
+    func didTapAmount(_ vc: KC_DropDownVC)
 }
+
 
 class KC_DropDownVC: BaseViewController,UISearchBarDelegate {
 
@@ -30,7 +32,7 @@ class KC_DropDownVC: BaseViewController,UISearchBarDelegate {
     
     @IBOutlet weak var noDataFoundLbl: UILabel!
     var itsFrom = ""
-    
+    var isComeFrom = ""
     var selectedCustomerType = ""
     var selectedCustomerTypeId = -1
     var selectedStateName = ""
@@ -63,6 +65,8 @@ class KC_DropDownVC: BaseViewController,UISearchBarDelegate {
     var mappedLoyaltyId = ""
 
     
+    var selectedCustomerTypeIds = -1
+    
     
     
     var selectedProductId = -1
@@ -74,6 +78,9 @@ class KC_DropDownVC: BaseViewController,UISearchBarDelegate {
     
     var selectedCityId = -1
     var selectedCityName = ""
+    
+    var selectedAmount = 0
+    var selectedCashBack = 0
     
 //    Engineer - 1
 //    Mason - 2
@@ -108,6 +115,8 @@ class KC_DropDownVC: BaseViewController,UISearchBarDelegate {
             self.queryTopicListApi()
         }else if self.itsFrom == "CITY"{
             cityListingAPI(stateID: self.selectedStateId)
+        }else if self.itsFrom == "CASHPOINTS"{
+            self.cashDetailsApi(customerTypeId: self.selectedCustomerTypeIds)
         }
         
     }
@@ -124,6 +133,17 @@ class KC_DropDownVC: BaseViewController,UISearchBarDelegate {
     }
     override func viewWillLayoutSubviews() {
         
+    }
+    
+    func cashDetailsApi(customerTypeId: Int){
+        
+    let parameter = [
+        "ActionType": 1,
+        "ActorId": userID,
+        "CustomerTypeId": customerTypeId
+    ] as [String: Any]
+    print(parameter)
+        self.VM.cashDetailsListApi(parameter: parameter)
     }
     
     
@@ -206,32 +226,34 @@ class KC_DropDownVC: BaseViewController,UISearchBarDelegate {
             ] as  [String:Any]
             self.VM.citylisting(parameters: parameterJSON)
     }
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if self.VM.mappedListArray.count > 0 {
-            let arr = self.VM.mappedListArray.filter{ ($0.firstName!.localizedCaseInsensitiveContains(searchBar.text!))}
-                if self.searchBar.text != ""{
 
-                if arr.count > 0 {
-                    self.VM.mappedListArray.removeAll(keepingCapacity: true)
-                    self.VM.mappedListArray = arr
-                    self.dropDownTableView.reloadData()
-                    dropDownTableView.isHidden = false
-                }else {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+            if self.VM.mappedListArray.count > 0 {
+                let arr = self.VM.mappedListArray.filter{ ($0.firstName!.localizedCaseInsensitiveContains(searchBar.text!))}
+                if self.searchBar.text != ""{
+                    
+                    if arr.count > 0 {
+                        self.VM.mappedListArray.removeAll(keepingCapacity: true)
+                        self.VM.mappedListArray = arr
+                        self.dropDownTableView.reloadData()
+                        dropDownTableView.isHidden = false
+                    }else {
+                        self.VM.mappedListArray = self.VM.mappedListFilterArray
+                        self.dropDownTableView.reloadData()
+                        dropDownTableView.isHidden = true
+                    }
+                }else{
                     self.VM.mappedListArray = self.VM.mappedListFilterArray
                     self.dropDownTableView.reloadData()
-                    dropDownTableView.isHidden = true
+                    dropDownTableView.isHidden = false
                 }
-            }else{
-                self.VM.mappedListArray = self.VM.mappedListFilterArray
-                self.dropDownTableView.reloadData()
-                dropDownTableView.isHidden = false
-            }
                 let searchText = searchBar.text!
-            if searchText.count > 0 || self.VM.mappedListFilterArray.count == self.VM.mappedListArray.count {
+                if searchText.count > 0 || self.VM.mappedListFilterArray.count == self.VM.mappedListArray.count {
                     self.dropDownTableView.reloadData()
                 }
             }
-    }
+        }
 
 }
 extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
@@ -260,6 +282,8 @@ extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
             return self.VM.queryTopicListArray.count
         }else if self.itsFrom == "CITY"{
             return self.VM.cityArray.count
+        }else if self.itsFrom == "CASHPOINTS"{
+            return self.VM.cashDetailsListArray.count
         }else if self.itsFrom == "USERTYPE"{
             if self.customerType == "Engineer" || self.customerType == "Mason"{
                 return self.engineerandMasonArray.count
@@ -315,13 +339,22 @@ extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
                 self.tableViewHeightConstraint.constant = CGFloat(500)
             }
         }else if self.itsFrom == "MAPPEDUSERS"{
-            cell.selectedTitleLbl.text = self.VM.mappedListArray[indexPath.row].firstName ?? ""
+            if isComeFrom == "CASHTRANSFERSUBMISSION"{
+                let firstName = "\(self.VM.mappedListArray[indexPath.row].firstName ?? "")"
+                cell.selectedTitleLbl.text = "\(firstName) (\(self.VM.mappedListArray[indexPath.row].loyaltyID ?? ""))"
+            }else{
+                let firstName = "\(self.VM.mappedListArray[indexPath.row].firstName ?? "")"
+                cell.selectedTitleLbl.text = "\(firstName) (\(self.VM.mappedListArray[indexPath.row].mobile ?? ""))"
+            }
+            
         }else if self.itsFrom == "CLAIMPRODUCTLIST"{
             cell.selectedTitleLbl.text = self.VM.claimProductListArray[indexPath.row].attributeValue ?? ""
         }else if self.itsFrom == "WORKLEVEL"{
             cell.selectedTitleLbl.text = self.VM.workLevelListArray[indexPath.row].attributeValue ?? ""
         }else if self.itsFrom == "NEWQUERY"{
             cell.selectedTitleLbl.text = self.VM.queryTopicListArray[indexPath.row].helpTopicName ?? ""
+        }else if self.itsFrom == "CASHPOINTS"{
+            cell.selectedTitleLbl.text = "\(self.VM.cashDetailsListArray[indexPath.row].amount ?? -1)"
         }
         return cell
     }
@@ -411,6 +444,11 @@ extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
             self.selectedCityId = self.VM.cityArray[indexPath.row].cityId ?? 0
             self.selectedCityName = self.VM.cityArray[indexPath.row].cityName ?? ""
             self.delegate?.didTapCityName(self)
+            self.dismiss(animated: true)
+        }else if self.itsFrom == "CASHPOINTS"{
+            self.selectedAmount = self.VM.cashDetailsListArray[indexPath.row].amount ?? 0
+            self.selectedCashBack = self.VM.cashDetailsListArray[indexPath.row].cashBackValue ?? 0
+            self.delegate?.didTapAmount(self)
             self.dismiss(animated: true)
         }
         

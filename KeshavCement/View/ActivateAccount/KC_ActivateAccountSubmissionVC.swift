@@ -9,6 +9,7 @@ import UIKit
 
 class KC_ActivateAccountSubmissionVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegate, UITextFieldDelegate {
     func didTapMappedUserName(_ vc: KC_DropDownVC) {}
+    func didTapAmount(_ vc: KC_DropDownVC){}
     func didTapCityName(_ vc: KC_DropDownVC) {
            self.selectedCityName = vc.selectedCityName
            self.selectedCityId = vc.selectedCityId

@@ -435,6 +435,18 @@ class RestAPI_Requests {
             }
         }
     }
+    func myredemptionDetails(parameters: JSON, completion: @escaping (MyRedemptionDetailsModels?, Error?) -> ()) -> URLSessionDataTask? {
+        return client.load(path: myredemptionDetails_URLMethodName, method: .post, params: parameters) { data, error in
+            do{
+                if data != nil{
+                    let result1 =  try JSONDecoder().decode(MyRedemptionDetailsModels.self, from: data as! Data)
+                    completion(result1, nil)
+                }
+            }catch{
+                completion(nil, error)
+            }
+        }
+    }
     
     func mappedCustomerListApi(parameters: JSON, completion: @escaping (KC_MappedCustomerListModel?, Error?) -> ()) -> URLSessionDataTask? {
         return client.load(path: claimPurchaseNameList_URLMethod, method: .post, params: parameters) { data, error in
@@ -505,6 +517,35 @@ class RestAPI_Requests {
             }
         }
     }
+    
+    func cashSubmissionPointsListApi(parameters: JSON, completion: @escaping (CashDetailsModel?, Error?) -> ()) -> URLSessionDataTask? {
+        return client.load(path: getCashTransferDenominations, method: .post, params: parameters) { data, error in
+            do{
+                if data != nil{
+                    let result1 =  try JSONDecoder().decode(CashDetailsModel?.self, from: data as! Data)
+                    completion(result1, nil)
+                }
+                print(data)
+            }catch{
+                completion(nil, error)
+            }
+        }
+    }
+    func cashTransferSubApi(parameters: JSON, completion: @escaping (CashTrasnSubmissionModel?, Error?) -> ()) -> URLSessionDataTask? {
+        return client.load(path: saveCustomerCasTransferDEtails, method: .post, params: parameters) { data, error in
+            do{
+                if data != nil{
+                    let result1 =  try JSONDecoder().decode(CashTrasnSubmissionModel?.self, from: data as! Data)
+                    completion(result1, nil)
+                }
+                print(data)
+            }catch{
+                completion(nil, error)
+            }
+        }
+    }
+    
+    
     
     func claimHistoryListApi(parameters: JSON, completion: @escaping (ClaimHistoryModel?, Error?) -> ()) -> URLSessionDataTask? {
         return client.load(path: claimHistoryURLMethod, method: .post, params: parameters) { data, error in
@@ -1472,4 +1513,31 @@ class RestAPI_Requests {
             }
         }
     }
+    
+    func cashTransferListsApi(parameters: JSON, completion: @escaping (CashTransferHistoryListModel?, Error?) -> ()) -> URLSessionDataTask? {
+        return client.load(path: cashTransferHistoryList, method: .post, params: parameters) { data, error in
+            do{
+                if data != nil{
+                    let result1 =  try JSONDecoder().decode(CashTransferHistoryListModel?.self, from: data as! Data)
+                    completion(result1, nil)
+                }
+            }catch{
+                completion(nil, error)
+            }
+        }
+    }
+    
+    func cashTransferApproveOrRejectionSubmissionApi(parameters: JSON, completion: @escaping (CashTransferApproveOrRejectionSubmissionModel?, Error?) -> ()) -> URLSessionDataTask? {
+        return client.load(path: cashTransferApproveOrRejectionSubmission, method: .post, params: parameters) { data, error in
+            do{
+                if data != nil{
+                    let result1 =  try JSONDecoder().decode(CashTransferApproveOrRejectionSubmissionModel?.self, from: data as! Data)
+                    completion(result1, nil)
+                }
+            }catch{
+                completion(nil, error)
+            }
+        }
+    }
+    
 }

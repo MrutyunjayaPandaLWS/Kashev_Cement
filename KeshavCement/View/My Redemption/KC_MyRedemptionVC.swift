@@ -212,7 +212,27 @@ extension KC_MyRedemptionVC: UITableViewDelegate,UITableViewDataSource{
                 cell.redemptionDateLbl.text = "-"
             }
             
-            cell.toNameLbl.text = self.VM.myredemptionListArray[indexPath.row].fullName ?? ""
+            cell.referenceIdLbl.text = self.VM.myredemptionListArray[indexPath.row].redemptionRefno ?? ""
+            
+            if self.VM.myredemptionListArray[indexPath.row].catalogueType ?? "" == "Cash voucher"{
+                cell.qtyLbl.isHidden = true
+                cell.quantityHeadingLbl.isHidden = true
+                cell.productHeaderLbl.isHidden = false
+                cell.productHeaderLbl.text = "Category: Cash Voucher"
+                cell.productTitle.text = "Cash Voucher"
+            }else if self.VM.myredemptionListArray[indexPath.row].catalogueType ?? "" == "Catalogue"{
+                cell.qtyLbl.isHidden = false
+                cell.quantityHeadingLbl.isHidden = false
+                cell.productHeaderLbl.isHidden = false
+                cell.productHeaderLbl.text = "Category: \(self.VM.myredemptionListArray[indexPath.row].categoryName ?? "")"
+                cell.productTitle.text = "Catalogue"
+            }else{
+                cell.quantityHeadingLbl.isHidden = true
+                cell.qtyLbl.isHidden = true
+                cell.productHeaderLbl.isHidden = true
+                cell.productTitle.text = "Voucher "
+            }
+            
             if self.VM.myredemptionListArray[indexPath.row].status ?? -1 == 0{
                 cell.statusLbl.text = "Pending"
                 cell.statusLbl.textColor = UIColor.black
@@ -343,9 +363,10 @@ extension KC_MyRedemptionVC: UITableViewDelegate,UITableViewDataSource{
                 cell.statusLbl.backgroundColor = #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
                 cell.statusLbl.borderColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
             }
-            cell.productHeaderLbl.text = "Catalogue / \(self.VM.myredemptionListArray[indexPath.row].categoryName ?? "")"
+            
+            
             cell.productNameLbl.text = self.VM.myredemptionListArray[indexPath.row].productName ?? ""
-            cell.pointsPerUnitLbl.text = "\(self.VM.myredemptionListArray[indexPath.row].pointsPerUnit ?? 0)"
+            cell.pointsPerUnitLbl.text = "\(Int(self.VM.myredemptionListArray[indexPath.row].redemptionPoints ?? 0.0) )"
             cell.qtyLbl.text = "\(self.VM.myredemptionListArray[indexPath.row].quantity ?? 0)"
             
             let imageURL = self.VM.myredemptionListArray[indexPath.row].productImage ?? ""
@@ -360,8 +381,42 @@ extension KC_MyRedemptionVC: UITableViewDelegate,UITableViewDataSource{
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "HRD_MyRedemptionDetailsVC") as! HRD_MyRedemptionDetailsVC
+        vc.categoryType = self.VM.myredemptionListArray[indexPath.row].catalogueType ?? ""
+        vc.categoryName = self.VM.myredemptionListArray[indexPath.item].categoryName ?? ""
+        vc.totalPoint = "\(Int(self.VM.myredemptionListArray[indexPath.item].redemptionPoints ?? 0.0) )"
+        vc.productName = self.VM.myredemptionListArray[indexPath.item].productName ?? ""
+        vc.quantity = "\(self.VM.myredemptionListArray[indexPath.item].quantity ?? 0)"
+        vc.productImage = self.VM.myredemptionListArray[indexPath.item].productImage ?? ""
+        vc.redemptionRefNo = self.VM.myredemptionListArray[indexPath.item].redemptionRefno ?? ""
+        vc.descDetails = self.VM.myredemptionListArray[indexPath.item].productDesc ?? ""
+        vc.termsandContions = self.VM.myredemptionListArray[indexPath.item].termsCondition ?? ""
+        vc.redemptionPoints = "\(self.VM.myredemptionListArray[indexPath.item].redemptionPoints ?? 0)"
+        vc.status = "\(self.VM.myredemptionListArray[indexPath.item].status ?? 0)"
+        vc.customerId = "\(self.userID)"
+        let strDate = self.VM.myredemptionListArray[indexPath.row].jRedemptionDate ?? "01/01/0001  00:00:00"
+        print(strDate)
+        let array = strDate.components(separatedBy: " ")
+        print(array[0])
+        //        let inputFormatter = DateFormatter()
+        //        inputFormatter.dateFormat = "MM/dd/yyyy"
+        //        let outputFormatter = DateFormatter()
+        //        outputFormatter.dateFormat = "dd/MM/yyyy"
+        //        let showDate = inputFormatter.date(from: array[0])!
+        //        let resultString = outputFormatter.string(from: showDate)
+        //vc.redemptionsDate = "\(resultString)"
+        
+        vc.redemptionsDate = "\(array[0])"
+        vc.redemptionsstatus = String(self.VM.myredemptionListArray[indexPath.row].status ?? 0) ?? ""
+        
+       // vc.cartCounts = self.cartCount.text!
+        vc.redemptionId = "\(self.VM.myredemptionListArray[indexPath.item].redemptionId ?? 0)"
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        return 230
     }
         
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

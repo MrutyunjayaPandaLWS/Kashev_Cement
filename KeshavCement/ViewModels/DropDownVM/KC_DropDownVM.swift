@@ -18,6 +18,10 @@ class KC_DropDownVM{
     var talukListArray = [LstTaluk]()
     var mappedListArray = [LstCustParentChildMapping2]()
     var mappedListFilterArray = [LstCustParentChildMapping2]()
+        
+    var cashDetailsListArray = [LstCashTransfer]()
+    var cashDetailsFilterListArray = [LstCashTransfer]()
+    
     var claimProductListArray = [LstAttributesDetails12]()
     var workLevelListArray = [LstAttributesDetails]()
     var queryTopicListArray = [ObjHelpTopicList]()
@@ -269,6 +273,52 @@ class KC_DropDownVM{
                             self.VC?.noDataFoundLbl.isHidden = true
                             if self.talukListArray.count <= 20{
                                 self.VC!.tableViewHeightConstraint.constant = CGFloat(self.talukListArray.count * 40)
+                            }else{
+                                self.VC!.tableViewHeightConstraint.constant = CGFloat(500)
+                            }
+                            self.VC?.dropDownTableView.reloadData()
+                        }else{
+                            self.VC?.dropDownTableView.isHidden = true
+                            self.VC?.noDataFoundLbl.isHidden = false
+                        }
+                    }
+                }else{
+                    DispatchQueue.main.async {
+                        print(error)
+                        self.VC?.stopLoading()
+                    }
+                }
+            }
+        }
+        
+    }
+    
+    func cashDetailsListApi(parameter: JSON){
+        
+        DispatchQueue.main.async {
+            self.VC?.startLoading()
+        }
+        
+        self.requestAPIs.cashSubmissionPointsListApi(parameters: parameter) { (result, error) in
+            
+            if result == nil{
+                
+                DispatchQueue.main.async {
+                    self.VC?.stopLoading()
+                }
+            }else{
+                if error == nil{
+                    DispatchQueue.main.async {
+                        self.cashDetailsListArray = result?.lstCashTransfer ?? []
+                        self.cashDetailsFilterListArray = self.cashDetailsListArray
+                        print(self.cashDetailsListArray.count, "cashDetailsListArray Count")
+                      
+                        self.VC?.stopLoading()
+                        if self.cashDetailsListArray.count != 0 {
+                            self.VC?.dropDownTableView.isHidden = false
+                            self.VC?.noDataFoundLbl.isHidden = true
+                            if self.cashDetailsListArray.count <= 20{
+                                self.VC!.tableViewHeightConstraint.constant = CGFloat(self.cashDetailsListArray.count * 40)
                             }else{
                                 self.VC!.tableViewHeightConstraint.constant = CGFloat(500)
                             }

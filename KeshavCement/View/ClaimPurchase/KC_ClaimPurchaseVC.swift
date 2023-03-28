@@ -11,6 +11,7 @@ import Toast_Swift
 
 class KC_ClaimPurchaseVC: BaseViewController, SelectedDataDelegate{
     func didTapHelpTopic(_ vc: KC_DropDownVC) {}
+    func didTapAmount(_ vc: KC_DropDownVC){}
     func didTapCustomerType(_ vc: KC_DropDownVC) {}
     func didTapWorkLevel(_ vc: KC_DropDownVC) {}
     func didTapCityName(_ vc: KC_DropDownVC){}
@@ -88,6 +89,7 @@ class KC_ClaimPurchaseVC: BaseViewController, SelectedDataDelegate{
         formatter.dateFormat = "dd/MM/yyyy"
         let result = formatter.string(from: date)
         self.saveTodaysDates = result
+        self.qtyTF.keyboardType = .asciiCapableNumberPad
         mainview.clipsToBounds = false
         mainview.layer.cornerRadius = 36
         mainview.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
@@ -227,6 +229,7 @@ class KC_ClaimPurchaseVC: BaseViewController, SelectedDataDelegate{
             self.swipeButton.backgroundColor = #colorLiteral(red: 1, green: 0.9882352941, blue: 0.6117647059, alpha: 1)
             let parameter = [
                 "ActorId": self.userID,
+                "tranDate": getDate(date:Date()),
                 "ProductSaveDetailList": [
                     [
                         "ProductCode": self.selectedProductCode,
@@ -255,4 +258,11 @@ class KC_ClaimPurchaseVC: BaseViewController, SelectedDataDelegate{
             self.present(vc, animated: true)
         }
     }
+    func getDate(date: Date) -> String{
+          let dateFormatter : DateFormatter = DateFormatter()
+          dateFormatter.dateFormat = "yyyy-MMM-dd HH:mm:ss"
+          let dateString = dateFormatter.string(from: date)
+          
+          return dateString
+      }
 }

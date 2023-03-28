@@ -35,41 +35,41 @@ class KC_MyEarningVM{
                 if error == nil{
                     DispatchQueue.main.async {
                         self.VC?.stopLoading()
-                        self.myEarningListArray = result?.lstRewardTransJsonDetails ?? []
-                        
-                        if self.myEarningListArray.count != 0{
-                            self.VC!.myEarningTV.isHidden = false
-                            self.VC!.myEarningTV.reloadData()
-                        }else{
-                            self.VC!.myEarningTV.isHidden = true
-                            self.VC!.view.makeToast("No data found !!", duration: 2.0, position: .bottom)
-                        }
-//                        let enrollmenteLists = result?.lstRewardTransJsonDetails ?? []
-//
-//                        if enrollmenteLists.isEmpty == false{
-//                            self.claimHistoryListArray += enrollmenteLists
-//                            self.VC?.noofelements = self.claimHistoryListArray.count
-//                            print(self.claimHistoryListArray.count, "mappedCustomerListArray Count")
-//                            self.VC?.stopLoading()
-//                            if self.claimHistoryListArray.count != 0 {
-//                                self.VC?.myEarningTV.isHidden = false
-//                                self.VC?.noDataFoundLbl.isHidden = true
-//                                self.VC?.myEarningTV.reloadData()
-//                            }else{
-//                                self.VC?.myEarningTV.isHidden = true
-//                                self.VC?.noDataFoundLbl.isHidden = false
-//                                self.VC?.noDataFoundLbl.textColor = .white
-//                            }
+                       // self.myEarningListArray = result?.lstRewardTransJsonDetails ?? []
+
+//                        if self.myEarningListArray.count != 0{
+//                            self.VC!.myEarningTV.isHidden = false
+//                            self.VC!.myEarningTV.reloadData()
 //                        }else{
-//                            if self.VC!.startIndex > 1{
-//                                self.VC?.startIndex = 1
-//                                self.VC?.noofelements = 9
-//                            }else{
-//                                self.VC?.myEarningTV.isHidden = true
-//                                self.VC?.noDataFoundLbl.isHidden = false
-//                                self.VC?.noDataFoundLbl.textColor = .white
-//                            }
+//                            self.VC!.myEarningTV.isHidden = true
+//                           // self.VC!.view.makeToast("No data found !!", duration: 2.0, position: .bottom)
 //                        }
+                        let enrollmenteLists = result?.lstRewardTransJsonDetails ?? []
+
+                        if enrollmenteLists.isEmpty == false{
+                            self.myEarningListArray += enrollmenteLists
+                            self.VC?.noofelements = self.myEarningListArray.count
+                            print(self.myEarningListArray.count, "mappedCustomerListArray Count")
+                            self.VC?.stopLoading()
+                            if self.myEarningListArray.count != 0 {
+                                self.VC?.myEarningTV.isHidden = false
+                                self.VC?.noDataFoundLbl.isHidden = true
+                                self.VC?.myEarningTV.reloadData()
+                            }else{
+                                self.VC?.myEarningTV.isHidden = true
+                                self.VC?.noDataFoundLbl.isHidden = false
+                                self.VC?.noDataFoundLbl.textColor = .white
+                            }
+                        }else{
+                            if self.VC!.startIndex > 1{
+                                self.VC?.startIndex = 1
+                                self.VC?.noofelements = 9
+                            }else{
+                                self.VC?.myEarningTV.isHidden = true
+                                self.VC?.noDataFoundLbl.isHidden = false
+                                self.VC?.noDataFoundLbl.textColor = .white
+                            }
+                        }
                     }
                 }else{
                     DispatchQueue.main.async {

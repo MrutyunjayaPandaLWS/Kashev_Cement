@@ -13,31 +13,31 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 import Foundation
 struct LstRewardTransactionBasedonProduct : Codable {
-	let invoiceNo : String?
-	let serialNumber : String?
-	let qty : Double?
-	let rewardPoints : Double?
-	let amount : Double?
-	let discount : Int?
+    let invoiceNo : String?
+    let serialNumber : String?
+    let qty : Double?
+    let rewardPoints : Double?
+    let amount : Double?
+    let discount : Int?
 
-	enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
 
-		case invoiceNo = "invoiceNo"
-		case serialNumber = "serialNumber"
-		case qty = "qty"
-		case rewardPoints = "rewardPoints"
-		case amount = "amount"
-		case discount = "discount"
-	}
+        case invoiceNo = "invoiceNo"
+        case serialNumber = "serialNumber"
+        case qty = "qty"
+        case rewardPoints = "rewardPoints"
+        case amount = "amount"
+        case discount = "discount"
+    }
 
-	init(from decoder: Decoder) throws {
-		let values = try decoder.container(keyedBy: CodingKeys.self)
-		invoiceNo = try values.decodeIfPresent(String.self, forKey: .invoiceNo)
-		serialNumber = try values.decodeIfPresent(String.self, forKey: .serialNumber)
-		qty = try values.decodeIfPresent(Double.self, forKey: .qty)
-		rewardPoints = try values.decodeIfPresent(Double.self, forKey: .rewardPoints)
-		amount = try values.decodeIfPresent(Double.self, forKey: .amount)
-		discount = try values.decodeIfPresent(Int.self, forKey: .discount)
-	}
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        invoiceNo = try values.decodeIfPresent(String.self, forKey: .invoiceNo)
+        serialNumber = try values.decodeIfPresent(String.self, forKey: .serialNumber)
+        qty = try values.decodeIfPresent(Double.self, forKey: .qty)
+        rewardPoints = try values.decodeIfPresent(Double.self, forKey: .rewardPoints)
+        amount = try values.decodeIfPresent(Double.self, forKey: .amount)
+        discount = try values.decodeIfPresent(Int.self, forKey: .discount)
+    }
 
 }

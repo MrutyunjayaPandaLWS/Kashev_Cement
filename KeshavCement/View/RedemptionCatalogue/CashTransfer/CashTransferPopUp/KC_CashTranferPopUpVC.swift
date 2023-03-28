@@ -9,6 +9,7 @@ import UIKit
 import DPOTPView
 class KC_CashTranferPopUpVC: BaseViewController, DPOTPViewDelegate, SelectedDataDelegate{
     func didTapHelpTopic(_ vc: KC_DropDownVC) {}
+    func didTapAmount(_ vc: KC_DropDownVC){}
     func didTapCustomerType(_ vc: KC_DropDownVC) {}
     func didTapWorkLevel(_ vc: KC_DropDownVC) {}
     func didTapCityName(_ vc: KC_DropDownVC){}

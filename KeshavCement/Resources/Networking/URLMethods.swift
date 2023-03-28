@@ -49,6 +49,7 @@ let deactivateSupportExecutive = "CustomerAccountDelete"
 let queryListURLMethod = "SaveCustomerQueryTicket"
 let queryTopicURLMethod = "GetHelpTopics"
 
+let getCashTransferDenominations = "GetCashTransferDenominations"
 let newQuerySubmissionURLMethod = "SaveCustomerQueryTicket"
 let chatDetails_URLMethod = "GetQueryResponseInformation"
 let newChatSubmit_URLMethod = "SaveCustomerQueryTicket"
@@ -70,3 +71,9 @@ let voucherRedeem_URLMethodName = "SaveCatalogueRedemptionDetailsEssilor"
 let voucherList_URLMethod = "GetCatalogueDetails"
 let voucherFixedpoints_URLMethod = "GetCatalogueDetails"
 let voucherSubmit_URLMethod = "SaveCatalogueRedemptionDetails"
+
+let saveCustomerCasTransferDEtails = "SaveCustomerCasTransferDEtails"
+
+let cashTransferHistoryList = "GetCustomerCashTransferList"
+let cashTransferApproveOrRejectionSubmission = "CustomerCashTransferApprovalOrRejection"
+let myredemptionDetails_URLMethodName = "GetCustomerRedemptionHistorydetails"

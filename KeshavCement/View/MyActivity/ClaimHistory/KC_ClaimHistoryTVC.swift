@@ -9,6 +9,7 @@ import UIKit
 
 class KC_ClaimHistoryTVC: UITableViewCell {
 
+    @IBOutlet weak var claimIdLbl: UILabel!
     @IBOutlet weak var dateLbl: UILabel!
     
     @IBOutlet weak var categoryLbl: UILabel!

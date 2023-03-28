@@ -72,8 +72,9 @@ class KC_MyCartVM{
                 if result != nil{
                     DispatchQueue.main.async {
                         self.VC?.stopLoading()
+                        
                         if result?.returnMessage ?? "-1" == "1"{
-                            DispatchQueue.main.async {
+                            
                                 if self.VC?.customerTypeId ?? "" == "3" && self.VC?.partyLoyaltyId != "" || self.VC?.customerTypeId ?? "" == "4" && self.VC?.partyLoyaltyId != ""{
                                         self.getMycartList(PartyLoyaltyID: self.loyaltyId, LoyaltyID: self.VC!.partyLoyaltyId)
                                 }else if self.VC?.customerTypeId ?? "" == "3" && self.VC?.partyLoyaltyId == "" || self.VC?.customerTypeId ?? "" == "4" && self.VC?.partyLoyaltyId == ""{
@@ -81,12 +82,9 @@ class KC_MyCartVM{
                                 }else{
                                     self.getMycartList(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId)
                                 }
-                            }
                         }else{
-                            DispatchQueue.main.async {
                              
                                 self.VC!.view.makeToast("Something went wrong! Try again later!", duration: 2.0, position: .bottom)
-                            }
                         }
                         
                     }

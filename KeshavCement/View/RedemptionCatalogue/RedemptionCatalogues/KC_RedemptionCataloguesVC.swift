@@ -169,7 +169,7 @@ extension KC_RedemptionCataloguesVC: UICollectionViewDelegate, UICollectionViewD
                     self.deliveryTypeView.isHidden = false
                 }
             case "Cash Transfer":
-                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_CashTransferVC") as! KC_CashTransferVC
+                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_CashTransferSubmissionVC") as! KC_CashTransferSubmissionVC
                 self.navigationController?.pushViewController(vc, animated: true)
             case "Wishlist":
                 if self.customerTypeId == "1" || self.customerTypeId == "2"{

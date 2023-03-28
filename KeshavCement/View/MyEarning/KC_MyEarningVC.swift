@@ -30,14 +30,20 @@ class KC_MyEarningVC: BaseViewController, DateSelectedDelegate {
     @IBOutlet weak var selectToDateLbl: UILabel!
     @IBOutlet weak var selectFromDateLbl: UILabel!
     @IBOutlet weak var filterView: UIView!
+    @IBOutlet weak var noDataFoundLbl: UILabel!
+    
+    
     
     var VM = KC_MyEarningVM()
     var selectedFromDate = ""
     var selectedToDate = ""
+    var startIndex = 1
+    var noofelements = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.VM.VC = self
+        self.noDataFoundLbl.isHidden = true
         self.filterView.isHidden = true
         self.myEarningTV.delegate = self
         self.myEarningTV.dataSource = self
@@ -47,8 +53,9 @@ class KC_MyEarningVC: BaseViewController, DateSelectedDelegate {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        self.startIndex = 1
         self.VM.myEarningListArray.removeAll()
-        self.myEarningListApi(fromDate: self.selectedFromDate, toDate: self.selectedToDate)
+        self.myEarningListApi(StartIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate)
     }
     
     @IBAction func myEarningFilterBtn(_ sender: Any) {
@@ -56,8 +63,9 @@ class KC_MyEarningVC: BaseViewController, DateSelectedDelegate {
             self.filterView.isHidden = true
         }else{
             self.filterView.isHidden = false
+            self.startIndex = 1
             self.VM.myEarningListArray.removeAll()
-            self.myEarningListApi(fromDate: self.selectedFromDate, toDate: self.selectedToDate)
+            self.myEarningListApi(StartIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate)
         }
     }
     @IBAction func backActBtn(_ sender: Any) {
@@ -82,8 +90,9 @@ class KC_MyEarningVC: BaseViewController, DateSelectedDelegate {
     @IBAction func clearButton(_ sender: Any) {
         self.selectFromDateLbl.text = "Select From date"
         self.selectToDateLbl.text = "Select To date"
+        self.startIndex = 1
         self.VM.myEarningListArray.removeAll()
-        self.myEarningListApi(fromDate: self.selectedFromDate, toDate: self.selectedToDate)
+        self.myEarningListApi(StartIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate)
     }
     @IBAction func applyFilterButton(_ sender: Any) {
         if self.selectedFromDate == "" && self.selectedToDate == ""{
@@ -98,16 +107,17 @@ class KC_MyEarningVC: BaseViewController, DateSelectedDelegate {
             }else{
                 self.filterView.isHidden = true
                 self.VM.myEarningListArray.removeAll()
-                self.myEarningListApi(fromDate: self.selectedFromDate, toDate: self.selectedToDate)
+                self.myEarningListApi(StartIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate)
             }
         }
     }
     
-    func myEarningListApi(fromDate: String, toDate: String){
+    func myEarningListApi(StartIndex: Int, fromDate: String, toDate: String){
         
         let parameter = [
             "ActorId": self.userID,
-            "BehaviorId": 0,
+            "StartIndex": StartIndex,
+            "PageSize": 10,
             "JFromDate": fromDate,
             "JToDate": toDate
         ] as [String: Any]
@@ -132,40 +142,61 @@ extension KC_MyEarningVC : UITableViewDelegate,UITableViewDataSource{
             cell.timeLbl.text = "-"
         }
         cell.pointsLbl.text = "\(Int(self.VM.myEarningListArray[indexPath.row].rewardPoints ?? 0.0))"
-        
+        cell.productNameLbl.text = self.VM.myEarningListArray[indexPath.row].prodName ?? "-"
         if self.VM.myEarningListArray[indexPath.row].transactionType ?? "" == "BONUS"{
-            cell.remarksDetailsLbl.text = self.VM.myEarningListArray[indexPath.row].bonusName ?? ""
+            cell.remarksDetailsLbl.text = self.VM.myEarningListArray[indexPath.row].bonusName ?? "-"
         }else if self.VM.myEarningListArray[indexPath.row].transactionType ?? "" == "Referral"{
             cell.remarksDetailsLbl.text = "Referral Complimentary"
         }else if self.VM.myEarningListArray[indexPath.row].transactionType ?? "" == "Enrollment Complimentary"{
             cell.remarksDetailsLbl.text = "Enrollment Complimentary"
+        }else if self.VM.myEarningListArray[indexPath.row].transactionType ?? "" == "WORKSITE"{
+            cell.remarksDetailsLbl.text = "Worksite Program"
         }else{
             if self.VM.myEarningListArray[indexPath.row].invoiceNo ?? "" == "--"{
                 cell.remarksDetailsLbl.text = "Reward Adjusted"
             }else{
-                cell.remarksDetailsLbl.text = self.VM.myEarningListArray[indexPath.row].remarks ?? ""
+                cell.remarksDetailsLbl.text = self.VM.myEarningListArray[indexPath.row].remarks ?? "-"
             }
         }
         
-        if String(self.VM.myEarningListArray[indexPath.row].loyaltyId ?? "").prefix(1) == "~"{
-            let filterType = String(self.VM.myEarningListArray[indexPath.row].loyaltyId ?? "").split(separator: "~")
-            if filterType.count != 0 {
-                if filterType.count == 1{
-                    cell.dealerTypeLbl.text = "\(filterType[1])"
-                }else{
-                    cell.customerTypeNameLbl.text = "\(filterType[2])"
+        if String(self.VM.myEarningListArray[indexPath.row].loyaltyId ?? "").contains("~"){
+            let splitted = String(self.VM.myEarningListArray[indexPath.row].loyaltyId ?? "").split(separator: "~")
+            print(splitted.count)
+            if splitted.count != 0 {
+                print(splitted[0])
+                
+                    print(splitted[1])
+                    cell.customerTypeNameLbl.text = "\(splitted[1])"
+                    print(splitted[2])
+                    cell.dealerTypeLbl.text = "\(splitted[2])"
                 }
-            }
-        }else{
+            }else{
             cell.dealerTypeLbl.text = self.customerType
             cell.customerTypeNameLbl.text = self.userFullName
         }
-       
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 260
     }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+       
+            if indexPath.row == self.VM.myEarningListArray.count - 1{
+                if self.noofelements == 10{
+                    self.startIndex = self.startIndex + 1
+                    self.myEarningListApi(StartIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate)
+                }else if self.noofelements > 10{
+                    self.startIndex = self.startIndex + 1
+                    self.myEarningListApi(StartIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate)
+                }else if self.noofelements < 10{
+                    print("no need to hit API")
+                    return
+                }else{
+                    print("n0 more elements")
+                    return
+                }
+            }
+       }
     
 }

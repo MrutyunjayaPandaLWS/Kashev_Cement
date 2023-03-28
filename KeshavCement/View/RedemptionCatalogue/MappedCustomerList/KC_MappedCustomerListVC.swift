@@ -83,23 +83,28 @@ extension KC_MappedCustomerListVC: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch self.itsFrom {
-        case "CATALOGUE":
-            let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_ProductCatalogueVC") as! KC_ProductCatalogueVC
-            vc.partyLoyaltyId = self.VM.mappedCustomerListArray[indexPath.row].loyaltyID ?? ""
-            self.navigationController?.pushViewController(vc, animated: true)
-        case "eVoucher":
-            let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "QS_MyVouchers_VC") as! QS_MyVouchers_VC
-            vc.partyLoyaltyId = self.VM.mappedCustomerListArray[indexPath.row].loyaltyID ?? ""
-            self.navigationController?.pushViewController(vc, animated: true)
-        case "WISHLIST":
-            let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "HR_RedemptionPlannerVC") as! HR_RedemptionPlannerVC
-            vc.partyLoyaltyId = self.VM.mappedCustomerListArray[indexPath.row].loyaltyID ?? ""
-            self.navigationController?.pushViewController(vc, animated: true)
-        default:
-            print("None")
+        if self.VM.mappedCustomerListArray[indexPath.row].isActive ?? -1 == 1{
+            switch self.itsFrom {
+            case "CATALOGUE":
+                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_ProductCatalogueVC") as! KC_ProductCatalogueVC
+                vc.partyLoyaltyId = self.VM.mappedCustomerListArray[indexPath.row].loyaltyID ?? ""
+                self.navigationController?.pushViewController(vc, animated: true)
+            case "eVoucher":
+                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "QS_MyVouchers_VC") as! QS_MyVouchers_VC
+                vc.partyLoyaltyId = self.VM.mappedCustomerListArray[indexPath.row].loyaltyID ?? ""
+                self.navigationController?.pushViewController(vc, animated: true)
+            case "WISHLIST":
+                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "HR_RedemptionPlannerVC") as! HR_RedemptionPlannerVC
+                vc.partyLoyaltyId = self.VM.mappedCustomerListArray[indexPath.row].loyaltyID ?? ""
+                self.navigationController?.pushViewController(vc, animated: true)
+            default:
+                print("None")
+            }
+            
+        }else if self.VM.mappedCustomerListArray[indexPath.row].isActive ?? -1 != 1{
+            self.view.makeToast("The account is not allowed to redeem. Kindly contact the administrator", duration: 2.0, position: .bottom)
         }
-        
+       
     
     }
     

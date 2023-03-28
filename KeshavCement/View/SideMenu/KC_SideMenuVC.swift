@@ -9,11 +9,12 @@ import UIKit
 import SlideMenuControllerSwift
 class KC_SideMenuVC: BaseViewController {
 
+    @IBOutlet weak var scrollViewHeight: NSLayoutConstraint!
     @IBOutlet weak var sideMenuTableViewHeightConstratin: NSLayoutConstraint!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var editProfileBtn: UIButton!
     @IBOutlet weak var logoutLbl: UILabel!
-    @IBOutlet weak var sideMenuViewHeightConstraint: NSLayoutConstraint!
+   // @IBOutlet weak var sideMenuViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var sideMenuTableView: UITableView!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var profileView: UIView!
@@ -155,7 +156,7 @@ class KC_SideMenuVC: BaseViewController {
                 self.sideMenuItems.append(SideMenuModel(parentName: "Dream Gift", parentList:  [], parentID: 5, parentExpand: false, parentImage: "Redemption Catalogue"))
                 self.sideMenuItems.append(SideMenuModel(parentName: "My Redemption", parentList:  [], parentID: 6, parentExpand: false, parentImage: "My Redemption"))
                 self.sideMenuItems.append(SideMenuModel(parentName: "My Earning", parentList:  [], parentID: 7, parentExpand: false, parentImage: "My Earning"))
-                self.sideMenuItems.append(SideMenuModel(parentName: "My Activity", parentList:    self.benefitsItem, parentID: 8, parentExpand: false, parentImage: "Layer 3", parentDropDownImage: "caret-down 1"))
+                self.sideMenuItems.append(SideMenuModel(parentName: "My Activity", parentList:    self.benefitsItem, parentID: 8, parentExpand: false, parentImage: "Layer 3", parentDropDownImage: "arrow-down"))
                 self.sideMenuItems.append(SideMenuModel(parentName: "Refer and Earn", parentList:  [], parentID: 9, parentExpand: false, parentImage: "_x30_6_Recommendation_letter"))
                 self.sideMenuItems.append(SideMenuModel(parentName: "Helpline", parentList:  [], parentID: 10, parentExpand: false, parentImage: "_x34_0__Customer_Care"))
                 self.sideMenuItems.append(SideMenuModel(parentName: "Offers and Promotions", parentList:  [], parentID: 11, parentExpand: false, parentImage: "13 Price Tag, Discount, Label,"))
@@ -179,7 +180,7 @@ class KC_SideMenuVC: BaseViewController {
                 self.sideMenuItems.append(SideMenuModel(parentName: "Dream Gift", parentList:  [], parentID: 7, parentExpand: false, parentImage: "Redemption Catalogue"))
                 self.sideMenuItems.append(SideMenuModel(parentName: "My Redemption", parentList:  [], parentID: 8, parentExpand: false, parentImage: "My Redemption"))
                 self.sideMenuItems.append(SideMenuModel(parentName: "My Earning", parentList:  [], parentID: 9, parentExpand: false, parentImage: "My Earning"))
-                self.sideMenuItems.append(SideMenuModel(parentName: "My Activity", parentList:    self.benefitsItem, parentID: 10, parentExpand: false, parentImage: "Layer 3", parentDropDownImage: "caret-down 1"))
+                self.sideMenuItems.append(SideMenuModel(parentName: "My Activity", parentList:    self.benefitsItem, parentID: 10, parentExpand: false, parentImage: "Layer 3", parentDropDownImage: "arrow-down"))
                 
                 self.sideMenuItems.append(SideMenuModel(parentName: "Refer and Earn", parentList:  [], parentID: 11, parentExpand: false, parentImage: "_x30_6_Recommendation_letter"))
                 self.sideMenuItems.append(SideMenuModel(parentName: "Helpline", parentList:  [], parentID: 12, parentExpand: false, parentImage: "_x34_0__Customer_Care"))
@@ -216,22 +217,12 @@ extension KC_SideMenuVC: UITableViewDelegate, UITableViewDataSource{
                 cell?.categoryTitle.text = sideMenuItems[indexPath.section].parentList![indexPath.row].sideMenuItem ?? ""
                print(sideMenuItems[indexPath.section].parentList![indexPath.row].sideMenuItem ?? "", "Sidemenu title")
                 cell?.categoryImage.image = UIImage(named: sideMenuItems[indexPath.section].parentList![indexPath.row].sidemenuImage ?? "")
-             //   cell?.leadingConstrain.constant = 30
                 cell?.leadingSpaceConstraint.constant = 30
-                cell?.dropDownImage.isHidden = false
-                if self.customerTypeIds == 3 || self.customerTypeIds == 4{
-                    if sideMenuItems[indexPath.section].parentList![indexPath.row].sideMenuItem ?? "" == "My Activity"{
-                        cell?.dropDownImage.isHidden = false
-                    }else{
-                        cell?.dropDownImage.isHidden = true
-                    }
-                    
-                }
+                cell?.dropDownImage.isHidden = true
             }
            
         }else{
             cell?.leadingSpaceConstraint.constant = 8
-           
         }
         return cell!
     }
@@ -262,22 +253,27 @@ extension KC_SideMenuVC: UITableViewDelegate, UITableViewDataSource{
         label.font = label.font.withSize(14)
         let labelimage = UIImageView()
         labelimage.frame = CGRect.init(x: 10, y: 5, width: 25, height: 25)
+        let labelimage1 = UIImageView()
+        labelimage1.frame = CGRect.init(x: 270, y: 12, width: 14, height: 9)
         let button = UIButton()
         button.frame = CGRect.init(x: 0, y: 0, width: headerView.frame.width, height: headerView.frame.height)
         button.backgroundColor = UIColor.clear
         label.text = sideMenuItems[section].parentName ?? ""
-        
-//        let label1 = UILabel()
-//        label1.frame = CGRect.init(x: 8, y: headerView.frame.height - 1, width: headerView.frame.width - 16, height: 1)
-//        //        label1.backgroundColor = UIColor(red: 209/255, green: 209/255, blue: 214/255, alpha: 1)
-//        label1.textColor = UIColor.darkGray
-//        label1.font = label1.font.withSize(0)
-//        label1.backgroundColor = UIColor.white
-//        headerView.addSubview(label1)
+        print(label.text, "Sidemenu Title")
+
         
         headerView.addSubview(label)
         labelimage.image = UIImage(named: sideMenuItems[section].parentImage ?? "Lodge Query")
         headerView.addSubview(labelimage)
+        if self.customerTypeIds == 3 || self.customerTypeIds == 4{
+            if sideMenuItems[section].parentName ?? "" == "My Activity"{
+                
+                labelimage1.image = UIImage(named: sideMenuItems[section].parentDropDownImage ?? "Lodge Query")
+                headerView.addSubview(labelimage1)
+            }
+        }
+       
+        
         headerView.addSubview(button)
         
         button.tag = sideMenuItems[section].parentID ?? -1

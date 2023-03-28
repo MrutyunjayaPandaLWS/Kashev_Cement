@@ -199,6 +199,10 @@ class KC_PendingClaimVC: BaseViewController, DataUpdateDelegate, DPOTPViewDelega
         self.navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func closeBtn(_ sender: Any) {
+        self.VM.timer.invalidate()
+        self.otpPopUpView.isHidden = true
+    }
     
     @IBAction func searchByNameEditingDidEnd(_ sender: Any) {
         self.clearTable()
@@ -366,6 +370,8 @@ extension KC_PendingClaimVC: UITableViewDelegate, UITableViewDataSource{
         }else{
             cell.remarksTF.text = self.claimPurchaseListArray[indexPath.row].remarks ?? ""
         }
+        
+        cell.claimIdLbl.text = self.claimPurchaseListArray[indexPath.row].invoiceNo ?? "-"
         
         cell.minusButton.tag = indexPath.row
         cell.plusButton.tag = indexPath.row

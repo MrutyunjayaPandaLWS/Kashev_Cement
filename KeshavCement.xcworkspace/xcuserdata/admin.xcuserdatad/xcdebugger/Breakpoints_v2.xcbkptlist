@@ -52,5 +52,149 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4A39D89B-CEE2-42E4-A7B5-6ABB6AA22699"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KeshavCement/ViewModels/MyRedemptionListVM/HR_MyRedemptionDetailsVM.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "redemptionDetailsApi(customerId:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4A39D89B-CEE2-42E4-A7B5-6ABB6AA22699 - abf0aad36964158a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KeshavCement.HR_MyRedemptionDetailsVM.redemptionDetailsApi(customerId: Swift.String) -&gt; ()"
+                  moduleName = "KeshavCement"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/Documents/LWS_Projects/Kashev_Cement/KeshavCement/ViewModels/MyRedemptionListVM/HR_MyRedemptionDetailsVM.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "1786">
+               </Location>
+               <Location
+                  uuid = "4A39D89B-CEE2-42E4-A7B5-6ABB6AA22699 - af4960c7f75d43a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;KeshavCement.MyRedemptionDetailsModels&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in KeshavCement.HR_MyRedemptionDetailsVM.redemptionDetailsApi(customerId: Swift.String) -&gt; ()"
+                  moduleName = "KeshavCement"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/Documents/LWS_Projects/Kashev_Cement/KeshavCement/ViewModels/MyRedemptionListVM/HR_MyRedemptionDetailsVM.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "217">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E5C782C4-04FE-4773-9319-38C384BDE3FF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KeshavCement/View/My Redemption/HRD_MyRedemptionDetailsVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4AAA0FFE-8AAA-4DA2-8B4B-0AD75CBBC650"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KeshavCement/View/CashTransferApproval/KC_CashTranferApprovalVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "cashTransferSubmissionApi(partyLoyalty:remarks:status:cashTransferId:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0DB27030-C77E-4728-B1BF-CFF85E48EC1A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KeshavCement/ViewModels/MyCartVM/KC_MyCartVM.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "getMycartList(PartyLoyaltyID:LoyaltyID:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0DB27030-C77E-4728-B1BF-CFF85E48EC1A - 466727ef2fbc55cf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KeshavCement.KC_MyCartVM.getMycartList(PartyLoyaltyID: Swift.String, LoyaltyID: Swift.String) -&gt; ()"
+                  moduleName = "KeshavCement"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/Documents/LWS_Projects/Kashev_Cement/KeshavCement/ViewModels/MyCartVM/KC_MyCartVM.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "954">
+               </Location>
+               <Location
+                  uuid = "0DB27030-C77E-4728-B1BF-CFF85E48EC1A - 53f805c37c60cac2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;KeshavCement.ProductMyCartListModel&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in KeshavCement.KC_MyCartVM.getMycartList(PartyLoyaltyID: Swift.String, LoyaltyID: Swift.String) -&gt; ()"
+                  moduleName = "KeshavCement"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/Documents/LWS_Projects/Kashev_Cement/KeshavCement/ViewModels/MyCartVM/KC_MyCartVM.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "217">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0E708E4C-8C47-4E67-878D-7C9218A56243"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KeshavCement/View/RedemptionCatalogue/ProductCatalogue/MyCart/KC_MyCartVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
+            landmarkName = "removeProduct(PartyLoyaltyID:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

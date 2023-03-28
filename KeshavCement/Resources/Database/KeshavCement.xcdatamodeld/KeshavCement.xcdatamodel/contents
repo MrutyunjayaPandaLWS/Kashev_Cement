@@ -19,7 +19,9 @@
         <attribute name="vendorid" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="vendorName" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="CashTransferApproval" representedClassName="CashTransferApproval" syncable="YES" codeGenerationType="class"/>
     <entity name="PendingClaimPurcase" representedClassName="PendingClaimPurcase" syncable="YES" codeGenerationType="class">
+        <attribute name="invoiceNo" optional="YES" attributeType="String"/>
         <attribute name="locationName" optional="YES" attributeType="String"/>
         <attribute name="memberName" optional="YES" attributeType="String"/>
         <attribute name="memberType" optional="YES" attributeType="String"/>

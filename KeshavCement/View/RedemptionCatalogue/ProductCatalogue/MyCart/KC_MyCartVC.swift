@@ -38,9 +38,9 @@ class KC_MyCartVC: BaseViewController, MyCartDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.noDataFoundLbl.isHidden = true
-        if self.customerTypeId ?? "" == "3" && self.partyLoyaltyId != "" || self.customerTypeId ?? "" == "4" && self.partyLoyaltyId != ""{
+        if self.customerTypeId == "3" && self.partyLoyaltyId != "" || self.customerTypeId == "4" && self.partyLoyaltyId != ""{
             self.VM.getMycartList(PartyLoyaltyID: self.loyaltyId, LoyaltyID: self.partyLoyaltyId)
-        }else if self.customerTypeId ?? "" == "3" && self.partyLoyaltyId == "" || self.customerTypeId ?? "" == "4" && self.partyLoyaltyId == ""{
+        }else if self.customerTypeId == "3" && self.partyLoyaltyId == "" || self.customerTypeId == "4" && self.partyLoyaltyId == ""{
             self.VM.getMycartList(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId)
         }else{
             self.VM.getMycartList(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId)
@@ -162,12 +162,9 @@ class KC_MyCartVC: BaseViewController, MyCartDelegate {
         if cell.removeBtn.tag == tappedIndexPath.row{
             self.customerCartId = self.VM.myCartListArray[tappedIndexPath.row].customerCartId ?? 0
          
-            if self.customerTypeId ?? "" == "3" && self.partyLoyaltyId != "" || self.customerTypeId ?? "" == "4" && self.partyLoyaltyId != ""{
-                
-                    self.removeProduct(PartyLoyaltyID: self.partyLoyaltyId)
-                
-                
-            }else if self.customerTypeId ?? "" == "3" && self.partyLoyaltyId == "" || self.customerTypeId ?? "" == "4" && self.partyLoyaltyId == ""{
+            if self.customerTypeId == "3" && self.partyLoyaltyId != "" || self.customerTypeId == "4" && self.partyLoyaltyId != ""{
+                self.removeProduct(PartyLoyaltyID: self.loyaltyId)
+            }else if self.customerTypeId == "3" && self.partyLoyaltyId == "" || self.customerTypeId == "4" && self.partyLoyaltyId == ""{
                 self.removeProduct(PartyLoyaltyID: "")
             }else{
                 self.removeProduct(PartyLoyaltyID: "")
