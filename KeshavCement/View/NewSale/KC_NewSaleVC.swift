@@ -425,7 +425,7 @@ class KC_NewSaleVC: BaseViewController, SelectedDataDelegate, DPOTPViewDelegate{
                         "Quantity": self.quantity
                     ]
                 ],
-                "RitailerId": UserDefaults.standard.string(forKey: "mappedCustomerId") ?? "",
+                "RitailerId": self.userID,
                 "SourceDevice": 1,
                 "TranDate": "\(desiredDateFormat)",
                 "Approval_Status": "1"

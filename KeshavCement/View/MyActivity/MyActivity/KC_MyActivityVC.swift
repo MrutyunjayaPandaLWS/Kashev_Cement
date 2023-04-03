@@ -284,7 +284,7 @@ extension KC_MyActivityVC: UITableViewDelegate, UITableViewDataSource{
             cell.dateLbl.text = "-"
         }
         cell.categoryLbl.text = self.VM.claimHistoryListArray[indexPath.row].customer_Type ?? ""
-        cell.userNameLbl.text = self.VM.claimHistoryListArray[indexPath.row].salesPersonsName ?? ""
+        cell.userNameLbl.text = self.VM.claimHistoryListArray[indexPath.row].requestTo ?? ""
         if self.VM.claimHistoryListArray[indexPath.row].status ?? "" == "Pending"{
             cell.statusLbl.backgroundColor = #colorLiteral(red: 0.8848068118, green: 0.9562426209, blue: 0.8934361935, alpha: 1)
             cell.statusLbl.textColor = .green
@@ -293,13 +293,14 @@ extension KC_MyActivityVC: UITableViewDelegate, UITableViewDataSource{
             cell.statusLbl.textColor = #colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1)
 
         }else{
-            cell.statusLbl.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
-            cell.statusLbl.textColor = #colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 1)
+            cell.statusLbl.backgroundColor = #colorLiteral(red: 0.8848068118, green: 0.9562426209, blue: 0.8934361935, alpha: 1)
+            cell.statusLbl.textColor = #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
         }
         cell.statusLbl.text = self.VM.claimHistoryListArray[indexPath.row].status ?? ""
         cell.productNameLbl.text =  self.VM.claimHistoryListArray[indexPath.row].productName ?? ""
+        let quanty = Float(String(self.VM.claimHistoryListArray[indexPath.row].approvedQuantity ?? "0"))
         cell.orderedQty.text = "\(Int(self.VM.claimHistoryListArray[indexPath.row].quantity ?? 0.0))"
-        cell.qtyLb.text = self.VM.claimHistoryListArray[indexPath.row].approvedQuantity ?? "0"
+        cell.qtyLb.text = "\(Int(quanty!))"
         cell.remarks.text = "  \(self.VM.claimHistoryListArray[indexPath.row].remarks ?? "")"
         return cell
     }

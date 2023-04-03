@@ -65,7 +65,6 @@ class KC_ActivateAccountVM{
             }
         }
     }
-    
 
     
     func verifyMobileNumberAPI(paramters: JSON){
