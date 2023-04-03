@@ -435,7 +435,7 @@ extension KC_DashBoardVC: UICollectionViewDelegate, UICollectionViewDataSource{
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_CashTranferApprovalVC") as! KC_CashTranferApprovalVC
                 self.navigationController?.pushViewController(vc, animated: true)
             }else if indexPath.row == 3{
-                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_NewSaleVC") as! KC_NewSaleVC
+                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_ClaimPurchaseVC") as! KC_ClaimPurchaseVC
                 self.navigationController?.pushViewController(vc, animated: true)
             }else if indexPath.row == 4{
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_RedemptionCataloguesVC") as! KC_RedemptionCataloguesVC

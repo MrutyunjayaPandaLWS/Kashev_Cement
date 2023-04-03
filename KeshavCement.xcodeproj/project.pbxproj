@@ -46,7 +46,7 @@
 		25DC5C4E295C1C4B00818258 /* TextfieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DC5C42295C1C4B00818258 /* TextfieldExtension.swift */; };
 		25DC5C4F295C1C4B00818258 /* ViewControllerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DC5C43295C1C4B00818258 /* ViewControllerUtils.swift */; };
 		25E7817B295D49E90026A86C /* KC_RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E7817A295D49E90026A86C /* KC_RegisterVC.swift */; };
-		7EC2EBEB967128EE5E3EF18B /* Pods_KeshavCement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65052BF42DA3C939F747D10B /* Pods_KeshavCement.framework */; };
+		6F4A05544161E0E0B21F6EEA /* Pods_KeshavCement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A3C92B3424F64E4376693AD /* Pods_KeshavCement.framework */; };
 		8400469429C59641007DC492 /* SubmitVoucherModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400469329C59641007DC492 /* SubmitVoucherModels.swift */; };
 		8400469629C59700007DC492 /* QS_SuccessTransfer_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400469529C59700007DC492 /* QS_SuccessTransfer_VC.swift */; };
 		840CC62529A732E0005B438D /* ProductCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840CC62329A732E0005B438D /* ProductCategoryModel.swift */; };
@@ -420,8 +420,6 @@
 		25DC5C42295C1C4B00818258 /* TextfieldExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextfieldExtension.swift; sourceTree = "<group>"; };
 		25DC5C43295C1C4B00818258 /* ViewControllerUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerUtils.swift; sourceTree = "<group>"; };
 		25E7817A295D49E90026A86C /* KC_RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_RegisterVC.swift; sourceTree = "<group>"; };
-		3DEEF38828B83BD60E93455C /* Pods-KeshavCement.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KeshavCement.release.xcconfig"; path = "Target Support Files/Pods-KeshavCement/Pods-KeshavCement.release.xcconfig"; sourceTree = "<group>"; };
-		65052BF42DA3C939F747D10B /* Pods_KeshavCement.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KeshavCement.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8400469329C59641007DC492 /* SubmitVoucherModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitVoucherModels.swift; sourceTree = "<group>"; };
 		8400469529C59700007DC492 /* QS_SuccessTransfer_VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QS_SuccessTransfer_VC.swift; sourceTree = "<group>"; };
 		840CC62329A732E0005B438D /* ProductCategoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCategoryModel.swift; sourceTree = "<group>"; };
@@ -739,7 +737,9 @@
 		84F8420829A8812200377B26 /* PlannerRemoveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlannerRemoveModel.swift; sourceTree = "<group>"; };
 		84F8432A2968320B000ABA34 /* KC_EvoucherPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_EvoucherPopUpVC.swift; sourceTree = "<group>"; };
 		84FA411D297531DE0084FB2B /* KC_SupporteExecutiveTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_SupporteExecutiveTVC.swift; sourceTree = "<group>"; };
-		AE05E98DD6519545AD5C2524 /* Pods-KeshavCement.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KeshavCement.debug.xcconfig"; path = "Target Support Files/Pods-KeshavCement/Pods-KeshavCement.debug.xcconfig"; sourceTree = "<group>"; };
+		8A3C92B3424F64E4376693AD /* Pods_KeshavCement.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KeshavCement.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B046FF6CB05C489B124E5919 /* Pods-KeshavCement.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KeshavCement.release.xcconfig"; path = "Target Support Files/Pods-KeshavCement/Pods-KeshavCement.release.xcconfig"; sourceTree = "<group>"; };
+		FE86E75BF9B9D9E5B56C7F99 /* Pods-KeshavCement.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KeshavCement.debug.xcconfig"; path = "Target Support Files/Pods-KeshavCement/Pods-KeshavCement.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -747,7 +747,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EC2EBEB967128EE5E3EF18B /* Pods_KeshavCement.framework in Frameworks */,
+				6F4A05544161E0E0B21F6EEA /* Pods_KeshavCement.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -768,11 +768,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2273D0B8C64FEB4024296A81 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8A3C92B3424F64E4376693AD /* Pods_KeshavCement.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		23D54F8C47A484C4EAC0AA69 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				AE05E98DD6519545AD5C2524 /* Pods-KeshavCement.debug.xcconfig */,
-				3DEEF38828B83BD60E93455C /* Pods-KeshavCement.release.xcconfig */,
+				FE86E75BF9B9D9E5B56C7F99 /* Pods-KeshavCement.debug.xcconfig */,
+				B046FF6CB05C489B124E5919 /* Pods-KeshavCement.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -827,7 +835,7 @@
 				25DC5C04295C1A5D00818258 /* KeshavCementUITests */,
 				25DC5BDF295C1A3F00818258 /* Products */,
 				23D54F8C47A484C4EAC0AA69 /* Pods */,
-				993BE6576B051B5EF9C354A1 /* Frameworks */,
+				2273D0B8C64FEB4024296A81 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2882,14 +2890,6 @@
 			path = RedemptionCatalogues;
 			sourceTree = "<group>";
 		};
-		993BE6576B051B5EF9C354A1 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				65052BF42DA3C939F747D10B /* Pods_KeshavCement.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2897,11 +2897,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 25DC5C0B295C1A5D00818258 /* Build configuration list for PBXNativeTarget "KeshavCement" */;
 			buildPhases = (
-				E2D9832E929F0DB9D7B2C934 /* [CP] Check Pods Manifest.lock */,
+				A161452D3F214432FE599B6D /* [CP] Check Pods Manifest.lock */,
 				25DC5BDA295C1A3F00818258 /* Sources */,
 				25DC5BDB295C1A3F00818258 /* Frameworks */,
 				25DC5BDC295C1A3F00818258 /* Resources */,
-				D622A7AFE517F1BC5BD84C6F /* [CP] Embed Pods Frameworks */,
+				D744EF6F4274928BD22F02D7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -3046,24 +3046,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		D622A7AFE517F1BC5BD84C6F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-KeshavCement/Pods-KeshavCement-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-KeshavCement/Pods-KeshavCement-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KeshavCement/Pods-KeshavCement-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E2D9832E929F0DB9D7B2C934 /* [CP] Check Pods Manifest.lock */ = {
+		A161452D3F214432FE599B6D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3083,6 +3066,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D744EF6F4274928BD22F02D7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KeshavCement/Pods-KeshavCement-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KeshavCement/Pods-KeshavCement-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KeshavCement/Pods-KeshavCement-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -3598,12 +3598,12 @@
 		};
 		25DC5C0C295C1A5D00818258 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AE05E98DD6519545AD5C2524 /* Pods-KeshavCement.debug.xcconfig */;
+			baseConfigurationReference = FE86E75BF9B9D9E5B56C7F99 /* Pods-KeshavCement.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
@@ -3626,7 +3626,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "loyltwo3ks-Pvt-Ltd.KeshavCement";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Kashev_Adhoc_Cer;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Kashev_Dev_Cer;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3635,12 +3635,12 @@
 		};
 		25DC5C0D295C1A5D00818258 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3DEEF38828B83BD60E93455C /* Pods-KeshavCement.release.xcconfig */;
+			baseConfigurationReference = B046FF6CB05C489B124E5919 /* Pods-KeshavCement.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
@@ -3663,7 +3663,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "loyltwo3ks-Pvt-Ltd.KeshavCement";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Kashev_Adhoc_Cer;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Kashev_Dev_Cer;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

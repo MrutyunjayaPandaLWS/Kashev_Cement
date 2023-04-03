@@ -390,7 +390,7 @@ extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
                 }
             }else if self.customerType == "Sub Dealer"{
                 self.selectedUserTypeName = self.subdealerArray[indexPath.row]
-                self.selectedUserTypeId = 4
+                self.selectedUserTypeId = 3
             }
             self.delegate?.didTapUserType(self)
             self.dismiss(animated: true)

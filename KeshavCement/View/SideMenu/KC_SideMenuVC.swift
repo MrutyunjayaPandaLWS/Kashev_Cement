@@ -66,10 +66,13 @@ class KC_SideMenuVC: BaseViewController {
      
         if self.customerTypeIds == 1 || self.customerTypeIds == 2{
             self.sideMenuTableViewHeightConstratin.constant = 635
+            self.scrollViewHeight.constant = 635
         }else if self.customerTypeIds == 3{
             self.sideMenuTableViewHeightConstratin.constant = 750
+            self.scrollViewHeight.constant = 750
         }else{
             self.sideMenuTableViewHeightConstratin.constant = 850
+            self.scrollViewHeight.constant = 850
         }
         self.sideMenuTableView.reloadData()
     }

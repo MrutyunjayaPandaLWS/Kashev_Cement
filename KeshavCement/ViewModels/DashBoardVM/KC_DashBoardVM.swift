@@ -183,6 +183,8 @@ class KC_DashBoardVM: SendNewPasswordDelegate{
                                     let mappedData = (result?.lstCustomerFeedBackJsonApi?[0].mappedCustomerName ?? "").split(separator: "~")
                                     let mappedCustomerType = result?.lstCustomerFeedBackJsonApi?[0].mappedCustomerType ?? ""
                                     
+                                    UserDefaults.standard.set(result?.lstCustomerFeedBackJsonApi?[0].mappedCustomerType ?? "", forKey: "mappedCustomerType")
+                                    
                                     self.VC?.whenPurchaseLbl.text = "Start Selling"
                                     self.VC?.claimPurchaseLbl.text = "Click here"
                                     self.VC?.pointBalanceLbl.text = "\(mappedCustomerType) "+"\(mappedData[1])"

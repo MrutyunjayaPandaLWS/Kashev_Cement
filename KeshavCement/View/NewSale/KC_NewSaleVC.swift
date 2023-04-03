@@ -135,19 +135,39 @@ class KC_NewSaleVC: BaseViewController, SelectedDataDelegate, DPOTPViewDelegate{
     }
     
     @IBAction func selectCutomerTypeBtn(_ sender: Any) {
-     
+        print(mappedCustomerType, "saldf;dkafjls;jkl;fadsjklafsjlkdfasdsfjlak")
+        if self.mappedCustomerType == "Dealer" && self.customerTypeId == "5"{
             let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
-        if self.customerTypeId == "3" || self.customerTypeId == "5"{
             vc.itsFrom = "CUSTOMERTYPE3"
-        }else{
+            vc.delegate = self
+            vc.customerType = self.customerType
+            vc.modalTransitionStyle = .coverVertical
+            vc.modalPresentationStyle = .overFullScreen
+            self.present(vc, animated: true)
+        }else if self.mappedCustomerType == "Sub Dealer" && self.customerTypeId == "5"{
+            let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
             vc.itsFrom = "CUSTOMERTYPE4"
-        }
+            vc.delegate = self
+            vc.customerType = self.customerType
+            vc.modalTransitionStyle = .coverVertical
+            vc.modalPresentationStyle = .overFullScreen
+            self.present(vc, animated: true)
+        }else{
+            let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
+            if self.customerTypeId == "3" {
+                vc.itsFrom = "CUSTOMERTYPE3"
+            }else if self.customerTypeId == "5"{
+                vc.itsFrom = "CUSTOMERTYPE4"
+            }else if self.customerTypeId == "4"{
+                vc.itsFrom = "CUSTOMERTYPE4"
+            }else{
+                vc.itsFrom = "CUSTOMERTYPE4"
+            }
             vc.delegate = self
             vc.modalTransitionStyle = .coverVertical
             vc.modalPresentationStyle = .overFullScreen
             self.present(vc, animated: true)
-        
-
+        }
     }
     
     @IBAction func selectProductBtn(_ sender: Any) {
@@ -398,14 +418,14 @@ class KC_NewSaleVC: BaseViewController, SelectedDataDelegate, DPOTPViewDelegate{
         
         if self.customerTypeId == "5"{
             let parameter = [
-                "ActorId": UserDefaults.standard.string(forKey: "mappedCustomerId") ?? "",
+                "ActorId": self.mappedUserId,
                 "ProductSaveDetailList": [
                     [
                         "ProductCode": self.selectedProductCode,
                         "Quantity": self.quantity
                     ]
                 ],
-                "RitailerId": self.mappedUserId,
+                "RitailerId": UserDefaults.standard.string(forKey: "mappedCustomerId") ?? "",
                 "SourceDevice": 1,
                 "TranDate": "\(desiredDateFormat)",
                 "Approval_Status": "1"

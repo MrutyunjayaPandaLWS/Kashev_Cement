@@ -40,6 +40,8 @@ class KC_UserDetailsVC: BaseViewController, UITextFieldDelegate{
         super.viewDidLoad()
         self.ownerMobileTF.delegate = self
         self.engineerNumberTF.delegate = self
+        self.ownerMobileTF.keyboardType = .asciiCapableNumberPad
+        self.engineerNumberTF.keyboardType = .asciiCapableNumberPad
         print(self.currentLatitude, "User Details List")
         
     }

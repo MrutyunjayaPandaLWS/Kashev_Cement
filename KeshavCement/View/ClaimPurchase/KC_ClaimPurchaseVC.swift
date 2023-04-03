@@ -110,13 +110,16 @@ class KC_ClaimPurchaseVC: BaseViewController, SelectedDataDelegate{
     }
     @IBAction func selectTypeBtn(_ sender: Any) {
         
-        let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
-        vc.itsFrom = "USERTYPE"
-        vc.delegate = self
-        vc.customerType = self.customerType
-        vc.modalTransitionStyle = .coverVertical
-        vc.modalPresentationStyle = .overFullScreen
-        self.present(vc, animated: true)
+        
+            let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
+            vc.itsFrom = "USERTYPE"
+            vc.delegate = self
+            vc.customerType = self.customerType
+            vc.modalTransitionStyle = .coverVertical
+            vc.modalPresentationStyle = .overFullScreen
+            self.present(vc, animated: true)
+        
+
     }
     
     @IBAction func selectProductBtn(_ sender: Any) {
@@ -249,13 +252,15 @@ class KC_ClaimPurchaseVC: BaseViewController, SelectedDataDelegate{
         if self.selectedUserTypeId == -1{
             self.view.makeToast("Please select user type", duration: 2.0, position: .bottom)
         }else{
-            let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
-            vc.itsFrom = "MAPPEDUSERS"
-            vc.delegate = self
-            vc.selectedUserTypeId = self.selectedUserTypeId
-            vc.modalTransitionStyle = .coverVertical
-            vc.modalPresentationStyle = .overFullScreen
-            self.present(vc, animated: true)
+            
+                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
+                vc.itsFrom = "MAPPEDUSERS"
+                vc.delegate = self
+                vc.selectedUserTypeId = self.selectedUserTypeId
+                vc.modalTransitionStyle = .coverVertical
+                vc.modalPresentationStyle = .overFullScreen
+                self.present(vc, animated: true)
+          
         }
     }
     func getDate(date: Date) -> String{

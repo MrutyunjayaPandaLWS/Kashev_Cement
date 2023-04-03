@@ -26,7 +26,7 @@ class KC_WorkDetailsVC: BaseViewController, DateSelectedDelegate, SelectedDataDe
     func didTapUserType(_ vc: KC_DropDownVC) {}
     
     func acceptDate(_ vc: KC_DOBVC) {
-        if vc.isComeFrom == "1"{
+        if vc.isComeFrom == "TENTATIVE"{
             self.selectedDate = vc.selectedDate
             self.selectedDateLbl.text = vc.selectedDate
             self.selectedDateLbl.textColor = .darkGray
@@ -88,7 +88,7 @@ class KC_WorkDetailsVC: BaseViewController, DateSelectedDelegate, SelectedDataDe
     
     @IBAction func calenderButton(_ sender: Any) {
         let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DOBVC") as! KC_DOBVC
-        vc.isComeFrom = "1"
+        vc.isComeFrom = "TENTATIVE"
         vc.delegate = self
         vc.modalTransitionStyle = .coverVertical
         vc.modalPresentationStyle = .overFullScreen

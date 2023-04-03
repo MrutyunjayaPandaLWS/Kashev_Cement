@@ -92,8 +92,8 @@ class KC_MyPurchaseClaimVC: BaseViewController, DateSelectedDelegate, DialPadsDe
             self.pendingBtn.setTitleColor(.white, for: .normal)
             self.approvedBtn.setTitleColor(.white, for: .normal)
             self.rejectedBtn.setTitleColor(.white, for: .normal)
-            self.VM.myPurchaseListArray.removeAll()
-            self.myClaimPurchaseListApi(startIndex: 1, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: -3)
+            //self.VM.myPurchaseListArray.removeAll()
+//            self.myClaimPurchaseListApi(startIndex: 1, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: -3)
         }
     }
     
@@ -220,61 +220,63 @@ extension KC_MyPurchaseClaimVC: UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "KC_MyPurchaseClaimTVC", for: indexPath) as! KC_MyPurchaseClaimTVC
         cell.selectionStyle = .none
         cell.delegate = self
-        let trxnDate = String(self.VM.myPurchaseListArray[indexPath.row].trxnDate ?? "-").split(separator: " ")
-        if trxnDate.count != 0{
-            cell.createdDateLbl.text = "\(trxnDate[0])"
-        }else{
-            cell.createdDateLbl.text = "-"
-        }
-        cell.categoryLbl.text = self.VM.myPurchaseListArray[indexPath.row].customer_Type ?? ""
-        cell.requestedToLbl.text = self.VM.myPurchaseListArray[indexPath.row].requestTo ?? ""
-        cell.productNameLbl.text = self.VM.myPurchaseListArray[indexPath.row].productName ?? ""
-        cell.orderQtyLbl.text = String(Int(self.VM.myPurchaseListArray[indexPath.row].quantity ?? 0.0) ?? 0)
-        let convertFormat = String(self.VM.myPurchaseListArray[indexPath.row].approvedQuantity ?? "0.0")
-        print(self.VM.myPurchaseListArray[indexPath.row].approvedQuantity ?? "0.0")
-        print(convertFormat)
-        let formatChange: Float = Float(Double(convertFormat) ?? 0.0)
-        print(formatChange)
-        cell.approvedQTYLbl.text = "\(Int(formatChange))"
-        cell.remarks.text = "  \(self.VM.myPurchaseListArray[indexPath.row].remarks ?? "-")"
-        cell.mobileNumberLbl.text = self.VM.myPurchaseListArray[indexPath.row].mobile ?? "-"
-        cell.dialPadButton.tag = indexPath.row
-        
-        
-        if self.VM.myPurchaseListArray[indexPath.row].status ?? "" == "Approved"{
-            cell.approvedQTYHeightConstraint.constant = CGFloat(50)
-            cell.approvedQTYView.isHidden = false
-            
-            cell.statusLbl.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
-            cell.statusLbl.borderColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
-            cell.statusLbl.setTitle("Approved", for: .normal)
-            cell.statusLbl.setTitleColor(#colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1), for: .normal)
-        }else if self.VM.myPurchaseListArray[indexPath.row].status ?? "" == "Pending"{
-            cell.approvedQTYHeightConstraint.constant = CGFloat(0)
-            cell.approvedQTYView.isHidden = true
-            
-            cell.statusLbl.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
-            cell.statusLbl.borderColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
-            cell.statusLbl.setTitle("Pending", for: .normal)
-            cell.statusLbl.setTitleColor(#colorLiteral(red: 0.5058823824, green: 0.3372549117, blue: 0.06666667014, alpha: 1), for: .normal)
-            
-        }else if self.VM.myPurchaseListArray[indexPath.row].status ?? "" == "Rejected"{
-            cell.approvedQTYHeightConstraint.constant = CGFloat(0)
-            cell.approvedQTYView.isHidden = true
-            cell.statusLbl.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
-            cell.statusLbl.borderColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
-            
-            cell.statusLbl.setTitle("Rejected", for: .normal)
-            cell.statusLbl.setTitleColor(#colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1), for: .normal)
+        if self.VM.myPurchaseListArray.count != 0{
+            let trxnDate = String(self.VM.myPurchaseListArray[indexPath.row].trxnDate ?? "-").split(separator: " ")
+            if trxnDate.count != 0{
+                cell.createdDateLbl.text = "\(trxnDate[0])"
+            }else{
+                cell.createdDateLbl.text = "-"
+            }
+            cell.categoryLbl.text = self.VM.myPurchaseListArray[indexPath.row].customer_Type ?? ""
+            cell.requestedToLbl.text = self.VM.myPurchaseListArray[indexPath.row].requestTo ?? ""
+            cell.productNameLbl.text = self.VM.myPurchaseListArray[indexPath.row].productName ?? ""
+            cell.orderQtyLbl.text = String(Int(self.VM.myPurchaseListArray[indexPath.row].quantity ?? 0.0) ?? 0)
+            let convertFormat = String(self.VM.myPurchaseListArray[indexPath.row].approvedQuantity ?? "0.0")
+            print(self.VM.myPurchaseListArray[indexPath.row].approvedQuantity ?? "0.0")
+            print(convertFormat)
+            let formatChange: Float = Float(Double(convertFormat) ?? 0.0)
+            print(formatChange)
+            cell.approvedQTYLbl.text = "\(Int(formatChange))"
+            cell.remarks.text = "  \(self.VM.myPurchaseListArray[indexPath.row].remarks ?? "-")"
+            cell.mobileNumberLbl.text = self.VM.myPurchaseListArray[indexPath.row].mobile ?? "-"
+            cell.dialPadButton.tag = indexPath.row
             
             
-        }else{
-            cell.approvedQTYHeightConstraint.constant = CGFloat(0)
-            cell.approvedQTYView.isHidden = true
-            cell.statusLbl.setTitle("Pending", for: .normal)
-            cell.statusLbl.setTitleColor(#colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1), for: .normal)
-            cell.statusLbl.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
-            cell.statusLbl.borderColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
+            if self.VM.myPurchaseListArray[indexPath.row].status ?? "" == "Approved"{
+                cell.approvedQTYHeightConstraint.constant = CGFloat(50)
+                cell.approvedQTYView.isHidden = false
+                
+                cell.statusLbl.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
+                cell.statusLbl.borderColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
+                cell.statusLbl.setTitle("Approved", for: .normal)
+                cell.statusLbl.setTitleColor(#colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1), for: .normal)
+            }else if self.VM.myPurchaseListArray[indexPath.row].status ?? "" == "Pending"{
+                cell.approvedQTYHeightConstraint.constant = CGFloat(0)
+                cell.approvedQTYView.isHidden = true
+                
+                cell.statusLbl.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
+                cell.statusLbl.borderColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
+                cell.statusLbl.setTitle("Pending", for: .normal)
+                cell.statusLbl.setTitleColor(#colorLiteral(red: 0.5058823824, green: 0.3372549117, blue: 0.06666667014, alpha: 1), for: .normal)
+                
+            }else if self.VM.myPurchaseListArray[indexPath.row].status ?? "" == "Rejected"{
+                cell.approvedQTYHeightConstraint.constant = CGFloat(0)
+                cell.approvedQTYView.isHidden = true
+                cell.statusLbl.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+                cell.statusLbl.borderColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+                
+                cell.statusLbl.setTitle("Rejected", for: .normal)
+                cell.statusLbl.setTitleColor(#colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1), for: .normal)
+                
+                
+            }else{
+                cell.approvedQTYHeightConstraint.constant = CGFloat(0)
+                cell.approvedQTYView.isHidden = true
+                cell.statusLbl.setTitle("Pending", for: .normal)
+                cell.statusLbl.setTitleColor(#colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1), for: .normal)
+                cell.statusLbl.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
+                cell.statusLbl.borderColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
+            }
         }
     
         return cell

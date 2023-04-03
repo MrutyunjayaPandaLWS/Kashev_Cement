@@ -21,10 +21,10 @@ class KC_WorksiteDetailsVC: BaseViewController , DateSelectedDelegate {
     func declineDate(_ vc: KC_DOBVC) {}
     
     
+    @IBOutlet weak var noDataFoundLbl: UILabel!
     @IBOutlet weak var createNewView: UIView!
     @IBOutlet weak var toDateLbl: UILabel!
     @IBOutlet weak var fromDateLbl: UILabel!
-    @IBOutlet weak var noDataFoundLbl: UILabel!
     @IBOutlet weak var clearBtn: UIButton!
     @IBOutlet weak var applyFilterBtn: UIButton!
     @IBOutlet weak var filterView: UIView!

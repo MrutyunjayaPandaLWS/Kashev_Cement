@@ -24,8 +24,10 @@ class KC_DOBVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        datePicker.maximumDate = date
+        if self.isComeFrom != "TENTATIVE"{
+            datePicker.maximumDate = date
+        }
+        
     }
     override func touchesBegan(_ touchscreen: Set<UITouch>, with event: UIEvent?)
     {
@@ -53,6 +55,13 @@ class KC_DOBVC: UIViewController {
                 self.delegate.acceptDate(self)
                 self.dismiss(animated: true, completion: nil)
             }
+//
+        }else if isComeFrom == "TENTATIVE"{
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd"
+                selectedDate = formatter.string(from: datePicker.date)
+                self.delegate.acceptDate(self)
+                self.dismiss(animated: true, completion: nil)
         }else if isComeFrom == "ANNIVERSARY"{
             if datePicker.date > sevenDaysBeforeToday{
                 let alert = UIAlertController(title: "", message: "It seems you are less than 18 years of age.", preferredStyle: UIAlertController.Style.alert)

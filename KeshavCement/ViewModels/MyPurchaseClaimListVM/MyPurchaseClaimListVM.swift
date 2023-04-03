@@ -25,6 +25,10 @@ class MyPurchaseClaimListVM{
             
             if result == nil{
                 DispatchQueue.main.async {
+                    self.myPurchaseListArray.removeAll()
+                    self.VC?.purchaseClaimTableView.isHidden = true
+                    self.VC?.noDataFoundLbl.isHidden = false
+                    self.VC?.noDataFoundLbl.textColor = .white
                     self.VC?.stopLoading()
                 }
             }else{
@@ -32,7 +36,7 @@ class MyPurchaseClaimListVM{
                     DispatchQueue.main.async {
                         self.VC?.stopLoading()
                         let myPurchaseListsArray = result?.customerBasicInfoListJson ?? []
-                        
+                        print(myPurchaseListsArray.count, "asdfljasdklfjadslfjkladsfsajlfljkdsfasljdf")
                         if myPurchaseListsArray.isEmpty == false{
                             self.myPurchaseListArray += myPurchaseListsArray
                             self.VC?.noofelements = self.myPurchaseListArray.count
@@ -61,6 +65,9 @@ class MyPurchaseClaimListVM{
                 }else{
                     DispatchQueue.main.async {
                         print(error)
+                        self.VC?.purchaseClaimTableView.isHidden = true
+                        self.VC?.noDataFoundLbl.isHidden = false
+                        self.VC?.noDataFoundLbl.textColor = .white
                         self.VC?.stopLoading()
                     }
                 }
