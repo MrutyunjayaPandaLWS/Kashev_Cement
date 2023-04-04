@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import LanguageManager_iOS
 class KC_LanguageVC: BaseViewController, UITableViewDelegate, UITableViewDataSource {
 
     
@@ -43,6 +43,7 @@ class KC_LanguageVC: BaseViewController, UITableViewDelegate, UITableViewDataSou
             
         case "English":
             UserDefaults.standard.set("1", forKey: "LanguageLocalizable")
+            LanguageManager.shared.setLanguage(language: .en)
             UserDefaults.standard.synchronize()
             let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_WelcomeVC") as! KC_WelcomeVC
             self.navigationController?.pushViewController(vc, animated: true)
@@ -50,12 +51,14 @@ class KC_LanguageVC: BaseViewController, UITableViewDelegate, UITableViewDataSou
             
         case "हिंदी":
             UserDefaults.standard.set("2", forKey: "LanguageLocalizable")
+            LanguageManager.shared.setLanguage(language: .hi)
             UserDefaults.standard.synchronize()
             let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_WelcomeVC") as! KC_WelcomeVC
             self.navigationController?.pushViewController(vc, animated: true)
             return
         case "ಕನ್ನಡ":
             UserDefaults.standard.set("3", forKey: "LanguageLocalizable")
+            LanguageManager.shared.setLanguage(language: .knIn)
             UserDefaults.standard.synchronize()
             let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_WelcomeVC") as! KC_WelcomeVC
             self.navigationController?.pushViewController(vc, animated: true)

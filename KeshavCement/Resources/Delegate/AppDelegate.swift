@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 import SlideMenuControllerSwift
 import IQKeyboardManagerSwift
-
+import LanguageManager_iOS
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -71,6 +71,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Core Data stack
     func tokendata(){
+        if UserDefaults.standard.string(forKey: "CURRENTLANGUAGE") ?? "" == "en"{
+            LanguageManager.shared.setLanguage(language: .en)
+
+        }else if UserDefaults.standard.string(forKey: "CURRENTLANGUAGE") ?? "" == "hi"{
+            LanguageManager.shared.setLanguage(language: .hi)
+
+        }else if UserDefaults.standard.string(forKey: "CURRENTLANGUAGE") ?? "" == "knIn"{
+            LanguageManager.shared.setLanguage(language: .knIn)
+
+        }
             if MyCommonFunctionalUtilities.isInternetCallTheApi() == false{
             }else{
                 let parameters : Data = "username=\(username)&password=\(password)&grant_type=password".data(using: .utf8)!

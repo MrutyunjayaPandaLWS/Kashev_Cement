@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import LanguageManager_iOS
 class KC_WelcomeVC: BaseViewController {
 
     @IBOutlet weak var noDataFoundLbl: UILabel!
@@ -28,6 +28,9 @@ class KC_WelcomeVC: BaseViewController {
         self.noDataFoundLbl.isHidden = true
         self.customerTypeTableView.delegate = self
         self.customerTypeTableView.dataSource = self
+        self.welcomeLbl.text = "Welcome".localiz()
+        self.plzSelectInfoLbl.text = "infoText".localiz()
+        self.noDataFoundLbl.text = "NoDataFound".localized()
     }
     
     override func viewWillAppear(_ animated: Bool) {

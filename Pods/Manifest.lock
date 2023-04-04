@@ -11,6 +11,7 @@ PODS:
   - ImageSlideshow/Core (1.8.3)
   - IQKeyboardManagerSwift (6.5.10)
   - Kingfisher (7.5.0)
+  - LanguageManager-iOS (1.2.5)
   - lottie-ios (3.5.0)
   - QCropper (0.1.7)
   - SDWebImage (5.13.4):
@@ -28,6 +29,7 @@ DEPENDENCIES:
   - ImageSlideshow/Alamofire
   - IQKeyboardManagerSwift
   - Kingfisher (~> 7.0)
+  - LanguageManager-iOS
   - lottie-ios
   - QCropper
   - SDWebImage
@@ -45,6 +47,7 @@ SPEC REPOS:
     - ImageSlideshow
     - IQKeyboardManagerSwift
     - Kingfisher
+    - LanguageManager-iOS
     - lottie-ios
     - QCropper
     - SDWebImage
@@ -61,6 +64,7 @@ SPEC CHECKSUMS:
   ImageSlideshow: 4694d7d699a1549582e7cc631fb392d8f91630f3
   IQKeyboardManagerSwift: 52962c76ab33532f15ad9f3ff4e5715eda5335bb
   Kingfisher: b9c2a4a4af2990a768445c277359b27bde287d71
+  LanguageManager-iOS: 049345fe4d1c5fbe22af93d438540917f4936359
   lottie-ios: c55158d67d0629a260625cc2ded2052b829e3c3e
   QCropper: aef6bad1e683e62b501fb8258359ccd10c68b4f2
   SDWebImage: e5cc87bf736e60f49592f307bdf9e157189298a3
@@ -68,6 +72,6 @@ SPEC CHECKSUMS:
   SVPinView: 9b538d0ba68cdb092afe4f0f67ec84cbed079466
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: 487404df38eca5ab71eb8b9a0be9925ffc725b88
+PODFILE CHECKSUM: 8e2fee3948336b5eb4c7102e44bc51e8c0b98c22
 
 COCOAPODS: 1.11.3

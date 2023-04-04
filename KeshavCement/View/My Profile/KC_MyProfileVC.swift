@@ -270,27 +270,35 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
             self.view.makeToast("Enter firm name", duration: 2.0, position: .bottom)
         }else if self.mobileNumberTF.text?.count == 0{
             self.view.makeToast("Enter mobile number", duration: 2.0, position: .bottom)
-        }else if self.mobileNumberTF.text?.count != 10{
+        }
+        else if self.mobileNumberTF.text?.count != 10{
             self.view.makeToast("Enter valid mobile number", duration: 2.0, position: .bottom)
-        }else if self.aadharNumberTF.text?.count == 0{
-            self.view.makeToast("Enter aadhar / GST number", duration: 2.0, position: .bottom)
-        }else if self.aadharNumberTF.text!.count > 16{
+        }
+//        else if self.aadharNumberTF.text?.count == 0{
+//            self.view.makeToast("Enter aadhar / GST number", duration: 2.0, position: .bottom)
+//        }
+        else if self.aadharNumberTF.text!.count > 16 && self.aadharNumberTF.text!.count != 0{
             self.view.makeToast("Enter valid aadhar / GST number", duration: 2.0, position: .bottom)
-        }else if self.emailTF.text!.count == 0{
-            self.view.makeToast("Enter email", duration: 2.0, position: .bottom)
-        }else if self.addressTextView.text!.count == 0{
-            self.view.makeToast("Enter address", duration: 2.0, position: .bottom)
-        }else if self.pincodeTF.text!.count == 0{
-            self.view.makeToast("Enter pin", duration: 2.0, position: .bottom)
-        }else if self.pincodeTF.text!.count != 6{
+        }
+//        else if self.emailTF.text!.count == 0{
+//            self.view.makeToast("Enter email", duration: 2.0, position: .bottom)
+//        }
+//        else if self.addressTextView.text!.count == 0{
+//            self.view.makeToast("Enter address", duration: 2.0, position: .bottom)
+//        }
+        else if self.pincodeTF.text!.count != 6 && self.pincodeTF.text!.count != 0{
             self.view.makeToast("Enter valid pin", duration: 2.0, position: .bottom)
-        }else if self.stateTF.text?.count == 0 {
-            self.view.makeToast("Select State", duration: 2.0, position: .bottom)
-        }else if self.districtTF.text?.count == 0 {
-            self.view.makeToast("Select District", duration: 2.0, position: .bottom)
-        }else if self.talukTF.text?.count == 0 {
-            self.view.makeToast("Select Taluk", duration: 2.0, position: .bottom)
-        }else{
+        }
+//        else if self.stateTF.text?.count == 0 {
+//            self.view.makeToast("Select State", duration: 2.0, position: .bottom)
+//        }
+//        else if self.districtTF.text?.count == 0 {
+//            self.view.makeToast("Select District", duration: 2.0, position: .bottom)
+//        }
+//        else if self.talukTF.text?.count == 0 {
+//            self.view.makeToast("Select Taluk", duration: 2.0, position: .bottom)
+//        }
+        else{
             print(self.selectedCustomerTypeId)
             if self.selectedCustomerTypeId == "1" || self.selectedCustomerTypeId == "2"{
                 let parameter = [

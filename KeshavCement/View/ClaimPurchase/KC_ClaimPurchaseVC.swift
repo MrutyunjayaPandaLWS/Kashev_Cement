@@ -90,6 +90,7 @@ class KC_ClaimPurchaseVC: BaseViewController, SelectedDataDelegate{
         let result = formatter.string(from: date)
         self.saveTodaysDates = result
         self.qtyTF.keyboardType = .asciiCapableNumberPad
+        
         mainview.clipsToBounds = false
         mainview.layer.cornerRadius = 36
         mainview.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]

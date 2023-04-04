@@ -20,4 +20,5 @@ target 'KeshavCement' do
   pod 'SDWebImage'
   pod 'Kingfisher', '~> 7.0'
   pod 'QCropper'
+  pod 'LanguageManager-iOS'
 end

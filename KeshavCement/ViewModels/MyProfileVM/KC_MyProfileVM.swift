@@ -32,7 +32,7 @@ class KC_MyProfileVM{
                         if response.count != 0 {
                             self.VC?.customerTypeTF.text = response[0].customerType ?? ""
                             self.VC?.fullNameTF.text = response[0].firstName ?? ""
-                            self.VC?.firmTF.text = response[0].firstName ?? ""
+                          
                             self.VC?.mobileNumberTF.text = response[0].mobile ?? ""
                            
                             self.VC?.emailTF.text = response[0].email ?? ""
@@ -53,9 +53,17 @@ class KC_MyProfileVM{
                             
                             let customerImage = String(response[0].profilePicture ?? "").dropFirst(1)
                             self.VC!.profileImage.kf.setImage(with: URL(string: PROMO_IMG1 + "\(customerImage)"), placeholder: UIImage(named: "ic_default_img"))
+                            
+                          
+                        }
+                        let response2 = result?.lstCustomerOfficalInfoJson ?? []
+                        
+                        if response2.count != 0 {
+                            self.VC?.firmTF.text = response2[0].companyName ?? ""
                         }
                       
                         
+                      
                         
                         if self.VC?.customerTypeId == "1" || self.VC?.customerTypeId == "2"{
                             let response2 = result?.lstCustomerIdentityInfo ?? []

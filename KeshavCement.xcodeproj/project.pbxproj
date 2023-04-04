@@ -422,6 +422,7 @@
 		25E7817A295D49E90026A86C /* KC_RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_RegisterVC.swift; sourceTree = "<group>"; };
 		8400469329C59641007DC492 /* SubmitVoucherModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitVoucherModels.swift; sourceTree = "<group>"; };
 		8400469529C59700007DC492 /* QS_SuccessTransfer_VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QS_SuccessTransfer_VC.swift; sourceTree = "<group>"; };
+		8407AB9729DC351100C8B612 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		840CC62329A732E0005B438D /* ProductCategoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCategoryModel.swift; sourceTree = "<group>"; };
 		840CC62429A732E0005B438D /* ObjCatalogueCategoryListJson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjCatalogueCategoryListJson.swift; sourceTree = "<group>"; };
 		840CC62D29A733E0005B438D /* ProductAddToCartModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductAddToCartModel.swift; sourceTree = "<group>"; };
@@ -535,7 +536,6 @@
 		8451D557296BF74900208317 /* KC_UserDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_UserDetailsVC.swift; sourceTree = "<group>"; };
 		8451D55A296BF77C00208317 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		8451D55B296BF77C00208317 /* EmptySegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptySegue.swift; sourceTree = "<group>"; };
-		8453ABCA295EF8AD00EA82CE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		8453ABD4295EF9EF00EA82CE /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/Main.strings; sourceTree = "<group>"; };
 		8453ABD5295EF9EF00EA82CE /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		8453ABD6295EF9FD00EA82CE /* kn-IN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "kn-IN"; path = "kn-IN.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -3450,9 +3450,9 @@
 			isa = PBXVariantGroup;
 			children = (
 				25DC5BE8295C1A3F00818258 /* Base */,
-				8453ABCA295EF8AD00EA82CE /* en */,
 				8453ABD4295EF9EF00EA82CE /* hi */,
 				8453ABD6295EF9FD00EA82CE /* kn-IN */,
+				8407AB9729DC351100C8B612 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
