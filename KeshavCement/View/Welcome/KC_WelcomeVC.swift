@@ -69,31 +69,32 @@ class KC_WelcomeVC: BaseViewController {
     }
     
     func languageLocalization(){
-        if UserDefaults.standard.string(forKey: "LanguageLocalizable") == "1"{
-            self.welcomeLbl.text = "Welcome".localizableString(loc: "en")
-            self.plzSelectInfoLbl.text = "infoText".localizableString(loc: "en")
-            self.engineerLbl.text = "Engineer".localizableString(loc: "en")
-            self.masonLbl.text = "Mason".localizableString(loc: "en")
-            self.dealerLbl.text = "Dealer".localizableString(loc: "en")
-            self.subDealerLbl.text = "SubDealer".localizableString(loc: "en")
-            self.supportExecutiveLbl.text = "SupExecu".localizableString(loc: "en")
-        }else if UserDefaults.standard.string(forKey: "LanguageLocalizable") == "2"{
-            self.welcomeLbl.text = "Welcome".localizableString(loc: "hi")
-            self.plzSelectInfoLbl.text = "infoText".localizableString(loc: "hi")
-            self.engineerLbl.text = "Engineer".localizableString(loc: "hi")
-            self.masonLbl.text = "Mason".localizableString(loc: "hi")
-            self.dealerLbl.text = "Dealer".localizableString(loc: "hi")
-            self.subDealerLbl.text = "SubDealer".localizableString(loc: "hi")
-            self.supportExecutiveLbl.text = "SupExecu".localizableString(loc: "hi")
-        }else if UserDefaults.standard.string(forKey: "LanguageLocalizable") == "3"{
-            self.welcomeLbl.text = "Welcome".localizableString(loc: "kn-IN")
-            self.plzSelectInfoLbl.text = "infoText".localizableString(loc: "kn-IN")
-            self.engineerLbl.text = "Engineer".localizableString(loc: "kn-IN")
-            self.masonLbl.text = "Mason".localizableString(loc: "kn-IN")
-            self.dealerLbl.text = "Dealer".localizableString(loc: "kn-IN")
-            self.subDealerLbl.text = "SubDealer".localizableString(loc: "kn-IN")
-            self.supportExecutiveLbl.text = "SupExecu".localizableString(loc: "kn-IN")
-        }
+//        if UserDefaults.standard.string(forKey: "LanguageLocalizable") == "1"{
+            self.welcomeLbl.text = "Welcome".localiz()
+            self.plzSelectInfoLbl.text = "infoText".localiz()
+            self.engineerLbl.text = "Engineer".localiz()
+            self.masonLbl.text = "Mason".localiz()
+            self.dealerLbl.text = "Dealer".localiz()
+            self.subDealerLbl.text = "SubDealer".localiz()
+            self.supportExecutiveLbl.text = "SupExecu".localiz()
+//        }
+//        else if UserDefaults.standard.string(forKey: "LanguageLocalizable") == "2"{
+//            self.welcomeLbl.text = "Welcome".localizableString(loc: "hi")
+//            self.plzSelectInfoLbl.text = "infoText".localizableString(loc: "hi")
+//            self.engineerLbl.text = "Engineer".localizableString(loc: "hi")
+//            self.masonLbl.text = "Mason".localizableString(loc: "hi")
+//            self.dealerLbl.text = "Dealer".localizableString(loc: "hi")
+//            self.subDealerLbl.text = "SubDealer".localizableString(loc: "hi")
+//            self.supportExecutiveLbl.text = "SupExecu".localizableString(loc: "hi")
+//        }else if UserDefaults.standard.string(forKey: "LanguageLocalizable") == "3"{
+//            self.welcomeLbl.text = "Welcome".localizableString(loc: "kn-IN")
+//            self.plzSelectInfoLbl.text = "infoText".localizableString(loc: "kn-IN")
+//            self.engineerLbl.text = "Engineer".localizableString(loc: "kn-IN")
+//            self.masonLbl.text = "Mason".localizableString(loc: "kn-IN")
+//            self.dealerLbl.text = "Dealer".localizableString(loc: "kn-IN")
+//            self.subDealerLbl.text = "SubDealer".localizableString(loc: "kn-IN")
+//            self.supportExecutiveLbl.text = "SupExecu".localizableString(loc: "kn-IN")
+//        }
         
     }
     func tokendata(){

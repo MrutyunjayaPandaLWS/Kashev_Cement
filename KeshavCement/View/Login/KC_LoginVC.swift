@@ -7,6 +7,7 @@
 
 import UIKit
 import Toast_Swift
+import LanguageManager_iOS
 class KC_LoginVC: BaseViewController, UITextFieldDelegate, CheckBoxSelectDelegate{
     func accept(_ vc: HR_TermsandCondtionVC) {
         self.termsandConditionBtn.setImage(UIImage(named: "black-check-box-with-white-check 1"), for: .normal)
@@ -17,6 +18,7 @@ class KC_LoginVC: BaseViewController, UITextFieldDelegate, CheckBoxSelectDelegat
         self.termsandConditionBtn.setImage(UIImage(named: "check-box-empty"), for: .normal)
         self.status = 0
     }
+    @IBOutlet weak var activateNowBtn: UIButton!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var loginInfoLbl: UILabel!
     @IBOutlet weak var loginLbl: UILabel!
@@ -41,6 +43,7 @@ class KC_LoginVC: BaseViewController, UITextFieldDelegate, CheckBoxSelectDelegat
     
     @IBOutlet weak var activateNowLbl: UILabel!
     
+    @IBOutlet weak var tandCTC: UIButton!
     @IBOutlet weak var registerStackView: UIStackView!
     @IBOutlet weak var subView: UIView!
     
@@ -76,6 +79,20 @@ class KC_LoginVC: BaseViewController, UITextFieldDelegate, CheckBoxSelectDelegat
         self.termsandConditionBtn.setImage(UIImage(named: "check-box-empty"), for: .normal)
         self.status = 0
         
+        self.loginLbl.text = "Login".localiz()
+        self.loginInfoLbl.text = "Please_log_in".localiz()
+        self.mobileNoLbl.text = "MobileNoID".localiz()
+        self.mobileTF.placeholder = "MobileNoID".localiz()
+        self.passwordLbl.text = "Password".localiz()
+        self.passwordTF.placeholder = "Enterpassword".localiz()
+        self.tandCTC.setTitle("IacceptTerms&C".localiz(), for: .normal)
+        self.loginBtn.setTitle("Login".localiz(), for: .normal)
+        self.forgotPasswordBtn.setTitle("Forgot".localiz(), for: .normal)
+        self.donthaveAcc.text = "DonHaveanacc".localiz()
+        self.registerBtn.setTitle("Register".localiz(), for: .normal)
+        self.stillNotActiveLbl.text = "StillNotAccount".localiz()
+        self.activateNowLbl.text = "ActivateNow".localiz()
+         
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,6 +100,17 @@ class KC_LoginVC: BaseViewController, UITextFieldDelegate, CheckBoxSelectDelegat
         self.filterLbl.text = "\(self.categoryTitle)"
         self.tokendata()
         self.customerTypeApi()
+        if self.categoryTitle == "Engineer"{
+            self.categoryId = 1
+        }else if self.categoryTitle == "Mason"{
+            self.categoryId = 2
+        }else if self.categoryTitle == "Dealer"{
+            self.categoryId = 3
+        }else if self.categoryTitle == "Sub Dealer"{
+            self.categoryId = 4
+        }else{
+            self.categoryId = 5
+        }
     }
     
     @IBAction func passwordSecureButton(_ sender: Any) {
@@ -117,14 +145,14 @@ class KC_LoginVC: BaseViewController, UITextFieldDelegate, CheckBoxSelectDelegat
     @IBAction func loginBtn(_ sender: Any) {
         
         if self.mobileTF.text?.count == 0 {
-            self.view.makeToast("Enter mobile number / membership Id", duration: 2.0, position: .bottom)
+            self.view.makeToast("EntermembershipId".localiz(), duration: 2.0, position: .bottom)
             self.passwordTF.text = ""
         }else if self.passwordTF.text?.count == 0 {
-            self.view.makeToast("Enter password", duration: 2.0, position: .bottom)
+            self.view.makeToast("Enterpassword".localiz(), duration: 2.0, position: .bottom)
         }else if self.categoryId == -1 {
-            self.view.makeToast("Select customer type", duration: 2.0, position: .bottom)
+            self.view.makeToast("Selectcustomertype".localiz(), duration: 2.0, position: .bottom)
         }else if self.status != 1 {
-            self.view.makeToast("Accept Terms and conditions !!", duration: 2.0, position: .bottom)
+            self.view.makeToast("AcceptTermsandconditions".localiz(), duration: 2.0, position: .bottom)
         }else{
             let parameter = [
                 "Password": "\(self.passwordTF.text ?? "")",
@@ -167,7 +195,7 @@ class KC_LoginVC: BaseViewController, UITextFieldDelegate, CheckBoxSelectDelegat
     }
     @IBAction func passwordTFEditingDidEnd(_ sender: Any) {
         if self.mobileTF.text?.count == 0 {
-            self.view.makeToast("Enter mobile number / membership Id", duration: 2.0, position: .bottom)
+            self.view.makeToast("EntermembershipId".localiz(), duration: 2.0, position: .bottom)
             self.passwordTF.text = ""
         }
     }
@@ -181,10 +209,10 @@ class KC_LoginVC: BaseViewController, UITextFieldDelegate, CheckBoxSelectDelegat
     @IBAction func userNameEditingDidEnd(_ sender: Any) {
         
         if self.mobileTF.text?.count == 0 {
-            self.view.makeToast("Enter mobile number / membership Id", duration: 2.0, position: .bottom)
+            self.view.makeToast("EntermembershipId".localiz(), duration: 2.0, position: .bottom)
             self.passwordTF.text = ""
         }else if self.categoryId == -1 {
-            self.view.makeToast("Select customer type", duration: 2.0, position: .bottom)
+            self.view.makeToast("Selectcustomertype".localiz(), duration: 2.0, position: .bottom)
         }else{
             let parameter = [
                 "ActionType":"65",

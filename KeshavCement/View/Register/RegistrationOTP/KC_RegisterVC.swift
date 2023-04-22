@@ -7,10 +7,16 @@
 
 import UIKit
 import DPOTPView
+import LanguageManager_iOS
 
 class KC_RegisterVC:  BaseViewController, UITextFieldDelegate {
     
     
+    @IBOutlet weak var activateNowLbl: UILabel!
+    @IBOutlet weak var otpLbl: UILabel!
+    @IBOutlet weak var mobileNumberLbl: UILabel!
+    @IBOutlet weak var infoLbl: UILabel!
+    @IBOutlet weak var signUpLbl: UILabel!
     @IBOutlet weak var filterLbl: UILabel!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var mobileNumberTF: UITextField!
@@ -20,7 +26,6 @@ class KC_RegisterVC:  BaseViewController, UITextFieldDelegate {
     @IBOutlet weak var filterView: UIView!
     @IBOutlet weak var filterTableView: UITableView!
     
-    @IBOutlet weak var otpLbl: UILabel!
     @IBOutlet weak var generateOTPBtn: UIButton!
     
     @IBOutlet weak var resendOtpBtn: UIButton!
@@ -55,7 +60,7 @@ class KC_RegisterVC:  BaseViewController, UITextFieldDelegate {
         self.filterTableView.dataSource = self
         self.mobileNumberTF.delegate = self
         self.filterView.isHidden = true
-        self.generateOTPBtn.setTitle("Generate OTP", for: .normal)
+        
         self.otpInfoLbl.isHidden = true
         self.otpMobilenoLbl.isHidden = true
         self.resendOtpBtn.isHidden = true
@@ -74,6 +79,21 @@ class KC_RegisterVC:  BaseViewController, UITextFieldDelegate {
         mainView.clipsToBounds = false
         mainView.layer.cornerRadius = 36
         mainView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        
+        
+        self.activateNowLbl.text = "ActivateNow".localiz()
+        self.otpLbl.text = "OTP".localiz()
+        self.mobileNumberLbl.text = "MobileNumber".localiz()
+        self.infoLbl.text = "Pleaseregister".localiz()
+        self.signUpLbl.text = "SignUp".localiz()
+        self.generateOTPBtn.setTitle("GenerateOTP".localiz(), for: .normal)
+        self.activateInfo.text = "StillNotAccount".localiz()
+        self.alreadHaveLb.text = "Alreadyhaveanaccount".localiz()
+        self.loginBtn.setTitle("Login".localiz(), for: .normal)
+        self.resendOtpBtn.setTitle("ResendOTP".localiz(), for: .normal)
+        
+        
+        
     }
 
 
@@ -89,11 +109,11 @@ class KC_RegisterVC:  BaseViewController, UITextFieldDelegate {
     @IBAction func generateOTPActionBtn(_ sender: Any) {
         if self.generateOTPBtn.currentTitle == "Generate OTP"{
         if self.mobileNumberTF.text?.count == 0 {
-            self.view.makeToast("Enter mobile number", duration: 2.0, position: .bottom)
+            self.view.makeToast("Entermobilenumber".localiz(), duration: 2.0, position: .bottom)
         }else if self.mobileNumberTF.text?.count != 10 {
-            self.view.makeToast("Enter valid mobile number", duration: 2.0, position: .bottom)
+            self.view.makeToast("Entervalidmobilenumber".localiz(), duration: 2.0, position: .bottom)
         }else if self.categoryId == -1{
-            self.view.makeToast("Select customer type", duration: 2.0, position: .bottom)
+            self.view.makeToast("Selectcustomertype".localiz(), duration: 2.0, position: .bottom)
         }else{
             let mobilenumber = self.mobileNumberTF.text ?? ""
             
@@ -111,14 +131,14 @@ class KC_RegisterVC:  BaseViewController, UITextFieldDelegate {
             print(parameter)
             self.VM.verifyMobileNumberAPI(paramters: parameter)
         }
-        }else if self.generateOTPBtn.currentTitle == "Submit"{
+        }else if self.generateOTPBtn.currentTitle == "Submit".localiz(){
             print(self.enteredValue, "- Entered Value")
             if self.enteredValue.count == 0 {
-                self.view.makeToast("Enter OTP", duration: 2.0, position: .bottom)
+                self.view.makeToast("EnterOTP".localiz(), duration: 2.0, position: .bottom)
             }else if self.enteredValue.count != 6{
-                self.view.makeToast("Enter valid OTP", duration: 2.0, position: .bottom)
+                self.view.makeToast("EntervalidOTP".localiz(), duration: 2.0, position: .bottom)
             }else if self.receivedOTP != self.enteredValue{
-                self.view.makeToast("Enter correct OTP", duration: 2.0, position: .bottom)
+                self.view.makeToast("EntercorrectOTP".localiz(), duration: 2.0, position: .bottom)
             }else{
                 self.VM.timer.invalidate()
                 if self.categoryId == 1 || self.categoryId == 2{
@@ -143,9 +163,9 @@ class KC_RegisterVC:  BaseViewController, UITextFieldDelegate {
     @IBAction func resendOTPBtn(_ sender: Any) {
         
         if self.mobileNumberTF.text?.count == 0 {
-            self.view.makeToast("Enter mobile number", duration: 2.0, position: .bottom)
+            self.view.makeToast("Entermobilenumber".localiz(), duration: 2.0, position: .bottom)
         }else if self.mobileNumberTF.text?.count != 10 {
-            self.view.makeToast("Enter valid mobile number", duration: 2.0, position: .bottom)
+            self.view.makeToast("Entervalidmobilenumber".localiz(), duration: 2.0, position: .bottom)
         }else{
             self.generateOTPApi()
         }

@@ -18,7 +18,7 @@ target 'KeshavCement' do
   pod 'EasyTipView', '~> 2.0.4'
   pod 'DPOTPView'
   pod 'SDWebImage'
-  pod 'Kingfisher', '~> 7.0'
+  pod 'Kingfisher', '~> 7.6.2'
   pod 'QCropper'
   pod 'LanguageManager-iOS'
 end

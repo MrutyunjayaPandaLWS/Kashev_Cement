@@ -2,12 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Kashev Need to access the location upload profile Image  and Customer support</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Kashev Need to Access the Photo Library to upload profile Image  and Customer support</string>
-	<key>NSCameraUsageDescription</key>
-	<string>Kashev Need to Access the camera to upload profile Image and Customer support</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -32,11 +26,6 @@
 			</array>
 		</dict>
 	</dict>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>fetch</string>
-		<string>remote-notification</string>
-	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>

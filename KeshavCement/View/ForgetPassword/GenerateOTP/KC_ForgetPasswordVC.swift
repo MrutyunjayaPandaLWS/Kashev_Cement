@@ -7,7 +7,7 @@
 
 import UIKit
 import DPOTPView
-
+import LanguageManager_iOS
 class KC_ForgetPasswordVC: BaseViewController, DPOTPViewDelegate{
    
     
@@ -22,10 +22,17 @@ class KC_ForgetPasswordVC: BaseViewController, DPOTPViewDelegate{
     
     @IBOutlet weak var otpView: DPOTPView!
     
-    @IBOutlet weak var otpInfoLbl: UILabel!
     @IBOutlet weak var otpInfoLbl2: UILabel!
     
     @IBOutlet weak var resendOTPBtn: UIButton!
+    
+    @IBOutlet weak var forgotPwdLbl: UILabel!
+    @IBOutlet weak var forgotPwdTitle: UILabel!
+    @IBOutlet weak var pleaseSetPwdLbl: UILabel!
+    @IBOutlet weak var mobileNoLbl: UILabel!
+    
+    @IBOutlet weak var otpInfoLbl: UILabel!
+    
     
     
     var VM = KC_ForgetPasswordVM()
@@ -39,7 +46,7 @@ class KC_ForgetPasswordVC: BaseViewController, DPOTPViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.VM.VC = self
-        self.generateOTPBtn.setTitle("Generate OTP", for: .normal)
+    
         self.generateOTPButtonTopConstraint.constant = 50
         self.otpView.isHidden = true
         self.otpLbl.isHidden = true
@@ -55,6 +62,18 @@ class KC_ForgetPasswordVC: BaseViewController, DPOTPViewDelegate{
         otpView.fontTextField = UIFont.systemFont(ofSize: 25)
         otpView.textEdgeInsets = UIEdgeInsets(top: 0, left: -1, bottom: 0, right: 0)
         otpView.editingTextEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        
+        self.generateOTPBtn.setTitle("GenerateOTP".localiz(), for: .normal)
+        self.forgotPwdLbl.text = "ForgotPassword".localiz()
+        self.forgotPwdTitle.text = "ForgotPassword".localiz()
+        self.pleaseSetPwdLbl.text = "Pleasesetthenewpassword".localiz()
+        self.mobileNoLbl.text = "MobileNoID".localiz()
+        self.mobileNumberTF.placeholder = "Entermobilenumber".localiz()
+        self.otpLbl.text = "OTP".localiz()
+        self.otpInfoLbl.text = "OTPwillreciev".localiz()
+        self.resendOTPBtn.setTitle("ResendOTP".localiz(), for: .normal)
+        
+        
     }
     
     @IBAction func userNameEditingDidEnd(_ sender: Any) {
@@ -89,7 +108,7 @@ class KC_ForgetPasswordVC: BaseViewController, DPOTPViewDelegate{
     }
     @IBAction func resendButton(_ sender: Any) {
         if self.mobileNumberTF.text?.count == 0 {
-            self.view.makeToast("Enter mobile number", duration: 2.0, position: .bottom)
+            self.view.makeToast("Entermobilenumber".localiz(), duration: 2.0, position: .bottom)
         }else{
             self.generateOTPApi()
         }
@@ -97,9 +116,9 @@ class KC_ForgetPasswordVC: BaseViewController, DPOTPViewDelegate{
     
     @IBAction func generateOTPButton(_ sender: Any) {
             
-            if self.generateOTPBtn.currentTitle == "Generate OTP"{
+        if self.generateOTPBtn.currentTitle == "GenerateOTP".localiz(){
                 if self.mobileNumberTF.text?.count == 0 {
-                    self.view.makeToast("Enter mobile number/ member ID", duration: 2.0, position: .bottom)
+                    self.view.makeToast("EntermemberID".localiz(), duration: 2.0, position: .bottom)
                 }
                
                 else{
@@ -120,14 +139,14 @@ class KC_ForgetPasswordVC: BaseViewController, DPOTPViewDelegate{
                     self.VM.verifyMobileNumberAPI(paramters: parameter)
                     
                 }
-            }else if self.generateOTPBtn.currentTitle == "Submit"{
+        }else if self.generateOTPBtn.currentTitle == "Submit".localiz(){
                 print(self.enteredValue, "- Entered Value")
                 if self.enteredValue.count == 0 {
-                    self.view.makeToast("Enter OTP", duration: 2.0, position: .bottom)
+                    self.view.makeToast("EnterOTP".localiz(), duration: 2.0, position: .bottom)
                 }else if self.enteredValue.count != 6{
-                    self.view.makeToast("Enter valid OTP", duration: 2.0, position: .bottom)
+                    self.view.makeToast("EntervalidOTP".localiz(), duration: 2.0, position: .bottom)
                 }else if self.receivedOTP != self.enteredValue{
-                    self.view.makeToast("Enter correct OTP", duration: 2.0, position: .bottom)
+                    self.view.makeToast("EntercorrectOTP".localiz(), duration: 2.0, position: .bottom)
                 }else{
                     self.VM.timer.invalidate()
                     let parameter = [

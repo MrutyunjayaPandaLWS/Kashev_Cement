@@ -7,8 +7,11 @@
 
 import UIKit
 import SlideMenuControllerSwift
+import LanguageManager_iOS
 class KC_SideMenuVC: BaseViewController {
 
+    @IBOutlet weak var ptsBalanceLBl: UILabel!
+    @IBOutlet weak var memberShipIDLbl: UILabel!
     @IBOutlet weak var scrollViewHeight: NSLayoutConstraint!
     @IBOutlet weak var sideMenuTableViewHeightConstratin: NSLayoutConstraint!
     @IBOutlet weak var profileImage: UIImageView!
@@ -49,7 +52,12 @@ class KC_SideMenuVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.VM.VC = self
-      
+        self.logoutLbl.text = "Logout".localiz()
+        self.editProfileBtn.setTitle("EditProfile".localiz(), for: .normal)
+        self.ptsBalanceLBl.text = "PointBalance".localiz()
+        self.memberShipIDLbl.text = "MembershipID".localiz()
+        
+        
         self.profileView.roundCorners(corners: [.topLeft, .topRight], radius: 50.0)
         self.profileView.clipsToBounds = true
         self.sideMenuTableView.delegate = self

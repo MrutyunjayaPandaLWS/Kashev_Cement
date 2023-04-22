@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import LanguageManager_iOS
 
 class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegate, UITextFieldDelegate {
     func didTapCityName(_ vc: KC_DropDownVC) {
@@ -30,7 +31,7 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
             print(vc.selectedDate)
             if self.dobLbl.text ?? "" >= vc.selectedDate{
                 vc.selectedDate = ""
-                self.view.makeToast("Anniversary date should be more then a Date of birth", duration: 2.0, position: .bottom)
+                self.view.makeToast("AnniversaryDateofbirth".localiz(), duration: 2.0, position: .bottom)
             }else{
                 self.dateOfAnniversaryLbl.text = vc.selectedDate
                 self.selectedAnniversary = vc.selectedDate
@@ -48,11 +49,11 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
         //
         //        Engineer, Manson - Adhaar card, is not manditory
         if self.selectedCustomerTypeId == 1 || self.selectedCustomerTypeId == 2{
-            self.aadharNumberLbl.text = "Aadhar Number"
-            self.aadharNumberTF.placeholder = "Enter aadhar number"
+            self.aadharNumberLbl.text = "AadharNumber".localiz()
+            self.aadharNumberTF.placeholder = "Enteraadharnumber".localiz()
         }else if self.selectedCustomerTypeId == 3 || self.selectedCustomerTypeId == 4{
-            self.aadharNumberLbl.text = "GST Number"
-            self.aadharNumberTF.placeholder = "Enter GST number"
+            self.aadharNumberLbl.text = "GSTNumber".localiz()
+            self.aadharNumberTF.placeholder = "EnterGSTnumber".localiz()
         }
     }
     
@@ -63,9 +64,9 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
         self.selectedDistrictId = -1
         self.selectedCityId = -1
         self.selectedTalukId = -1
-        self.selectDistrictLbl.text = "Select District"
-        self.selectTalukLbl.text = "Select Taluk"
-        self.cityLbl.text = "Select City"
+        self.selectDistrictLbl.text = "SelectDistrict".localiz()
+        self.selectTalukLbl.text = "SelectTaluk".localiz()
+        self.cityLbl.text = "SelectCity".localiz()
     }
     
     func didTapDistrict(_ vc: KC_DropDownVC) {
@@ -75,8 +76,8 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
         self.selectedDistrictId = vc.selectedDistrictId
         self.selectedCityId = -1
         self.selectedTalukId = -1
-        self.selectTalukLbl.text = "Select Taluk"
-        self.cityLbl.text = "Select City"
+        self.selectTalukLbl.text = "SelectTaluk".localiz()
+        self.cityLbl.text = "SelectCity".localiz()
     }
     
     func didTapTaluk(_ vc: KC_DropDownVC) {
@@ -84,7 +85,7 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
         self.selectedTalukName = vc.selectedTalukName
         self.selectedTalukId = vc.selectedTalukId
         self.selectedCityId = -1
-        self.cityLbl.text = "Select City"
+        self.cityLbl.text = "SelectCity".localiz()
     }
     
 
@@ -118,11 +119,14 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
     @IBOutlet weak var talukLbl: UILabel!
     @IBOutlet weak var selectTalukLbl: UILabel!
     
+    @IBOutlet weak var cityTitle: UILabel!
     @IBOutlet weak var dobLbl: UILabel!
     @IBOutlet weak var dateOfAnniversaryLbl: UILabel!
    
     @IBOutlet weak var cityLbl: UILabel!
     
+    @IBOutlet weak var doaTitleLbl: UILabel!
+    @IBOutlet weak var dateOfBirthLbl: UILabel!
     var referralCode = ""
     var selectedCustomerTypeName = ""
     var selectedCustomerTypeId = -1
@@ -150,13 +154,7 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         self.VM.VC = self
-        if self.customerTypeName == "Engineer" || self.customerTypeName == "Mason"{
-            self.aadharNumberLbl.text = "Aadhar Number"
-            self.aadharNumberTF.placeholder = "Enter aadhar number"
-        }else{
-            self.aadharNumberLbl.text = "GST Number"
-            self.aadharNumberTF.placeholder = "Enter GST number"
-        }
+       
         
         if self.customerTypeName == "Engineer"{
             self.selectedCustomerTypeId = 1
@@ -181,6 +179,44 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
         self.mobileTF.text = self.enteredMobile
         self.mobileTF.isUserInteractionEnabled = false
         
+        self.signUp.text = "SignUp".localiz()
+        self.signUpInfo.text = "plzFillRegister".localiz()
+        self.customerTopicLbl.text = "Customer Type".localiz()
+        self.customerTypeLbl.text = "SelectCustomerType".localiz()
+        self.fullNameLbl.text = "FullName".localiz()
+        self.fullNameTF.placeholder = "Enterfullname".localiz()
+        self.firmLbl.text = "FirmName".localiz();
+        self.firmNameTF.placeholder = "Enterfirmname".localiz()
+        self.mobileLbl.text = "MobileNumber".localiz()
+        self.mobileTF.placeholder = "Entermobilenumber".localiz()
+        if self.customerTypeName == "Engineer" || self.customerTypeName == "Mason"{
+            self.aadharNumberLbl.text = "AadharNumber".localiz()
+            self.aadharNumberTF.placeholder = "Enteraadharnumber".localiz()
+        }else{
+            self.aadharNumberLbl.text = "GSTNumber".localiz()
+            self.aadharNumberTF.placeholder = "EnterGSTnumber".localiz()
+        }
+        self.emailLbl.text = "Email".localiz()
+        self.emailTF.placeholder = "Enteremail".localiz()
+        self.addressLbl.text = "Address".localiz()
+        self.addressTF.placeholder = "EnterAddress".localiz()
+        self.pincodeLbl.text = "Pincode".localiz()
+        self.pincodeTF.placeholder = "EnterPincode".localiz()
+        self.stateLbl.text = "State".localiz()
+        self.selectStateLbl.text = "SelectState".localiz()
+        self.districtLbl.text = "District".localiz()
+        self.selectDistrictLbl.text = "SelectDistrict".localiz()
+        self.talukLbl.text = "Taluk".localiz()
+        self.selectTalukLbl.text = "SelectTaluk".localiz()
+        self.cityLbl.text = "SelectCity".localiz()
+        self.cityTitle.text = "City".localiz()
+        self.dateOfBirthLbl.text = "DateofBirth".localiz()
+        self.dobLbl.text = "SelectDOB".localiz()
+        self.doaTitleLbl.text = "DateofAnniversary".localiz()
+        self.dateOfAnniversaryLbl.text = "Select Anniversary".localiz()
+        self.backToLoginBtn.setTitle("Backtologin".localiz(), for: .normal)
+        self.submitBtn.setTitle("Submit".localiz(), for: .normal)
+        
     }
     
     @objc func navigateToLogin(){
@@ -203,7 +239,7 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
     @IBAction func emailValidationDidEnd(_ sender: Any) {
         if self.emailTF.text!.count != 0{
             if !isValidEmail(self.emailTF.text ?? "") {
-            self.view.makeToast("Enter valid email", duration: 2.0, position: .bottom)
+                self.view.makeToast("Entervalidemail".localiz(), duration: 2.0, position: .bottom)
         }
     }
     }
@@ -228,7 +264,7 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
     
     @IBAction func selectDistrictBtn(_ sender: Any) {
         if self.selectedStateId == -1{
-            self.view.makeToast("Select State", duration: 2.0, position: .bottom)
+            self.view.makeToast("SelectState".localiz(), duration: 2.0, position: .bottom)
         }else{
             
             let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
@@ -243,7 +279,7 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
     
     @IBAction func selectTalukBtn(_ sender: Any) {
         if self.selectedDistrictId == -1{
-            self.view.makeToast("Select District", duration: 2.0, position: .bottom)
+            self.view.makeToast("SelectDistrict".localiz(), duration: 2.0, position: .bottom)
         }else{
             let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
             vc.itsFrom = "TALUK"
@@ -266,7 +302,7 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
     
     @IBAction func cityButton(_ sender: Any) {
         if self.selectedStateId == -1{
-            self.view.makeToast("Select State", duration: 2.0, position: .bottom)
+            self.view.makeToast("SelectState".localiz(), duration: 2.0, position: .bottom)
         }else{
             let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
             vc.itsFrom = "CITY"
@@ -279,7 +315,7 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
     }
     @IBAction func dateOfAnniversaryButton(_ sender: Any) {
         if self.dobLbl.text!.count == 0{
-            self.view.makeToast("Please select date of birth", duration: 2.0, position: .bottom)
+            self.view.makeToast("Pleasedateofbirth".localiz(), duration: 2.0, position: .bottom)
         }else{
             let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DOBVC") as! KC_DOBVC
             vc.isComeFrom = "ANNIVERSARY"
@@ -296,7 +332,7 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
     @IBAction func AadharNumberEditingDidEnd(_ sender: Any) {
         if self.selectedCustomerTypeId == 1 || self.selectedCustomerTypeId == 2{
             if self.aadharNumberTF.text!.count != 12{
-                self.view.makeToast("Aadhar card number should be 12 digits", duration: 2.0, position: .bottom)
+                self.view.makeToast("Aadhar12digits".localiz(), duration: 2.0, position: .bottom)
                 self.aadharNumberTF.text = ""
             }else{
                 self.aadharcarNumber = self.aadharNumberTF.text ?? ""
@@ -304,7 +340,7 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
         }else if self.selectedCustomerTypeId == 3 || self.selectedCustomerTypeId == 4{
         
             if self.aadharNumberTF.text!.count != 15{
-                self.view.makeToast("GST number should be 15 digits", duration: 2.0, position: .bottom)
+                self.view.makeToast("Gstnumberdigits".localiz(), duration: 2.0, position: .bottom)
                 self.aadharNumberTF.text = ""
             }else{
                 self.gstNumber = self.aadharNumberTF.text ?? ""
@@ -316,23 +352,23 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
     @IBAction func submitBtn(_ sender: Any) {
         
         if self.selectedCustomerTypeId == -1{
-            self.view.makeToast("Select customer type", duration: 2.0, position: .bottom)
+            self.view.makeToast("SelectCustomerType".localiz(), duration: 2.0, position: .bottom)
         }else if self.fullNameTF.text?.count == 0{
-            self.view.makeToast("Enter full name", duration: 2.0, position: .bottom)
+            self.view.makeToast("Enterfullname".localiz(), duration: 2.0, position: .bottom)
         }else if self.firmNameTF.text?.count == 0{
-            self.view.makeToast("Enter firm name", duration: 2.0, position: .bottom)
+            self.view.makeToast("Enterfirmname".localiz(), duration: 2.0, position: .bottom)
         }else if self.mobileTF.text?.count == 0{
-            self.view.makeToast("Enter mobile number", duration: 2.0, position: .bottom)
+            self.view.makeToast("Entermobilenumber".localiz(), duration: 2.0, position: .bottom)
         }else if self.addressTF.text?.count == 0{
-            self.view.makeToast("Enter address", duration: 2.0, position: .bottom)
+            self.view.makeToast("EnterAddress".localiz(), duration: 2.0, position: .bottom)
         }else if self.pincodeTF.text?.count == 0{
-            self.view.makeToast("Enter pincode", duration: 2.0, position: .bottom)
+            self.view.makeToast("EnterPincode".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedStateId == -1{
-            self.view.makeToast("Select State", duration: 2.0, position: .bottom)
+            self.view.makeToast("SelectState".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedDistrictId == -1{
-            self.view.makeToast("Select District", duration: 2.0, position: .bottom)
+            self.view.makeToast("SelectDistrict".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedTalukId == -1{
-            self.view.makeToast("Select Taluk", duration: 2.0, position: .bottom)
+            self.view.makeToast("SelectTaluk".localiz(), duration: 2.0, position: .bottom)
         }else{
             let parameter = [
                 

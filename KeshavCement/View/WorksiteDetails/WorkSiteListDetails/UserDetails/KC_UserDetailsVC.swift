@@ -23,6 +23,7 @@ class KC_UserDetailsVC: BaseViewController, UITextFieldDelegate{
     @IBOutlet weak var engineerNumbLbl: UILabel!
     @IBOutlet weak var engineerNumberTF: UITextField!
     
+    @IBOutlet weak var engineerDetailVIew: UIView!
     @IBOutlet weak var nextBtn: UIButton!
     
     var ownerName = ""
@@ -44,33 +45,63 @@ class KC_UserDetailsVC: BaseViewController, UITextFieldDelegate{
         self.engineerNumberTF.keyboardType = .asciiCapableNumberPad
         print(self.currentLatitude, "User Details List")
         
+        if self.customerTypeId == "1"{
+            self.engineerDetailVIew.isHidden = true
+        }else{
+            self.engineerDetailVIew.isHidden = false
+        }
+        
+        
     }
     
 
     @IBAction func nextButton(_ sender: Any) {
-        if self.ownerNameTF.text!.count == 0{
-            self.view.makeToast("Enter owner name", duration: 2.0, position: .bottom)
-        }else if self.ownerMobileTF.text!.count == 0{
-            self.view.makeToast("Enter owner mobile number", duration: 2.0, position: .bottom)
-        }else if self.ownerMobileTF.text!.count != 10{
-            self.view.makeToast("Enter valid owner mobile number", duration: 2.0, position: .bottom)
-        }else if self.ownerResidentialTextView.text!.count == 0{
-            self.view.makeToast("Enter owner residential details", duration: 2.0, position: .bottom)
-        }else if self.engineerNameTF.text!.count == 0{
-            self.view.makeToast("Enter engineer name", duration: 2.0, position: .bottom)
-        }else if self.engineerNumberTF.text!.count == 0{
-            self.view.makeToast("Enter engineer mobile number", duration: 2.0, position: .bottom)
-        }else if self.engineerNumberTF.text!.count != 10{
-            self.view.makeToast("Enter valid engineer mobile number", duration: 2.0, position: .bottom)
+        if self.customerTypeId == "1"{
+            if self.ownerNameTF.text!.count == 0{
+                self.view.makeToast("Enter owner name", duration: 2.0, position: .bottom)
+            }else if self.ownerMobileTF.text!.count == 0{
+                self.view.makeToast("Enter owner mobile number", duration: 2.0, position: .bottom)
+            }else if self.ownerMobileTF.text!.count != 10{
+                self.view.makeToast("Enter valid owner mobile number", duration: 2.0, position: .bottom)
+            }else if self.ownerResidentialTextView.text!.count == 0{
+                self.view.makeToast("Enter owner residential details", duration: 2.0, position: .bottom)
+            }else{
+                self.ownerName = self.ownerNameTF.text ?? ""
+                self.ownerMobile = self.ownerMobileTF.text ?? ""
+                self.ownerResidentialDetails = self.ownerResidentialTextView.text ?? ""
+                self.engineerName = self.engineerNameTF.text ?? ""
+                self.engineerNumber = self.engineerNumberTF.text ?? ""
+            
+                NotificationCenter.default.post(name: .navigateToWorkDetails, object: self)
+            }
+            
         }else{
-            self.ownerName = self.ownerNameTF.text ?? ""
-            self.ownerMobile = self.ownerMobileTF.text ?? ""
-            self.ownerResidentialDetails = self.ownerResidentialTextView.text ?? ""
-            self.engineerName = self.engineerNameTF.text ?? ""
-            self.engineerNumber = self.engineerNumberTF.text ?? ""
-        
-            NotificationCenter.default.post(name: .navigateToWorkDetails, object: self)
+            if self.ownerNameTF.text!.count == 0{
+                self.view.makeToast("Enter owner name", duration: 2.0, position: .bottom)
+            }else if self.ownerMobileTF.text!.count == 0{
+                self.view.makeToast("Enter owner mobile number", duration: 2.0, position: .bottom)
+            }else if self.ownerMobileTF.text!.count != 10{
+                self.view.makeToast("Enter valid owner mobile number", duration: 2.0, position: .bottom)
+            }else if self.ownerResidentialTextView.text!.count == 0{
+                self.view.makeToast("Enter owner residential details", duration: 2.0, position: .bottom)
+            }else if self.engineerNameTF.text!.count == 0{
+                self.view.makeToast("Enter engineer name", duration: 2.0, position: .bottom)
+            }else if self.engineerNumberTF.text!.count == 0{
+                self.view.makeToast("Enter engineer mobile number", duration: 2.0, position: .bottom)
+            }else if self.engineerNumberTF.text!.count != 10{
+                self.view.makeToast("Enter valid engineer mobile number", duration: 2.0, position: .bottom)
+            }else{
+                self.ownerName = self.ownerNameTF.text ?? ""
+                self.ownerMobile = self.ownerMobileTF.text ?? ""
+                self.ownerResidentialDetails = self.ownerResidentialTextView.text ?? ""
+                self.engineerName = self.engineerNameTF.text ?? ""
+                self.engineerNumber = self.engineerNumberTF.text ?? ""
+            
+                NotificationCenter.default.post(name: .navigateToWorkDetails, object: self)
+            }
         }
+        
+       
         
        
     }

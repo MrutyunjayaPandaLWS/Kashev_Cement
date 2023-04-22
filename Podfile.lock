@@ -10,7 +10,7 @@ PODS:
     - ImageSlideshow/Core
   - ImageSlideshow/Core (1.8.3)
   - IQKeyboardManagerSwift (6.5.10)
-  - Kingfisher (7.5.0)
+  - Kingfisher (7.6.2)
   - LanguageManager-iOS (1.2.5)
   - lottie-ios (3.5.0)
   - QCropper (0.1.7)
@@ -28,7 +28,7 @@ DEPENDENCIES:
   - GSMessages
   - ImageSlideshow/Alamofire
   - IQKeyboardManagerSwift
-  - Kingfisher (~> 7.0)
+  - Kingfisher (~> 7.6.2)
   - LanguageManager-iOS
   - lottie-ios
   - QCropper
@@ -63,7 +63,7 @@ SPEC CHECKSUMS:
   GSMessages: ff0397d30b804fa38c6026fb080b8ad6f7454ab6
   ImageSlideshow: 4694d7d699a1549582e7cc631fb392d8f91630f3
   IQKeyboardManagerSwift: 52962c76ab33532f15ad9f3ff4e5715eda5335bb
-  Kingfisher: b9c2a4a4af2990a768445c277359b27bde287d71
+  Kingfisher: 6c5449c6450c5239166510ba04afe374a98afc4f
   LanguageManager-iOS: 049345fe4d1c5fbe22af93d438540917f4936359
   lottie-ios: c55158d67d0629a260625cc2ded2052b829e3c3e
   QCropper: aef6bad1e683e62b501fb8258359ccd10c68b4f2
@@ -72,6 +72,6 @@ SPEC CHECKSUMS:
   SVPinView: 9b538d0ba68cdb092afe4f0f67ec84cbed079466
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: 8e2fee3948336b5eb4c7102e44bc51e8c0b98c22
+PODFILE CHECKSUM: e5ad98360bd3993fc252d55fb46b77e17c5cb82b
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.0

@@ -60,6 +60,10 @@ class KC_WorksiteDetailsVC: BaseViewController , DateSelectedDelegate {
         self.worksiteDetailsTableView.dataSource = self
         self.worksiteDetailsTableView.separatorStyle = .none
         self.worksiteDetailsTableView.register(UINib(nibName: "KC_WorksiteDetailsTVC", bundle: nil), forCellReuseIdentifier: "KC_WorksiteDetailsTVC")
+     
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.startIndex = 1
         self.selectedStatus = -3
         self.worksitListApi(Status: self.selectedStatus, StartIndex: self.startIndex, FromDate: "", ToDate: "")

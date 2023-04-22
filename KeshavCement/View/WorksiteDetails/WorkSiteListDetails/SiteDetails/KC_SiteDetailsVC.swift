@@ -61,10 +61,10 @@ class KC_SiteDetailsVC: BaseViewController, UIImagePickerControllerDelegate,UINa
     }
     
     @IBAction func captureCurrentLocationBtn(_ sender: Any) {
-        manager.desiredAccuracy = kCLLocationAccuracyBest
-        manager.delegate = self
-        manager.requestWhenInUseAuthorization()
-        manager.startUpdatingLocation()
+//        manager.desiredAccuracy = kCLLocationAccuracyBest
+//        manager.delegate = self
+//        manager.requestWhenInUseAuthorization()
+//        manager.startUpdatingLocation()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -226,6 +226,10 @@ extension KC_SiteDetailsVC{
             let imageData = selectedImage.resized(withPercentage: 0.1)
             let imageData1: NSData = imageData!.pngData()! as NSData
             self.capturedImage.image = selectedImage
+            manager.desiredAccuracy = kCLLocationAccuracyBest
+            manager.delegate = self
+            manager.requestWhenInUseAuthorization()
+            manager.startUpdatingLocation()
             self.strdata1 = imageData1.base64EncodedString(options: .lineLength64Characters)
             picker.dismiss(animated: true, completion: nil)
         }

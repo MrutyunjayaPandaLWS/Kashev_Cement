@@ -117,7 +117,10 @@ class KC_DropDownVC: BaseViewController,UISearchBarDelegate {
             cityListingAPI(stateID: self.selectedStateId)
         }else if self.itsFrom == "CASHPOINTS"{
             self.cashDetailsApi(customerTypeId: self.selectedCustomerTypeIds)
+        }else if self.itsFrom == "CLAIMPURCHSSS"{
+            self.mappedUserNamelistAPI()
         }
+        
         
     }
     
@@ -133,6 +136,14 @@ class KC_DropDownVC: BaseViewController,UISearchBarDelegate {
     }
     override func viewWillLayoutSubviews() {
         
+    }
+    
+    func mappedUserNamelistAPI(){
+        let parameter = [
+            "ActionType": 19,
+            "ActorId": self.userID
+        ] as [String: Any]
+        self.VM.mapppedUserNameList(parameter: parameter)
     }
     
     func cashDetailsApi(customerTypeId: Int){
@@ -229,27 +240,27 @@ class KC_DropDownVC: BaseViewController,UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-            if self.VM.mappedListArray.count > 0 {
-                let arr = self.VM.mappedListArray.filter{ ($0.firstName!.localizedCaseInsensitiveContains(searchBar.text!))}
+            if self.VM.mapppedUserNameListArray.count > 0 {
+                let arr = self.VM.mapppedUserNameListArray.filter{ ($0.firstName!.localizedCaseInsensitiveContains(searchBar.text!))}
                 if self.searchBar.text != ""{
                     
                     if arr.count > 0 {
-                        self.VM.mappedListArray.removeAll(keepingCapacity: true)
-                        self.VM.mappedListArray = arr
+                        self.VM.mapppedUserNameListArray.removeAll(keepingCapacity: true)
+                        self.VM.mapppedUserNameListArray = arr
                         self.dropDownTableView.reloadData()
                         dropDownTableView.isHidden = false
                     }else {
-                        self.VM.mappedListArray = self.VM.mappedListFilterArray
+                        self.VM.mapppedUserNameListArray = self.VM.mapppedUserNameListArray1
                         self.dropDownTableView.reloadData()
                         dropDownTableView.isHidden = true
                     }
                 }else{
-                    self.VM.mappedListArray = self.VM.mappedListFilterArray
+                    self.VM.mapppedUserNameListArray = self.VM.mapppedUserNameListArray1
                     self.dropDownTableView.reloadData()
                     dropDownTableView.isHidden = false
                 }
                 let searchText = searchBar.text!
-                if searchText.count > 0 || self.VM.mappedListFilterArray.count == self.VM.mappedListArray.count {
+                if searchText.count > 0 || self.VM.mapppedUserNameListArray1.count == self.VM.mapppedUserNameListArray.count {
                     self.dropDownTableView.reloadData()
                 }
             }
@@ -292,6 +303,8 @@ extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
             }else{
                 return 1
             }
+        }else if self.itsFrom == "CLAIMPURCHSSS"{
+            return self.VM.mapppedUserNameListArray1.count
         }else{
             return 1
         }
@@ -306,6 +319,8 @@ extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
             cell.selectedTitleLbl.text = self.VM.cityArray[indexPath.row].cityName ?? ""
         }else if self.itsFrom == "DISTRICT"{
             cell.selectedTitleLbl.text = self.VM.districtListArray[indexPath.row].districtName ?? ""
+        }else if self.itsFrom == "CLAIMPURCHSSS"{
+            cell.selectedTitleLbl.text = self.VM.mapppedUserNameListArray1[indexPath.row].firstName ?? ""
         }else if self.itsFrom == "TALUK"{
             cell.selectedTitleLbl.text = self.VM.talukListArray[indexPath.row].talukName ?? ""
         }else if self.itsFrom == "USERTYPE"{
@@ -387,10 +402,14 @@ extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
                     self.selectedUserTypeId = 3
                 }else if self.selectedUserTypeName == "Sub Dealer"{
                     self.selectedUserTypeId = 4
+                }else{
+                    self.selectedUserTypeId = 0
                 }
             }else if self.customerType == "Sub Dealer"{
                 self.selectedUserTypeName = self.subdealerArray[indexPath.row]
                 self.selectedUserTypeId = 3
+            }else{
+                self.selectedUserTypeId = 0
             }
             self.delegate?.didTapUserType(self)
             self.dismiss(animated: true)
@@ -449,6 +468,13 @@ extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
             self.selectedAmount = self.VM.cashDetailsListArray[indexPath.row].amount ?? 0
             self.selectedCashBack = self.VM.cashDetailsListArray[indexPath.row].cashBackValue ?? 0
             self.delegate?.didTapAmount(self)
+            self.dismiss(animated: true)
+        }else if self.itsFrom == "CLAIMPURCHSSS"{
+            self.mappedUsername = self.VM.mapppedUserNameListArray1[indexPath.row].firstName ?? ""
+            self.mappedUserId = self.VM.mapppedUserNameListArray1[indexPath.row].userID ?? -1
+            self.mappedMobileNumber = self.VM.mapppedUserNameListArray1[indexPath.row].mobile ?? ""
+            self.mappedLoyaltyId = self.VM.mapppedUserNameListArray1[indexPath.row].loyaltyID ?? ""
+            self.delegate?.didTapMappedUserName(self)
             self.dismiss(animated: true)
         }
         

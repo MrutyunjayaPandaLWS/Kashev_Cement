@@ -53,7 +53,8 @@ class KC_CashTransferSubmissionVC: BaseViewController, SelectedDataDelegate{
         
     }
     
-
+    @IBOutlet weak var userTypeView: UIView!
+    
     @IBOutlet weak var mainview: UIView!
     @IBOutlet weak var claimHeaderLbl: UILabel!
     @IBOutlet weak var userTypeLbl: UILabel!
@@ -146,13 +147,13 @@ class KC_CashTransferSubmissionVC: BaseViewController, SelectedDataDelegate{
     }
     @IBAction func selectTypeBtn(_ sender: Any) {
         
-        let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
-        vc.itsFrom = "USERTYPE"
-        vc.delegate = self
-        vc.customerType = self.customerType
-        vc.modalTransitionStyle = .coverVertical
-        vc.modalPresentationStyle = .overFullScreen
-        self.present(vc, animated: true)
+//        let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
+//        vc.itsFrom = "USERTYPE"
+//        vc.delegate = self
+//        vc.customerType = self.customerType
+//        vc.modalTransitionStyle = .coverVertical
+//        vc.modalPresentationStyle = .overFullScreen
+//        self.present(vc, animated: true)
     }
     
     @IBAction func selectProductBtn(_ sender: Any) {
@@ -239,11 +240,12 @@ class KC_CashTransferSubmissionVC: BaseViewController, SelectedDataDelegate{
 //
 //    }
     func claimSubmissionApi(){
-        if self.selectedUserTypeId == -1{
-            self.view.makeToast("Please select user type", duration: 2.0, position: .bottom)
-            self.swipeButton.reset()
-            self.swipeButton.backgroundColor = .white
-        }else if self.mappedUserId == -1{
+//        if self.selectedUserTypeId == -1{
+//            self.view.makeToast("Please select user type", duration: 2.0, position: .bottom)
+//            self.swipeButton.reset()
+//            self.swipeButton.backgroundColor = .white
+//        }else
+        if self.mappedUserId == -1{
             self.view.makeToast("Please select mapped user", duration: 2.0, position: .bottom)
             self.swipeButton.reset()
             self.swipeButton.backgroundColor = .white
@@ -280,18 +282,18 @@ class KC_CashTransferSubmissionVC: BaseViewController, SelectedDataDelegate{
     
     
     @IBAction func filterByNameBtn(_ sender: Any) {
-        if self.selectedUserTypeId == -1{
-            self.view.makeToast("Please select user type", duration: 2.0, position: .bottom)
-        }else{
+//        if self.selectedUserTypeId == -1{
+//            self.view.makeToast("Please select user type", duration: 2.0, position: .bottom)
+//        }else{
             let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
-            vc.itsFrom = "MAPPEDUSERS"
+            vc.itsFrom = "CLAIMPURCHSSS"
             vc.isComeFrom = "CASHTRANSFERSUBMISSION"
             vc.delegate = self
             vc.selectedUserTypeId = self.selectedUserTypeId
             vc.modalTransitionStyle = .coverVertical
             vc.modalPresentationStyle = .overFullScreen
             self.present(vc, animated: true)
-        }
+       // }
     }
 }
 

@@ -97,7 +97,8 @@ class KC_WorkDetailsVC: BaseViewController, DateSelectedDelegate, SelectedDataDe
     }
     
     @IBAction func submitBtn(_ sender: Any) {
-        if self.strdata1 == ""{
+        if self.customerTypeId != "1"{
+            if self.strdata1 == ""{
             self.view.makeToast("Please select site image", duration: 2.0, position: .bottom)
         }else if self.currentLatitude == "" || self.currentLongitude == ""{
             self.view.makeToast("Select current location...", duration: 2.0, position: .bottom)
@@ -146,7 +147,57 @@ class KC_WorkDetailsVC: BaseViewController, DateSelectedDelegate, SelectedDataDe
             ] as [String: Any]
             print(parameter)
             self.VM.workSiteDetailsSubmission(parameter: parameter)
-
+            
+        }
+        
+    }else{
+        if self.strdata1 == ""{
+        self.view.makeToast("Please select site image", duration: 2.0, position: .bottom)
+    }else if self.currentLatitude == "" || self.currentLongitude == ""{
+        self.view.makeToast("Select current location...", duration: 2.0, position: .bottom)
+    }else if self.ownerName == ""{
+        self.view.makeToast("Enter owner name", duration: 2.0, position: .bottom)
+    }else if self.ownerMobile == ""{
+        self.view.makeToast("Enter owner mobile number", duration: 2.0, position: .bottom)
+    }else if self.ownerResidentialDetails == ""{
+        self.view.makeToast("Enter owner residential details", duration: 2.0, position: .bottom)
+    }else if self.selectedWordId == -1{
+        self.view.makeToast("Enter owner name", duration: 2.0, position: .bottom)
+    }else if self.selectedDate == ""{
+        self.view.makeToast("Select tentative date", duration: 2.0, position: .bottom)
+    }else if self.remarksTextView.text == ""{
+        self.view.makeToast("Enter remarks", duration: 2.0, position: .bottom)
+    }else{
+        print(self.currentLatitude)
+        print(self.currentLongitude)
+        print(self.ownerName)
+        print(self.ownerMobile)
+        print(self.ownerResidentialDetails)
+        print(self.engineerName)
+        print(self.engineerNumber)
+        print(self.siteName)
+        let parameter = [
+            "SiteName":self.siteName,
+            "CustomerID":self.userID,
+            "ContactNumber":self.ownerMobile,
+            "ContactNumber1":"",
+            "SiteImageURl":self.strdata1,
+            "ActorId":self.userID,
+            "ActionType":"1",
+            "Verification":"1",
+            "Address":self.ownerResidentialDetails,
+            "TentativeDate": self.selectedDate,
+            "Worklevel": self.selectedWordId,
+            "AddressLongitude":self.currentLongitude,
+            "AddressLatitude":self.currentLatitude,
+            "ContactPersonName":self.ownerName,
+            "ContactPersonName1":"",
+            "Remarks":self.remarksTextView.text ?? ""
+        ] as [String: Any]
+        print(parameter)
+        self.VM.workSiteDetailsSubmission(parameter: parameter)
+        
+    }
         }
         
         

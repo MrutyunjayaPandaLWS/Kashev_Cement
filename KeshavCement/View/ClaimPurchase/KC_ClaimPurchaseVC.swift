@@ -8,7 +8,7 @@
 import UIKit
 import Lottie
 import Toast_Swift
-
+import LanguageManager_iOS
 class KC_ClaimPurchaseVC: BaseViewController, SelectedDataDelegate{
     func didTapHelpTopic(_ vc: KC_DropDownVC) {}
     func didTapAmount(_ vc: KC_DropDownVC){}
@@ -19,7 +19,7 @@ class KC_ClaimPurchaseVC: BaseViewController, SelectedDataDelegate{
         self.searchTF.text = vc.mappedUsername
         self.mappedName = vc.mappedUsername
         self.mappedUserId = vc.mappedUserId
-        self.pleaseSelectProductLbl.text = "Please select product name"
+        self.pleaseSelectProductLbl.text = "Pleaseproductname".localiz()
         self.selectedProductId = -1
     }
     func didTapProductName(_ vc: KC_DropDownVC){
@@ -37,14 +37,15 @@ class KC_ClaimPurchaseVC: BaseViewController, SelectedDataDelegate{
         self.selectedUserTypeName = vc.selectedUserTypeName
         self.selectedUserTypeId = vc.selectedUserTypeId
         self.searchTF.text = ""
-        self.searchTF.placeholder = "Search ..."
-        self.pleaseSelectProductLbl.text = "Please select product name"
+        self.searchTF.placeholder = "Search....".localiz()
+        self.pleaseSelectProductLbl.text = "Pleaseproductname".localiz()
         self.mappedUserId = -1
         self.selectedProductId = -1
         
     }
     
 
+    @IBOutlet weak var userTypeView: UIView!
     @IBOutlet weak var mainview: UIView!
     @IBOutlet weak var claimHeaderLbl: UILabel!
     @IBOutlet weak var userTypeLbl: UILabel!
@@ -96,8 +97,17 @@ class KC_ClaimPurchaseVC: BaseViewController, SelectedDataDelegate{
         mainview.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
        // lbl_progressState.text = "Swipe to claim"
         self.swipeButton.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        self.searchTF.attributedPlaceholder = NSAttributedString(string: "Search Name", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
+        self.searchTF.attributedPlaceholder = NSAttributedString(string: "SearchName".localiz(), attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
                 NotificationCenter.default.addObserver(self, selector: #selector(afterQuerySubmitted), name: Notification.Name.navigateToDashBoard, object: nil)
+        self.claimHeaderLbl.text = "PurchaseRequest".localiz()
+        self.userTypeLbl.text = "UserType".localiz()
+        self.selectTypeLbl.text = "SelectType".localiz()
+        self.nameLbl.text = "Name".localiz()
+        self.searchTF.placeholder = "Searchbyname".localiz()
+        self.selectProductLbl.text = "SelectProduct".localiz()
+        self.pleaseSelectProductLbl.text = "Pleaseselectproduct".localiz()
+        self.enterQty.text = "EnterQuantity".localiz()
+        self.swipeButton.setTitle("Swipetoclaim".localiz(), for: .normal)
               
             }
   
@@ -125,7 +135,7 @@ class KC_ClaimPurchaseVC: BaseViewController, SelectedDataDelegate{
     
     @IBAction func selectProductBtn(_ sender: Any) {
         if self.mappedUserId == -1{
-            self.view.makeToast("Please select mapped user", duration: 2.0, position: .bottom)
+            self.view.makeToast("Pleasemappeduser".localiz(), duration: 2.0, position: .bottom)
         }else{
             let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
             vc.itsFrom = "CLAIMPRODUCTLIST"
@@ -133,16 +143,17 @@ class KC_ClaimPurchaseVC: BaseViewController, SelectedDataDelegate{
             vc.modalTransitionStyle = .coverVertical
             vc.modalPresentationStyle = .overFullScreen
             self.present(vc, animated: true)
-        }
+       }
     }
 
     @IBAction func minusBtn(_ sender: Any) {
-        if self.selectedUserTypeId == -1{
-            self.view.makeToast("Please select user type", duration: 2.0, position: .bottom)
-        }else if self.mappedUserId == -1{
-            self.view.makeToast("Please select mapped user", duration: 2.0, position: .bottom)
+//        if self.selectedUserTypeId == -1{
+//            self.view.makeToast("Pleaseselectusertype".localiz(), duration: 2.0, position: .bottom)
+//        }else
+        if self.mappedUserId == -1{
+            self.view.makeToast("Pleasemappeduser".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedProductId == -1{
-            self.view.makeToast("Please select product", duration: 2.0, position: .bottom)
+            self.view.makeToast("Pleaseselectproduct".localiz(), duration: 2.0, position: .bottom)
         }else{
             self.count -= 1
             self.quantity = self.count
@@ -156,12 +167,13 @@ class KC_ClaimPurchaseVC: BaseViewController, SelectedDataDelegate{
     }
     
     @IBAction func plus(_ sender: Any) {
-        if self.selectedUserTypeId == -1{
-            self.view.makeToast("Please select user type", duration: 2.0, position: .bottom)
-        }else if self.mappedUserId == -1{
-            self.view.makeToast("Please select mapped user", duration: 2.0, position: .bottom)
+//        if self.selectedUserTypeId == -1{
+//            self.view.makeToast("Pleaseselectusertype".localiz(), duration: 2.0, position: .bottom)
+//        }else
+        if self.mappedUserId == -1{
+            self.view.makeToast("Pleasemappeduser".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedProductId == -1{
-            self.view.makeToast("Please select product", duration: 2.0, position: .bottom)
+            self.view.makeToast("Pleaseselectproduct".localiz(), duration: 2.0, position: .bottom)
         }else{
             self.count += 1
             self.quantity = self.count
@@ -184,23 +196,24 @@ class KC_ClaimPurchaseVC: BaseViewController, SelectedDataDelegate{
         
         
         self.quantity = Int(self.qtyTF.text ?? "") ?? 0
-        if self.selectedUserTypeId == -1{
+//        if self.selectedUserTypeId == -1{
+//            self.qtyTF.text = "0"
+//            self.view.makeToast("Pleaseselectusertype".localiz(), duration: 2.0, position: .bottom)
+//            self.swipeButton.reset()
+//            self.swipeButton.backgroundColor = .white
+//        }
+        if self.mappedUserId == -1{
             self.qtyTF.text = "0"
-            self.view.makeToast("Please select user type", duration: 2.0, position: .bottom)
-            self.swipeButton.reset()
-            self.swipeButton.backgroundColor = .white
-        }else if self.mappedUserId == -1{
-            self.qtyTF.text = "0"
-            self.view.makeToast("Please select mapped user", duration: 2.0, position: .bottom)
+            self.view.makeToast("Pleasemappeduser".localiz(), duration: 2.0, position: .bottom)
             self.swipeButton.reset()
             self.swipeButton.backgroundColor = .white
         }else if self.selectedProductId == -1{
             self.qtyTF.text = "0"
-            self.view.makeToast("Please select product", duration: 2.0, position: .bottom)
+            self.view.makeToast("Pleaseselectproduct".localiz(), duration: 2.0, position: .bottom)
             self.swipeButton.reset()
             self.swipeButton.backgroundColor = .white
         }else if self.quantity == 0{
-            self.view.makeToast("Qunantity shouldn't 0", duration: 2.0, position: .bottom)
+            self.view.makeToast("Qunantityshouldnt0".localiz(), duration: 2.0, position: .bottom)
             self.count = 1
             self.quantity = 1
             self.qtyTF.text = "\(self.count)"
@@ -212,20 +225,21 @@ class KC_ClaimPurchaseVC: BaseViewController, SelectedDataDelegate{
         
     }
     func claimSubmissionApi(){
-        if self.selectedUserTypeId == -1{
-            self.view.makeToast("Please select user type", duration: 2.0, position: .bottom)
-            self.swipeButton.reset()
-            self.swipeButton.backgroundColor = .white
-        }else if self.mappedUserId == -1{
-            self.view.makeToast("Please select mapped user", duration: 2.0, position: .bottom)
+//        if self.selectedUserTypeId == -1{
+//            self.view.makeToast("Pleaseselectusertype".localiz(), duration: 2.0, position: .bottom)
+//            self.swipeButton.reset()
+//            self.swipeButton.backgroundColor = .white
+//        }else
+        if self.mappedUserId == -1{
+            self.view.makeToast("Pleasemappeduser".localiz(), duration: 2.0, position: .bottom)
             self.swipeButton.reset()
             self.swipeButton.backgroundColor = .white
         }else if self.selectedProductId == -1{
-            self.view.makeToast("Please select product", duration: 2.0, position: .bottom)
+            self.view.makeToast("Pleaseselectproduct".localiz(), duration: 2.0, position: .bottom)
             self.swipeButton.reset()
             self.swipeButton.backgroundColor = .white
         }else if self.quantity == 0{
-            self.view.makeToast("Quantity shouln't be 0", duration: 2.0, position: .bottom)
+            self.view.makeToast("Qunantityshouldnt0".localiz(), duration: 2.0, position: .bottom)
             self.swipeButton.reset()
             self.swipeButton.backgroundColor = .white
         }else{
@@ -250,19 +264,19 @@ class KC_ClaimPurchaseVC: BaseViewController, SelectedDataDelegate{
     
     
     @IBAction func filterByNameBtn(_ sender: Any) {
-        if self.selectedUserTypeId == -1{
-            self.view.makeToast("Please select user type", duration: 2.0, position: .bottom)
-        }else{
+//        if self.selectedUserTypeId == -1{
+//            self.view.makeToast("Pleaseselectusertype".localiz(), duration: 2.0, position: .bottom)
+//        }else{
             
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
-                vc.itsFrom = "MAPPEDUSERS"
+                vc.itsFrom = "CLAIMPURCHSSS"
                 vc.delegate = self
-                vc.selectedUserTypeId = self.selectedUserTypeId
+        vc.selectedUserTypeId = Int(self.userID) ?? 0
                 vc.modalTransitionStyle = .coverVertical
                 vc.modalPresentationStyle = .overFullScreen
                 self.present(vc, animated: true)
           
-        }
+       // }
     }
     func getDate(date: Date) -> String{
           let dateFormatter : DateFormatter = DateFormatter()

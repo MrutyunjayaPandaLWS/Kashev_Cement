@@ -6,9 +6,10 @@
 //
 
 import UIKit
-
+import LanguageManager_iOS
 class KC_RegistrationReferralCodeVC: BaseViewController {
 
+    @IBOutlet weak var verifyBtn: UIButton!
     @IBOutlet weak var referralCodeLbl: UILabel!
     @IBOutlet weak var infoLbl: UILabel!
     @IBOutlet weak var referralCodeTF: UITextField!
@@ -19,8 +20,13 @@ class KC_RegistrationReferralCodeVC: BaseViewController {
     let token = UserDefaults.standard.string(forKey: "TOKEN") ?? ""
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.referralCodeTF.attributedPlaceholder = NSAttributedString(string: "Enter Referral Code", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
+        self.referralCodeTF.attributedPlaceholder = NSAttributedString(string: "EnterReferralCode".localiz(), attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
         print(referralCode)
+        self.skipLbl.text = "Skip".localiz()
+        self.infoLbl.text = "Enter your referral code sent by your friend".localiz()
+        self.referralCodeLbl.text = "ReferralCode".localiz()
+        self.referralCodeTF.placeholder = "EnterReferralCode".localiz()
+        self.verifyBtn.setTitle("Verify", for: .normal)
     }
 
     @IBAction func skipButton(_ sender: Any) {
@@ -32,7 +38,7 @@ class KC_RegistrationReferralCodeVC: BaseViewController {
     
     @IBAction func verifyingBtn(_ sender: Any) {
         if self.referralCodeTF.text!.count == 0 {
-            self.view.makeToast("Enter Referral Code", duration: 2.0, position: .bottom)
+            self.view.makeToast("EnterReferralCode".localiz(), duration: 2.0, position: .bottom)
         }else{
             let parameters = [
                 "ActionType": 62,
@@ -77,7 +83,7 @@ class KC_RegistrationReferralCodeVC: BaseViewController {
                 if str ?? "" == "true"{
                     DispatchQueue.main.async {
                         self.stopLoading()
-                        self.view.makeToast("Invalid referral code", duration: 2.0, position: .bottom)
+                        self.view.makeToast("Invalid referral code".localiz(), duration: 2.0, position: .bottom)
                     }
                 }else{
                     DispatchQueue.main.async {

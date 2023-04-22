@@ -1540,4 +1540,46 @@ class RestAPI_Requests {
         }
     }
     
+    func dealerHelpPopUpApi(parameters: JSON, completion: @escaping (DealerPopUpModel?, Error?) -> ()) -> URLSessionDataTask? {
+        return client.load(path: getProductDetails_URLMethodName, method: .post, params: parameters) { data, error in
+            do{
+                if data != nil{
+                    let result1 =  try JSONDecoder().decode(DealerPopUpModel?.self, from: data as! Data)
+                    completion(result1, nil)
+                }
+            }catch{
+                completion(nil, error)
+            }
+        }
+    }
+    
+    //claimPurchaseNameList_URLMethod
+    
+    func mappedUserNameListApi(parameters: JSON, completion: @escaping (MappedUserNameModel?, Error?) -> ()) -> URLSessionDataTask? {
+        return client.load(path: claimPurchaseNameList_URLMethod, method: .post, params: parameters) { data, error in
+            do{
+                if data != nil{
+                    let result1 =  try JSONDecoder().decode(MappedUserNameModel?.self, from: data as! Data)
+                    completion(result1, nil)
+                }
+            }catch{
+                completion(nil, error)
+            }
+        }
+    }
+    
+    // NOTIFICATION LISTING
+    
+    func notificationList(parameters: JSON, completion: @escaping (NotificationModels?, Error?) -> ()) -> URLSessionDataTask? {
+       return client.load(path: historyNotification, method: .post, params: parameters) { data, error in
+           do{
+               if data != nil{
+                   let result1 =  try JSONDecoder().decode(NotificationModels?.self, from: data as! Data)
+                   completion(result1, nil)
+               }
+           }catch{
+               completion(nil, error)
+           }
+       }
+    }
 }

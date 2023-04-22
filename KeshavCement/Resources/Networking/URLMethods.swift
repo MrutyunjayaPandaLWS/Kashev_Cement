@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+let historyNotification = "GetPushHistoryDetails"
 let customerType_URLMethodName = "GetAttributeDetails"
 let membershipExistancy_URLMethod = "CheckCustomerExistancyAndVerification"
 let loginSubmission_URLMethod = "CheckIsAuthenticatedMobileApp"
@@ -77,3 +77,5 @@ let saveCustomerCasTransferDEtails = "SaveCustomerCasTransferDEtails"
 let cashTransferHistoryList = "GetCustomerCashTransferList"
 let cashTransferApproveOrRejectionSubmission = "CustomerCashTransferApprovalOrRejection"
 let myredemptionDetails_URLMethodName = "GetCustomerRedemptionHistorydetails"
+let getProductDetails_URLMethodName = "GetProductDetails"
+

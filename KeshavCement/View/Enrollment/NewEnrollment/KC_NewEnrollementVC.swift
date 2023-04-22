@@ -118,6 +118,44 @@ class KC_NewEnrollementVC: BaseViewController, SelectedDataDelegate, DateSelecte
     @IBOutlet weak var dobLbl: UILabel!
     @IBOutlet weak var dateOfAnniversaryLbl: UILabel!
     
+    @IBOutlet weak var customerTypeView: UIView!
+    @IBOutlet weak var customerTypePriority: UILabel!
+    
+    @IBOutlet weak var fullNamePriority: UILabel!
+    @IBOutlet weak var fullNameView: UIView!
+    
+    @IBOutlet weak var firmNamePriority: UILabel!
+    @IBOutlet weak var firmView: UIView!
+    
+    @IBOutlet weak var emailView: UIView!
+    
+    @IBOutlet weak var addressPriority: UILabel!
+    @IBOutlet weak var addressView: UIView!
+    
+    @IBOutlet weak var pincodePriority: UILabel!
+    @IBOutlet weak var pinCodeView: UIView!
+    
+    @IBOutlet weak var statePriority: UILabel!
+    @IBOutlet weak var stateView: UIView!
+    
+    @IBOutlet weak var districtPriority: UILabel!
+    @IBOutlet weak var districtView: UIView!
+    
+    @IBOutlet weak var talukPriority: UILabel!
+    @IBOutlet weak var talukView: UIView!
+    
+    @IBOutlet weak var cityTitleLbl: UILabel!
+    @IBOutlet weak var cityView: UIView!
+    
+    @IBOutlet weak var dobTitleLbl: UILabel!
+    @IBOutlet weak var dobPriority: UILabel!
+    @IBOutlet weak var dobView: UIView!
+    
+    @IBOutlet weak var dateOfAnniversaryLbls: UILabel!
+    
+    @IBOutlet weak var anniversaryView: UIView!
+    
+    
     var referralCode = ""
     var selectedCustomerTypeName = ""
     var selectedCustomerTypeId = -1
@@ -142,6 +180,11 @@ class KC_NewEnrollementVC: BaseViewController, SelectedDataDelegate, DateSelecte
         self.mobileTF.keyboardType = .numberPad
         self.pincodeTF.keyboardType = .numberPad
         NotificationCenter.default.addObserver(self, selector: #selector(navigateToPrevious), name: Notification.Name.navigateToPrevious, object: nil)
+        
+        self.customerTypeLbl.isHidden = true; self.customerTypePriority.isHidden = true; self.customerTypeView.isHidden = true; self.fullNameLbl.isHidden = true; self.fullNamePriority.isHidden = true; self.fullNameView.isHidden = true; self.firmNameLbl.isHidden = true; self.firmNamePriority.isHidden = true; self.firmView.isHidden = true; self.emailLbl.isHidden = true; self.emailView.isHidden = true; self.addressLbl.isHidden = true; self.addressPriority.isHidden = true; self.addressView.isHidden = true; self.pincodeLbl.isHidden = true; self.pincodePriority.isHidden = true; self.pinCodeView.isHidden = true; self.stateLbl.isHidden = true; self.statePriority.isHidden = true; self.stateView.isHidden = true; self.districtLbl.isHidden = true; self.districtPriority.isHidden = true; self.districtView.isHidden = true; self.talukLbl.isHidden = true; self.talukPriority.isHidden = true; self.talukView.isHidden = true; self.cityTitleLbl.isHidden = true; self.cityView.isHidden = true; self.dobTitleLbl.isHidden = true; self.dobPriority.isHidden = true; self.dobView.isHidden = true; self.dateOfAnniversaryLbls.isHidden = true; self.anniversaryView.isHidden = true; self.submitButton.isHidden = true
+        
+        
+        
     }
     
     @objc func navigateToPrevious(){
@@ -313,6 +356,25 @@ class KC_NewEnrollementVC: BaseViewController, SelectedDataDelegate, DateSelecte
             print(parameter)
             self.VM.registrationSubmission(parameter: parameter)
         }
+    
+    @IBAction func mobileEditingDidEnd(_ sender: Any) {
+        if self.mobileTF.text?.count == 0 {
+            self.view.makeToast("Enter mobile number", duration: 2.0, position: .bottom)
+        }else if self.mobileTF.text?.count != 10 {
+            self.view.makeToast("Enter valid mobile number", duration: 2.0, position: .bottom)
+        }else{
+            let parameter = [
+                "ActionType":"65",
+                "ActorId": self.userID,
+                "Location":[
+                    "UserName":"\(self.mobileTF.text ?? "")"
+                ]
+            ] as [String: Any]
+            print(parameter)
+            self.VM.verifyMobileNumberAPI(paramters: parameter)
+        }
+    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
       let aSet = NSCharacterSet(charactersIn:"0123456789").inverted
       let compSepByCharInSet = string.components(separatedBy: aSet)

@@ -169,6 +169,11 @@ class KC_DashBoardVM: SendNewPasswordDelegate{
                             self.VC?.whenPurchaseLbl.text = "Earn Points When Purchase"
                             self.VC?.claimPurchaseLbl.text = "Claim Purchase"
                         }else if result?.lstCustomerFeedBackJsonApi?[0].customerTypeId ?? -1 == 3 || result?.lstCustomerFeedBackJsonApi?[0].customerTypeId ?? -1 == 4{
+                            if result?.lstCustomerFeedBackJsonApi?[0].customerTypeId ?? -1 == 3{
+                                self.VC?.helpButton.isHidden = false
+                            }else{
+                                self.VC?.helpButton.isHidden = true
+                            }
                             self.VC?.whenPurchaseLbl.text = "Sales & Earn"
                             self.VC?.claimPurchaseLbl.text = "Start Earning"
                         }else if result?.lstCustomerFeedBackJsonApi?[0].customerTypeId ?? -1 == 5{

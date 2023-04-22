@@ -8,6 +8,7 @@
 import UIKit
 import Photos
 import QCropper
+import LanguageManager_iOS
 class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelegate, SelectedDataDelegate {
     func didTapMappedUserName(_ vc: KC_DropDownVC) {}
     func didTapCityName(_ vc: KC_DropDownVC){}
@@ -26,7 +27,7 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
             print(vc.selectedDate)
             if self.dobTF.text ?? "" >= vc.selectedDate{
                 vc.selectedDate = ""
-                self.view.makeToast("Anniversary date should be more then a Date of birth", duration: 2.0, position: .bottom)
+                self.view.makeToast("AnniversaryDateofbirth".localiz(), duration: 2.0, position: .bottom)
             }else{
                 self.dateOfAnniverseryTF.text = vc.selectedDate
                 self.anniversary = vc.selectedDate
@@ -41,27 +42,27 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
         self.selectedCustomerTypeId = "\(vc.selectedCustomerTypeId)"
         self.selectedCustomerTypeName = vc.selectedCustomerType
         if self.selectedCustomerTypeId == "1" || self.selectedCustomerTypeId == "2"{
-            self.aadharNumberLbl.text = "Aadhar Number"
-            self.aadharNumberTF.placeholder = "Enter aadhar number"
+            self.aadharNumberLbl.text = "AadharNumber".localiz()
+            self.aadharNumberTF.placeholder = "Enteraadharnumber".localiz()
         }else if self.selectedCustomerTypeId == "3" || self.selectedCustomerTypeId == "4"{
-            self.aadharNumberLbl.text = "GST Number"
-            self.aadharNumberTF.placeholder = "Enter GST number"
+            self.aadharNumberLbl.text = "GSTNumber".localiz()
+            self.aadharNumberTF.placeholder = "EnterGSTnumber".localiz()
         }
     }
     
     func didTapState(_ vc: KC_DropDownVC) {
         self.stateTF.text = vc.selectedStateName
         self.stateId = "\(vc.selectedStateId)"
-        self.districtTF.text = "Select District"
+        self.districtTF.text = "SelectDistrict".localiz()
         self.districtId = "-1"
-        self.talukTF.text = "Select Taluk"
+        self.talukTF.text = "SelectTaluk".localiz()
         self.talukId = "-1"
     }
     
     func didTapDistrict(_ vc: KC_DropDownVC) {
         self.districtTF.text = vc.selectedDistrictName
         self.districtId = "\(vc.selectedDistrictId)"
-        self.talukTF.text = "Select Taluk"
+        self.talukTF.text = "SelectTaluk".localiz()
         self.talukId = "-1"
     }
     
@@ -104,6 +105,10 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
     @IBOutlet weak var dobTF: UITextField!
     
     @IBOutlet weak var dateOfAnniverseryTF: UITextField!
+    
+    @IBOutlet weak var dateOfBirthLbl: UILabel!
+    
+    @IBOutlet weak var dateOfAnniversaryLbl: UILabel!
     
     var address = ""
     var selectedDOB = ""
@@ -148,14 +153,31 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
         headerView.layer.shadowOffset = CGSize(width: 0 , height:2)
         self.picker.delegate = self
         if self.customerTypeId == "1" || self.customerTypeId == "2"{
-            self.aadharNumberLbl.text = "Aadhar Number"
-            self.aadharNumberTF.placeholder = "Enter aadhar number"
+            self.aadharNumberLbl.text = "AadharNumber".localiz()
+            self.aadharNumberTF.placeholder = "Enteraadharnumber".localiz()
         }else if self.customerTypeId == "3" || self.customerTypeId == "4"{
-            self.aadharNumberLbl.text = "GST Number"
-            self.aadharNumberTF.placeholder = "Enter GST number"
+            self.aadharNumberLbl.text = "GSTNumber".localiz()
+            self.aadharNumberTF.placeholder = "EnterGSTnumber".localiz()
         }
         self.myProfileDetailsApi()
         self.selectedCustomerTypeId = self.customerTypeId
+        
+        self.headerLbl.text = "MyProfile".localiz()
+        self.changeProfileButton.setTitle("Changeprofileimage".localiz(), for: .normal)
+        self.customerTypeLbl.text = "CustomerType".localiz()
+        self.fullNameLbl.text = "FullName".localiz()
+        self.firmNameLbl.text = "FirmName".localiz()
+        self.mobileNumberLbl.text = "MobileNumber".localiz()
+        self.aadharNumberLbl.text = "AadharNumber".localiz()
+        self.emailLbl.text = "Email".localiz()
+        self.addressLbl.text = "Address".localiz()
+        self.pincodeLbl.text = "Pincode".localiz()
+        self.stateLbl.text = "State".localiz()
+        self.districtLbl.text = "District".localiz()
+        self.talukaLbl.text = "Taluk".localiz()
+        self.dateOfBirthLbl.text = "DateofBirth".localiz()
+        self.dateOfAnniversaryLbl.text = "DateofAnniversary".localiz()
+        self.saveChangesBtn.setTitle("SaveChanges", for: .normal)
         
     }
     @IBAction func backBtn(_ sender: Any) {
@@ -198,7 +220,7 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
     
     @IBAction func districtButton(_ sender: Any) {
         if self.stateId == "1"{
-            self.view.makeToast("Select State", duration: 2.0, position: .bottom)
+            self.view.makeToast("SelectState".localiz(), duration: 2.0, position: .bottom)
         }else{
             let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
             vc.itsFrom = "DISTRICT"
@@ -213,7 +235,7 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
     
     @IBAction func talukButton(_ sender: Any) {
         if self.districtId == "-1"{
-            self.view.makeToast("Select District", duration: 2.0, position: .bottom)
+            self.view.makeToast("SelectDistrict".localiz(), duration: 2.0, position: .bottom)
         }else{
             let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
             vc.itsFrom = "TALUK"
@@ -245,7 +267,7 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
     @IBAction func AadharNumberEditingDidEnd(_ sender: Any) {
         if self.selectedCustomerTypeId == "1" || self.selectedCustomerTypeId == "2"{
             if self.aadharNumberTF.text!.count != 12{
-                self.view.makeToast("Aadhar card number should be 12 digits", duration: 2.0, position: .bottom)
+                self.view.makeToast("Aadhar12digits".localiz(), duration: 2.0, position: .bottom)
                 self.aadharNumberTF.text = ""
             }else{
                 self.aadharcarNumber = self.aadharNumberTF.text ?? ""
@@ -263,22 +285,22 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
     
     @IBAction func saveChangesBTN(_ sender: Any) {
         if self.customerTypeTF.text?.count == 0{
-            self.view.makeToast("Enter customer type", duration: 2.0, position: .bottom)
+            self.view.makeToast("Entercustomertype".localiz(), duration: 2.0, position: .bottom)
         }else if self.fullNameTF.text?.count == 0{
-            self.view.makeToast("Enter full name", duration: 2.0, position: .bottom)
+            self.view.makeToast("Enterfullname".localiz(), duration: 2.0, position: .bottom)
         }else if self.firmTF.text?.count == 0{
-            self.view.makeToast("Enter firm name", duration: 2.0, position: .bottom)
+            self.view.makeToast("Enterfirmname".localiz(), duration: 2.0, position: .bottom)
         }else if self.mobileNumberTF.text?.count == 0{
-            self.view.makeToast("Enter mobile number", duration: 2.0, position: .bottom)
+            self.view.makeToast("Entermobilenumber".localiz(), duration: 2.0, position: .bottom)
         }
         else if self.mobileNumberTF.text?.count != 10{
-            self.view.makeToast("Enter valid mobile number", duration: 2.0, position: .bottom)
+            self.view.makeToast("Entervalidmobilenumber".localiz(), duration: 2.0, position: .bottom)
         }
 //        else if self.aadharNumberTF.text?.count == 0{
 //            self.view.makeToast("Enter aadhar / GST number", duration: 2.0, position: .bottom)
 //        }
         else if self.aadharNumberTF.text!.count > 16 && self.aadharNumberTF.text!.count != 0{
-            self.view.makeToast("Enter valid aadhar / GST number", duration: 2.0, position: .bottom)
+            self.view.makeToast("EntervalidaadharGSTnumber".localiz(), duration: 2.0, position: .bottom)
         }
 //        else if self.emailTF.text!.count == 0{
 //            self.view.makeToast("Enter email", duration: 2.0, position: .bottom)
@@ -287,7 +309,7 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
 //            self.view.makeToast("Enter address", duration: 2.0, position: .bottom)
 //        }
         else if self.pincodeTF.text!.count != 6 && self.pincodeTF.text!.count != 0{
-            self.view.makeToast("Enter valid pin", duration: 2.0, position: .bottom)
+            self.view.makeToast("Entervalidpin".localiz(), duration: 2.0, position: .bottom)
         }
 //        else if self.stateTF.text?.count == 0 {
 //            self.view.makeToast("Select State", duration: 2.0, position: .bottom)

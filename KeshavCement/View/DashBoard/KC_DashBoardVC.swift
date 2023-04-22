@@ -11,10 +11,11 @@ import Lottie
 import SlideMenuControllerSwift
 import CoreData
 import Alamofire
-
+import LanguageManager_iOS
 class KC_DashBoardVC: BaseViewController{
     
 
+    @IBOutlet weak var helpButton: UIButton!
     @IBOutlet weak var gradeIcon: UIImageView!
     @IBOutlet weak var defaultImage: UIImageView!
     @IBOutlet weak var bannerImage: ImageSlideshow!
@@ -78,6 +79,7 @@ class KC_DashBoardVC: BaseViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.VM.VC = self
+        self.helpButton.isHidden = true
         self.languageTrailingSpace.constant = 16
         self.languagePopUpView.isHidden = true
         self.dashBoardId = -1
@@ -90,8 +92,9 @@ class KC_DashBoardVC: BaseViewController{
         mainView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         NotificationCenter.default.addObserver(self, selector: #selector(checkVerificationStatus), name: Notification.Name.verificationStatus, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(deactivateAccount), name: Notification.Name.deactivatedAcc, object: nil)
-
+        
     }
+  
     @objc func deactivateAccount(){
         UserDefaults.standard.set(false, forKey: "IsloggedIn?")
         UserDefaults.standard.set(false, forKey: "UpdatePassword")
@@ -124,6 +127,7 @@ class KC_DashBoardVC: BaseViewController{
         super.viewWillAppear(true)
         self.slideMenuController()?.closeLeft()
         self.tokendata()
+        self.localization()
 //        NotificationCenter.default.addObserver(self, selector: #selector(changePassword), name: Notification.Name.navigateToChangePassword, object: nil)
        
       
@@ -141,7 +145,7 @@ class KC_DashBoardVC: BaseViewController{
         self.navigationController?.popToRootViewController(animated: true)
     }
     @objc func checkVerificationStatus(){
-        self.view.makeToast("You are not allowled to redeem .Please contact your administrator", duration: 2.0, position: .bottom)
+        self.view.makeToast("notAllowedRedeem".localiz(), duration: 2.0, position: .bottom)
        
     }
 
@@ -149,22 +153,38 @@ class KC_DashBoardVC: BaseViewController{
         self.openLeft()
     }
     @IBAction func notificationButton(_ sender: Any) {
+        
+        let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "HistoryNotificationsViewController") as! HistoryNotificationsViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func helpBtn(_ sender: Any) {
+        let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DealerHelpPopUp") as! KC_DealerHelpPopUp
+        vc.modalTransitionStyle = .coverVertical
+        vc.modalPresentationStyle = .overFullScreen
+        self.present(vc, animated: true)
     }
     
     @IBAction func englishButton(_ sender: Any) {
+        LanguageManager.shared.setLanguage(language: .en)
         UserDefaults.standard.set("1", forKey: "LanguageLocalizable")
         UserDefaults.standard.synchronize()
         self.languagePopUpView.isHidden = true
+        self.localization()
     }
     @IBAction func hindiButton(_ sender: Any) {
+        LanguageManager.shared.setLanguage(language: .hi)
             UserDefaults.standard.set("2", forKey: "LanguageLocalizable")
             UserDefaults.standard.synchronize()
         self.languagePopUpView.isHidden = true
+        self.localization()
     }
     @IBAction func kannadaButton(_ sender: Any) {
+        LanguageManager.shared.setLanguage(language: .knIn)
         UserDefaults.standard.set("3", forKey: "LanguageLocalizable")
         UserDefaults.standard.synchronize()
         self.languagePopUpView.isHidden = true
+        self.localization()
     }
     
     
@@ -231,6 +251,14 @@ class KC_DashBoardVC: BaseViewController{
         let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_LodgeQueryVC") as! KC_LodgeQueryVC
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    func localization() {
+        self.memberShipIdTitle.text = "MembershipID".localiz()
+        self.pointBalanceTitle.text = "PointBalance".localiz()
+        self.askHelpLbl.text = "AskHelp?".localiz()
+        self.raiseTicketLbl.text = "Raiseconnectyousoon".localiz()
+        self.raiseTicketBtnLbl.text = "RaiseaTicket".localiz()
+    }
+  
     
     func dashBoardApi(){
         let parameter = [
@@ -373,51 +401,94 @@ extension KC_DashBoardVC: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if self.customerTypeId == "1" || self.customerTypeId == "2"{
             self.selectedTitle = self.engineerTopicArray[indexPath.row]
-            if self.selectedTitle == "My Purchase Claim"{
+//            if self.selectedTitle == "My Purchase Claim".localiz(){
+//                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyPurchaseClaimVC") as! KC_MyPurchaseClaimVC
+//                self.navigationController?.pushViewController(vc, animated: true)
+//            }else if self.selectedTitle == "Redemption Catalogue".localiz(){
+//                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_RedemptionCataloguesVC") as! KC_RedemptionCataloguesVC
+//                self.navigationController?.pushViewController(vc, animated: true)
+//            }else if self.selectedTitle == "My Redemption".localiz(){
+//                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyRedemptionVC") as! KC_MyRedemptionVC
+//                self.navigationController?.pushViewController(vc, animated: true)
+//            }else if self.selectedTitle == "My Earning".localiz(){
+//                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyEarningVC") as! KC_MyEarningVC
+//                self.navigationController?.pushViewController(vc, animated: true)
+//            }else if self.selectedTitle == "Offers and Promotions".localiz(){
+//                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_OffersandpromotionsVC") as! KC_OffersandpromotionsVC
+//                self.navigationController?.pushViewController(vc, animated: true)
+//            }else if self.selectedTitle == "Worksite Details".localiz(){
+//                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_WorksiteDetailsVC") as! KC_WorksiteDetailsVC
+//                self.navigationController?.pushViewController(vc, animated: true)
+//            }else if self.selectedTitle == "Refer and Earn".localiz(){
+//                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_ReferandEarnVC") as! KC_ReferandEarnVC
+//                self.navigationController?.pushViewController(vc, animated: true)
+//            }
+            if indexPath.row == 0{
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyPurchaseClaimVC") as! KC_MyPurchaseClaimVC
                 self.navigationController?.pushViewController(vc, animated: true)
-            }else if self.selectedTitle == "Redemption Catalogue"{
+            }else if indexPath.row == 1{
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_RedemptionCataloguesVC") as! KC_RedemptionCataloguesVC
                 self.navigationController?.pushViewController(vc, animated: true)
-            }else if self.selectedTitle == "My Redemption"{
+            }else if indexPath.row == 2{
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyRedemptionVC") as! KC_MyRedemptionVC
                 self.navigationController?.pushViewController(vc, animated: true)
-            }else if self.selectedTitle == "My Earning"{
+            }else if indexPath.row == 3{
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyEarningVC") as! KC_MyEarningVC
                 self.navigationController?.pushViewController(vc, animated: true)
-            }else if self.selectedTitle == "Offers and Promotions"{
+            }else if indexPath.row == 4{
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_OffersandpromotionsVC") as! KC_OffersandpromotionsVC
                 self.navigationController?.pushViewController(vc, animated: true)
-            }else if self.selectedTitle == "Worksite Details"{
+            }else if indexPath.row == 5{
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_WorksiteDetailsVC") as! KC_WorksiteDetailsVC
                 self.navigationController?.pushViewController(vc, animated: true)
-            }else if self.selectedTitle == "Refer and Earn"{
+            }else if indexPath.row == 6{
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_ReferandEarnVC") as! KC_ReferandEarnVC
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }else if self.customerTypeId == "3"{
             self.selectedTitle = self.dealerTopicArray[indexPath.row]
-//
-//            var dealerTopicArray = ["Enrollment", "Pending Claim Request","Cash Transfer Approval","Redemption Catalogue", "My Redemption", "My Earning", "Offers and Promotions"]
-            if self.selectedTitle == "Enrollment"{
+
+//            if self.selectedTitle == "Enrollment".localiz(){
+//                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_EnrollmentListVC") as! KC_EnrollmentListVC
+//                self.navigationController?.pushViewController(vc, animated: true)
+//            }else if self.selectedTitle == "Pending Claim Request".localiz(){
+//                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_PendingClaimVC") as! KC_PendingClaimVC
+//                self.navigationController?.pushViewController(vc, animated: true)
+//            }else if self.selectedTitle == "Cash Transfer Approval".localiz(){
+//                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_CashTranferApprovalVC") as! KC_CashTranferApprovalVC
+//                self.navigationController?.pushViewController(vc, animated: true)
+//            }else if self.selectedTitle == "Redemption Catalogue".localiz(){
+//                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_RedemptionCataloguesVC") as! KC_RedemptionCataloguesVC
+//                self.navigationController?.pushViewController(vc, animated: true)
+//            }else if self.selectedTitle == "My Redemption".localiz(){
+//                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyRedemptionVC") as! KC_MyRedemptionVC
+//                self.navigationController?.pushViewController(vc, animated: true)
+//            }else if self.selectedTitle == "My Earning".localiz(){
+//                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyEarningVC") as! KC_MyEarningVC
+//                self.navigationController?.pushViewController(vc, animated: true)
+//            }else if self.selectedTitle == "Offers and Promotions".localiz(){
+//                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_OffersandpromotionsVC") as! KC_OffersandpromotionsVC
+//                self.navigationController?.pushViewController(vc, animated: true)
+//            }
+            if indexPath.row == 0{
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_EnrollmentListVC") as! KC_EnrollmentListVC
                 self.navigationController?.pushViewController(vc, animated: true)
-            }else if self.selectedTitle == "Pending Claim Request"{
+            }else if indexPath.row == 1{
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_PendingClaimVC") as! KC_PendingClaimVC
                 self.navigationController?.pushViewController(vc, animated: true)
-            }else if self.selectedTitle == "Cash Transfer Approval"{
+            }else if indexPath.row == 2{
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_CashTranferApprovalVC") as! KC_CashTranferApprovalVC
                 self.navigationController?.pushViewController(vc, animated: true)
-            }else if self.selectedTitle == "Redemption Catalogue"{
+            }else if indexPath.row == 3{
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_RedemptionCataloguesVC") as! KC_RedemptionCataloguesVC
                 self.navigationController?.pushViewController(vc, animated: true)
-            }else if self.selectedTitle == "My Redemption"{
+            }else if indexPath.row == 4{
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyRedemptionVC") as! KC_MyRedemptionVC
                 self.navigationController?.pushViewController(vc, animated: true)
-            }else if self.selectedTitle == "My Earning"{
+            }else if indexPath.row == 5{
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyEarningVC") as! KC_MyEarningVC
                 self.navigationController?.pushViewController(vc, animated: true)
-            }else if self.selectedTitle == "Offers and Promotions"{
+            }else if indexPath.row == 6{
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_OffersandpromotionsVC") as! KC_OffersandpromotionsVC
                 self.navigationController?.pushViewController(vc, animated: true)
             }
@@ -453,15 +524,27 @@ extension KC_DashBoardVC: UICollectionViewDelegate, UICollectionViewDataSource{
         }else if self.customerTypeId == "5"{
             self.selectedTitle = self.supportExecutive[indexPath.row]
             
-            if self.selectedTitle == "Enrollment"{
+//            if self.selectedTitle == "Enrollment".localiz(){
+//                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_EnrollmentListVC") as! KC_EnrollmentListVC
+//                self.navigationController?.pushViewController(vc, animated: true)
+//
+//            }else if self.selectedTitle == "Pending Request".localiz(){
+//                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_PendingClaimVC") as! KC_PendingClaimVC
+//                self.navigationController?.pushViewController(vc, animated: true)
+//
+//            }else if self.selectedTitle == "My Activity".localiz(){
+//                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyActivityVC") as! KC_MyActivityVC
+//                self.navigationController?.pushViewController(vc, animated: true)
+//            }
+            if indexPath.row == 0{
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_EnrollmentListVC") as! KC_EnrollmentListVC
                 self.navigationController?.pushViewController(vc, animated: true)
                 
-            }else if self.selectedTitle == "Pending Request"{
+            }else if indexPath.row == 1{
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_PendingClaimVC") as! KC_PendingClaimVC
                 self.navigationController?.pushViewController(vc, animated: true)
                 
-            }else if self.selectedTitle == "My Activity" {
+            }else if indexPath.row == 2{
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyActivityVC") as! KC_MyActivityVC
                 self.navigationController?.pushViewController(vc, animated: true)
             }

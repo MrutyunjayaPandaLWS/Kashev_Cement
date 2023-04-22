@@ -28,6 +28,9 @@ class KC_DropDownVM{
     var cityListArray = [CityList]()
     var cityArray = [CityList]()
     
+    var mapppedUserNameListArray = [LstCustParentChildMapping21]()
+    var mapppedUserNameListArray1 = [LstCustParentChildMapping21]()
+    
     func citylisting(parameters:JSON){
         self.VC?.startLoading()
         print(parameters)
@@ -292,7 +295,51 @@ class KC_DropDownVM{
         }
         
     }
-    
+    func mapppedUserNameList(parameter: JSON){
+        
+        DispatchQueue.main.async {
+            self.VC?.startLoading()
+        }
+        
+        self.requestAPIs.mappedUserNameListApi(parameters: parameter) { (result, error) in
+            
+            if result == nil{
+                
+                DispatchQueue.main.async {
+                    self.VC?.stopLoading()
+                }
+            }else{
+                if error == nil{
+                    DispatchQueue.main.async {
+                        self.mapppedUserNameListArray = result?.lstCustParentChildMapping ?? []
+                        self.mapppedUserNameListArray1 = self.mapppedUserNameListArray
+                        print(self.mapppedUserNameListArray.count, "cashDetailsListArray Count")
+                      
+                        self.VC?.stopLoading()
+                        if self.mapppedUserNameListArray1.count != 0 {
+                            self.VC?.dropDownTableView.isHidden = false
+                            self.VC?.noDataFoundLbl.isHidden = true
+                            if self.mapppedUserNameListArray1.count <= 20{
+                                self.VC!.tableViewHeightConstraint.constant = CGFloat(self.mapppedUserNameListArray1.count * 40)
+                            }else{
+                                self.VC!.tableViewHeightConstraint.constant = CGFloat(500)
+                            }
+                            self.VC?.dropDownTableView.reloadData()
+                        }else{
+                            self.VC?.dropDownTableView.isHidden = true
+                            self.VC?.noDataFoundLbl.isHidden = false
+                        }
+                    }
+                }else{
+                    DispatchQueue.main.async {
+                        print(error)
+                        self.VC?.stopLoading()
+                    }
+                }
+            }
+        }
+        
+    }
     func cashDetailsListApi(parameter: JSON){
         
         DispatchQueue.main.async {
