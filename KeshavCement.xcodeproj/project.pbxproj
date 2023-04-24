@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1EAA6C68A3300559CD27CA54 /* Pods_KeshavCement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7AF158B55A91D65C3D44A81 /* Pods_KeshavCement.framework */; };
 		25102340295C756200028D09 /* KC_LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2510233F295C756200028D09 /* KC_LoginVC.swift */; };
 		251C4D29295C201B007939F3 /* PersistanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251C4D28295C201B007939F3 /* PersistanceService.swift */; };
 		2598BF4829BA11C2003CD01E /* KC_MyActivityTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2598BF4729BA11C2003CD01E /* KC_MyActivityTVC.swift */; };
@@ -47,6 +46,7 @@
 		25DC5C4E295C1C4B00818258 /* TextfieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DC5C42295C1C4B00818258 /* TextfieldExtension.swift */; };
 		25DC5C4F295C1C4B00818258 /* ViewControllerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DC5C43295C1C4B00818258 /* ViewControllerUtils.swift */; };
 		25E7817B295D49E90026A86C /* KC_RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E7817A295D49E90026A86C /* KC_RegisterVC.swift */; };
+		3E6EC6F5A6C16076FE9B3309 /* Pods_KeshavCement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B467AA392AE23C7BC4DC69 /* Pods_KeshavCement.framework */; };
 		8400469429C59641007DC492 /* SubmitVoucherModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400469329C59641007DC492 /* SubmitVoucherModels.swift */; };
 		8400469629C59700007DC492 /* QS_SuccessTransfer_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400469529C59700007DC492 /* QS_SuccessTransfer_VC.swift */; };
 		840CC62529A732E0005B438D /* ProductCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840CC62329A732E0005B438D /* ProductCategoryModel.swift */; };
@@ -87,6 +87,8 @@
 		841AE9FA29C039AF008C45A2 /* KC_LanguageTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841AE9F929C039AF008C45A2 /* KC_LanguageTVC.swift */; };
 		841AE9FD29C07086008C45A2 /* Json4Swift_Base-66.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841AE9FC29C07086008C45A2 /* Json4Swift_Base-66.swift */; };
 		841C096429697EA600B70F5C /* KC_OrderConfirmationTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841C096329697EA600B70F5C /* KC_OrderConfirmationTVC.swift */; };
+		841E1EAF29F6302A008F0EB5 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E1EAE29F6302A008F0EB5 /* NotificationService.swift */; };
+		841E1EB329F6302A008F0EB5 /* NotificationService.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 841E1EAC29F6302A008F0EB5 /* NotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8421F4362969968400E116AA /* KC_EditAddressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F4352969968400E116AA /* KC_EditAddressVC.swift */; };
 		842668C029718BA400AE48AD /* KC_NewEnrollmentTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842668BF29718BA400AE48AD /* KC_NewEnrollmentTVC.swift */; };
 		842BAF9B29A9CBB5003BD356 /* SMSSentToCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842BAF9A29A9CBB5003BD356 /* SMSSentToCustomer.swift */; };
@@ -196,6 +198,7 @@
 		848A4EE8299E47A9002280C0 /* RegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A4EE7299E47A9002280C0 /* RegistrationModel.swift */; };
 		848A4EEA299E5524002280C0 /* KC_SignUpSuccessPopVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A4EE9299E5524002280C0 /* KC_SignUpSuccessPopVC.swift */; };
 		848A4EED299E57F8002280C0 /* KC_DOBVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A4EEC299E57F8002280C0 /* KC_DOBVC.swift */; };
+		848A516129F6539C00D911F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 848A516029F6539B00D911F4 /* GoogleService-Info.plist */; };
 		848DA9512969AC1A00C056AC /* KC_CashTransferTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848DA9502969AC1A00C056AC /* KC_CashTransferTVC.swift */; };
 		848EF1C7296C4CC60091ADB7 /* KC_HelplineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848EF1C6296C4CC60091ADB7 /* KC_HelplineVC.swift */; };
 		84905A8729A484A1004C6330 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 84905A8429A484A0004C6330 /* LICENSE */; };
@@ -387,9 +390,31 @@
 			remoteGlobalIDString = 25DC5BDD295C1A3F00818258;
 			remoteInfo = KeshavCement;
 		};
+		841E1EB129F6302A008F0EB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 25DC5BD6295C1A3F00818258 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 841E1EAB29F6302A008F0EB5;
+			remoteInfo = NotificationService;
+		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		841E1EB429F6302A008F0EB5 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				841E1EB329F6302A008F0EB5 /* NotificationService.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		20B467AA392AE23C7BC4DC69 /* Pods_KeshavCement.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KeshavCement.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2510233F295C756200028D09 /* KC_LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_LoginVC.swift; sourceTree = "<group>"; };
 		251C4D28295C201B007939F3 /* PersistanceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistanceService.swift; sourceTree = "<group>"; };
 		2598BF4729BA11C2003CD01E /* KC_MyActivityTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_MyActivityTVC.swift; sourceTree = "<group>"; };
@@ -433,7 +458,7 @@
 		25DC5C42295C1C4B00818258 /* TextfieldExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextfieldExtension.swift; sourceTree = "<group>"; };
 		25DC5C43295C1C4B00818258 /* ViewControllerUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerUtils.swift; sourceTree = "<group>"; };
 		25E7817A295D49E90026A86C /* KC_RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_RegisterVC.swift; sourceTree = "<group>"; };
-		2AB7EEA8667990DF2087AC6A /* Pods-KeshavCement.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KeshavCement.release.xcconfig"; path = "Target Support Files/Pods-KeshavCement/Pods-KeshavCement.release.xcconfig"; sourceTree = "<group>"; };
+		3B61DF5F9C162E24326C4C39 /* Pods-KeshavCement.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KeshavCement.release.xcconfig"; path = "Target Support Files/Pods-KeshavCement/Pods-KeshavCement.release.xcconfig"; sourceTree = "<group>"; };
 		8400469329C59641007DC492 /* SubmitVoucherModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitVoucherModels.swift; sourceTree = "<group>"; };
 		8400469529C59700007DC492 /* QS_SuccessTransfer_VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QS_SuccessTransfer_VC.swift; sourceTree = "<group>"; };
 		8407AB9729DC351100C8B612 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
@@ -475,6 +500,9 @@
 		841AE9F929C039AF008C45A2 /* KC_LanguageTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_LanguageTVC.swift; sourceTree = "<group>"; };
 		841AE9FC29C07086008C45A2 /* Json4Swift_Base-66.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Json4Swift_Base-66.swift"; sourceTree = "<group>"; };
 		841C096329697EA600B70F5C /* KC_OrderConfirmationTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_OrderConfirmationTVC.swift; sourceTree = "<group>"; };
+		841E1EAC29F6302A008F0EB5 /* NotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		841E1EAE29F6302A008F0EB5 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		841E1EB029F6302A008F0EB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8421F4352969968400E116AA /* KC_EditAddressVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_EditAddressVC.swift; sourceTree = "<group>"; };
 		842668BF29718BA400AE48AD /* KC_NewEnrollmentTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_NewEnrollmentTVC.swift; sourceTree = "<group>"; };
 		842BAF9A29A9CBB5003BD356 /* SMSSentToCustomer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSSentToCustomer.swift; sourceTree = "<group>"; };
@@ -590,6 +618,7 @@
 		848A4EE7299E47A9002280C0 /* RegistrationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationModel.swift; sourceTree = "<group>"; };
 		848A4EE9299E5524002280C0 /* KC_SignUpSuccessPopVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_SignUpSuccessPopVC.swift; sourceTree = "<group>"; };
 		848A4EEC299E57F8002280C0 /* KC_DOBVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_DOBVC.swift; sourceTree = "<group>"; };
+		848A516029F6539B00D911F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		848DA9502969AC1A00C056AC /* KC_CashTransferTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_CashTransferTVC.swift; sourceTree = "<group>"; };
 		848EF1C6296C4CC60091ADB7 /* KC_HelplineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_HelplineVC.swift; sourceTree = "<group>"; };
 		84905A8429A484A0004C6330 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -765,8 +794,7 @@
 		84F8420829A8812200377B26 /* PlannerRemoveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlannerRemoveModel.swift; sourceTree = "<group>"; };
 		84F8432A2968320B000ABA34 /* KC_EvoucherPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_EvoucherPopUpVC.swift; sourceTree = "<group>"; };
 		84FA411D297531DE0084FB2B /* KC_SupporteExecutiveTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_SupporteExecutiveTVC.swift; sourceTree = "<group>"; };
-		CE7A6D60C757464F9BAF5103 /* Pods-KeshavCement.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KeshavCement.debug.xcconfig"; path = "Target Support Files/Pods-KeshavCement/Pods-KeshavCement.debug.xcconfig"; sourceTree = "<group>"; };
-		D7AF158B55A91D65C3D44A81 /* Pods_KeshavCement.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KeshavCement.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB29AFC05527FB5D908B0BF5 /* Pods-KeshavCement.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KeshavCement.debug.xcconfig"; path = "Target Support Files/Pods-KeshavCement/Pods-KeshavCement.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -774,7 +802,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1EAA6C68A3300559CD27CA54 /* Pods_KeshavCement.framework in Frameworks */,
+				3E6EC6F5A6C16076FE9B3309 /* Pods_KeshavCement.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -792,14 +820,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		841E1EA929F6302A008F0EB5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		23D54F8C47A484C4EAC0AA69 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				CE7A6D60C757464F9BAF5103 /* Pods-KeshavCement.debug.xcconfig */,
-				2AB7EEA8667990DF2087AC6A /* Pods-KeshavCement.release.xcconfig */,
+				DB29AFC05527FB5D908B0BF5 /* Pods-KeshavCement.debug.xcconfig */,
+				3B61DF5F9C162E24326C4C39 /* Pods-KeshavCement.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -852,9 +887,10 @@
 				25DC5BE0295C1A3F00818258 /* KeshavCement */,
 				25DC5BFA295C1A5D00818258 /* KeshavCementTests */,
 				25DC5C04295C1A5D00818258 /* KeshavCementUITests */,
+				841E1EAD29F6302A008F0EB5 /* NotificationService */,
 				25DC5BDF295C1A3F00818258 /* Products */,
 				23D54F8C47A484C4EAC0AA69 /* Pods */,
-				E2CE1CE16925FDD2E9F6B130 /* Frameworks */,
+				D79AC81552F3682B04360336 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -864,6 +900,7 @@
 				25DC5BDE295C1A3F00818258 /* KeshavCement.app */,
 				25DC5BF7295C1A5D00818258 /* KeshavCementTests.xctest */,
 				25DC5C01295C1A5D00818258 /* KeshavCementUITests.xctest */,
+				841E1EAC29F6302A008F0EB5 /* NotificationService.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -878,6 +915,7 @@
 				25DC5C1A295C1B4F00818258 /* Resources */,
 				25DC5BED295C1A5C00818258 /* Assets.xcassets */,
 				25DC5BF2295C1A5C00818258 /* Info.plist */,
+				848A516029F6539B00D911F4 /* GoogleService-Info.plist */,
 			);
 			path = KeshavCement;
 			sourceTree = "<group>";
@@ -1444,6 +1482,15 @@
 				841AE9FC29C07086008C45A2 /* Json4Swift_Base-66.swift */,
 			);
 			path = StockDetailsModel;
+			sourceTree = "<group>";
+		};
+		841E1EAD29F6302A008F0EB5 /* NotificationService */ = {
+			isa = PBXGroup;
+			children = (
+				841E1EAE29F6302A008F0EB5 /* NotificationService.swift */,
+				841E1EB029F6302A008F0EB5 /* Info.plist */,
+			);
+			path = NotificationService;
 			sourceTree = "<group>";
 		};
 		8421F434296995CE00E116AA /* EditAddress */ = {
@@ -2979,10 +3026,10 @@
 			path = RedemptionCatalogues;
 			sourceTree = "<group>";
 		};
-		E2CE1CE16925FDD2E9F6B130 /* Frameworks */ = {
+		D79AC81552F3682B04360336 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D7AF158B55A91D65C3D44A81 /* Pods_KeshavCement.framework */,
+				20B467AA392AE23C7BC4DC69 /* Pods_KeshavCement.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2994,15 +3041,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 25DC5C0B295C1A5D00818258 /* Build configuration list for PBXNativeTarget "KeshavCement" */;
 			buildPhases = (
-				189C70BD3E3D60CC57143443 /* [CP] Check Pods Manifest.lock */,
+				B2EB4BE3D5002C777540A296 /* [CP] Check Pods Manifest.lock */,
 				25DC5BDA295C1A3F00818258 /* Sources */,
 				25DC5BDB295C1A3F00818258 /* Frameworks */,
 				25DC5BDC295C1A3F00818258 /* Resources */,
-				FEAC7AFE4569BB49EA2FBB53 /* [CP] Embed Pods Frameworks */,
+				841E1EB429F6302A008F0EB5 /* Embed Foundation Extensions */,
+				9EBA3486B6A63E28452B6A3F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				841E1EB229F6302A008F0EB5 /* PBXTargetDependency */,
 			);
 			name = KeshavCement;
 			productName = KeshavCement;
@@ -3045,6 +3094,23 @@
 			productReference = 25DC5C01295C1A5D00818258 /* KeshavCementUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		841E1EAB29F6302A008F0EB5 /* NotificationService */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 841E1EB729F6302A008F0EB5 /* Build configuration list for PBXNativeTarget "NotificationService" */;
+			buildPhases = (
+				841E1EA829F6302A008F0EB5 /* Sources */,
+				841E1EA929F6302A008F0EB5 /* Frameworks */,
+				841E1EAA29F6302A008F0EB5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotificationService;
+			productName = NotificationService;
+			productReference = 841E1EAC29F6302A008F0EB5 /* NotificationService.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -3052,7 +3118,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1420;
+				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					25DC5BDD295C1A3F00818258 = {
@@ -3065,6 +3131,9 @@
 					25DC5C00295C1A5D00818258 = {
 						CreatedOnToolsVersion = 14.2;
 						TestTargetID = 25DC5BDD295C1A3F00818258;
+					};
+					841E1EAB29F6302A008F0EB5 = {
+						CreatedOnToolsVersion = 14.3;
 					};
 				};
 			};
@@ -3086,6 +3155,7 @@
 				25DC5BDD295C1A3F00818258 /* KeshavCement */,
 				25DC5BF6295C1A5D00818258 /* KeshavCementTests */,
 				25DC5C00295C1A5D00818258 /* KeshavCementUITests */,
+				841E1EAB29F6302A008F0EB5 /* NotificationService */,
 			);
 		};
 /* End PBXProject section */
@@ -3105,6 +3175,7 @@
 				8419A4D2295EDFF8000A0AAB /* Poppins-Medium.ttf in Resources */,
 				84ED836229645EE700DDA353 /* KC_OffersandpromotionsTVC.xib in Resources */,
 				84DC9F1E2975275200C7A94E /* 43623-call-center.json in Resources */,
+				848A516129F6539C00D911F4 /* GoogleService-Info.plist in Resources */,
 				84DA344229AF2BBC00078CF2 /* senderInfoTableViewCell.xib in Resources */,
 				84905A8729A484A1004C6330 /* LICENSE in Resources */,
 				8432BD8629643BDA00C88179 /* KC_MyPurchaseClaimTVC.xib in Resources */,
@@ -3141,10 +3212,34 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		841E1EAA29F6302A008F0EB5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		189C70BD3E3D60CC57143443 /* [CP] Check Pods Manifest.lock */ = {
+		9EBA3486B6A63E28452B6A3F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KeshavCement/Pods-KeshavCement-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KeshavCement/Pods-KeshavCement-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KeshavCement/Pods-KeshavCement-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B2EB4BE3D5002C777540A296 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3164,23 +3259,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FEAC7AFE4569BB49EA2FBB53 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-KeshavCement/Pods-KeshavCement-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-KeshavCement/Pods-KeshavCement-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KeshavCement/Pods-KeshavCement-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -3540,6 +3618,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		841E1EA829F6302A008F0EB5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				841E1EAF29F6302A008F0EB5 /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -3552,6 +3638,11 @@
 			isa = PBXTargetDependency;
 			target = 25DC5BDD295C1A3F00818258 /* KeshavCement */;
 			targetProxy = 25DC5C02295C1A5D00818258 /* PBXContainerItemProxy */;
+		};
+		841E1EB229F6302A008F0EB5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 841E1EAB29F6302A008F0EB5 /* NotificationService */;
+			targetProxy = 841E1EB129F6302A008F0EB5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -3708,17 +3799,16 @@
 		};
 		25DC5C0C295C1A5D00818258 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CE7A6D60C757464F9BAF5103 /* Pods-KeshavCement.debug.xcconfig */;
+			baseConfigurationReference = DB29AFC05527FB5D908B0BF5 /* Pods-KeshavCement.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = KeshavCement/KeshavCement.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HG885J5KS;
+				DEVELOPMENT_TEAM = 2HG885J5KS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KeshavCement/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Kashev Cement";
@@ -3740,7 +3830,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "loyltwo3ks-Pvt-Ltd.KeshavCement";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Kashev_Adhoc_Cer;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3749,17 +3838,16 @@
 		};
 		25DC5C0D295C1A5D00818258 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2AB7EEA8667990DF2087AC6A /* Pods-KeshavCement.release.xcconfig */;
+			baseConfigurationReference = 3B61DF5F9C162E24326C4C39 /* Pods-KeshavCement.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = KeshavCement/KeshavCement.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HG885J5KS;
+				DEVELOPMENT_TEAM = 2HG885J5KS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KeshavCement/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Kashev Cement";
@@ -3781,7 +3869,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "loyltwo3ks-Pvt-Ltd.KeshavCement";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Kashev_Adhoc_Cer;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3864,6 +3951,62 @@
 			};
 			name = Release;
 		};
+		841E1EB529F6302A008F0EB5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2HG885J5KS;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NotificationService/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NotificationService;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "loyltwo3ks-Pvt-Ltd.KeshavCement.NotificationService";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		841E1EB629F6302A008F0EB5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2HG885J5KS;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NotificationService/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NotificationService;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "loyltwo3ks-Pvt-Ltd.KeshavCement.NotificationService";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -3899,6 +4042,15 @@
 			buildConfigurations = (
 				25DC5C12295C1A5D00818258 /* Debug */,
 				25DC5C13295C1A5D00818258 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		841E1EB729F6302A008F0EB5 /* Build configuration list for PBXNativeTarget "NotificationService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				841E1EB529F6302A008F0EB5 /* Debug */,
+				841E1EB629F6302A008F0EB5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

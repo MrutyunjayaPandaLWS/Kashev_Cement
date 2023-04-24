@@ -30,9 +30,9 @@ class MSP_MyDreamGiftDetailsVC: BaseViewController{
     
   //  @IBOutlet var stackTDSPts: UIStackView!
     
-    @IBOutlet weak var loaderAnimatedView: AnimationView!
-       @IBOutlet weak var loaderView: UIView!
-    private var animationView11: AnimationView?
+//    @IBOutlet weak var loaderAnimatedView: AnimationView!
+//       @IBOutlet weak var loaderView: UIView!
+//    private var animationView11: AnimationView?
     
 //    let userID = UserDefaults.standard.string(forKey: "UserID") ?? ""
 //    let loyaltyId = UserDefaults.standard.string(forKey: "LoyaltyID") ?? ""
@@ -64,8 +64,8 @@ class MSP_MyDreamGiftDetailsVC: BaseViewController{
         self.VM.VC = self
 //        self.loaderView.isHidden = true
         
-        self.loaderView.isHidden = false
-        self.playAnimation()
+//        self.loaderView.isHidden = false
+       // self.playAnimation()
         DispatchQueue.main.asyncAfter(deadline: .now()+0.9, execute: {
             self.giftDetailsAPi()
                 })
@@ -107,7 +107,7 @@ class MSP_MyDreamGiftDetailsVC: BaseViewController{
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.loaderView.isHidden = true
+//        self.loaderView.isHidden = true
      //   self.notificationListApi()
 //        guard let tracker = GAI.sharedInstance().defaultTracker else { return }
 //        tracker.set(kGAIScreenName, value: "MyDreamGift Details")
@@ -214,8 +214,8 @@ class MSP_MyDreamGiftDetailsVC: BaseViewController{
     func dreamGiftListApi(){
         DispatchQueue.main.async {
           self.startLoading()
-                self.loaderView.isHidden = false
-                self.playAnimation()
+                //self.loaderView.isHidden = false
+                //self.playAnimation()
         }
 
         self.VM.myDreamGiftListArray.removeAll()
@@ -241,12 +241,12 @@ class MSP_MyDreamGiftDetailsVC: BaseViewController{
 
             }
             DispatchQueue.main.async{
-                self.loaderView.isHidden = true
+                //self.loaderView.isHidden = true
                 self.stopLoading()
             }
         }
         DispatchQueue.main.async{
-            self.loaderView.isHidden = true
+           // self.loaderView.isHidden = true
             self.stopLoading()
         }
     }
@@ -282,20 +282,20 @@ class MSP_MyDreamGiftDetailsVC: BaseViewController{
 //    }
     
     
-    func playAnimation(){
-                   animationView11 = .init(name: "Loader_v4")
-                     animationView11!.frame = loaderAnimatedView.bounds
-                     // 3. Set animation content mode
-                     animationView11!.contentMode = .scaleAspectFit
-                     // 4. Set animation loop mode
-                     animationView11!.loopMode = .loop
-                     // 5. Adjust animation speed
-                     animationView11!.animationSpeed = 0.5
-                    loaderAnimatedView.addSubview(animationView11!)
-                     // 6. Play animation
-                     animationView11!.play()
-
-               }
+//    func playAnimation(){
+//                   animationView11 = .init(name: "Loader_v4")
+//                     animationView11!.frame = loaderAnimatedView.bounds
+//                     // 3. Set animation content mode
+//                     animationView11!.contentMode = .scaleAspectFit
+//                     // 4. Set animation loop mode
+//                     animationView11!.loopMode = .loop
+//                     // 5. Adjust animation speed
+//                     animationView11!.animationSpeed = 0.5
+//                    loaderAnimatedView.addSubview(animationView11!)
+//                     // 6. Play animation
+//                     animationView11!.play()
+//
+//               }
     
     func verifyAdhaarExistencyApi(){
         

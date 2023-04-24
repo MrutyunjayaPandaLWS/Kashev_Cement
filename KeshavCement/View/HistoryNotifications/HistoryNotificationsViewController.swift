@@ -13,8 +13,8 @@ import SDWebImage
 class HistoryNotificationsViewController: BaseViewController {
     
     @IBOutlet weak var expandedview: UIView!
-    @IBOutlet weak var animationLottieView: AnimationView!
-    private var animationView: AnimationView?
+    
+    @IBOutlet weak var animationLottieView: LottieAnimationView!
     @IBOutlet weak var header: UILabel!
     @IBOutlet weak var NotificationstableView: UITableView!
     @IBOutlet weak var noDataFound: UILabel!
@@ -39,6 +39,7 @@ class HistoryNotificationsViewController: BaseViewController {
         self.NotificationstableView.dataSource = self
         languagelocalization()
         self.noDataFound.textColor = .white
+        self.lottieAnimation(animationView: animationLottieView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,18 +53,11 @@ class HistoryNotificationsViewController: BaseViewController {
         
     }
     
-    func playAnimation(){
-        animationView = .init(name: "lf30_editor_jh47f7lt")
-          animationView!.frame = animationLottieView.bounds
-          // 3. Set animation content mode
-          animationView!.contentMode = .scaleAspectFit
-          // 4. Set animation loop mode
-          animationView!.loopMode = .loop
-          // 5. Adjust animation speed
-          animationView!.animationSpeed = 0.5
-        animationLottieView.addSubview(animationView!)
-          // 6. Play animation
-          animationView!.play()
+    func lottieAnimation( animationView: LottieAnimationView){
+        animationView.contentMode = .scaleAspectFit
+        animationView.loopMode = .loop
+        animationView.animationSpeed = 1
+        animationView.play()
 
     }
     

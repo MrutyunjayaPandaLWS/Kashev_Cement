@@ -17323,6 +17323,9 @@
                                     <constraint firstAttribute="height" constant="350" id="3oQ-DM-V0b"/>
                                     <constraint firstAttribute="width" constant="350" id="AkN-08-2JH"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="43623-call-center"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="in5-iB-uz9"/>
@@ -28267,12 +28270,15 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RGG-Mu-rDh" customClass="AnimationView" customModule="Lottie">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RGG-Mu-rDh" customClass="LottieAnimationView" customModule="Lottie">
                                 <rect key="frame" x="45" y="274.33333333333337" width="303.33333333333331" height="303.33333333333337"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="RGG-Mu-rDh" secondAttribute="height" multiplier="1:1" id="vaB-ca-oXC"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="lf30_editor_jh47f7lt"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="jLq-8f-sko">
                                 <rect key="frame" x="0.0" y="116" width="393" height="702"/>
@@ -28343,7 +28349,7 @@
                     </view>
                     <connections>
                         <outlet property="NotificationstableView" destination="jLq-8f-sko" id="AYq-Cr-lxg"/>
-                        <outlet property="animationLottieView" destination="RGG-Mu-rDh" id="qqX-0S-mmt"/>
+                        <outlet property="animationLottieView" destination="RGG-Mu-rDh" id="otL-JG-ug4"/>
                         <outlet property="expandedimageview" destination="4Ls-3c-kjU" id="kkP-vM-bHR"/>
                         <outlet property="expandedview" destination="2jB-7P-Y6l" id="ZVh-Zj-aa5"/>
                         <outlet property="header" destination="WIV-eU-6Ea" id="avi-lB-BnO"/>
@@ -28362,18 +28368,8 @@
         <designable name="ImU-ww-h6m">
             <size key="intrinsicContentSize" width="117" height="21"/>
         </designable>
-        <designable name="bex-1r-gTQ">
-            <size key="intrinsicContentSize" width="115" height="35"/>
-        </designable>
         <designable name="kcc-my-Uq0">
             <size key="intrinsicContentSize" width="5" height="14"/>
-        </designable>
-        <designable name="tNG-Vz-rBy">
-            <size key="intrinsicContentSize" width="165" height="34"/>
-        </designable>
-        <designable name="uCf-xq-xGY"/>
-        <designable name="vis-rI-bg4">
-            <size key="intrinsicContentSize" width="115" height="35"/>
         </designable>
         <designable name="xTi-Qv-GQH">
             <size key="intrinsicContentSize" width="86" height="29"/>

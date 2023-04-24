@@ -21,4 +21,13 @@ target 'KeshavCement' do
   pod 'Kingfisher', '~> 7.6.2'
   pod 'QCropper'
   pod 'LanguageManager-iOS'
+  
+  pod 'FirebaseAnalytics'
+  pod 'Firebase/Core'
+  pod 'FirebaseAuth'
+  pod 'FirebaseFirestore'
+  pod 'Crashlytics', '~> 3.14.0'
+  pod 'Firebase/Crashlytics'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/Analytics'
 end

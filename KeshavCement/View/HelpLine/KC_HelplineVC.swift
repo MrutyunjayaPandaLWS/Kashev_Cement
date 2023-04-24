@@ -18,10 +18,10 @@ class KC_HelplineVC: BaseViewController {
     @IBOutlet weak var infoLbl1: UILabel!
     @IBOutlet weak var animatedLottieView: LottieAnimationView!
     @IBOutlet weak var headerText: UILabel!
-    private var animationView: AnimationView?
+//    private var animationView: AnimationView?
     override func viewDidLoad() {
         super.viewDidLoad()
-        playAnimation()
+        lottieAnimation(animationView: animatedLottieView)
        
         headerView.layer.masksToBounds = false
         headerView.layer.shadowRadius = 2
@@ -49,18 +49,12 @@ class KC_HelplineVC: BaseViewController {
     @IBAction func backBtn(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
-    func playAnimation(){
-        animationView = .init(name: "43623-call-center")
-          animationView!.frame = animatedLottieView.bounds
-          // 3. Set animation content mode
-          animationView!.contentMode = .scaleAspectFit
-          // 4. Set animation loop mode
-          animationView!.loopMode = .loop
-          // 5. Adjust animation speed
-          animationView!.animationSpeed = 0.5
-        animatedLottieView.addSubview(animationView!)
-          // 6. Play animation
-          animationView!.play()
+    
+    func lottieAnimation( animationView: LottieAnimationView){
+        animationView.contentMode = .scaleAspectFit
+        animationView.loopMode = .loop
+        animationView.animationSpeed = 1
+        animationView.play()
 
     }
 }

@@ -12,7 +12,7 @@ import Lottie
 class BaseViewController: UIViewController {
     let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView();
     
-    var animationView1: AnimationView?
+//    var animationView1: AnimationView?
     var myView = UIView()
     var loyaltyId = UserDefaults.standard.string(forKey: "LoyaltyId") ?? ""
     var userID = UserDefaults.standard.string(forKey: "UserID") ?? ""
