@@ -23,7 +23,7 @@ public extension UIButton {
   ///
   @IBInspectable var imageDirection: Int {
     set {
-      direction = ViewDirection(rawValue: newValue)!
+        guard let direction = ViewDirection(rawValue: newValue) else{ return }
     }
     get {
       return direction.rawValue

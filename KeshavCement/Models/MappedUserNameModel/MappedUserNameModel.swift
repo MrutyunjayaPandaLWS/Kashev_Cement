@@ -13,28 +13,28 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 import Foundation
 struct MappedUserNameModel : Codable {
-	let lstCustParentChildMapping : [LstCustParentChildMapping21]?
-	let lstCust1ParentChildMapping : [String]?
-	let returnValue : Int?
-	let returnMessage : String?
-	let totalRecords : Int?
+    let lstCustParentChildMapping : [LstCustParentChildMapping21]?
+    let lstCust1ParentChildMapping : [String]?
+    let returnValue : Int?
+    let returnMessage : String?
+    let totalRecords : Int?
 
-	enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
 
-		case lstCustParentChildMapping = "lstCustParentChildMapping"
-		case lstCust1ParentChildMapping = "lstCust1ParentChildMapping"
-		case returnValue = "returnValue"
-		case returnMessage = "returnMessage"
-		case totalRecords = "totalRecords"
-	}
+        case lstCustParentChildMapping = "lstCustParentChildMapping"
+        case lstCust1ParentChildMapping = "lstCust1ParentChildMapping"
+        case returnValue = "returnValue"
+        case returnMessage = "returnMessage"
+        case totalRecords = "totalRecords"
+    }
 
-	init(from decoder: Decoder) throws {
-		let values = try decoder.container(keyedBy: CodingKeys.self)
-		lstCustParentChildMapping = try values.decodeIfPresent([LstCustParentChildMapping21].self, forKey: .lstCustParentChildMapping)
-		lstCust1ParentChildMapping = try values.decodeIfPresent([String].self, forKey: .lstCust1ParentChildMapping)
-		returnValue = try values.decodeIfPresent(Int.self, forKey: .returnValue)
-		returnMessage = try values.decodeIfPresent(String.self, forKey: .returnMessage)
-		totalRecords = try values.decodeIfPresent(Int.self, forKey: .totalRecords)
-	}
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        lstCustParentChildMapping = try values.decodeIfPresent([LstCustParentChildMapping21].self, forKey: .lstCustParentChildMapping)
+        lstCust1ParentChildMapping = try values.decodeIfPresent([String].self, forKey: .lstCust1ParentChildMapping)
+        returnValue = try values.decodeIfPresent(Int.self, forKey: .returnValue)
+        returnMessage = try values.decodeIfPresent(String.self, forKey: .returnMessage)
+        totalRecords = try values.decodeIfPresent(Int.self, forKey: .totalRecords)
+    }
 
 }

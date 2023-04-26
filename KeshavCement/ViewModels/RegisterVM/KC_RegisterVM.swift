@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import LanguageManager_iOS
 class KC_RegisterVM {
     
     weak var VC: KC_RegisterVC?
@@ -47,7 +47,7 @@ class KC_RegisterVM {
                 if str ?? "" == "0"{
                     DispatchQueue.main.async{
                         self.VC?.stopLoading()
-                        self.VC?.generateOTPBtn.setTitle("Submit", for: .normal)
+                        self.VC?.generateOTPBtn.setTitle("Submit".localiz(), for: .normal)
                         self.VC?.otpInfoLbl.isHidden = false
                         self.VC?.otpMobilenoLbl.isHidden = false
                         self.VC?.resendOtpBtn.isHidden = false
@@ -68,7 +68,7 @@ class KC_RegisterVM {
                     DispatchQueue.main.async{
                         self.VC?.stopLoading()
                         self.VC?.view.makeToast("This member is already exists", duration: 2.0, position: .bottom)
-                        self.VC?.generateOTPBtn.setTitle("Generate OTP", for: .normal)
+                        self.VC?.generateOTPBtn.setTitle("GenerateOTP".localiz(), for: .normal)
                     }
                 }
                  }catch{

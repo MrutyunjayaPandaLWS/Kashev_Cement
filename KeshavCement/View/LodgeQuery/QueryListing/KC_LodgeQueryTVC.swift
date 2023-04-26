@@ -9,6 +9,7 @@ import UIKit
 
 class KC_LodgeQueryTVC: UITableViewCell {
 
+    @IBOutlet weak var widthConstraint: NSLayoutConstraint!
     @IBOutlet weak var queryTime: UILabel!
     @IBOutlet weak var queryDate: UILabel!
     @IBOutlet weak var queryInfo: UILabel!

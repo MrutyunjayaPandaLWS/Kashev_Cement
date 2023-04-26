@@ -59,6 +59,9 @@ class KC_UserDetailsVC: BaseViewController, UITextFieldDelegate{
         if self.customerTypeId == "1"{
             if self.ownerNameTF.text!.count == 0{
                 self.view.makeToast("Enter owner name", duration: 2.0, position: .bottom)
+            }else if self.ownerNameTF.text!.count != 15{
+                self.ownerNameTF.text = ""
+                self.view.makeToast("owner name should be 15 digits", duration: 2.0, position: .bottom)
             }else if self.ownerMobileTF.text!.count == 0{
                 self.view.makeToast("Enter owner mobile number", duration: 2.0, position: .bottom)
             }else if self.ownerMobileTF.text!.count != 10{
@@ -78,6 +81,9 @@ class KC_UserDetailsVC: BaseViewController, UITextFieldDelegate{
         }else{
             if self.ownerNameTF.text!.count == 0{
                 self.view.makeToast("Enter owner name", duration: 2.0, position: .bottom)
+            }else if self.ownerNameTF.text!.count != 15{
+                self.ownerNameTF.text = ""
+                self.view.makeToast("owner name should be 15 digits", duration: 2.0, position: .bottom)
             }else if self.ownerMobileTF.text!.count == 0{
                 self.view.makeToast("Enter owner mobile number", duration: 2.0, position: .bottom)
             }else if self.ownerMobileTF.text!.count != 10{

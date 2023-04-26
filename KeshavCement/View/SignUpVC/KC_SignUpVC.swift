@@ -51,9 +51,11 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
         if self.selectedCustomerTypeId == 1 || self.selectedCustomerTypeId == 2{
             self.aadharNumberLbl.text = "AadharNumber".localiz()
             self.aadharNumberTF.placeholder = "Enteraadharnumber".localiz()
+            self.aadharNumberTF.keyboardType = .asciiCapableNumberPad
         }else if self.selectedCustomerTypeId == 3 || self.selectedCustomerTypeId == 4{
             self.aadharNumberLbl.text = "GSTNumber".localiz()
             self.aadharNumberTF.placeholder = "EnterGSTnumber".localiz()
+            self.aadharNumberTF.keyboardType = .default
         }
     }
     
@@ -158,12 +160,16 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
         
         if self.customerTypeName == "Engineer"{
             self.selectedCustomerTypeId = 1
+            self.aadharNumberTF.keyboardType = .asciiCapableNumberPad
         }else if self.customerTypeName == "Mason"{
             self.selectedCustomerTypeId = 2
+            self.aadharNumberTF.keyboardType = .asciiCapableNumberPad
         }else if self.customerTypeName == "Dealer"{
             self.selectedCustomerTypeId = 3
+            self.aadharNumberTF.keyboardType = .default
         }else{
             self.selectedCustomerTypeId = 4
+            self.aadharNumberTF.keyboardType = .default
         }
         self.aadharNumberTF.autocapitalizationType = .allCharacters
         
@@ -176,13 +182,14 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
         
       
         self.customerTypeLbl.text = self.customerTypeName
+        print(self.customerTypeName, "aksdfjklasdfjfkldsjklfljkdfssdfklj")
         self.mobileTF.text = self.enteredMobile
         self.mobileTF.isUserInteractionEnabled = false
         
         self.signUp.text = "SignUp".localiz()
         self.signUpInfo.text = "plzFillRegister".localiz()
         self.customerTopicLbl.text = "Customer Type".localiz()
-        self.customerTypeLbl.text = "SelectCustomerType".localiz()
+//        self.customerTypeLbl.text = "SelectCustomerType".localiz()
         self.fullNameLbl.text = "FullName".localiz()
         self.fullNameTF.placeholder = "Enterfullname".localiz()
         self.firmLbl.text = "FirmName".localiz();
@@ -239,6 +246,7 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
     @IBAction func emailValidationDidEnd(_ sender: Any) {
         if self.emailTF.text!.count != 0{
             if !isValidEmail(self.emailTF.text ?? "") {
+                self.emailTF.text = ""
                 self.view.makeToast("Entervalidemail".localiz(), duration: 2.0, position: .bottom)
         }
     }
@@ -367,9 +375,13 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
             self.view.makeToast("SelectState".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedDistrictId == -1{
             self.view.makeToast("SelectDistrict".localiz(), duration: 2.0, position: .bottom)
-        }else if self.selectedTalukId == -1{
-            self.view.makeToast("SelectTaluk".localiz(), duration: 2.0, position: .bottom)
-        }else{
+        }else if self.selectedDOB == ""{
+            self.view.makeToast("Select DOB", duration: 2.0, position: .bottom)
+        }
+//        else if self.selectedTalukId == -1{
+//            self.view.makeToast("SelectTaluk".localiz(), duration: 2.0, position: .bottom)
+//        }
+        else{
             let parameter = [
                 
                     "ActionType": "0",

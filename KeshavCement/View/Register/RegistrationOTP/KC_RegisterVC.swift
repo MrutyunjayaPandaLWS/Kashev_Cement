@@ -107,7 +107,7 @@ class KC_RegisterVC:  BaseViewController, UITextFieldDelegate {
     }
     
     @IBAction func generateOTPActionBtn(_ sender: Any) {
-        if self.generateOTPBtn.currentTitle == "Generate OTP"{
+        if self.generateOTPBtn.currentTitle == "GenerateOTP".localiz(){
         if self.mobileNumberTF.text?.count == 0 {
             self.view.makeToast("Entermobilenumber".localiz(), duration: 2.0, position: .bottom)
         }else if self.mobileNumberTF.text?.count != 10 {
@@ -146,6 +146,7 @@ class KC_RegisterVC:  BaseViewController, UITextFieldDelegate {
                     vc.referralCode = "Check"
                     vc.enteredMobile = self.mobileNumberTF.text ?? ""
                     vc.customerTypeName = self.filterLbl.text ?? ""
+                    print(self.filterLbl.text ?? "", "asdfkasdhlfahksdflahlksdfhklads")
                     self.navigationController?.pushViewController(vc, animated: true)
                 }else{
                     let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_SignUpVC") as! KC_SignUpVC

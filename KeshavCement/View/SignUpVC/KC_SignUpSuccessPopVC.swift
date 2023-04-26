@@ -15,8 +15,8 @@ class KC_SignUpSuccessPopVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if self.itsFrom != "ENROLLMENT"{
-            self.titleLbl.text = "Successfully!"
-            self.infoLbl.text = "Your account has been activated successfully. Login to the app for more benefits"
+            self.titleLbl.text = "Thank You!"
+            self.infoLbl.text = "for registering to the Keshav Cement program. Our Executive will contact you for verification"
         }
        
     }

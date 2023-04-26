@@ -23,10 +23,10 @@ class KC_RegistrationReferralCodeVC: BaseViewController {
         self.referralCodeTF.attributedPlaceholder = NSAttributedString(string: "EnterReferralCode".localiz(), attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
         print(referralCode)
         self.skipLbl.text = "Skip".localiz()
-        self.infoLbl.text = "Enter your referral code sent by your friend".localiz()
+        self.infoLbl.text = "referralcodefriend".localiz()
         self.referralCodeLbl.text = "ReferralCode".localiz()
         self.referralCodeTF.placeholder = "EnterReferralCode".localiz()
-        self.verifyBtn.setTitle("Verify", for: .normal)
+        self.verifyBtn.setTitle("Verify".localiz(), for: .normal)
     }
 
     @IBAction func skipButton(_ sender: Any) {

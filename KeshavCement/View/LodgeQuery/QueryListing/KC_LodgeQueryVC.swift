@@ -72,13 +72,39 @@ extension KC_LodgeQueryVC: UITableViewDelegate, UITableViewDataSource{
         if self.VM.queryListArray[indexPath.row].ticketStatus ?? "" == "Closed"{
             cell.queryStatus.backgroundColor = #colorLiteral(red: 0.1254901961, green: 0.6745098039, blue: 0.2901960784, alpha: 1)
             cell.queryStatus.text = self.VM.queryListArray[indexPath.row].ticketStatus ?? ""
+            cell.widthConstraint.constant = 100
             
         }else if self.VM.queryListArray[indexPath.row].ticketStatus ?? "" == "Resolved"{
             cell.queryStatus.backgroundColor = #colorLiteral(red: 0.1254901961, green: 0.6745098039, blue: 0.2901960784, alpha: 1)
             cell.queryStatus.text = self.VM.queryListArray[indexPath.row].ticketStatus ?? ""
-        }else{
-            cell.queryStatus.backgroundColor = #colorLiteral(red: 0.9960784314, green: 0.8274509804, blue: 0.2509803922, alpha: 1)
+            cell.widthConstraint.constant = 100
+        }else if self.VM.queryListArray[indexPath.row].ticketStatus ?? "" == "Pending"{
+            cell.queryStatus.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
             cell.queryStatus.text = self.VM.queryListArray[indexPath.row].ticketStatus ?? ""
+            cell.widthConstraint.constant = 100
+        }else if self.VM.queryListArray[indexPath.row].ticketStatus ?? "" == "Delivered"{
+            cell.queryStatus.backgroundColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
+            cell.queryStatus.text = self.VM.queryListArray[indexPath.row].ticketStatus ?? ""
+            cell.widthConstraint.constant = 100
+        }else if self.VM.queryListArray[indexPath.row].ticketStatus ?? "" == "Rejected"{
+            cell.queryStatus.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+            cell.queryStatus.text = self.VM.queryListArray[indexPath.row].ticketStatus ?? ""
+            cell.widthConstraint.constant = 100
+        }else if self.VM.queryListArray[indexPath.row].ticketStatus ?? "" == "Approved"{
+            cell.queryStatus.backgroundColor = #colorLiteral(red: 0.1254901961, green: 0.6745098039, blue: 0.2901960784, alpha: 1)
+            cell.queryStatus.text = self.VM.queryListArray[indexPath.row].ticketStatus ?? ""
+            cell.widthConstraint.constant = 100
+        }else{
+            if self.VM.queryListArray[indexPath.row].ticketStatus ?? "" == ""{
+                cell.queryStatus.backgroundColor = #colorLiteral(red: 0.9960784314, green: 0.8274509804, blue: 0.2509803922, alpha: 1)
+                cell.widthConstraint.constant = 100
+                cell.queryStatus.text = self.VM.queryListArray[indexPath.row].ticketStatus ?? ""
+            }else{
+                cell.queryStatus.backgroundColor = #colorLiteral(red: 0.9960784314, green: 0.8274509804, blue: 0.2509803922, alpha: 1)
+                cell.widthConstraint.constant = 140
+                cell.queryStatus.text = self.VM.queryListArray[indexPath.row].ticketStatus ?? ""
+            }
+
 
         }
         

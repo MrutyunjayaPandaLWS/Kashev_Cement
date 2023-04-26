@@ -320,7 +320,10 @@ extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
         }else if self.itsFrom == "DISTRICT"{
             cell.selectedTitleLbl.text = self.VM.districtListArray[indexPath.row].districtName ?? ""
         }else if self.itsFrom == "CLAIMPURCHSSS"{
-            cell.selectedTitleLbl.text = self.VM.mapppedUserNameListArray1[indexPath.row].firstName ?? ""
+            
+            let firmName = self.VM.mapppedUserNameListArray1[indexPath.row].firmName ?? ""
+            let firstName = self.VM.mapppedUserNameListArray1[indexPath.row].firstName ?? ""
+            cell.selectedTitleLbl.text = firstName + " (\(firmName))"
         }else if self.itsFrom == "TALUK"{
             cell.selectedTitleLbl.text = self.VM.talukListArray[indexPath.row].talukName ?? ""
         }else if self.itsFrom == "USERTYPE"{
