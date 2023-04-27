@@ -84,13 +84,16 @@ class MSP_MyDreamGiftVC: BaseViewController, AddOrRemoveGiftDelegate {
     func redeemGift(_ cell: MSP_MyDreamGiftTVC) {
         guard let tappedIndexPath = myDreamGiftTableView.indexPath(for: cell) else {return}
         if cell.redeemButton.tag == tappedIndexPath.row{
-            
-                self.totalPoint = self.VM.myDreamGiftListArray[tappedIndexPath.row].pointsRequired ?? 0
-                self.dreamGiftID = self.VM.myDreamGiftListArray[tappedIndexPath.row].dreamGiftId ?? 0
-                self.giftName = self.VM.myDreamGiftListArray[tappedIndexPath.row].dreamGiftName ?? ""
-                self.contractorName = self.VM.myDreamGiftListArray[tappedIndexPath.row].contractorName ?? ""
-                self.giftStatusId = self.VM.myDreamGiftListArray[tappedIndexPath.row].giftStatusId ?? 0
-                self.verifyAdhaarExistencyApi()
+
+                let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_OrderConfirmationVC") as! KC_OrderConfirmationVC
+                vc.redemptionTypeId = 3
+                vc.isComingFrom = "DreemGift"
+                vc.totalPoint = self.VM.myDreamGiftListArray[tappedIndexPath.row].pointsRequired ?? 0
+                vc.dreamGiftID = self.VM.myDreamGiftListArray[tappedIndexPath.row].dreamGiftId ?? 0
+                vc.giftName = self.VM.myDreamGiftListArray[tappedIndexPath.row].dreamGiftName ?? ""
+                vc.contractorName = self.VM.myDreamGiftListArray[tappedIndexPath.row].contractorName ?? ""
+                vc.giftStatusId = self.VM.myDreamGiftListArray[tappedIndexPath.row].giftStatusId ?? 0
+                self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     func removeGift(_ cell: MSP_MyDreamGiftTVC) {
@@ -292,9 +295,6 @@ extension MSP_MyDreamGiftVC: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MSP_MyDreamGiftTVC") as? MSP_MyDreamGiftTVC
         cell?.delegate = self
         cell?.giftName.text = self.VM.myDreamGiftListArray[indexPath.row].dreamGiftName ?? ""
-      //  cell?.tdsvalue.text = "\(self.VM.myDreamGiftListArray[indexPath.row].TdsPoints ?? 0.0)"
-
-       // cell?.dreamGiftTitle.text = self.VM.myDreamGiftListArray[indexPath.row].giftType ?? ""
         let createdDate = (self.VM.myDreamGiftListArray[indexPath.row].jCreatedDate ?? "").split(separator: " ")
         let convertedFormat = convertDateFormater(String(createdDate[0]), fromDate: "MM/dd/yyyy", toDate: "dd/MM/yyyy")
         cell?.giftCreatedDate.text = convertedFormat
@@ -305,48 +305,19 @@ extension MSP_MyDreamGiftVC: UITableViewDataSource, UITableViewDelegate {
         cell?.pointsRequired.text = "\(self.VM.myDreamGiftListArray[indexPath.row].pointsRequired ?? 0)"
         let balance = Double(self.VM.myDreamGiftListArray[indexPath.row].pointsBalance ?? 0)
         let pointRequired = Double(self.VM.myDreamGiftListArray[indexPath.row].pointsRequired ?? 0)
-        //let remeablePoints = VM.myDreamGiftListArray[indexPath.row].
-       // let tdsvalue = self.VM.myDreamGiftListArray[indexPath.row].TdsPoints ?? 0.0
-      //  print(pointRequired+tdsvalue,"data")
-        print(balance,"Balance")
-        
-        
-//        if self.VM.myDreamGiftListArray[indexPath.row].is_Redeemable ?? -2 != 1{
-//            cell?.redeemButton.isEnabled = false
-//            cell?.redeemButton.backgroundColor = UIColor(red: 209/255, green: 209/255, blue: 214/255, alpha: 1.0)
-//        }else{
-//            cell?.redeemButton.isEnabled = true
-//            cell?.redeemButton.backgroundColor = UIColor(red: 189/255, green: 0/255, blue: 0/255, alpha: 1.0)
-//            }
         
         cell?.redeemButton.tag = indexPath.row
         cell?.removeGiftBTN.tag = indexPath.row
         print(pointRequired,"pointsReq")
         print(balance, "Balance")
-        
-//        print(pointRequired,"pointsReq")
-//        if pointRequired < balance{
-//            let percentage = CGFloat(balance/pointRequired)
-//            cell?.percentageValue.text = "100%"
-//            cell?.progressView.progress = Float(percentage)
-//        }else{
-//
-//            let percentage = CGFloat(balance/pointRequired)
-//            let final = CGFloat(percentage) * 100
-//            cell?.percentageValue.text = "\(Int(final))%"
-//            cell?.progressView.progress = Float(percentage)
-//        }
-        print(self.VM.myDreamGiftListArray[indexPath.row].pointsRequired ?? 0)
-        print(Int(exactly: self.totalRedeemedPoints))
-        
         if self.VM.myDreamGiftListArray[indexPath.row].pointsRequired ?? 0 <= Int(exactly: self.totalRedeemedPoints)!{
             let totalRedeemableValue = Double(self.totalRedeemedPoints)
             let percentage = CGFloat(totalRedeemableValue / pointRequired)
             cell?.percentageValue.text = "100%"
             cell?.progressView.progress = Float(percentage)
             cell?.redeemButton.isEnabled = true
-            cell?.redeemButton.setTitleColor(.white, for: .normal)
-            cell?.redeemButton.backgroundColor = #colorLiteral(red: 0.8913556933, green: 0.1619326174, blue: 0.1404572427, alpha: 1)
+            cell?.redeemButton.backgroundColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
+            cell?.priceImgLeadingSpaceConstraint.constant = CGFloat((cell?.progressView.frame.width)! - 35)
         }else{
             let totalRedeemableValue = Double(self.totalRedeemedPoints)
             let percentage = CGFloat(totalRedeemableValue / pointRequired)
@@ -354,8 +325,23 @@ extension MSP_MyDreamGiftVC: UITableViewDataSource, UITableViewDelegate {
             cell?.percentageValue.text = "\(Int(final))%"
             cell?.progressView.progress = Float(percentage)
             cell?.redeemButton.isEnabled = false
-            cell?.redeemButton.setTitleColor(.white, for: .normal)
             cell?.redeemButton.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+            cell?.priceImgLeadingSpaceConstraint.constant = CGFloat((cell?.progressView.frame.width)! - (final + 10))
+            if cell?.headerImage.image == UIImage(named: "group_7375"){
+                cell?.headerImage.image = UIImage(named: "Group-7829")
+                cell?.createdDate.textColor = .darkGray
+                cell?.expiredDate.textColor = .darkGray
+                cell?.giftName.textColor = .darkGray
+                cell?.giftCreatedDate.textColor = . darkGray
+                cell?.desiredDate.textColor = .darkGray
+            }else{
+                cell?.headerImage.image = UIImage(named: "group_7375")
+                cell?.createdDate.textColor = .white
+                cell?.expiredDate.textColor = .white
+                cell?.giftName.textColor = .white
+                cell?.giftCreatedDate.textColor = . white
+                cell?.desiredDate.textColor = .white
+            }
             
         }
        

@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="130" id="KGk-i7-Jjw" customClass="HistoryNotificationsTableViewCell" customModule="CenturyPly_JSON" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HistoryNotificationsTableViewCell" rowHeight="130" id="KGk-i7-Jjw" customClass="HistoryNotificationsTableViewCell" customModule="KeshavCement" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -89,7 +89,7 @@
                             <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P7F-VO-oMj">
                                 <rect key="frame" x="229" y="8" width="70" height="28"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group-1" translatesAutoresizingMaskIntoConstraints="NO" id="ToN-ns-i0l">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ToN-ns-i0l">
                                         <rect key="frame" x="4" y="5" width="19" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="19" id="fc9-f6-Wb2"/>
@@ -173,7 +173,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
-                <color key="backgroundColor" red="0.25098040700000002" green="0.25098040700000002" blue="0.25098040700000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                <color key="backgroundColor" red="0.16862745100000001" green="0.16862745100000001" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 <constraints>
                     <constraint firstItem="046-K4-4zs" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="4Xd-1o-I5p"/>
                     <constraint firstAttribute="bottom" secondItem="046-K4-4zs" secondAttribute="bottom" constant="8" id="HA4-nz-pcd"/>
@@ -193,7 +193,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Group-1" width="60" height="60"/>
         <image name="calendar-line" width="34" height="32"/>
         <image name="icons8-double-tick-48" width="48" height="48"/>
         <systemColor name="systemBackgroundColor">

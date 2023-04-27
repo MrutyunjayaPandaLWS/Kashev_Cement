@@ -20,6 +20,7 @@ class KC_CashTransferDetailsVC: BaseViewController {
     @IBOutlet weak var categoryLbl: UILabel!
     @IBOutlet weak var productImage: UIImageView!
     
+    @IBOutlet weak var descriptionView: UIView!
     var categoryTitle = ""
     var productName = ""
     var descriptions = ""
@@ -56,6 +57,10 @@ class KC_CashTransferDetailsVC: BaseViewController {
         self.termandConditionLbl.text = termsandCondition
         self.totalPts.text = "\(totalPoints)"
         
+//        self.descriptionView.roundCorners(corners: [.topLeft, .topRight], radius: 20)
+        self.descriptionView.clipsToBounds = true
+        self.descriptionView.layer.cornerRadius = 20
+        self.descriptionView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         let imageURL = self.productImageURL
         if imageURL != ""{
             let urltoUse = String(productCatalogueImgURL + imageURL).replacingOccurrences(of: " ", with: "%20")

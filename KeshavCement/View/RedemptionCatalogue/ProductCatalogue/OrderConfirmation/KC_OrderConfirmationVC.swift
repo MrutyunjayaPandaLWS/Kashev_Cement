@@ -69,6 +69,16 @@ class KC_OrderConfirmationVC: BaseViewController, SendUpdatedAddressDelegate {
     var totalRedemmablePts = 0
     var pointBalance = 0
     var partyLoyaltyId = ""
+    
+    var finalPoints = 0
+    var redemptionTypeId = 0
+    var isComingFrom = ""
+    var totalPoint = 0
+    var dreamGiftID = 0
+    var giftName = ""
+    var contractorName = ""
+    var giftStatusId = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.VM.VC = self
@@ -78,7 +88,7 @@ class KC_OrderConfirmationVC: BaseViewController, SendUpdatedAddressDelegate {
         mainView.clipsToBounds = false
         mainView.layer.cornerRadius = 36
         mainView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        self.totalPoints.text = self.redeemablePointsBalance
+        self.totalPoints.text = "\(self.finalPoints)"
         headerView.layer.masksToBounds = false
         headerView.layer.shadowRadius = 2
         headerView.layer.shadowOpacity = 0.2
@@ -91,6 +101,11 @@ class KC_OrderConfirmationVC: BaseViewController, SendUpdatedAddressDelegate {
         self.pointBalance = calcValue
         self.pointsBalanceLbl.text = "Point balance \(calcValue) after this purchase"
 
+        if self.redemptionTypeId != 0 {
+            self.orderConfirmationTableView.isHidden = true
+        }else{
+            self.orderConfirmationTableView.isHidden = false
+        }
         
     }
     
@@ -249,7 +264,7 @@ extension KC_OrderConfirmationVC: UITableViewDelegate, UITableViewDataSource{
         cell.selectionStyle = .none
  
         cell.productNameLbl.text = self.VM.myCartListArray[indexPath.row].productName ?? ""
-        cell.pointsLbl.text = "\(Double(self.VM.myCartListArray[indexPath.row].pointsRequired ?? 0))"
+        cell.pointsLbl.text = "\(self.VM.myCartListArray[indexPath.row].pointsRequired ?? 0)"
         let receivedImage = self.VM.myCartListArray[indexPath.row].productImage ?? ""
         let totalImgURL = productCatalogueImgURL + receivedImage
         cell.productImage.sd_setImage(with: URL(string: totalImgURL), placeholderImage: UIImage(named: "ic_default_img"))

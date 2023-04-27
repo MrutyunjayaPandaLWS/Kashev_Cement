@@ -115,6 +115,7 @@ class HR_Chatvc2ViewController: UIViewController, UITextFieldDelegate,UITableVie
                 cell?.itemTime.text = self.chatlistingArray[indexPath.row].createdDate ?? ""
                 cell?.itemcustomer.text = self.chatlistingArray[indexPath.row].repliedBy ?? ""
                 cell?.itemText.text = self.chatlistingArray[indexPath.row].queryResponseInfo ?? ""
+                cell?.totalArrayCount = self.chatlistingArray.count
                 return cell!
             }else if self.chatlistingArray[indexPath.row].queryResponseInfo != nil  && self.chatlistingArray[indexPath.row].imageUrl != nil{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "senderInfoImageTableViewCell") as? senderInfoImageTableViewCell
@@ -215,6 +216,7 @@ class HR_Chatvc2ViewController: UIViewController, UITextFieldDelegate,UITableVie
 //                        self.tableview12.reloadData()
                         if self.chatlistingArray.count != 0{
                             self.tableview12.reloadData()
+                            
                             self.scrollToBottom()
                         }
                         self.stopLoading()

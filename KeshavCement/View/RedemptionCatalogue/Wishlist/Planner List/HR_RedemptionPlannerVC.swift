@@ -102,6 +102,7 @@ class HR_RedemptionPlannerVC: BaseViewController, RedeemePlannedProductDelegate{
         super.viewDidLoad()
         self.VM.VC = self
         self.screenTitle.text = "Wishlist"
+        
     //    self.points.text = "POINTS"
     //    self.totalPts.text! = "\(redeemablePointsBalance)"
         redemptionPlannerTableView.register(UINib(nibName: "HR_RedemptionPlannerTVC", bundle: nil), forCellReuseIdentifier: "HR_RedemptionPlannerTVC")

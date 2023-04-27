@@ -46,7 +46,9 @@ class KC_NewEnrollmentVM{
                     if str ?? "" == "0"{
                         self.VC?.customerTypeLbl.isHidden = false; self.VC?.customerTypePriority.isHidden = false; self.VC?.customerTypeView.isHidden = false; self.VC?.fullNameLbl.isHidden = false; self.VC?.fullNamePriority.isHidden = false; self.VC?.fullNameView.isHidden = false; self.VC?.firmNameLbl.isHidden = false; self.VC?.firmNamePriority.isHidden = false; self.VC?.firmView.isHidden = false; self.VC?.emailLbl.isHidden = false; self.VC?.emailView.isHidden = false; self.VC?.addressLbl.isHidden = false; self.VC?.addressPriority.isHidden = false; self.VC?.addressView.isHidden = false; self.VC?.pincodeLbl.isHidden = false; self.VC?.pincodePriority.isHidden = false; self.VC?.pinCodeView.isHidden = false; self.VC?.stateLbl.isHidden = false; self.VC?.statePriority.isHidden = false; self.VC?.stateView.isHidden = false; self.VC?.districtLbl.isHidden = false; self.VC?.districtPriority.isHidden = false; self.VC?.districtView.isHidden = false; self.VC?.talukLbl.isHidden = false; self.VC?.talukPriority.isHidden = false; self.VC?.talukView.isHidden = false; self.VC?.cityTitleLbl.isHidden = false; self.VC?.cityView.isHidden = false; self.VC?.dobTitleLbl.isHidden = false; self.VC?.dobPriority.isHidden = false; self.VC?.dobView.isHidden = false; self.VC?.dateOfAnniversaryLbls.isHidden = false; self.VC?.anniversaryView.isHidden = false; self.VC?.submitButton.isHidden = false
                         self.VC?.mobileTF.isEnabled = false
+                        self.VC?.scrollViewHeightConstarint.constant = 1167
                     }else{
+                        self.VC?.scrollViewHeightConstarint.constant = 1167
                         self.VC?.mobileTF.isEnabled = true
                         self.VC?.mobileTF.text = ""
                         self.VC?.view.makeToast("Mobile number is already exists", duration: 2.0, position: .center)

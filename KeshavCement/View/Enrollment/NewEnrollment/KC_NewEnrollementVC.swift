@@ -155,6 +155,7 @@ class KC_NewEnrollementVC: BaseViewController, SelectedDataDelegate, DateSelecte
     
     @IBOutlet weak var anniversaryView: UIView!
     
+    @IBOutlet weak var scrollViewHeightConstarint: NSLayoutConstraint!
     
     var referralCode = ""
     var selectedCustomerTypeName = ""
@@ -182,8 +183,7 @@ class KC_NewEnrollementVC: BaseViewController, SelectedDataDelegate, DateSelecte
         NotificationCenter.default.addObserver(self, selector: #selector(navigateToPrevious), name: Notification.Name.navigateToPrevious, object: nil)
         
         self.customerTypeLbl.isHidden = true; self.customerTypePriority.isHidden = true; self.customerTypeView.isHidden = true; self.fullNameLbl.isHidden = true; self.fullNamePriority.isHidden = true; self.fullNameView.isHidden = true; self.firmNameLbl.isHidden = true; self.firmNamePriority.isHidden = true; self.firmView.isHidden = true; self.emailLbl.isHidden = true; self.emailView.isHidden = true; self.addressLbl.isHidden = true; self.addressPriority.isHidden = true; self.addressView.isHidden = true; self.pincodeLbl.isHidden = true; self.pincodePriority.isHidden = true; self.pinCodeView.isHidden = true; self.stateLbl.isHidden = true; self.statePriority.isHidden = true; self.stateView.isHidden = true; self.districtLbl.isHidden = true; self.districtPriority.isHidden = true; self.districtView.isHidden = true; self.talukLbl.isHidden = true; self.talukPriority.isHidden = true; self.talukView.isHidden = true; self.cityTitleLbl.isHidden = true; self.cityView.isHidden = true; self.dobTitleLbl.isHidden = true; self.dobPriority.isHidden = true; self.dobView.isHidden = true; self.dateOfAnniversaryLbls.isHidden = true; self.anniversaryView.isHidden = true; self.submitButton.isHidden = true
-        
-        
+            self.scrollViewHeightConstarint.constant = 1160
         
     }
     

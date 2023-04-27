@@ -238,6 +238,11 @@ extension KC_WorksiteDetailsVC: UITableViewDelegate, UITableViewDataSource{
         cell.workLevel.text = self.VM.workSiteListArray[indexPath.row].worklevel ?? ""
         cell.tentativeDate.text = self.VM.workSiteListArray[indexPath.row].tentativeDate ?? ""
         cell.remarks.text = self.VM.workSiteListArray[indexPath.row].remarks ?? ""
+        if self.customerTypeId == "1"{
+            cell.engineerNameLbl.isHidden = true
+        }else{
+            cell.engineerNameLbl.isHidden = false
+        }
         return cell
         
     }

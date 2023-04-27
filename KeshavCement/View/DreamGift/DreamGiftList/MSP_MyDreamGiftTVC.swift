@@ -15,11 +15,9 @@ protocol AddOrRemoveGiftDelegate{
 
 class MSP_MyDreamGiftTVC: UITableViewCell {
 
+    @IBOutlet weak var headerImage: UIImageView!
     @IBOutlet weak var priceImage: UIImageView!
     @IBOutlet weak var priceImgLeadingSpaceConstraint: NSLayoutConstraint!
-    @IBOutlet weak var tdsvalue: UILabel!
-        //@IBOutlet weak var dreamGiftTitle: UILabel!
-  //  @IBOutlet weak var removeBTN: UIButton!
     @IBOutlet weak var giftName: UILabel!
         @IBOutlet weak var giftCreatedDate: UILabel!
         @IBOutlet weak var desiredDate: UILabel!
@@ -29,20 +27,26 @@ class MSP_MyDreamGiftTVC: UITableViewCell {
         @IBOutlet weak var progressViewLeadingConstraint: NSLayoutConstraint!
         @IBOutlet weak var percentageValue: UILabel!
     @IBOutlet weak var removeGiftBTN: UIButton!
-    @IBOutlet var tdsPointsStack: UIStackView!
     @IBOutlet var tdsApplicablePointsStack: UIStackView!
     @IBOutlet var removeOutBtn: UIButton!
-    //    @IBOutlet weak var createdDate: UILabel!
-//    @IBOutlet weak var expiredDate: UILabel!
-//    @IBOutlet weak var ptsRequired: UILabel!
+        @IBOutlet weak var createdDate: UILabel!
+    @IBOutlet weak var expiredDate: UILabel!
+    @IBOutlet weak var ptsRequired: UILabel!
         var delegate: AddOrRemoveGiftDelegate!
 
         override func awakeFromNib() {
             super.awakeFromNib()
             self.selectionStyle = .none
             //self.dreamGiftTitle.roundCorners(corners: [.bottomRight], radius: 20)
+            headerImage.image = UIImage(named: "group_7375")
             progressView.layer.cornerRadius = 3.0
-            self.priceImage.isHidden = true
+            self.priceImage.isHidden = false
+            
+            self.createdDate.textColor = .white
+            self.expiredDate.textColor = .white
+            self.giftName.textColor = .white
+            self.giftCreatedDate.textColor = . white
+            self.desiredDate.textColor = .white
             
             //self.tdsPointsStack.isHidden = true
             self.tdsApplicablePointsStack.isHidden = false

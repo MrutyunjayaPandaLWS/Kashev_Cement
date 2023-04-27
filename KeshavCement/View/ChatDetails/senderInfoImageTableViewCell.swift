@@ -15,6 +15,7 @@ class senderInfoImageTableViewCell: UITableViewCell {
     @IBOutlet var itemimage: UIImageView!
     @IBOutlet var itemtext: UILabel!
 
+    @IBOutlet weak var senderInfoWidth: NSLayoutConstraint!
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .none

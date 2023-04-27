@@ -58,6 +58,7 @@ class KC_MyCartVC: BaseViewController, MyCartDelegate {
             let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_OrderConfirmationVC") as! KC_OrderConfirmationVC
         vc.totalRedemmablePts = Int(self.finalPoints)
         vc.partyLoyaltyId = self.partyLoyaltyId
+        vc.finalPoints = self.finalPoints
             self.navigationController?.pushViewController(vc, animated: true)
 //        }else{
 //            self.view.makeToast("You are not allowled to redeem .Please contact your administrator", duration: 2.0, position: .bottom)
@@ -214,7 +215,7 @@ extension KC_MyCartVC : UITableViewDelegate, UITableViewDataSource{
         cell.selectionStyle = .none
  
         cell.productNameLbl.text = self.VM.myCartListArray[indexPath.row].productName ?? ""
-        cell.totalPointsLbl.text = "\(Double(self.VM.myCartListArray[indexPath.row].pointsRequired ?? 0))"
+        cell.totalPointsLbl.text = "\(self.VM.myCartListArray[indexPath.row].pointsRequired ?? 0)"
         let receivedImage = self.VM.myCartListArray[indexPath.row].productImage ?? ""
         let totalImgURL = productCatalogueImgURL + receivedImage
         cell.productImage.sd_setImage(with: URL(string: totalImgURL), placeholderImage: UIImage(named: "ic_default_img"))
@@ -229,9 +230,12 @@ extension KC_MyCartVC : UITableViewDelegate, UITableViewDataSource{
         cell.removeBtn.tag = indexPath.row
         
         print("\(self.VM.myCartListArray[indexPath.row].sumOfTotalPointsRequired ?? 0)")
-        self.totalPoints.text = "\(Double(self.VM.myCartListArray[indexPath.row].sumOfTotalPointsRequired ?? 0.0))"
-        self.finalPoints = Int(self.VM.myCartListArray[indexPath.row].sumOfTotalPointsRequired ?? 0.0)
+        let totalPts = Double(self.VM.myCartListArray[indexPath.row].sumOfTotalPointsRequired ?? 0.0)
+        self.totalPoints.text = "\(Int(totalPts))"
+        self.finalPoints = Int(totalPts)
         self.isRedeemable = self.VM.myCartListArray[indexPath.row].is_Redeemable ?? 0
+        
+        
         return cell
     }
     

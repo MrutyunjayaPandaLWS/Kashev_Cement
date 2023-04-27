@@ -126,8 +126,10 @@ class KC_DashBoardVC: BaseViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.slideMenuController()?.closeLeft()
+        
         self.tokendata()
         self.localization()
+        
 //        NotificationCenter.default.addObserver(self, selector: #selector(changePassword), name: Notification.Name.navigateToChangePassword, object: nil)
        
       
@@ -139,6 +141,7 @@ class KC_DashBoardVC: BaseViewController{
         slideMenuController()?.changeLeftViewWidth(self.view.frame.size.width * 0.89)
         SlideMenuOptions.contentViewScale = 1
         self.profileImage.layer.cornerRadius = self.profileImage.frame.size.height / 2
+        self.countLbl.layer.cornerRadius = self.countLbl.frame.size.height / 2
     }
 
     @objc func navigateToNext(){

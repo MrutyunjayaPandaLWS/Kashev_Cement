@@ -80,17 +80,20 @@ class KC_RedemptionPlannerVM {
                             self.VC?.redemptionPlannerTableView.reloadData()
                         }else{
                             self.VC?.addToPlanner.isHidden = false
+                            self.VC?.view.makeToast("No data found !!", duration: 3.0, position: .bottom)
                             self.VC?.redemptionPlannerTableView.isHidden = true
                         }
 
                     }
                 }else{
                     DispatchQueue.main.async {
+                        self.VC?.view.makeToast("No data found !!", duration: 3.0, position: .bottom)
                         self.VC?.stopLoading()
                     }
                 }
             }else{
                 DispatchQueue.main.async {
+                    self.VC?.view.makeToast("No data found !!", duration: 3.0, position: .bottom)
                     self.VC?.stopLoading()
                 }
             }

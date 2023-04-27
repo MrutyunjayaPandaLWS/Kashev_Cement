@@ -9,6 +9,7 @@ import UIKit
 
 class senderInfoTableViewCell: UITableViewCell {
 
+//    @IBOutlet weak var sendInfowidthCons: NSLayoutConstraint!
     @IBOutlet var customView: UIView!
     @IBOutlet var itemcustomer: UILabel!
     @IBOutlet var itemTime: UILabel!

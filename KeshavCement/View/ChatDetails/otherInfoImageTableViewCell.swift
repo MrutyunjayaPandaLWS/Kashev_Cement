@@ -13,6 +13,7 @@ class otherInfoImageTableViewCell: UITableViewCell {
     @IBOutlet var itemTime: UILabel!
     @IBOutlet var itemimage: UIImageView!
     @IBOutlet var itemtext: UILabel!
+    @IBOutlet weak var otherInfoWidthConstraint: NSLayoutConstraint!
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .none

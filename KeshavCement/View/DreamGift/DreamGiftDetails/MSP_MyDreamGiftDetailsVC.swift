@@ -92,7 +92,7 @@ class MSP_MyDreamGiftDetailsVC: BaseViewController{
             self.infoLbl.text = "Congratulations! you are eligible to win this existing Dream Gift"
             
             self.redeemBtn.isEnabled = true
-            self.redeemBtn.backgroundColor = #colorLiteral(red: 0.8913556933, green: 0.1619326174, blue: 0.1404572427, alpha: 1)
+            self.redeemBtn.backgroundColor = #colorLiteral(red: 0.1686274707, green: 0.1686274707, blue: 0.1686274707, alpha: 1)
             //            self.redeemBTN.backgroundColor = UIColor(red: 199/255, green: 34/255, blue: 4/255, alpha: 0.5)
 //            self.redeemBtn.backgroundColor = UIColor(red: 189/255, green: 0/255, blue: 0/255, alpha: 1.0)
         }else{
@@ -127,8 +127,16 @@ class MSP_MyDreamGiftDetailsVC: BaseViewController{
     
     @IBAction func redeemBtn(_ sender: Any) {
         print(verifiedStatus,"ljsdkhjkhi")
-        
-        self.verifyAdhaarExistencyApi()
+            DispatchQueue.main.async{
+            let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_OrderConfirmationVC") as! KC_OrderConfirmationVC
+            vc.redemptionTypeId = 3
+            vc.totalPoint = self.pointsRequires
+            vc.dreamGiftID = Int(self.selectedDreamGiftId) ?? 0
+            vc.giftName = self.giftName
+            vc.contractorName = self.contractorName
+            vc.giftStatusId = self.selectedGiftStatusID
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
         
         
     }

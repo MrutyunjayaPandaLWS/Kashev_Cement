@@ -120,6 +120,7 @@ class KC_MyPurchaseClaimVC: BaseViewController, DateSelectedDelegate, DialPadsDe
             self.view.makeToast("Select any select or date range", duration: 2.0, position: .bottom)
         }else if self.selectedFromDate == "" && self.selectedToDate == "" && self.selectedStatus != -3{
             self.VM.myPurchaseListArray.removeAll()
+            self.filterView.isHidden = true
             self.myClaimPurchaseListApi(startIndex: 1, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: self.selectedStatus)
         }else if self.selectedFromDate != "" && self.selectedToDate == ""{
             self.view.makeToast("Select To date", duration: 2.0, position: .bottom)
@@ -152,6 +153,7 @@ class KC_MyPurchaseClaimVC: BaseViewController, DateSelectedDelegate, DialPadsDe
         self.fromDateLbl.text = "From Date"
         self.toDateLbl.text = "To Date"
         self.myClaimPurchaseListApi(startIndex: 1, fromDate: "", toDate: "", status: -3)
+        self.filterView.isHidden = true
     }
     @IBAction func closeBtn(_ sender: Any) {
             self.filterView.isHidden = true
@@ -167,7 +169,7 @@ class KC_MyPurchaseClaimVC: BaseViewController, DateSelectedDelegate, DialPadsDe
         self.rejectedBtn.setTitleColor(.white, for: .normal)
         self.selectedStatus = 1
         self.VM.myPurchaseListArray.removeAll()
-        self.myClaimPurchaseListApi(startIndex: 1, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: self.selectedStatus)
+      //  self.myClaimPurchaseListApi(startIndex: 1, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: self.selectedStatus)
     }
     
     @IBAction func pendingButton(_ sender: Any) {
@@ -180,7 +182,7 @@ class KC_MyPurchaseClaimVC: BaseViewController, DateSelectedDelegate, DialPadsDe
         self.rejectedBtn.setTitleColor(.white, for: .normal)
         self.VM.myPurchaseListArray.removeAll()
         self.selectedStatus = 0
-        self.myClaimPurchaseListApi(startIndex: 1, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: self.selectedStatus)
+      //  self.myClaimPurchaseListApi(startIndex: 1, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: self.selectedStatus)
     }
     
     @IBAction func rejectedButton(_ sender: Any) {
@@ -193,7 +195,7 @@ class KC_MyPurchaseClaimVC: BaseViewController, DateSelectedDelegate, DialPadsDe
         self.pendingBtn.setTitleColor(.white, for: .normal)
         self.selectedStatus = -1
         self.VM.myPurchaseListArray.removeAll()
-        self.myClaimPurchaseListApi(startIndex: 1, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: self.selectedStatus)
+     //   self.myClaimPurchaseListApi(startIndex: 1, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: self.selectedStatus)
     }
     
     func myClaimPurchaseListApi(startIndex: Int, fromDate: String, toDate: String, status: Int){

@@ -120,6 +120,7 @@ class KC_DashBoardVM: SendNewPasswordDelegate{
                     if dashboardDetails.count != 0 {
                         if result?.objCustomerDashboardList?[0].notificationCount ?? 0 != 0{
                             self.VC?.countLbl.isHidden = false
+                            self.VC?.countLbl.text = "\(result?.objCustomerDashboardList?[0].notificationCount ?? 0)"
                         }else{
                             self.VC?.countLbl.isHidden = true
                         }
@@ -151,14 +152,17 @@ class KC_DashBoardVM: SendNewPasswordDelegate{
                         self.VC?.customerTypeId = "\(result?.lstCustomerFeedBackJsonApi?[0].customerTypeId ?? -1)"
                         UserDefaults.standard.setValue(result?.lstCustomerFeedBackJsonApi?[0].customerGrade ?? "", forKey: "CustomerGrade")
                         self.VC?.categoryCollectionView.reloadData()
+
                         if result?.lstCustomerFeedBackJsonApi?[0].customerGrade ?? "" == "Gold"{
                             self.VC!.gradeIcon.image = UIImage(named: "Gold")
                         }else if result?.lstCustomerFeedBackJsonApi?[0].customerGrade ?? "" == "Silver"{
                             self.VC!.gradeIcon.image = UIImage(named: "Silver")
                         }else if result?.lstCustomerFeedBackJsonApi?[0].customerGrade ?? "" == "Platinum"{
                             self.VC!.gradeIcon.image = UIImage(named: "Platinum")
-                        }else{
+                        }else if result?.lstCustomerFeedBackJsonApi?[0].customerGrade ?? "" == "Bronze"{
                             self.VC!.gradeIcon.image = UIImage(named: "Bronze")
+                        }else{
+                            self.VC!.gradeIcon.image = UIImage(named: "")
                         }
                         UserDefaults.standard.synchronize()
                             
@@ -265,8 +269,17 @@ class KC_DashBoardVM: SendNewPasswordDelegate{
                             self.VC!.present(vc, animated: true)
                         }
                     }
-                    self.VC?.stopLoading()
+//                    self.VC?.engineerTopicArray.removeAll()
+//                    self.VC?.dealerTopicArray.removeAll()
+//                    self.VC?.subDealerTopicArray.removeAll()
+//                    self.VC?.supportExecutive.removeAll()
+//                    
+//                    self.VC?.engineerTopicArray += self.VC!.engineerTopicArray1
+//                    self.VC?.dealerTopicArray += self.VC!.dealerTopicArray1
+//                    self.VC?.subDealerTopicArray += self.VC!.subDealerTopicArray1
+//                    self.VC?.supportExecutive += self.VC!.supportExecutive1
                     self.VC?.categoryCollectionView.reloadData()
+                    self.VC?.stopLoading()
                 }
                 }else{
                     DispatchQueue.main.async {
