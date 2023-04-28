@@ -168,7 +168,7 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
         self.fullNameLbl.text = "FullName".localiz()
         self.firmNameLbl.text = "FirmName".localiz()
         self.mobileNumberLbl.text = "MobileNumber".localiz()
-        self.aadharNumberLbl.text = "AadharNumber".localiz()
+      //  self.aadharNumberLbl.text = "AadharNumber".localiz()
         self.emailLbl.text = "Email".localiz()
         self.addressLbl.text = "Address".localiz()
         self.pincodeLbl.text = "Pincode".localiz()

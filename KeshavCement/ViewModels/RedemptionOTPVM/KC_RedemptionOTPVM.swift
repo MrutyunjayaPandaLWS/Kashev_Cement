@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import LanguageManager_iOS
 import UIKit
 class KC_RedemptionOTPVM{
     
@@ -47,7 +47,7 @@ class KC_RedemptionOTPVM{
                                 }
                                 self.VC?.generateOTPApi()
                         }else{
-                            self.VC!.view.makeToast("User isn't active", duration: 2.0, position: .bottom)
+                            self.VC!.view.makeToast("Userisnactive".localiz(), duration: 2.0, position: .bottom)
                         }
                        
                     }
@@ -188,6 +188,9 @@ class KC_RedemptionOTPVM{
                                 }else{
                                         self.getMycartList(PartyLoyaltyID: "", LoyaltyID: self.VC!.loyaltyId)
                                     }
+                                if self.VC?.contractorName != ""{
+                                    self.VC?.removeDreamGift()
+                                }
                             }
                         }
                        
@@ -245,7 +248,7 @@ class KC_RedemptionOTPVM{
                     }else{
                         DispatchQueue.main.async{
                             self.VC?.stopLoading()
-                            self.VC!.view.makeToast("Redemption Failed !", duration: 2.0, position: .bottom)
+                            self.VC!.view.makeToast("RedemptionFailed!".localiz(), duration: 2.0, position: .bottom)
                         }
                     }
                      }catch{
@@ -301,4 +304,39 @@ class KC_RedemptionOTPVM{
         }
     }
     
-    }
+
+    func removeDreamGift(parameters: JSON, completion: @escaping (RemoveGiftModels?) -> ()){
+           DispatchQueue.main.async {
+                 self.VC?.startLoading()
+   //              self.VC?.loaderView.isHidden = false
+   //              self.VC?.playAnimation()
+            }
+           self.requestAPIs.removeDreamGifts(parameters: parameters) { (result, error) in
+               if error == nil{
+                   if result != nil {
+                       DispatchQueue.main.async {
+                           completion(result)
+                           //self.VC?.loaderView.isHidden = true
+                           self.VC?.stopLoading()
+                       }
+                   } else {
+                       print("No Response")
+                       DispatchQueue.main.async {
+                          // self.VC?.loaderView.isHidden = true
+                           self.VC?.stopLoading()
+                       }
+                   }
+               }else{
+                   print("ERROR_Login \(error)")
+                   DispatchQueue.main.async {
+                      // self.VC?.loaderView.isHidden = true
+                       self.VC?.stopLoading()
+                   }
+
+           }
+       }
+       
+       }
+    
+    
+}

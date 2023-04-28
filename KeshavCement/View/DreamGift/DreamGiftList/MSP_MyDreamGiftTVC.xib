@@ -93,7 +93,7 @@
                                     <constraint firstItem="62J-yu-QAX" firstAttribute="leading" secondItem="MHi-Ee-PRp" secondAttribute="leading" constant="18" id="qSs-aY-1Pd"/>
                                 </constraints>
                             </view>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="nFc-8U-HB5">
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" trackImage="rupees_circle" translatesAutoresizingMaskIntoConstraints="NO" id="nFc-8U-HB5">
                                 <rect key="frame" x="8" y="123" width="353" height="4"/>
                                 <color key="progressTintColor" red="0.98266500229999998" green="0.94869881869999995" blue="0.33314153549999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="trackTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -109,7 +109,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rupees_circle" translatesAutoresizingMaskIntoConstraints="NO" id="NFq-3G-8he">
-                                <rect key="frame" x="108" y="110" width="30" height="30"/>
+                                <rect key="frame" x="98" y="110" width="30" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="BYC-Uf-khp"/>
@@ -210,9 +210,9 @@
                             <constraint firstItem="dWW-Bp-xIW" firstAttribute="leading" secondItem="A3q-cg-0uh" secondAttribute="leading" constant="8" id="YR1-Hh-CsL"/>
                             <constraint firstAttribute="trailing" secondItem="OJP-27-Iad" secondAttribute="trailing" constant="8" id="YyP-mz-1U6"/>
                             <constraint firstAttribute="bottom" secondItem="dWW-Bp-xIW" secondAttribute="bottom" constant="10" id="adu-ta-q8S"/>
-                            <constraint firstItem="NFq-3G-8he" firstAttribute="leading" secondItem="nFc-8U-HB5" secondAttribute="leading" constant="100" id="bk3-Y4-nlB"/>
                             <constraint firstAttribute="trailing" secondItem="xMg-NS-nPa" secondAttribute="trailing" constant="12" id="cBV-nz-z8k"/>
                             <constraint firstItem="xMg-NS-nPa" firstAttribute="top" secondItem="A3q-cg-0uh" secondAttribute="top" constant="8" id="hDq-7t-l5J"/>
+                            <constraint firstItem="NFq-3G-8he" firstAttribute="leading" secondItem="nFc-8U-HB5" secondAttribute="leading" constant="90" id="iq0-Na-sJ1"/>
                             <constraint firstItem="XbO-tL-wd2" firstAttribute="top" secondItem="b5l-Kt-6bq" secondAttribute="bottom" constant="10" id="q6p-wY-ArU"/>
                             <constraint firstAttribute="trailing" secondItem="nFc-8U-HB5" secondAttribute="trailing" constant="60" id="sAy-T0-HgC"/>
                         </constraints>
@@ -243,9 +243,8 @@
                 <outlet property="percentageValue" destination="OJP-27-Iad" id="P3b-Zf-TPG"/>
                 <outlet property="pointsRequired" destination="hpJ-mb-kPc" id="AZm-CC-0MU"/>
                 <outlet property="priceImage" destination="NFq-3G-8he" id="PAn-ww-9Dk"/>
-                <outlet property="priceImgLeadingSpaceConstraint" destination="bk3-Y4-nlB" id="k5j-hh-xpx"/>
+                <outlet property="priceImgLeadingSpaceConstraint" destination="iq0-Na-sJ1" id="gzp-Ie-89a"/>
                 <outlet property="progressView" destination="nFc-8U-HB5" id="4mV-aS-lKN"/>
-                <outlet property="progressViewLeadingConstraint" destination="Iuf-04-2pY" id="ESb-1b-Nob"/>
                 <outlet property="redeemButton" destination="b5l-Kt-6bq" id="FYr-dr-7Rg"/>
                 <outlet property="removeGiftBTN" destination="xMg-NS-nPa" id="Jtd-HU-ZiQ"/>
                 <outlet property="removeOutBtn" destination="XbO-tL-wd2" id="uFg-0m-XX4"/>

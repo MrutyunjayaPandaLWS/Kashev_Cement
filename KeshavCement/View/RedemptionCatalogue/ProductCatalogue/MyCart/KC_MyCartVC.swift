@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import LanguageManager_iOS
 class KC_MyCartVC: BaseViewController, MyCartDelegate {
 
     @IBOutlet weak var placeOrderBtn: UIButton!
@@ -34,6 +34,7 @@ class KC_MyCartVC: BaseViewController, MyCartDelegate {
         self.VM.VC = self
         self.myCartListTableView.delegate = self
         self.myCartListTableView.dataSource = self
+        self.headerTitle.text = "MyCart".localiz()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -94,13 +95,13 @@ class KC_MyCartVC: BaseViewController, MyCartDelegate {
                     
                 }else{
                     DispatchQueue.main.async{
-                        self.view.makeToast("Insufficient Point Balance", duration: 2.0, position: .bottom)
+                        self.view.makeToast("InsufficientPointBalance".localiz(), duration: 2.0, position: .bottom)
                     }
                 }
                 
             }else{
                 DispatchQueue.main.async{
-                    self.view.makeToast("Insufficient Point Balance", duration: 2.0, position: .bottom)
+                    self.view.makeToast("InsufficientPointBalance".localiz(), duration: 2.0, position: .bottom)
                 }
             }
         }
@@ -140,7 +141,7 @@ class KC_MyCartVC: BaseViewController, MyCartDelegate {
                         
                     }else{
                         DispatchQueue.main.async{
-                            self.view.makeToast("Insufficient Point Balance", duration: 2.0, position: .bottom)
+                            self.view.makeToast("InsufficientPointBalance".localiz(), duration: 2.0, position: .bottom)
                         }
                     }
                 }

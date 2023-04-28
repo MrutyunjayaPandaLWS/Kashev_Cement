@@ -6,7 +6,7 @@
 //
 
 import UIKit
-//import LanguageManager_iOS
+import LanguageManager_iOS
 //import Firebase
 import DPOTPView
 import Kingfisher

@@ -8,6 +8,12 @@
 import UIKit
 //import Firebase
 import Lottie
+
+protocol ReturnBackApiCallDelegate: class{
+    func didTapApiCall(_ vc: MSP_MyDreamGiftDetailsVC)
+}
+
+
 class MSP_MyDreamGiftDetailsVC: BaseViewController{
 
     
@@ -43,7 +49,7 @@ class MSP_MyDreamGiftDetailsVC: BaseViewController{
     var VM = DreamGiftDetailsViewModel()
     var selectedDreamGiftId = ""
 //    var VM1 = HistoryNotificationsViewModel()
-    
+    var delegate: ReturnBackApiCallDelegate!
     
     var giftType = ""
     var giftImage = ""
@@ -83,7 +89,7 @@ class MSP_MyDreamGiftDetailsVC: BaseViewController{
         
         let totalImgURL = productCatalogueImgURL + receivedImage
         print(totalImgURL,"TotalImg")
-        productImage.sd_setImage(with: URL(string: totalImgURL), placeholderImage: UIImage(named: "group_7376"))
+        productImage.sd_setImage(with: URL(string: totalImgURL), placeholderImage: UIImage(named: "gift-box-package-with-ribbon-colorful-blurred-background"))
         
         if pointsRequires <= pointsBalance{
 //            print(pointsRequired,"pointsRequired")
@@ -119,6 +125,7 @@ class MSP_MyDreamGiftDetailsVC: BaseViewController{
             self.navigationController?.popViewController(animated: true)
     }
     @IBAction func backBtn(_ sender: Any) {
+        self.delegate?.didTapApiCall(self)
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -130,6 +137,7 @@ class MSP_MyDreamGiftDetailsVC: BaseViewController{
             DispatchQueue.main.async{
             let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_OrderConfirmationVC") as! KC_OrderConfirmationVC
             vc.redemptionTypeId = 3
+                vc.isComingFrom = "DreemGift"
             vc.totalPoint = self.pointsRequires
             vc.dreamGiftID = Int(self.selectedDreamGiftId) ?? 0
             vc.giftName = self.giftName

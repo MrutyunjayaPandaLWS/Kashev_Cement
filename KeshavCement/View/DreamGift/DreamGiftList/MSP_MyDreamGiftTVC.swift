@@ -24,23 +24,21 @@ class MSP_MyDreamGiftTVC: UITableViewCell {
         @IBOutlet weak var progressView: UIProgressView!
         @IBOutlet weak var pointsRequired: UILabel!
         @IBOutlet weak var redeemButton: UIButton!
-        @IBOutlet weak var progressViewLeadingConstraint: NSLayoutConstraint!
         @IBOutlet weak var percentageValue: UILabel!
     @IBOutlet weak var removeGiftBTN: UIButton!
     @IBOutlet var tdsApplicablePointsStack: UIStackView!
     @IBOutlet var removeOutBtn: UIButton!
         @IBOutlet weak var createdDate: UILabel!
     @IBOutlet weak var expiredDate: UILabel!
-    @IBOutlet weak var ptsRequired: UILabel!
         var delegate: AddOrRemoveGiftDelegate!
 
         override func awakeFromNib() {
             super.awakeFromNib()
             self.selectionStyle = .none
             //self.dreamGiftTitle.roundCorners(corners: [.bottomRight], radius: 20)
-            headerImage.image = UIImage(named: "group_7375")
+        //    headerImage.image = UIImage(named: "group_7375")
             progressView.layer.cornerRadius = 3.0
-            self.priceImage.isHidden = false
+            self.priceImage.isHidden = true
             
             self.createdDate.textColor = .white
             self.expiredDate.textColor = .white

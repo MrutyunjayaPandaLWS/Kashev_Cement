@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import LanguageManager_iOS
 class KC_ProductCatalgoueDetailsVM{
 //:  popUpAlertDelegate {
 //    func popupAlertDidTap(_ vc: HR_PopUpVC) {}
@@ -168,8 +169,8 @@ class KC_ProductCatalgoueDetailsVM{
                         self.VC?.stopLoading()
                         print(result?.returnValue ?? "", "ReturnValue")
                         if result?.returnValue == 1{
-                            let alert = UIAlertController(title: "", message: "Added To Cart", preferredStyle: UIAlertController.Style.alert)
-                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                            let alert = UIAlertController(title: "", message: "AddedToCart".localiz(), preferredStyle: UIAlertController.Style.alert)
+                            alert.addAction(UIAlertAction(title: "OK".localiz(), style: .default, handler: nil))
                             self.VC?.present(alert, animated: true, completion: nil)
                             self.VC?.addedToCart.isHidden = false
                             self.VC?.addToCart.isHidden = true
@@ -190,7 +191,7 @@ class KC_ProductCatalgoueDetailsVM{
                                 self.VC?.addToCart.isHidden = false
                                 self.VC?.addToPlanner.isHidden = true
                                 self.VC?.addedToPlannerBTN.isHidden = true
-                                self.VC!.view.makeToast("Insufficient Point Balance", duration: 2.0, position: .bottom)
+                                self.VC!.view.makeToast("InsufficientPointBalance".localiz(), duration: 2.0, position: .bottom)
                             }
                         }
                         
@@ -231,14 +232,14 @@ class KC_ProductCatalgoueDetailsVM{
                         print(result?.returnValue ?? "", "Add To Planner Return Value")
                         if result?.returnValue ?? 0 >= 1{
                            DispatchQueue.main.async{
-                               let alert = UIAlertController(title: "", message: "Product is added into the Planner", preferredStyle: UIAlertController.Style.alert)
-                               alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                               let alert = UIAlertController(title: "", message: "ProductisaddedintothePlanner".localiz(), preferredStyle: UIAlertController.Style.alert)
+                               alert.addAction(UIAlertAction(title: "OK".localiz(), style: .default, handler: nil))
                                self.VC?.present(alert, animated: true, completion: nil)
                             }
                         }else{
                             DispatchQueue.main.async{
-                                let alert = UIAlertController(title: "", message: "You can't add this products into your planner List", preferredStyle: UIAlertController.Style.alert)
-                                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                let alert = UIAlertController(title: "", message: "YoucanaddthisproductsintoyourplannerList".localiz(), preferredStyle: UIAlertController.Style.alert)
+                                alert.addAction(UIAlertAction(title: "OK".localiz(), style: .default, handler: nil))
                                 self.VC?.present(alert, animated: true, completion: nil)
                             }
                         }

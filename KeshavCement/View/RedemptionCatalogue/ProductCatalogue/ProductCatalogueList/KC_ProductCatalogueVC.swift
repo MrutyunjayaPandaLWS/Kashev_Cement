@@ -7,6 +7,7 @@
 
 import UIKit
 import Toast_Swift
+import LanguageManager_iOS
 class KC_ProductCatalogueVC: BaseViewController, AddToCartDelegate, SelectedItemsDelegate, UITextFieldDelegate{
 //    popUpAlertDelegate, ,
     func selectedItem(_ vc: KC_ProductCatalogueDetailsVC) {
@@ -39,7 +40,7 @@ class KC_ProductCatalogueVC: BaseViewController, AddToCartDelegate, SelectedItem
                     }
                 }else{
                     DispatchQueue.main.async{
-                        self.view.makeToast("Already added to planner", duration: 2.0, position: .bottom)
+                        self.view.makeToast("Alreadyaddedtoplanner".localiz(), duration: 2.0, position: .bottom)
                 }
                 }
 
@@ -48,7 +49,7 @@ class KC_ProductCatalogueVC: BaseViewController, AddToCartDelegate, SelectedItem
         self.productsDetailCollectionView.reloadData()
     }else{
         DispatchQueue.main.async{
-            self.view.makeToast("Your account is unverified! Kindly contact the administrator to access the redemption Catalogue", duration: 2.0, position: .bottom)
+            self.view.makeToast("unverifiedCatalgoue".localiz(), duration: 2.0, position: .bottom)
         }
     }
 
@@ -82,13 +83,13 @@ class KC_ProductCatalogueVC: BaseViewController, AddToCartDelegate, SelectedItem
                         //NotificationCenter.default.post(name: .cartCount, object: nil)
                     }else{
                         DispatchQueue.main.async{
-                            self.view.makeToast("Need Sufficient Point Balance", duration: 2.0, position: .bottom)
+                            self.view.makeToast("NeedSufficientPointBalance".localiz(), duration: 2.0, position: .bottom)
                         }
                     }
 
                 }else{
                     DispatchQueue.main.async{
-                        self.view.makeToast("Need Sufficient Product Point", duration: 2.0, position: .bottom)
+                        self.view.makeToast("NeedSufficientPointBalance".localiz(), duration: 2.0, position: .bottom)
                      
                     }
                 }
@@ -98,7 +99,7 @@ class KC_ProductCatalogueVC: BaseViewController, AddToCartDelegate, SelectedItem
         }
     }else{
         DispatchQueue.main.async{
-            self.view.makeToast("Your account is unverified! Kindly contact the administrator to access the redemption Catalogue", duration: 2.0, position: .bottom)
+            self.view.makeToast("unverifiedCatalgoue".localiz(), duration: 2.0, position: .bottom)
         }
     }
     }
@@ -130,6 +131,13 @@ class KC_ProductCatalogueVC: BaseViewController, AddToCartDelegate, SelectedItem
     
     
     @IBOutlet weak var totalPoinView: UIView!
+    
+    
+    @IBOutlet weak var headerTextLbl: UILabel!
+    
+    @IBOutlet weak var totalPts: UILabel!
+    
+    
     let VM = KC_ProductCatalogueListVM()
     var isComeFrom = ""
     var partyLoyaltyId = ""
@@ -166,6 +174,9 @@ class KC_ProductCatalogueVC: BaseViewController, AddToCartDelegate, SelectedItem
         self.VM.VC = self
 //        self.productCategoryCollectionView.reloadData()
         self.itsFrom = "Search"
+        self.headerTextLbl.text = "ProductCatalgoue".localiz()
+        self.totalPts.text = "TotalPoints".localiz()
+        self.noDataFound.text = "NoDataFound".localiz()
         self.totalPoinView.clipsToBounds = true
         self.totalPoinView.cornerRadius = 20
         self.totalPoinView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
@@ -198,8 +209,8 @@ class KC_ProductCatalogueVC: BaseViewController, AddToCartDelegate, SelectedItem
             self.totalRedeemablePtsLbl.text = "\(self.redeemablePointsBalance)"
              self.noDataFound.isHidden = true
             self.noDataFound.textColor = #colorLiteral(red: 1, green: 0.9877298474, blue: 0.5554133654, alpha: 1)
-            self.noDataFound.text = "No data found !!"//
-            self.searchProductTF.placeholder = "Search Products"//
+            self.noDataFound.text = "NoDataFound".localiz()//
+            self.searchProductTF.placeholder = "SearchProducts".localiz()
             self.searchProductTF.delegate = self
             self.productsDetailCollectionView.isHidden = true
             self.productCategoryCollectionView.delegate = self

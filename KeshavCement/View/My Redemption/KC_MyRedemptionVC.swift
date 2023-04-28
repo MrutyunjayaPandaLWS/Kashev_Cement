@@ -226,12 +226,28 @@ extension KC_MyRedemptionVC: UITableViewDelegate,UITableViewDataSource{
                 cell.productHeaderLbl.isHidden = false
                 cell.productHeaderLbl.text = "Category: \(self.VM.myredemptionListArray[indexPath.row].categoryName ?? "")"
                 cell.productTitle.text = "Catalogue"
+            }else if self.VM.myredemptionListArray[indexPath.row].catalogueType ?? "" == "Voucher"{
+                cell.quantityHeadingLbl.isHidden = true
+                cell.qtyLbl.isHidden = true
+                cell.productHeaderLbl.isHidden = true
+                cell.productTitle.text = "Voucher"
+            }else if self.VM.myredemptionListArray[indexPath.row].catalogueType ?? "" == "Dream Gift"{
+                cell.quantityHeadingLbl.isHidden = true
+                cell.qtyLbl.isHidden = true
+                cell.productHeaderLbl.isHidden = true
+                cell.productTitle.text = "Dream Gift"
+            }else if self.VM.myredemptionListArray[indexPath.row].catalogueType ?? "" == "Gift Voucher"{
+                cell.quantityHeadingLbl.isHidden = true
+                cell.qtyLbl.isHidden = true
+                cell.productHeaderLbl.isHidden = true
+                cell.productTitle.text = "Gift Voucher"
             }else{
                 cell.quantityHeadingLbl.isHidden = true
                 cell.qtyLbl.isHidden = true
                 cell.productHeaderLbl.isHidden = true
-                cell.productTitle.text = "Voucher "
+                cell.productTitle.text = self.VM.myredemptionListArray[indexPath.row].catalogueType ?? ""
             }
+            
             
             if self.VM.myredemptionListArray[indexPath.row].status ?? -1 == 0{
                 cell.statusLbl.text = "Pending"

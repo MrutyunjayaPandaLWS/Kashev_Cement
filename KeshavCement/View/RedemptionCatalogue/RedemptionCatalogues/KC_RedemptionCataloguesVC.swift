@@ -6,15 +6,20 @@
 //
 
 import UIKit
-
+import LanguageManager_iOS
 class KC_RedemptionCataloguesVC: BaseViewController {
 
+    @IBOutlet weak var totalPointss: UILabel!
     @IBOutlet weak var deliveryTypeView: UIView!
     @IBOutlet weak var redeemablePts: UILabel!
     @IBOutlet weak var selectionType: UILabel!
     @IBOutlet weak var headerLbl: UILabel!
     @IBOutlet weak var redemptionTypeCollectionView: UICollectionView!
     
+    @IBOutlet weak var redeemYourEarnedPts: UILabel!
+    @IBOutlet weak var forOthersLbl: UILabel!
+    @IBOutlet weak var forSelfLbl: UILabel!
+    @IBOutlet weak var subHeaderLbl: UILabel!
     @IBOutlet weak var subView: UIView!
     var categoryListingArray = ["Products", "eVouchers", "Cash Transfer", "Wishlist"]
     var categoryListingArray1 = ["Products", "eVouchers", "Cash Voucher", "Wishlist"]
@@ -31,12 +36,13 @@ class KC_RedemptionCataloguesVC: BaseViewController {
         subView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         self.redeemablePts.text = "\(self.totalRedeemablePoints)"
         
-//        headerView.layer.masksToBounds = false
-//        headerView.layer.shadowRadius = 2
-//        headerView.layer.shadowOpacity = 0.2
-//        headerView.layer.shadowColor = UIColor.gray.cgColor
-//        headerView.layer.shadowOffset = CGSize(width: 0 , height:2)
-  
+        self.headerLbl.text = "RedemptionCatalogue".localiz()
+        self.totalPointss.text = "TotalPoints".localiz()
+        self.subHeaderLbl.text = "SelectRedemptionDeliveryType".localiz()
+        self.forSelfLbl.text = "ForSelf".localiz()
+        self.forOthersLbl.text = "ForOthers".localiz()
+        self.selectionType.text = "SelectRedemptionType".localiz()
+        self.redeemYourEarnedPts.text = "redeemYourEarned".localiz()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)

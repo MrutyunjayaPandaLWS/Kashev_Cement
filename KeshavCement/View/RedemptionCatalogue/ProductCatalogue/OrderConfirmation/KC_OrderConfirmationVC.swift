@@ -7,7 +7,7 @@
 
 import UIKit
 import Lottie
-
+import LanguageManager_iOS
 class KC_OrderConfirmationVC: BaseViewController, SendUpdatedAddressDelegate {
     func updatedAddressDetails(_ vc: KC_EditAddressVC) {
         DispatchQueue.main.async {
@@ -45,8 +45,11 @@ class KC_OrderConfirmationVC: BaseViewController, SendUpdatedAddressDelegate {
     @IBOutlet weak var deliveryAddressLbl: UILabel!
     @IBOutlet weak var orderConfirmationLbl: UILabel!
     
+    @IBOutlet weak var lineLabel: UILabel!
     @IBOutlet weak var swipeBtn: UILabel!
     
+    @IBOutlet weak var deliveryItemLbl: UILabel!
+    @IBOutlet weak var checkImage: UIImageView!
     @IBOutlet weak var swipeButton: TGFlingActionButton!
     
     var redeemablePointsBalance = UserDefaults.standard.string(forKey: "RedeemablePointBalance") ?? "0"
@@ -94,18 +97,20 @@ class KC_OrderConfirmationVC: BaseViewController, SendUpdatedAddressDelegate {
         headerView.layer.shadowOpacity = 0.2
         headerView.layer.shadowColor = UIColor.gray.cgColor
         headerView.layer.shadowOffset = CGSize(width: 0 , height:2)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(navigateToOrderConfirm), name: Notification.Name.navigateToOrderConfirmation, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(afterQuerySubmitted), name: Notification.Name.navigateToMyRedemption, object: nil)
         let calcValue = Int(redeemablePointsBalance)! - self.totalRedemmablePts
         self.pointBalance = calcValue
         self.pointsBalanceLbl.text = "Point balance \(calcValue) after this purchase"
 
-        if self.redemptionTypeId != 0 {
-            self.orderConfirmationTableView.isHidden = true
-        }else{
-            self.orderConfirmationTableView.isHidden = false
-        }
+        
+        self.orderConfirmationLbl.text = "OrderConfirmation".localiz()
+        self.deliveryAddressLbl.text = "DeliveryAddress".localiz()
+        self.deliveryToLbl.text = "DeliveryTo".localiz()
+        self.changeBtn.setTitle("Change".localiz(), for: .normal)
+        self.deliveryItemLbl.text = "DeliveryItem".localiz()
+        self.redeemLbl.text = "Redeem".localiz()
+       
         
     }
     
@@ -115,19 +120,36 @@ class KC_OrderConfirmationVC: BaseViewController, SendUpdatedAddressDelegate {
         if MyCommonFunctionalUtilities.isInternetCallTheApi() == false{
             self.view.makeToast("No Internet connection!!", duration: 2.0, position: .bottom)
         }else{
-
-            if self.customerTypeId ?? "" == "3" && self.partyLoyaltyId != "" || self.customerTypeId ?? "" == "4" && self.partyLoyaltyId != ""{
-                
-                    self.VM.getMycartList(PartyLoyaltyID: self.loyaltyId, LoyaltyID: self.partyLoyaltyId)
-                
-                
-            }else if self.customerTypeId ?? "" == "3" && self.partyLoyaltyId == "" || self.customerTypeId ?? "" == "4" && self.partyLoyaltyId == ""{
-                self.VM.getMycartList(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId)
+            if self.isComingFrom == "DreemGift" {
+                self.orderConfirmationTableView.isHidden = true
+                self.checkImage.isHidden = true
+                self.deliveryItemLbl.isHidden = true
+                self.lineLabel.isHidden = true
+                self.totalPoints.text = "\(self.totalPoint)"
+                self.addressTextView.isUserInteractionEnabled = false
+                let calcValue = Int(redeemablePointsBalance)! - self.totalPoint
+                self.pointBalance = calcValue
+                self.pointsBalanceLbl.text = "Point balance \(calcValue) after this purchase"
             }else{
-                self.VM.getMycartList(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId)
-             }
-            self.addressTextView.isUserInteractionEnabled = false
-    }
+               // self.buttonViewTopSpace.constant = 545
+                if self.customerTypeId ?? "" == "3" && self.partyLoyaltyId != "" || self.customerTypeId ?? "" == "4" && self.partyLoyaltyId != ""{
+                    
+                    self.VM.getMycartList(PartyLoyaltyID: self.loyaltyId, LoyaltyID: self.partyLoyaltyId)
+                    
+                    
+                }else if self.customerTypeId ?? "" == "3" && self.partyLoyaltyId == "" || self.customerTypeId ?? "" == "4" && self.partyLoyaltyId == ""{
+                    self.VM.getMycartList(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId)
+                }else{
+                    self.VM.getMycartList(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId)
+                }
+                self.addressTextView.isUserInteractionEnabled = false
+                let calcValue = Int(redeemablePointsBalance)! - self.totalRedemmablePts
+                self.pointBalance = calcValue
+                self.pointsBalanceLbl.text = "Point balance \(calcValue) after this purchase"
+            }
+            
+         
+        }
     }
     
     @objc func afterQuerySubmitted(notification: Notification){
@@ -153,7 +175,7 @@ class KC_OrderConfirmationVC: BaseViewController, SendUpdatedAddressDelegate {
         if UserDefaults.standard.string(forKey: "verificationStatus") == "1"{
             if stateID == -1 || districtID == -1 || address1 == "" || pincode == "" || mobile == ""{
                 DispatchQueue.main.async{
-                    self.view.makeToast("Currently you are not mapped to any dealer. Kindly contact the administrator.", duration: 2.0, position: .bottom)
+                    self.view.makeToast("currentlyContactAdministrator".localiz(), duration: 2.0, position: .bottom)
                 }
             }else{
                 if self.totalRedemmablePts <= Int(self.redeemablePointsBalance)!{
@@ -176,6 +198,13 @@ class KC_OrderConfirmationVC: BaseViewController, SendUpdatedAddressDelegate {
                                vc!.redeemedPoints = self.totalRedemmablePts
                                vc!.pointBalance = "\(self.pointBalance)"
                                vc!.partyLoyaltyId = self.partyLoyaltyId
+                               vc!.redemptionTypeId = self.redemptionTypeId
+                               print(self.redemptionTypeId)
+                               vc!.contractorName = self.contractorName
+                               vc!.giftStatusId = self.giftStatusId
+                               vc!.dreamGiftId = self.dreamGiftID
+                               vc!.giftPts = self.totalPoint
+                               vc!.giftName = self.giftName
                                vc!.modalTransitionStyle = .coverVertical
                                vc!.modalPresentationStyle = .overFullScreen
                                self.present(vc!, animated: true)
@@ -184,14 +213,14 @@ class KC_OrderConfirmationVC: BaseViewController, SendUpdatedAddressDelegate {
                                )
                        }
                 }else{
-                    self.view.makeToast("Insufficient point balance", duration: 2.0, position: .bottom)
+                    self.view.makeToast("Insufficientpointbalance".localiz(), duration: 2.0, position: .bottom)
                 }
                     
             }
             
         }else{
             DispatchQueue.main.async{
-                self.view.makeToast("For Redemption, please complete the KYC verification process", duration: 2.0, position: .bottom)
+                self.view.makeToast("ForRedemptioKYCverificationprocess".localiz(), duration: 2.0, position: .bottom)
             }
         }
 

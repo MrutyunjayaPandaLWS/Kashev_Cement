@@ -11,7 +11,14 @@ import SDWebImage
 //import Firebase
 import Lottie
 
-class MSP_MyDreamGiftVC: BaseViewController, AddOrRemoveGiftDelegate {
+
+
+
+class MSP_MyDreamGiftVC: BaseViewController, AddOrRemoveGiftDelegate, ReturnBackApiCallDelegate{
+    func didTapApiCall(_ vc: MSP_MyDreamGiftDetailsVC) {
+     //   self.dreamGiftListApi()
+    }
+    
     
     @IBOutlet weak var notificationLbl: UILabel!
     @IBOutlet weak var myDreamGiftTableView: UITableView!
@@ -32,7 +39,7 @@ class MSP_MyDreamGiftVC: BaseViewController, AddOrRemoveGiftDelegate {
     var dreamGiftRedemptionId = 0
 //    var VM1 = HistoryNotificationsViewModel()
     var VM = DreamGiftListingViewModel()
-    
+
     
     var totalPoint = 0
     var dreamGiftID = 0
@@ -51,22 +58,19 @@ class MSP_MyDreamGiftVC: BaseViewController, AddOrRemoveGiftDelegate {
         myDreamGiftTableView.dataSource = self
         NotificationCenter.default.addObserver(self, selector: #selector(afterRemovedProducts), name: Notification.Name.dreamGiftRemoved, object: nil)
         //NotificationCenter.default.addObserver(self, selector: #selector(giftAddedIntoCart), name: Notification.Name.giftAddedIntoCart, object: nil)
+
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        self.loaderView.isHidden = true
-    //åå    self.notificationListApi()
         self.dreamGiftListApi()
-//        guard let tracker = GAI.sharedInstance().defaultTracker else { return }
-//        tracker.set(kGAIScreenName, value: "Dream Gift")
-//
-//        guard let builder = GAIDictionaryBuilder.createScreenView() else { return }
-//        tracker.send(builder.build() as [NSObject : AnyObject])
     }
     @objc func afterRemovedProducts(){
         dreamGiftListApi ()
         self.myDreamGiftTableView.reloadData()
     }
+    
+    
     @IBAction func notificationBtn(_ sender: Any) {
 //        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "MSP_NotificationVC") as! MSP_NotificationVC
 //        self.navigationController?.pushViewController(vc, animated: true)
@@ -310,43 +314,36 @@ extension MSP_MyDreamGiftVC: UITableViewDataSource, UITableViewDelegate {
         cell?.removeGiftBTN.tag = indexPath.row
         print(pointRequired,"pointsReq")
         print(balance, "Balance")
+        
+        let totalRedeemableValue = Double(self.totalRedeemedPoints)
+        let percentage = CGFloat(totalRedeemableValue / pointRequired)
+        
+        
         if self.VM.myDreamGiftListArray[indexPath.row].pointsRequired ?? 0 <= Int(exactly: self.totalRedeemedPoints)!{
-            let totalRedeemableValue = Double(self.totalRedeemedPoints)
-            let percentage = CGFloat(totalRedeemableValue / pointRequired)
             cell?.percentageValue.text = "100%"
             cell?.progressView.progress = Float(percentage)
             cell?.redeemButton.isEnabled = true
             cell?.redeemButton.backgroundColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
             cell?.priceImgLeadingSpaceConstraint.constant = CGFloat((cell?.progressView.frame.width)! - 35)
+            cell?.createdDate.textColor = .darkGray
+            cell?.expiredDate.textColor = .darkGray
+            cell?.giftName.textColor = .darkGray
+            cell?.giftCreatedDate.textColor = . darkGray
+            cell?.desiredDate.textColor = .darkGray
         }else{
-            let totalRedeemableValue = Double(self.totalRedeemedPoints)
-            let percentage = CGFloat(totalRedeemableValue / pointRequired)
             let final = CGFloat(percentage) * 100
             cell?.percentageValue.text = "\(Int(final))%"
             cell?.progressView.progress = Float(percentage)
             cell?.redeemButton.isEnabled = false
             cell?.redeemButton.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-            cell?.priceImgLeadingSpaceConstraint.constant = CGFloat((cell?.progressView.frame.width)! - (final + 10))
-            if cell?.headerImage.image == UIImage(named: "group_7375"){
-                cell?.headerImage.image = UIImage(named: "Group-7829")
-                cell?.createdDate.textColor = .darkGray
-                cell?.expiredDate.textColor = .darkGray
-                cell?.giftName.textColor = .darkGray
-                cell?.giftCreatedDate.textColor = . darkGray
-                cell?.desiredDate.textColor = .darkGray
-            }else{
-                cell?.headerImage.image = UIImage(named: "group_7375")
-                cell?.createdDate.textColor = .white
-                cell?.expiredDate.textColor = .white
-                cell?.giftName.textColor = .white
-                cell?.giftCreatedDate.textColor = . white
-                cell?.desiredDate.textColor = .white
-            }
-            
+            let calcValue = CGFloat(percentage * (cell?.progressView.frame.width)! - 48)
+            cell?.priceImgLeadingSpaceConstraint.constant = CGFloat(calcValue)
+            cell?.createdDate.textColor = .darkGray
+            cell?.expiredDate.textColor = .darkGray
+            cell?.giftName.textColor = .darkGray
+            cell?.giftCreatedDate.textColor = . darkGray
+            cell?.desiredDate.textColor = .darkGray
         }
-       
-        
-        
         
         return cell!
     }
@@ -355,6 +352,7 @@ extension MSP_MyDreamGiftVC: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "MSP_MyDreamGiftDetailsVC") as? MSP_MyDreamGiftDetailsVC
+        vc?.delegate = self
         vc?.giftName = self.VM.myDreamGiftListArray[indexPath.row].dreamGiftName ?? ""
        // vc?.tdsvalue = self.VM.myDreamGiftListArray[indexPath.row].TdsPoints ?? 0.0
         vc?.giftType = self.VM.myDreamGiftListArray[indexPath.row].giftType ?? ""
@@ -374,19 +372,4 @@ extension MSP_MyDreamGiftVC: UITableViewDataSource, UITableViewDelegate {
       //  vc?.isRedeemable = self.VM.myDreamGiftListArray[indexPath.row].is_Redeemable ?? 0
         self.navigationController?.pushViewController((vc)!, animated: true)
     }
-    
-//    func playAnimation(){
-//                   animationView11 = .init(name: "Loader_v4")
-//                     animationView11!.frame = loaderAnimatedView.bounds
-//                     // 3. Set animation content mode
-//                     animationView11!.contentMode = .scaleAspectFit
-//                     // 4. Set animation loop mode
-//                     animationView11!.loopMode = .loop
-//                     // 5. Adjust animation speed
-//                     animationView11!.animationSpeed = 0.5
-//                    loaderAnimatedView.addSubview(animationView11!)
-//                     // 6. Play animation
-//                     animationView11!.play()
-//
-//               }
 }

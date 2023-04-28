@@ -313,9 +313,13 @@ class KC_NewEnrollementVC: BaseViewController, SelectedDataDelegate, DateSelecte
             self.view.makeToast("Select State", duration: 2.0, position: .bottom)
         }else if self.selectedDistrictId == -1{
             self.view.makeToast("Select District", duration: 2.0, position: .bottom)
-        }else if self.selectedTalukId == -1{
-            self.view.makeToast("Select Taluk", duration: 2.0, position: .bottom)
-        }else{
+        }else if self.selectedDOB == ""{
+            self.view.makeToast("Select DOB", duration: 2.0, position: .bottom)
+        }
+//        else if self.selectedTalukId == -1{
+//            self.view.makeToast("Select Taluk", duration: 2.0, position: .bottom)
+//        }
+        else{
             
             if self.customerTypeId == "5"{
                 self.newCustomerSubmissionApi(customerID: UserDefaults.standard.string(forKey: "mappedCustomerId") ?? "")

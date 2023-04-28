@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import LanguageManager_iOS
 class KC_MyPurchaseClaimVC: BaseViewController, DateSelectedDelegate, DialPadsDelegate {
     func dialPadDidTap(_ cell: KC_MyPurchaseClaimTVC) {
         guard let tappedIndexpath = self.purchaseClaimTableView.indexPath(for: cell) else{return}
@@ -73,6 +73,20 @@ class KC_MyPurchaseClaimVC: BaseViewController, DateSelectedDelegate, DialPadsDe
         self.purchaseClaimTableView.separatorStyle = .none
         self.myClaimPurchaseListApi(startIndex: 1, fromDate: "", toDate: "", status: -3)
         self.purchaseClaimTableView.estimatedRowHeight = 220
+        self.headerLbl.text = "MyPurchaseClaim".localiz()
+        
+        self.filterLbl.text = "Filter".localiz()
+        self.myPurchaseFilterLbl.text = "MyPurchaseFilter".localiz()
+        self.statusLbl.text = "Status".localiz()
+        self.dateRangeLbl.text = "DateRange".localiz()
+        self.approvedBtn.setTitle("Approved".localiz(), for: .normal)
+        self.pendingBtn.setTitle("Pending".localiz(), for: .normal)
+        self.rejectedBtn.setTitle("Rejected".localiz(), for: .normal)
+        self.fromDateLbl.text = "SelectFromDate".localiz()
+        self.toDateLbl.text = "SelectToDate".localiz()
+        self.clearBtn.setTitle("Clear".localiz(), for: .normal)
+        self.applyFilter.setTitle("ApplyFilter".localiz(), for: .normal)
+    
     }
     
     
@@ -117,18 +131,18 @@ class KC_MyPurchaseClaimVC: BaseViewController, DateSelectedDelegate, DialPadsDe
     
     @IBAction func applyFilterBtn(_ sender: Any) {
         if self.selectedStatus == -3 && self.selectedFromDate == "" && self.selectedToDate == ""{
-            self.view.makeToast("Select any select or date range", duration: 2.0, position: .bottom)
+            self.view.makeToast("Selectanyselectordaterange".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedFromDate == "" && self.selectedToDate == "" && self.selectedStatus != -3{
             self.VM.myPurchaseListArray.removeAll()
             self.filterView.isHidden = true
             self.myClaimPurchaseListApi(startIndex: 1, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: self.selectedStatus)
         }else if self.selectedFromDate != "" && self.selectedToDate == ""{
-            self.view.makeToast("Select To date", duration: 2.0, position: .bottom)
+            self.view.makeToast("SelectToDate".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedFromDate == "" && self.selectedToDate != ""{
-            self.view.makeToast("Select From date", duration: 2.0, position: .bottom)
+            self.view.makeToast("SelectFromdate".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedFromDate != "" && self.selectedToDate != ""{
             if self.selectedFromDate > self.selectedToDate{
-                self.view.makeToast("To date shouldn't greater than From date", duration: 2.0, position: .bottom)
+                self.view.makeToast("TodateshouldntgreaterthanFromdate".localiz(), duration: 2.0, position: .bottom)
             }else{
                 self.VM.myPurchaseListArray.removeAll()
                 self.myClaimPurchaseListApi(startIndex: 1, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: self.selectedStatus)
@@ -150,8 +164,8 @@ class KC_MyPurchaseClaimVC: BaseViewController, DateSelectedDelegate, DialPadsDe
         self.rejectedBtn.setTitleColor(.white, for: .normal)
         self.VM.myPurchaseListArray.removeAll()
         self.selectedStatus = -3
-        self.fromDateLbl.text = "From Date"
-        self.toDateLbl.text = "To Date"
+        self.fromDateLbl.text = "SelectFromDate".localiz()
+        self.toDateLbl.text = "SelectToDate".localiz()
         self.myClaimPurchaseListApi(startIndex: 1, fromDate: "", toDate: "", status: -3)
         self.filterView.isHidden = true
     }

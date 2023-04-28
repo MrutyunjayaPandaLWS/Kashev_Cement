@@ -135,3 +135,63 @@
 "Pleaseselectusertype" = "कृपया उपयोगकर्ता प्रकार चुनें";
 "Pleaseselectproduct" = "कृपया उत्पाद का चयन करें";
 "Qunantityshouldnt0" = "मात्रा 0 नहीं होनी चाहिए";
+
+"MyPurchaseClaim" = "मेरा खरीद दावा";
+"Filter" = "फ़िल्टर";
+"MyPurchaseFilter" = "मेरी खरीद फ़िल्टर";
+"Status" = "दर्जा";
+"DateRange" = "तिथि सीमा";
+"Approved" = "अनुमत";
+"Pending" = "लंबित";
+"Rejected" = "अस्वीकार कर दिया";
+"SelectFromDate" = "तिथि से चयन करें";
+"SelectToDate" = "Select To Date";
+"Clear" = "साफ़";
+"ApplyFilter" = "फिल्टर लागू करें";
+"Selectanyselectordaterange" = "किसी भी चयन या तिथि सीमा का चयन करें";
+"TodateshouldntgreaterthanFromdate" = "तिथि तिथि से तिथि से अधिक नहीं होनी चाहिए";
+
+"RedemptionCatalogue" = "मोचन कैटलॉग";
+"TotalPoints" = "कुल पॉइंट्स";
+"SelectRedemptionDeliveryType" = "मोचन वितरण प्रकार का चयन करें";
+"ForSelf" = "अपने लिए";
+"ForOthers" = "दूसरों के लिए";
+"SelectRedemptionType" = "मोचन प्रकार का चयन करें";
+"redeemYourEarned" = "अपने अर्जित अंकों को विभिन्न तरीकों से भुनाएं";
+
+"ProductCatalgoue" = "उत्पाद सूचिका";
+"NoDataFound" = "डाटा प्राप्त नहीं हुआ!!";
+
+"YoucanaddthisproductsintoyourplannerList" = "आप इस उत्पाद को अपनी योजनाकार सूची में नहीं जोड़ सकते";
+"ProductisaddedintothePlanner" = "उत्पाद प्लानर में जोड़ा जाता है";
+"InsufficientPointBalance" = "अपर्याप्त बिंदु संतुलन";
+"AddedToCart" = "कार्ट में जोड़ा गया";
+"Alreadyaddedtoplanner" = "प्लानर में पहले ही जोड़ा जा चुका है";
+ "unverifiedCatalgoue" = "आपका खाता असत्यापित है! रिडेम्पशन कैटलॉग तक पहुँचने के लिए कृपया व्यवस्थापक से संपर्क करें";
+"NeedSufficientPointBalance" = "पर्याप्त प्वाइंट बैलेंस चाहिए";
+"SearchProducts" = "उत्पादों को खोजना";
+"OK" = "ठीक";
+
+"ProductDetails" = "उत्पाद विवरण";
+"Descriptions" = "विवरण";
+"Termsandconditions" = "नियम और शर्तें";
+"MyCart" = "मेरी गाड़ी";
+"somethingwentWrong" = "कुछ गलत हो गया! बाद में पुन: प्रयास!";
+"ProducthasbeenRemovedfromCart" = "उत्पाद को कार्ट से हटा दिया गया है";
+
+"OrderConfirmation" = "आदेश की पुष्टि";
+"DeliveryAddress" = "डिलिवरी का पता";
+"DeliveryTo" = "को सुपुर्दगी";
+"Change" = "परिवर्तन";
+"DeliveryItem" = "डिलीवरी आइटम";
+"Redeem" = "रिडीम करें";
+"currentlyContactAdministrator" = "वर्तमान में आप किसी डीलर के साथ मैप नहीं किए गए हैं। कृपया व्यवस्थापक से संपर्क करें।";
+"ForRedemptioKYCverificationprocess" = "मोचन के लिए, कृपया केवाईसी सत्यापन प्रक्रिया को पूरा करें";
+
+"EntertheOTPSubmitRedemption" = "मोचन जमा करने के लिए ओटीपी दर्ज करें";
+"Redemption" =  "पाप मुक्ति";
+"EnterOTP" = "ओटीपी दर्ज करें";
+"EntervalidOTP" = "मान्य ओटीपी दर्ज करें";
+"EntercorrectOTP" = "सही ओटीपी दर्ज करें";
+"Userisnactive" = "उपयोगकर्ता सक्रिय नहीं है";
+"RedemptionFailed!" = "मोचन विफल!";

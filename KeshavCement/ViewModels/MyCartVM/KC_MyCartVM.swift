@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import LanguageManager_iOS
 class KC_MyCartVM{
 //:  popUpAlertDelegate {
 //    func popupAlertDidTap(_ vc: HR_PopUpVC) {}
@@ -84,7 +85,7 @@ class KC_MyCartVM{
                                 }
                         }else{
                              
-                                self.VC!.view.makeToast("Something went wrong! Try again later!", duration: 2.0, position: .bottom)
+                            self.VC!.view.makeToast("somethingwentWrong".localiz(), duration: 2.0, position: .bottom)
                         }
                         
                     }
@@ -113,7 +114,7 @@ class KC_MyCartVM{
                         self.VC?.stopLoading()
                         if result?.returnMessage ?? "-1" == "1"{
                             DispatchQueue.main.async {
-                                self.VC!.view.makeToast("Product has been removed from Cart", duration: 2.0, position: .bottom)
+                                self.VC!.view.makeToast("ProducthasbeenRemovedfromCart".localiz(), duration: 2.0, position: .bottom)
                                 if self.VC?.customerTypeId ?? "" == "3" && self.VC?.partyLoyaltyId != "" || self.VC?.customerTypeId ?? "" == "4" && self.VC?.partyLoyaltyId != ""{
                                     
                                         self.getMycartList(PartyLoyaltyID: self.loyaltyId, LoyaltyID: self.VC!.partyLoyaltyId)
@@ -128,7 +129,7 @@ class KC_MyCartVM{
                         }else{
                             DispatchQueue.main.async {
                              
-                                self.VC!.view.makeToast("Something went wrong! Try again later!", duration: 2.0, position: .bottom)
+                                self.VC!.view.makeToast("somethingwentWrong".localiz(), duration: 2.0, position: .bottom)
                             }
                         }
                         

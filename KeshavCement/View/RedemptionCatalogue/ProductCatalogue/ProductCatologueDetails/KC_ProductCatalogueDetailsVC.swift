@@ -8,6 +8,7 @@
 import UIKit
 import ImageSlideshow
 //import Firebase
+import LanguageManager_iOS
 protocol SelectedItemsDelegate: class{
     
     func selectedItem(_ vc: KC_ProductCatalogueDetailsVC)
@@ -36,6 +37,7 @@ class KC_ProductCatalogueDetailsVC: BaseViewController{
     
     @IBOutlet weak var tcLbl: UILabel!
     
+    @IBOutlet weak var descriptionsLbl: UILabel!
     @IBOutlet weak var totalPointsLbl: UILabel!
     @IBOutlet weak var totalPtsLbl: UILabel!
     
@@ -80,6 +82,11 @@ class KC_ProductCatalogueDetailsVC: BaseViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.VM.VC = self
+        self.headerLbl.text = "ProductDetails".localiz()
+        self.descriptionsLbl.text = "Descriptions".localiz()
+        self.termsandConditions.text = "Termsandconditions".localiz()
+        self.totalPtsLbl.text = "TotalPoints".localiz()
+        
         categoryTypeLabel.text = productCategory
         
         mainView.clipsToBounds = false
@@ -144,7 +151,7 @@ class KC_ProductCatalogueDetailsVC: BaseViewController{
                 self.VM.addToCartApi(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId)
             }
             }else{
-                self.view.makeToast("Insufficent Point Balance", duration: 2.0, position: .bottom)
+                self.view.makeToast("InsufficentPointBalance".localiz(), duration: 2.0, position: .bottom)
             }
 //        }
 //
@@ -155,7 +162,7 @@ class KC_ProductCatalogueDetailsVC: BaseViewController{
         let filterCategory = self.VM.plannerListArray.filter{$0.catalogueId == self.catalogueId}
         if filterCategory.count > 0 {
             DispatchQueue.main.async{
-                self.view.makeToast("Already!, this product added to planner ", duration: 2.0, position: .bottom)
+                self.view.makeToast("Alreadyaddedtoplanner".localiz(), duration: 2.0, position: .bottom)
         }
         }else{
             if self.customerTypeId ?? "" == "3" && self.partyLoyaltyId != "" || self.customerTypeId ?? "" == "4" && self.partyLoyaltyId != ""{

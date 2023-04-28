@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import LanguageManager_iOS
 class KC_ProductCatalogueListVM{
 //:  popUpAlertDelegate {
 //    func popupAlertDidTap(_ vc: HR_PopUpVC) {}
@@ -358,15 +359,15 @@ class KC_ProductCatalogueListVM{
                                 
                             }
                             self.productCategoryApi()
-                            let alert = UIAlertController(title: "", message: "Added To Cart", preferredStyle: UIAlertController.Style.alert)
-                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                            let alert = UIAlertController(title: "", message: "AddedToCart".localiz(), preferredStyle: UIAlertController.Style.alert)
+                            alert.addAction(UIAlertAction(title: "OK".localiz(), style: .default, handler: nil))
                             self.VC?.present(alert, animated: true, completion: nil)
                             self.VC?.productsDetailCollectionView.reloadData()
                             return
                         }else{
                             //PopUp Message
                             DispatchQueue.main.async{
-                                self.VC!.view.makeToast("Insufficient Point Balance", duration: 2.0, position: .bottom)
+                                self.VC!.view.makeToast("InsufficientPointBalance".localiz(), duration: 2.0, position: .bottom)
                             }
                         }
                         
@@ -407,8 +408,8 @@ class KC_ProductCatalogueListVM{
                         print(result?.returnValue ?? "", "Add To Planner Return Value")
                         if result?.returnValue ?? 0 >= 1{
                            DispatchQueue.main.async{
-                               let alert = UIAlertController(title: "", message: "Product is added into the Planner", preferredStyle: UIAlertController.Style.alert)
-                               alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                               let alert = UIAlertController(title: "", message: "ProductisaddedintothePlanner".localiz(), preferredStyle: UIAlertController.Style.alert)
+                               alert.addAction(UIAlertAction(title: "OK".localiz(), style: .default, handler: nil))
                                self.VC?.present(alert, animated: true, completion: nil)
                             }
                             self.catalgoueListArray.removeAll()
@@ -423,8 +424,8 @@ class KC_ProductCatalogueListVM{
                             self.productCategoryApi()
                         }else{
                             DispatchQueue.main.async{
-                                let alert = UIAlertController(title: "", message: "You can't add this products into your planner List", preferredStyle: UIAlertController.Style.alert)
-                                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                let alert = UIAlertController(title: "", message: "YoucanaddthisproductsintoyourplannerList".localiz(), preferredStyle: UIAlertController.Style.alert)
+                                alert.addAction(UIAlertAction(title: "OK".localiz(), style: .default, handler: nil))
                                 self.VC?.present(alert, animated: true, completion: nil)
                             }
                         }

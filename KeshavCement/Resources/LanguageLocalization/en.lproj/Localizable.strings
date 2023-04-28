@@ -136,3 +136,65 @@
 "Pleaseselectusertype" = "Please select user type";
 "Pleaseselectproduct" = "Please select product";
 "Qunantityshouldnt0" = "Quantity shouldn't 0";
+
+"MyPurchaseClaim" = "My Purchase Claim";
+"Filter" = "Filter";
+"MyPurchaseFilter" = "My Purchase Filter";
+"Status" = "Status";
+"DateRange" = "Date Range";
+"Approved" = "Approved";
+"Pending" = "Pending";
+"Rejected" = "Rejected";
+"SelectFromDate" = "Select From Date";
+"SelectToDate" = "Select To Date";
+"Clear" = "Clear";
+"ApplyFilter" = "Apply Filter";
+"Selectanyselectordaterange" = "Select any select or date range";
+"TodateshouldntgreaterthanFromdate" = "To date shouldn't greater than From date";
+
+"RedemptionCatalogue" = "Redemption Catalogue";
+"TotalPoints" = "Total Points";
+"SelectRedemptionDeliveryType" = "Select Redemption Delivery Type";
+"ForSelf" = "For Self";
+"ForOthers" = "For Others";
+"SelectRedemptionType" = "Select Redemption Type";
+"redeemYourEarned" = "Redeem your earned points in various ways";
+
+"ProductCatalgoue" = "Product Catalgoue";
+"NoDataFound" = "No data found!!";
+
+"YoucanaddthisproductsintoyourplannerList" = "You can't add this products into your planner List";
+"ProductisaddedintothePlanner" = "Product is added into the Planner";
+"InsufficientPointBalance" = "Insufficient Point Balance";
+"AddedToCart" = "Added To Cart";
+"Alreadyaddedtoplanner" = "Already! this product is added to planner";
+ "unverifiedCatalgoue" = "Your account is unverified! Kindly contact the administrator to access the redemption Catalogue";
+"NeedSufficientPointBalance" = "Need Sufficient Point Balance";
+"SearchProducts" = "Search Products";
+"OK" = "OK";
+ 
+"ProductDetails" = "Product Details";
+"Descriptions" = "Descriptions";
+"Termsandconditions" = "Terms and conditions";
+
+"MyCart" = "My Cart";
+"somethingwentWrong" = "Something went wrong! Try again later!";
+"ProducthasbeenRemovedfromCart" = "Product has been removed from Cart";
+
+"OrderConfirmation" = "Order Confirmation";
+"DeliveryAddress" = "Delivery Address";
+"DeliveryTo" = "Delivery To";
+"Change" = "Change";
+"DeliveryItem" = "Delivery Item";
+"Redeem" = "Redeem";
+"currentlyContactAdministrator" = "Currently you are not mapped to any dealer. Kindly contact the administrator.";
+"ForRedemptioKYCverificationprocess" = "For Redemption, please complete the KYC verification process";
+
+
+"EntertheOTPSubmitRedemption" = "Enter the OTP to submit the redemption";
+"Redemption" =  "Redemption";
+"EnterOTP" = "Enter OTP";
+"EntervalidOTP" = "Enter valid OTP";
+"EntercorrectOTP" = "Enter correct OTP";
+"Userisnactive" = "User isn't active";
+"RedemptionFailed!" = "Redemption Failed !";
