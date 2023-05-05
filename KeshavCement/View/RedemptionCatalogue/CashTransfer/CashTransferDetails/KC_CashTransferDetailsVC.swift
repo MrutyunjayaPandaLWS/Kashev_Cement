@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import LanguageManager_iOS
 class KC_CashTransferDetailsVC: BaseViewController {
 
     
@@ -42,12 +43,12 @@ class KC_CashTransferDetailsVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if self.customerTypeId == "3"{
-            self.headerLbl.text = "Cash Voucher"
+            self.headerLbl.text = "CashVoucher".localiz()
             self.categoryLbl.text = "Cash Voucher / \(self.categoryTitle)"
             self.categoryId = "9"
         }else{
             self.categoryId = "8"
-            self.headerLbl.text = "Cash Transfer"
+            self.headerLbl.text = "CashTransfer".localiz()
             self.categoryLbl.text = "Cash Transfer / \(self.categoryTitle)"
 //            self.cashTranferApi(categoryId: self.categoryId, startIndex: 1)
         }

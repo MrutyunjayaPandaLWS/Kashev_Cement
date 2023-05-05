@@ -10,6 +10,8 @@ import DPOTPView
 import LanguageManager_iOS
 class KC_EvoucherPopUpVC: BaseViewController, DPOTPViewDelegate{
   
+    @IBOutlet weak var popUpInfoText: UILabel!
+    @IBOutlet weak var popUpTitleText: UILabel!
     @IBOutlet weak var successPopUpView: UIView!
     @IBOutlet weak var redemptionTitleLbL: UILabel!
     @IBOutlet weak var redeemBtn: UIButton!
@@ -51,7 +53,6 @@ class KC_EvoucherPopUpVC: BaseViewController, DPOTPViewDelegate{
     var VM = KC_RedemptionOTPVM()
     var productsParameter:JSON?
     var sentSMSParameter:JSON?
-    
     var partyLoyaltyId = ""
     var loyaltyID = UserDefaults.standard.string(forKey: "LoyaltyId") ?? ""
     var mobilenumber = UserDefaults.standard.string(forKey: "CustomerMobileNumber") ?? ""
@@ -61,7 +62,7 @@ class KC_EvoucherPopUpVC: BaseViewController, DPOTPViewDelegate{
     var merchanMobile = UserDefaults.standard.string(forKey: "MerchantMobile") ?? ""
     var pointBalance = UserDefaults.standard.string(forKey: "RedeemablePointBalance") ?? ""
     
-    
+    var productTotalPoints = 0
 
     
     override func viewDidLoad() {
@@ -96,17 +97,21 @@ class KC_EvoucherPopUpVC: BaseViewController, DPOTPViewDelegate{
         }
     }
            
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
-        {
-            let touch = touches.first
-            if touch?.view != self.view
-            {
-                self.dismiss(animated: true, completion: nil) }
-        }
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+//        {
+//            let touch = touches.first
+//            if touch?.view != self.view
+//            {
+//                self.dismiss(animated: true, completion: nil) }
+//        }
     
     @IBAction func resendBTN(_ sender: Any) {
-            self.VM.timer.invalidate()
-            self.generateOTPApi()
+        self.VM.timer.invalidate()
+        if self.partyLoyaltyId == ""{
+            self.generateOTPApi(loyaltyId: self.loyaltyID)
+        }else{
+            self.generateOTPApi(loyaltyId: self.partyLoyaltyId)
+        }
     }
     
     
@@ -127,7 +132,11 @@ class KC_EvoucherPopUpVC: BaseViewController, DPOTPViewDelegate{
             }else{
                 self.VM.timer.invalidate()
             
-                self.redemptionSubmissionApi()
+                if self.partyLoyaltyId == ""{
+                    self.redemptionSubmissionApi(loyaltyId: self.loyaltyID)
+                }else{
+                    self.redemptionSubmissionApi(loyaltyId: self.partyLoyaltyId)
+                }
             }
 
         }else{
@@ -157,19 +166,19 @@ class KC_EvoucherPopUpVC: BaseViewController, DPOTPViewDelegate{
         self.VM.checkUserStatusApi(parameter: paramter)
         
     }
-    func generateOTPApi(){
-        let parameter = [
-            "MerchantUserName": "KeshavCementDemo",
-            "MobileNo": mobilenumber,
-            "UserId": self.userID,
-            "UserName": self.loyaltyId,
-            "Name": self.customerName
-        ] as [String: Any]
-        print(parameter)
-        self.VM.getOTPApi(parameter: parameter)
+    func generateOTPApi(loyaltyId: String){
+            let parameter = [
+                "MerchantUserName": "KeshavCementDemo",
+                "MobileNo": mobilenumber,
+                "UserId": self.userID,
+                "UserName": loyaltyId,
+                "Name": self.customerName
+            ] as [String: Any]
+            print(parameter)
+            self.VM.getOTPApi(parameter: parameter)
     }
     
-    func redemptionSubmissionApi(){
+    func redemptionSubmissionApi(loyaltyId: String){
 //        let parameter = [
 //            "ActionType": 51,
 //            "ActorId": userID,
@@ -186,6 +195,7 @@ class KC_EvoucherPopUpVC: BaseViewController, DPOTPViewDelegate{
                 "ActionType": 51,
                 "ActorId": userID,
                 "MemberName": "\(self.customerName)",
+                "DealerLoyaltyId": loyaltyId,
                 "ObjCatalogueDetails": [
                             "DomainName": "KESHAV_CEMENT"
                     ],
@@ -204,7 +214,7 @@ class KC_EvoucherPopUpVC: BaseViewController, DPOTPViewDelegate{
                     "ObjCatalogueList": [
                         [
                             "DreamGiftId": "\(dreamGiftId)",
-                            "LoyaltyId": "\(loyaltyId)",
+                            "LoyaltyId": loyaltyId,
                             "PointBalance": "\(pointBalance)",
                             "NoOfPointsDebit": "\(giftPts)",
                             "NoOfQuantity": 1,
@@ -220,7 +230,7 @@ class KC_EvoucherPopUpVC: BaseViewController, DPOTPViewDelegate{
                         "CountryId": 103,
                         "Email": "\(self.emailId)",
                         "FullName": "\(contractorName)",
-                        "Mobile": "\(loyaltyId)",
+                        "Mobile": loyaltyId,
                         "StateId": self.stateID,
                         "StateName": "\(self.stateName)",
                         "Zip": "\(self.pincode)"
@@ -234,7 +244,7 @@ class KC_EvoucherPopUpVC: BaseViewController, DPOTPViewDelegate{
         self.VM.redemptionSubmissionApi(parameter: self.productsParameter!)
         
     }
-    func sendSuccessMessage(){
+    func sendSuccessMessage(loyaltyId: String){
        let parameter =  [
                 "CustomerName": "\(firstname)",
                 "EmailID": "",

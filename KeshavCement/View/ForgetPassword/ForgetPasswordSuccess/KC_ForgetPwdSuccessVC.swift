@@ -17,13 +17,13 @@ class KC_ForgetPwdSuccessVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if self.itsComeFrom == "CLAIMPURCHASE"{
-            self.newPwdInfo.text = "Submitted your purchase request".localiz()
+            self.newPwdInfo.text = "Submittedyourpurchaserequest".localiz()
         }else if self.itsComeFrom == "SAVEWORKSITEINFO"{
-            self.newPwdInfo.text = "Submitted your work details request".localiz()
+            self.newPwdInfo.text = "Submittedyourworkdetailsrequest".localiz()
         }else if self.itsComeFrom == "SUPPORTEXECUTIVE"{
-            self.newPwdInfo.text = "Support executive created".localiz()
+            self.newPwdInfo.text = "Supportexecutivecreated".localiz()
         }else if self.itsComeFrom == "EXECUTIVE"{
-            self.newPwdInfo.text = "Status updated".localiz()
+            self.newPwdInfo.text = "Statusupdated".localiz()
         }else if self.itsComeFrom == "ACCOUNTDEACTIVATE"{
             self.newPwdInfo.text = "Youraccountdeactivated".localiz()
             self.infoLbl.text = "AccountDeactivated".localiz()

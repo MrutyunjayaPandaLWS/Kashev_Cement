@@ -5,9 +5,9 @@
 //  Created by ADMIN on 15/02/2023.
 //
 
-import Foundation
 
 import UIKit
+import LanguageManager_iOS
 class KC_SignUpVM{
     
     weak var VC: KC_SignUpVC?
@@ -39,7 +39,7 @@ class KC_SignUpVM{
                                 vc.modalPresentationStyle = .overFullScreen
                                 self.VC!.present(vc, animated: true)
                             }else{
-                                self.VC!.view.makeToast("Registration Failed", duration: 3.0, position: .bottom)
+                                self.VC!.view.makeToast("RegistrationFailed!!".localiz(), duration: 3.0, position: .bottom)
                                 for controller in self.VC!.navigationController!.viewControllers as Array {
                                     if controller.isKind(of: KC_RegisterVC.self) {
                                         self.VC!.navigationController!.popToViewController(controller, animated: true)

@@ -99,15 +99,15 @@ class KC_MyPurchaseClaimVC: BaseViewController, DateSelectedDelegate, DialPadsDe
             self.filterView.isHidden = true
         }else{
             self.filterView.isHidden = false
-            self.approvedBtn.backgroundColor = UIColor(hexString: "565656")
-            self.pendingBtn.backgroundColor = UIColor(hexString: "565656")
-            self.rejectedBtn.backgroundColor = UIColor(hexString: "565656")
+//            self.approvedBtn.backgroundColor = UIColor(hexString: "565656")
+//            self.pendingBtn.backgroundColor = UIColor(hexString: "565656")
+//            self.rejectedBtn.backgroundColor = UIColor(hexString: "565656")
             
-            self.pendingBtn.setTitleColor(.white, for: .normal)
-            self.approvedBtn.setTitleColor(.white, for: .normal)
-            self.rejectedBtn.setTitleColor(.white, for: .normal)
-            //self.VM.myPurchaseListArray.removeAll()
-//            self.myClaimPurchaseListApi(startIndex: 1, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: -3)
+//            self.pendingBtn.setTitleColor(.white, for: .normal)
+//            self.approvedBtn.setTitleColor(.white, for: .normal)
+//            self.rejectedBtn.setTitleColor(.white, for: .normal)
+            self.VM.myPurchaseListArray.removeAll()
+            self.myClaimPurchaseListApi(startIndex: 1, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: -3)
         }
     }
     
@@ -139,7 +139,7 @@ class KC_MyPurchaseClaimVC: BaseViewController, DateSelectedDelegate, DialPadsDe
         }else if self.selectedFromDate != "" && self.selectedToDate == ""{
             self.view.makeToast("SelectToDate".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedFromDate == "" && self.selectedToDate != ""{
-            self.view.makeToast("SelectFromdate".localiz(), duration: 2.0, position: .bottom)
+            self.view.makeToast("SelectFromDate".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedFromDate != "" && self.selectedToDate != ""{
             if self.selectedFromDate > self.selectedToDate{
                 self.view.makeToast("TodateshouldntgreaterthanFromdate".localiz(), duration: 2.0, position: .bottom)
@@ -182,7 +182,7 @@ class KC_MyPurchaseClaimVC: BaseViewController, DateSelectedDelegate, DialPadsDe
         self.approvedBtn.setTitleColor(.darkGray, for: .normal)
         self.rejectedBtn.setTitleColor(.white, for: .normal)
         self.selectedStatus = 1
-        self.VM.myPurchaseListArray.removeAll()
+//        self.VM.myPurchaseListArray.removeAll()
       //  self.myClaimPurchaseListApi(startIndex: 1, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: self.selectedStatus)
     }
     
@@ -194,7 +194,7 @@ class KC_MyPurchaseClaimVC: BaseViewController, DateSelectedDelegate, DialPadsDe
         self.approvedBtn.setTitleColor(.white, for: .normal)
         self.pendingBtn.setTitleColor(.darkGray, for: .normal)
         self.rejectedBtn.setTitleColor(.white, for: .normal)
-        self.VM.myPurchaseListArray.removeAll()
+//        self.VM.myPurchaseListArray.removeAll()
         self.selectedStatus = 0
       //  self.myClaimPurchaseListApi(startIndex: 1, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: self.selectedStatus)
     }
@@ -208,7 +208,7 @@ class KC_MyPurchaseClaimVC: BaseViewController, DateSelectedDelegate, DialPadsDe
         self.rejectedBtn.setTitleColor(.darkGray, for: .normal)
         self.pendingBtn.setTitleColor(.white, for: .normal)
         self.selectedStatus = -1
-        self.VM.myPurchaseListArray.removeAll()
+//        self.VM.myPurchaseListArray.removeAll()
      //   self.myClaimPurchaseListApi(startIndex: 1, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: self.selectedStatus)
     }
     

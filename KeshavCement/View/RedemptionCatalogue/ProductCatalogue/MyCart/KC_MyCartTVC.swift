@@ -46,11 +46,11 @@ class KC_MyCartTVC: UITableViewCell {
 }
     @IBAction func plusBtn(_ sender: Any) {
         print(self.verifiedStatus)
-        if self.verifiedStatus != 1{
-            self.makeToast("You are not allowled to redeem .Please contact your administrator", duration: 2.0, position: .bottom)
-        }else{
+//        if self.verifiedStatus != 1{
+//            self.makeToast("You are not allowled to redeem .Please contact your administrator", duration: 2.0, position: .bottom)
+//        }else{
         self.delegate.increaseCount(self)
-        }
+//        }
     }
     @IBAction func removeBTN(_ sender: Any) {
         self.delegate.removeProduct(self)

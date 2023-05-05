@@ -10,11 +10,6 @@ import Lottie
 import Toast_Swift
 import LanguageManager_iOS
 class KC_ClaimPurchaseVC: BaseViewController, SelectedDataDelegate{
-    func didTapHelpTopic(_ vc: KC_DropDownVC) {}
-    func didTapAmount(_ vc: KC_DropDownVC){}
-    func didTapCustomerType(_ vc: KC_DropDownVC) {}
-    func didTapWorkLevel(_ vc: KC_DropDownVC) {}
-    func didTapCityName(_ vc: KC_DropDownVC){}
     func didTapMappedUserName(_ vc: KC_DropDownVC) {
         self.searchTF.text = vc.mappedUsername
         self.mappedName = vc.mappedUsername
@@ -29,9 +24,6 @@ class KC_ClaimPurchaseVC: BaseViewController, SelectedDataDelegate{
         self.selectedProductCode = vc.selectedProductCode
         
     }
-    func didTapState(_ vc: KC_DropDownVC) {}
-    func didTapDistrict(_ vc: KC_DropDownVC) {}
-    func didTapTaluk(_ vc: KC_DropDownVC) {}
     func didTapUserType(_ vc: KC_DropDownVC) {
         self.selectTypeLbl.text = vc.selectedUserTypeName
         self.selectedUserTypeName = vc.selectedUserTypeName

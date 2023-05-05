@@ -7,7 +7,7 @@
 
 import UIKit
 import WebKit
-
+import LanguageManager_iOS
 class KC_TermsandconditionVC: BaseViewController {
 
     @IBOutlet weak var termsandConditionWebview: WKWebView!
@@ -17,6 +17,7 @@ class KC_TermsandconditionVC: BaseViewController {
     override func viewDidLoad() {
             super.viewDidLoad()
             dashboardTCApi()
+        self.headerText.text = "TermsandConditions".localiz()
         }
 
     @IBAction func backBtn(_ sender: Any) {

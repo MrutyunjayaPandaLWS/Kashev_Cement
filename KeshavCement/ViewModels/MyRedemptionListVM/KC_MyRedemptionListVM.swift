@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import LanguageManager_iOS
 
 class KC_MyRedemptionListVM {
     
@@ -38,7 +39,7 @@ class KC_MyRedemptionListVM {
                             }else{
                                 self.VC!.startIndex = 1
                                 self.VC?.myRedemptionTV.isHidden = true
-                                self.VC!.view.makeToast("No data found!!", duration: 3.0, position: .bottom)
+                                self.VC!.view.makeToast("NoDataFound".localiz(), duration: 3.0, position: .bottom)
                             }
                             
                         }else{
@@ -48,7 +49,7 @@ class KC_MyRedemptionListVM {
                             }else{
                                 self.VC!.startIndex = 1
                                 self.VC!.myRedemptionTV.isHidden = true
-                                self.VC!.view.makeToast("No data found!!", duration: 3.0, position: .bottom)
+                                self.VC!.view.makeToast("NoDataFound".localiz(), duration: 3.0, position: .bottom)
                             }
                         }
                     }

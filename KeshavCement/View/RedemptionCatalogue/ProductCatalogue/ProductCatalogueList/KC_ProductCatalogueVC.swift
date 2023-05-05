@@ -166,6 +166,8 @@ class KC_ProductCatalogueVC: BaseViewController, AddToCartDelegate, SelectedItem
     var filterByRangeArray = ["All Points", "Under 1000 pts", "1000 - 4999 pts", "5000 - 24999 pts", "25000 & Above pts"]
     var sortedBy = 0
     var itsFrom = "Search"
+    
+    var productTotalPoints = 0
     var parameters : JSON?
    
 
@@ -206,7 +208,11 @@ class KC_ProductCatalogueVC: BaseViewController, AddToCartDelegate, SelectedItem
                 self.view.makeToast("No Internet Connection", duration: 2.0, position: .bottom)
             }
         }else{
-            self.totalRedeemablePtsLbl.text = "\(self.redeemablePointsBalance)"
+            if self.partyLoyaltyId == ""{
+                self.totalRedeemablePtsLbl.text = "\(self.redeemablePointsBalance)"
+            }else{
+                self.totalRedeemablePtsLbl.text = "\(self.productTotalPoints)"
+            }
              self.noDataFound.isHidden = true
             self.noDataFound.textColor = #colorLiteral(red: 1, green: 0.9877298474, blue: 0.5554133654, alpha: 1)
             self.noDataFound.text = "NoDataFound".localiz()//
@@ -446,6 +452,8 @@ class KC_ProductCatalogueVC: BaseViewController, AddToCartDelegate, SelectedItem
         
         let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyCartVC") as! KC_MyCartVC
         vc.partyLoyaltyId = self.partyLoyaltyId
+        vc.productTotalPoints = self.productTotalPoints
+        print(self.productTotalPoints)
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
@@ -514,37 +522,76 @@ extension KC_ProductCatalogueVC: UICollectionViewDelegate, UICollectionViewDataS
             let productPoints = self.VM.catalgoueListArray[indexPath.item].pointsRequired ?? 0
             print(self.redeemablePointsBalance, "RedeemablePointBalance")
                 if self.VM.catalgoueListArray[indexPath.row].is_Redeemable ?? -3 == 1{
-                    if productPoints < Int(self.redeemablePointsBalance) ?? 0{
-                        cell.addedToCartBtn.isHidden = true
-                        cell.addToPlannerBtn.isHidden = true
-                        cell.addToCartBtn.isHidden = false
-                        cell.addedToPlannerBtn.isHidden = true
-                        if filterCategory.count > 0 {
-                            cell.addedToCartBtn.isHidden = false
-                            //  cell.addedToCartBtn.backgroundColor = #colorLiteral(red: 1, green: 0.9877298474, blue: 0.5554133654, alpha: 1)
-                            //cell.addedToCartBtn.setTitleColor(.darkGray, for: .normal)
+                    
+                    if self.partyLoyaltyId == ""{
+                        if productPoints < Int(self.redeemablePointsBalance) ?? 0{
+                            cell.addedToCartBtn.isHidden = true
                             cell.addToPlannerBtn.isHidden = true
-                            cell.addToCartBtn.isHidden = true
+                            cell.addToCartBtn.isHidden = false
                             cell.addedToPlannerBtn.isHidden = true
+                            if filterCategory.count > 0 {
+                                cell.addedToCartBtn.isHidden = false
+                                cell.addedToCartBtn.backgroundColor = .lightGray
+                                //  cell.addedToCartBtn.backgroundColor = #colorLiteral(red: 1, green: 0.9877298474, blue: 0.5554133654, alpha: 1)
+                                //cell.addedToCartBtn.setTitleColor(.darkGray, for: .normal)
+                                cell.addToPlannerBtn.isHidden = true
+                                cell.addToCartBtn.isHidden = true
+                                cell.addedToPlannerBtn.isHidden = true
+                            }
+                        }else{
+                            if self.VM.catalgoueListArray[indexPath.row].isPlanner! == true{
+                                cell.addedToCartBtn.isHidden = true
+                                cell.addToPlannerBtn.isHidden = false
+                                
+                                cell.addToCartBtn.isHidden = true
+                                cell.addedToPlannerBtn.isHidden = true
+                            }else{
+                                cell.addedToCartBtn.isHidden = true
+                                cell.addToPlannerBtn.isHidden = true
+                                cell.addToCartBtn.isHidden = true
+                                cell.addedToPlannerBtn.isHidden = true
+                            }
+                            if filterCategory1.count > 0 {
+                                cell.addedToCartBtn.isHidden = true
+                                cell.addToPlannerBtn.isHidden = false
+                                cell.addToCartBtn.isHidden = true
+                                cell.addedToPlannerBtn.isHidden = true
+                            }
                         }
                     }else{
-                        if self.VM.catalgoueListArray[indexPath.row].isPlanner! == true{
-                            cell.addedToCartBtn.isHidden = true
-                            cell.addToPlannerBtn.isHidden = false
-                            
-                            cell.addToCartBtn.isHidden = true
-                            cell.addedToPlannerBtn.isHidden = true
-                        }else{
+                        if productPoints < Int(self.productTotalPoints) ?? 0{
                             cell.addedToCartBtn.isHidden = true
                             cell.addToPlannerBtn.isHidden = true
-                            cell.addToCartBtn.isHidden = true
+                            cell.addToCartBtn.isHidden = false
                             cell.addedToPlannerBtn.isHidden = true
-                        }
-                        if filterCategory1.count > 0 {
-                            cell.addedToCartBtn.isHidden = true
-                            cell.addToPlannerBtn.isHidden = false
-                            cell.addToCartBtn.isHidden = true
-                            cell.addedToPlannerBtn.isHidden = true
+                            if filterCategory.count > 0 {
+                                cell.addedToCartBtn.isHidden = false
+                                cell.addedToCartBtn.backgroundColor = .lightGray
+                                //  cell.addedToCartBtn.backgroundColor = #colorLiteral(red: 1, green: 0.9877298474, blue: 0.5554133654, alpha: 1)
+                                //cell.addedToCartBtn.setTitleColor(.darkGray, for: .normal)
+                                cell.addToPlannerBtn.isHidden = true
+                                cell.addToCartBtn.isHidden = true
+                                cell.addedToPlannerBtn.isHidden = true
+                            }
+                        }else{
+                            if self.VM.catalgoueListArray[indexPath.row].isPlanner! == true{
+                                cell.addedToCartBtn.isHidden = true
+                                cell.addToPlannerBtn.isHidden = false
+                                
+                                cell.addToCartBtn.isHidden = true
+                                cell.addedToPlannerBtn.isHidden = true
+                            }else{
+                                cell.addedToCartBtn.isHidden = true
+                                cell.addToPlannerBtn.isHidden = true
+                                cell.addToCartBtn.isHidden = true
+                                cell.addedToPlannerBtn.isHidden = true
+                            }
+                            if filterCategory1.count > 0 {
+                                cell.addedToCartBtn.isHidden = true
+                                cell.addToPlannerBtn.isHidden = false
+                                cell.addToCartBtn.isHidden = true
+                                cell.addedToPlannerBtn.isHidden = true
+                            }
                         }
                     }
                 }else{
@@ -634,6 +681,7 @@ extension KC_ProductCatalogueVC: UICollectionViewDelegate, UICollectionViewDataS
             vc.sortedBy = self.sortedBy
             vc.itsFrom = self.itsFrom
             vc.partyLoyaltyId = self.partyLoyaltyId
+            vc.productTotalPoints = self.productTotalPoints
             self.navigationController?.pushViewController(vc, animated: true)
             
         }

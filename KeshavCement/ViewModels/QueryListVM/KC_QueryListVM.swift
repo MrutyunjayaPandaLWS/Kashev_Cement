@@ -5,8 +5,8 @@
 //  Created by ADMIN on 01/03/2023.
 //
 
-import Foundation
 import UIKit
+import LanguageManager_iOS
 
 class KC_QueryListVM{
     
@@ -42,7 +42,7 @@ class KC_QueryListVM{
                             self.VC?.lodgeQueryTableView.reloadData()
                         }else{
                             self.VC?.lodgeQueryTableView.isHidden = true
-                            self.VC?.view.makeToast("No data found !!", duration: 2.0, position: .bottom)
+                            self.VC?.view.makeToast("NoDataFound".localiz(), duration: 2.0, position: .bottom)
                         }
                         
 //                        let enrollmenteLists = result?.customerBasicInfoListJson ?? []

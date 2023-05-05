@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import LanguageManager_iOS
 class KC_DashBoardVM: SendNewPasswordDelegate{
     func sendNewPassword(_ vc: KC_SetPasswordVC) {
         self.VC?.newPassword = vc.newPassword
@@ -50,11 +51,11 @@ class KC_DashBoardVM: SendNewPasswordDelegate{
                                 vc.modalPresentationStyle = .overFullScreen
                                 self.VC!.present(vc, animated: true)
                             }else if loginResponse[0].result ?? -1 == -1{
-                                self.VC!.view.makeToast("Invalid UserName!", duration: 2.0, position: .bottom)
+                                self.VC!.view.makeToast("InvalidUserName!".localiz(), duration: 2.0, position: .bottom)
                             }
                             
                         }else{
-                            self.VC!.view.makeToast("Something went wrong. Try again later!", duration: 2.0, position: .bottom)
+                            self.VC!.view.makeToast("SomethingwentwrongTryagainlater".localiz(), duration: 2.0, position: .bottom)
                         }
                     
                     }
@@ -170,16 +171,16 @@ class KC_DashBoardVM: SendNewPasswordDelegate{
                         self.VC?.customerTypeIds = result?.lstCustomerFeedBackJsonApi?[0].customerTypeId ?? -1
                         print(self.VC?.customerTypeIds, "")
                         if result?.lstCustomerFeedBackJsonApi?[0].customerTypeId ?? -1 == 1 || result?.lstCustomerFeedBackJsonApi?[0].customerTypeId ?? -1 == 2{
-                            self.VC?.whenPurchaseLbl.text = "Earn Points When Purchase"
-                            self.VC?.claimPurchaseLbl.text = "Claim Purchase"
+                            self.VC?.whenPurchaseLbl.text = "EarnPointsWhenPurchase".localiz()
+                            self.VC?.claimPurchaseLbl.text = "ClaimPurchase".localiz()
                         }else if result?.lstCustomerFeedBackJsonApi?[0].customerTypeId ?? -1 == 3 || result?.lstCustomerFeedBackJsonApi?[0].customerTypeId ?? -1 == 4{
                             if result?.lstCustomerFeedBackJsonApi?[0].customerTypeId ?? -1 == 3{
                                 self.VC?.helpButton.isHidden = false
                             }else{
                                 self.VC?.helpButton.isHidden = true
                             }
-                            self.VC?.whenPurchaseLbl.text = "Sales & Earn"
-                            self.VC?.claimPurchaseLbl.text = "Start Earning"
+                            self.VC?.whenPurchaseLbl.text = "Sales&Earn".localiz()
+                            self.VC?.claimPurchaseLbl.text = "StartEarning".localiz()
                         }else if result?.lstCustomerFeedBackJsonApi?[0].customerTypeId ?? -1 == 5{
                             DispatchQueue.main.async {
                                 if result?.lstCustomerFeedBackJsonApi?[0].customerTypeId == 5{
@@ -194,8 +195,8 @@ class KC_DashBoardVM: SendNewPasswordDelegate{
                                     
                                     UserDefaults.standard.set(result?.lstCustomerFeedBackJsonApi?[0].mappedCustomerType ?? "", forKey: "mappedCustomerType")
                                     
-                                    self.VC?.whenPurchaseLbl.text = "Start Selling"
-                                    self.VC?.claimPurchaseLbl.text = "Click here"
+                                    self.VC?.whenPurchaseLbl.text = "StartSelling".localiz()
+                                    self.VC?.claimPurchaseLbl.text = "ClickHere".localiz()
                                     self.VC?.pointBalanceLbl.text = "\(mappedCustomerType) "+"\(mappedData[1])"
                                     self.VC?.pointBalanceTitle.text = "Created By"
                                     

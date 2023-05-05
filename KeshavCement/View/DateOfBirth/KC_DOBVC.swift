@@ -5,9 +5,10 @@
 //  Created by ADMIN on 16/02/2023.
 //
 import UIKit
-protocol DateSelectedDelegate {
-    func acceptDate(_ vc: KC_DOBVC)
-    func declineDate(_ vc: KC_DOBVC)
+import LanguageManager_iOS
+@objc protocol DateSelectedDelegate {
+    @objc optional func acceptDate(_ vc: KC_DOBVC)
+    @objc optional func declineDate(_ vc: KC_DOBVC)
 }
 class KC_DOBVC: UIViewController {
     @IBOutlet weak var okButton: UIButton!
@@ -45,14 +46,14 @@ class KC_DOBVC: UIViewController {
         print(sevenDaysBeforeToday)
         if isComeFrom == "DOB"{
             if datePicker.date > sevenDaysBeforeToday{
-                let alert = UIAlertController(title: "", message: "It seems you are less than 18 years of age. You can apply for Keshav membership only if you are 18 years and above", preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+                let alert = UIAlertController(title: "", message: "18years".localiz(), preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK".localiz(), style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }else{
                 let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd"
                 selectedDate = formatter.string(from: datePicker.date)
-                self.delegate.acceptDate(self)
+                self.delegate.acceptDate!(self)
                 self.dismiss(animated: true, completion: nil)
             }
 //
@@ -60,37 +61,37 @@ class KC_DOBVC: UIViewController {
                 let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd"
                 selectedDate = formatter.string(from: datePicker.date)
-                self.delegate.acceptDate(self)
+            self.delegate.acceptDate!(self)
                 self.dismiss(animated: true, completion: nil)
         }else if isComeFrom == "ANNIVERSARY"{
             if datePicker.date > sevenDaysBeforeToday{
-                let alert = UIAlertController(title: "", message: "It seems you are less than 18 years of age.", preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+                let alert = UIAlertController(title: "", message: "ItseemsYouarelessthan18years".localiz(), preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK".localiz(), style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }else{
                 let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd"
                 selectedDate = formatter.string(from: datePicker.date)
-                self.delegate.acceptDate(self)
+                self.delegate.acceptDate!(self)
                 self.dismiss(animated: true, completion: nil)
             }
         }else if isComeFrom == "1"{
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd"
             selectedDate = formatter.string(from: datePicker.date)
-            self.delegate.acceptDate(self)
+            self.delegate.acceptDate!(self)
             self.dismiss(animated: true, completion: nil)
         }else if isComeFrom == "2"{
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd"
             selectedDate = formatter.string(from: datePicker.date)
-            self.delegate.acceptDate(self)
+            self.delegate.acceptDate!(self)
             self.dismiss(animated: true, completion: nil)
         }else{
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd"
             selectedDate = formatter.string(from: datePicker.date)
-            self.delegate.acceptDate(self)
+            self.delegate.acceptDate!(self)
             self.dismiss(animated: true, completion: nil)
         }
         

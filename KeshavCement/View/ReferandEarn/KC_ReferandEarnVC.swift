@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import LanguageManager_iOS
 
 class KC_ReferandEarnVC: BaseViewController, UITextFieldDelegate {
 
@@ -23,6 +24,7 @@ class KC_ReferandEarnVC: BaseViewController, UITextFieldDelegate {
     
     @IBOutlet weak var mobileLbl: UILabel!
     
+    @IBOutlet weak var sendInviteBtn: UIButton!
     @IBOutlet weak var mobileTF: UITextField!
     
     var referralCode = UserDefaults.standard.string(forKey: "ReferralCode") ?? ""
@@ -35,8 +37,8 @@ class KC_ReferandEarnVC: BaseViewController, UITextFieldDelegate {
         self.mobileTF.delegate = self
         self.nameTF.setLeftPaddingPoints(13)
         self.mobileTF.setLeftPaddingPoints(13)
-        self.nameTF.attributedPlaceholder = NSAttributedString(string: "Enter name", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
-        self.mobileTF.attributedPlaceholder = NSAttributedString(string: "Enter mobile number", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
+        self.nameTF.attributedPlaceholder = NSAttributedString(string: "Entername".localiz(), attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
+        self.mobileTF.attributedPlaceholder = NSAttributedString(string: "Entermobilenumber".localiz(), attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
         
         subView.clipsToBounds = false
         subView.layer.cornerRadius = 36
@@ -48,6 +50,14 @@ class KC_ReferandEarnVC: BaseViewController, UITextFieldDelegate {
         headerView.layer.shadowColor = UIColor.gray.cgColor
         headerView.layer.shadowOffset = CGSize(width: 0 , height:2)
         self.referralCodeTF.text = "\(self.referralCode)"
+        self.headerLbl.text = "ReferandEarn".localiz()
+        self.referInfoLbl.text = "Referyourfriendstoearnexcitingrewards".localiz()
+        self.referralCodeTF.placeholder = "EnterReferralCode".localiz()
+        self.getRewardsLbl.text = "Getexcitingrewardswhenyourfriendenrollstotheprogram".localiz()
+        self.nameLbl.text = "Name".localiz()
+        self.mobileLbl.text = "MobileNumber".localiz()
+        self.sendInviteBtn.setTitle("SendInvite".localiz(), for: .normal)
+        
     }
 
     @IBAction func backBtn(_ sender: Any) {
@@ -61,19 +71,19 @@ class KC_ReferandEarnVC: BaseViewController, UITextFieldDelegate {
             self.present(activityViewController, animated: true, completion: nil)
     }
     @IBAction func copyReferralCodeBtn(_ sender: Any) {
-        self.view.makeToast("Text Copied", duration: 2.0,position: .bottom)
+        self.view.makeToast("TextCopied".localiz(), duration: 2.0,position: .bottom)
         UIPasteboard.general.string = "\(referralCode)"
     }
     
     @IBAction func sendInviteBtn(_ sender: Any) {
         if self.nameTF.text!.count == 0 {
-            self.view.makeToast("Enter name", duration: 2.0,position: .bottom)
+            self.view.makeToast("Entername".localiz(), duration: 2.0,position: .bottom)
         }else if self.mobileTF.text!.count == 0 {
-            self.view.makeToast("Enter mobile number", duration: 2.0,position: .bottom)
+            self.view.makeToast("Entermobilenumber".localiz(), duration: 2.0,position: .bottom)
         }else if self.mobileTF.text!.count != 10 {
-            self.view.makeToast("Enter valid mobile number", duration: 2.0,position: .bottom)
+            self.view.makeToast("Entervalidmobilenumber".localiz(), duration: 2.0,position: .bottom)
         }else if self.mobileTF.text ?? "" == self.customerMobile {
-                self.view.makeToast("Self-referral is not allowed", duration: 2.0, position: .bottom)
+            self.view.makeToast("Selfreferralisnotallowed".localiz(), duration: 2.0, position: .bottom)
         }else{
             let parameters = [
                 "ActionType": "2",

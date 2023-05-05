@@ -75,6 +75,7 @@ class KC_ProductCatalogueDetailsVC: BaseViewController{
     var totalCartValue = 0
     var isPlanner: Bool?
     var selectedCatalogueID = 0
+    var productTotalPoints = 0
     
     
     var VM = KC_ProductCatalgoueDetailsVM()
@@ -100,8 +101,14 @@ class KC_ProductCatalogueDetailsVC: BaseViewController{
         print(receivedImage)
         let totalImgURL = productCatalogueImgURL + receivedImage
         productImageView.sd_setImage(with: URL(string: totalImgURL), placeholderImage: UIImage(named: "ic_default_img"))
-        self.totalPointsLbl.text = "\(self.productPts)"
+        
+       
+            self.totalPointsLbl.text = "\(self.productPts)"
+        
+        
         self.categoryTypeLabel.text = self.productCategory
+        
+        
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -117,7 +124,51 @@ class KC_ProductCatalogueDetailsVC: BaseViewController{
             self.VM.getMycartList(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId)
             self.VM.redemptionPlannerList(PartyLoyaltyID: "")
         }
+        print(self.is_Reedemable, "asjdklfjklasdfjkldasfljksfdlsjkafdslj")
         
+        
+//        if self.is_Reedemable  == 1{
+//            if productPts < Int(self.pointBalance) ?? 0{
+//                self.addedToCartBtn.isHidden = true
+//                self.addToPlannerBtn.isHidden = true
+//                self.addToCartBtn.isHidden = false
+//                self.addedToPlannerBtn.isHidden = true
+//                if filterCategory.count > 0 {
+//                    self.addedToCartBtn.isHidden = false
+//                    self.addedToCartBtn.backgroundColor = .lightGray
+//                    //  cell.addedToCartBtn.backgroundColor = #colorLiteral(red: 1, green: 0.9877298474, blue: 0.5554133654, alpha: 1)
+//                    //cell.addedToCartBtn.setTitleColor(.darkGray, for: .normal)
+//                    self.addToPlannerBtn.isHidden = true
+//                    self.addToCartBtn.isHidden = true
+//                    self.addedToPlannerBtn.isHidden = true
+//                }
+//            }else{
+//                if self.VM.catalgoueListArray[indexPath.row].isPlanner! == true{
+//                    self.addedToCartBtn.isHidden = true
+//                    self.addToPlannerBtn.isHidden = false
+//
+//                    self.addToCartBtn.isHidden = true
+//                    self.addedToPlannerBtn.isHidden = true
+//                }else{
+//                    self.addedToCartBtn.isHidden = true
+//                    self.addToPlannerBtn.isHidden = true
+//                    self.addToCartBtn.isHidden = true
+//                    self.addedToPlannerBtn.isHidden = true
+//                }
+//                if filterCategory1.count > 0 {
+//                    self.addedToCartBtn.isHidden = true
+//                    self.addToPlannerBtn.isHidden = false
+//                    self.addToCartBtn.isHidden = true
+//                    self.addedToPlannerBtn.isHidden = true
+//                }
+//            }
+//        }else{
+//            self.addedToCartBtn.isHidden = true
+//            self.addToPlannerBtn.isHidden = true
+//            self.addToCartBtn.isHidden = true
+//            self.addedToPlannerBtn.isHidden = true
+//        }
+//}
         
         
        
@@ -132,6 +183,8 @@ class KC_ProductCatalogueDetailsVC: BaseViewController{
     @IBAction func cartViewBtn(_ sender: Any) {
         let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyCartVC") as! KC_MyCartVC
         vc.partyLoyaltyId = self.partyLoyaltyId
+        print(self.productTotalPoints)
+        vc.productTotalPoints = self.productTotalPoints
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

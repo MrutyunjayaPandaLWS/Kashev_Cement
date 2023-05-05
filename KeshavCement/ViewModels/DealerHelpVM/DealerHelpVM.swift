@@ -5,9 +5,9 @@
 //  Created by ADMIN on 22/04/2023.
 //
 
-import Foundation
-import UIKit
 
+import UIKit
+import LanguageManager_iOS
 class DealerHelpVM{
     
     weak var VC: KC_DealerHelpPopUp?
@@ -38,7 +38,7 @@ class DealerHelpVM{
                             self.VC?.popUpDetailsTableView.reloadData()
                         }else{
                             self.VC?.popUpDetailsTableView.isHidden = true
-                            self.VC?.view.makeToast("No data found !!", duration: 2.0, position: .center)
+                            self.VC?.view.makeToast("NoDataFound".localiz(), duration: 2.0, position: .center)
                         }
                         
                     }

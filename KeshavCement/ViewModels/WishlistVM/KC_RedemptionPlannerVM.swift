@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import LanguageManager_iOS
 class KC_RedemptionPlannerVM {
     
     weak var VC: HR_RedemptionPlannerVC?
@@ -80,20 +80,20 @@ class KC_RedemptionPlannerVM {
                             self.VC?.redemptionPlannerTableView.reloadData()
                         }else{
                             self.VC?.addToPlanner.isHidden = false
-                            self.VC?.view.makeToast("No data found !!", duration: 3.0, position: .bottom)
+                            self.VC?.view.makeToast("NoDataFound".localiz(), duration: 3.0, position: .bottom)
                             self.VC?.redemptionPlannerTableView.isHidden = true
                         }
 
                     }
                 }else{
                     DispatchQueue.main.async {
-                        self.VC?.view.makeToast("No data found !!", duration: 3.0, position: .bottom)
+                        self.VC?.view.makeToast("NoDataFound".localiz(), duration: 3.0, position: .bottom)
                         self.VC?.stopLoading()
                     }
                 }
             }else{
                 DispatchQueue.main.async {
-                    self.VC?.view.makeToast("No data found !!", duration: 3.0, position: .bottom)
+                    self.VC?.view.makeToast("NoDataFound".localiz(), duration: 3.0, position: .bottom)
                     self.VC?.stopLoading()
                 }
             }
@@ -129,13 +129,10 @@ class KC_RedemptionPlannerVM {
                             self.VC?.redemptionPlannerTableView.reloadData()
                         }else{
                             DispatchQueue.main.async{
-                                self.VC!.view.makeToast("Product has been removed successfully!", duration: 2.0, position: .bottom)
+                                self.VC!.view.makeToast("Producthasbeenremovedsuccessfully!".localiz(), duration: 2.0, position: .bottom)
                             }
                         }
 
-                    }
-                    DispatchQueue.main.async {
-                        self.VC?.stopLoading()
                     }
                 }else{
                     DispatchQueue.main.async {
@@ -194,8 +191,8 @@ class KC_RedemptionPlannerVM {
                            
                          //   self.redemptionPlannerList()
                            // NotificationCenter.default.post(name: .cartCount, object: nil)
-                            let alert = UIAlertController(title: "", message: "Added To Cart", preferredStyle: UIAlertController.Style.alert)
-                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler:{ (UIAlertAction) in
+                            let alert = UIAlertController(title: "", message: "AddedToCart".localiz(), preferredStyle: UIAlertController.Style.alert)
+                            alert.addAction(UIAlertAction(title: "OK".localiz(), style: .default, handler:{ (UIAlertAction) in
                                 let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyCartVC") as! KC_MyCartVC
                                 self.VC?.navigationController?.pushViewController(vc, animated: true)
 
@@ -205,11 +202,8 @@ class KC_RedemptionPlannerVM {
                         }else{
                             //PopUp Message
                             DispatchQueue.main.async{
-                                self.VC!.view.makeToast("Add to Cart Failed. Try after sometime", duration: 2.0, position: .bottom)
+                                self.VC!.view.makeToast("AddToCartFailedsometime".localiz(), duration: 2.0, position: .bottom)
                             }
-                        }
-                        DispatchQueue.main.async {
-                            self.VC?.stopLoading()
                         }
 
                     }

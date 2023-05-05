@@ -5,7 +5,6 @@
 //  Created by ADMIN on 24/02/2023.
 //
 
-import Foundation
 import LanguageManager_iOS
 import UIKit
 class KC_RedemptionOTPVM{
@@ -39,13 +38,18 @@ class KC_RedemptionOTPVM{
                         if result?.isActive! == true{
                             if self.VC?.customerTypeId ?? "" == "3" && self.VC?.partyLoyaltyId != "" || self.VC?.customerTypeId ?? "" == "4" && self.VC?.partyLoyaltyId != ""{
                                
-                                self.getMycartList(PartyLoyaltyID: self.VC!.loyaltyId, LoyaltyID: self.VC!.partyLoyaltyId)
+                                self.getMycartList(PartyLoyaltyID: self.VC!.loyaltyID, LoyaltyID: self.VC!.partyLoyaltyId)
                             }else if self.VC?.customerTypeId ?? "" == "3" && self.VC?.partyLoyaltyId == "" || self.VC?.customerTypeId ?? "" == "4" && self.VC?.partyLoyaltyId == ""{
                                 self.getMycartList(PartyLoyaltyID: "", LoyaltyID: self.VC!.loyaltyId)
                             }else{
                                     self.getMycartList(PartyLoyaltyID: "", LoyaltyID: self.VC!.loyaltyId)
                                 }
-                                self.VC?.generateOTPApi()
+                            if self.VC!.partyLoyaltyId == ""{
+                                self.VC?.generateOTPApi(loyaltyId: self.VC!.loyaltyID)
+                            }else{
+                                self.VC?.generateOTPApi(loyaltyId: self.VC!.partyLoyaltyId)
+                            }
+                            
                         }else{
                             self.VC!.view.makeToast("Userisnactive".localiz(), duration: 2.0, position: .bottom)
                         }
@@ -179,17 +183,33 @@ class KC_RedemptionOTPVM{
                                 print("Success")
                                 self.redemptionRefId = Int(result?.returnMessage ?? "") ?? 0
 
-                                self.VC!.sendSuccessMessage()
+                                
                                 if self.VC?.customerTypeId ?? "" == "3" && self.VC?.partyLoyaltyId != "" || self.VC?.customerTypeId ?? "" == "4" && self.VC?.partyLoyaltyId != ""{
                                    
-                                    self.getMycartList(PartyLoyaltyID: self.VC!.loyaltyId, LoyaltyID: self.VC!.partyLoyaltyId)
+                                    self.getMycartList(PartyLoyaltyID: self.VC!.loyaltyID, LoyaltyID: self.VC!.partyLoyaltyId)
                                 }else if self.VC?.customerTypeId ?? "" == "3" && self.VC?.partyLoyaltyId == "" || self.VC?.customerTypeId ?? "" == "4" && self.VC?.partyLoyaltyId == ""{
-                                    self.getMycartList(PartyLoyaltyID: "", LoyaltyID: self.VC!.loyaltyId)
+                                    self.getMycartList(PartyLoyaltyID: "", LoyaltyID: self.VC!.loyaltyID)
                                 }else{
-                                        self.getMycartList(PartyLoyaltyID: "", LoyaltyID: self.VC!.loyaltyId)
+                                        self.getMycartList(PartyLoyaltyID: "", LoyaltyID: self.VC!.loyaltyID)
                                     }
                                 if self.VC?.contractorName != ""{
                                     self.VC?.removeDreamGift()
+                                }
+                                
+                                if self.VC?.partyLoyaltyId == ""{
+                                    self.VC!.sendSuccessMessage(loyaltyId: self.VC!.loyaltyID)
+                                }else{
+                                    self.VC!.sendSuccessMessage(loyaltyId: self.VC!.partyLoyaltyId)
+                                }
+                            }
+                        }else{
+                            DispatchQueue.main.async {
+                                print(error)
+                                self.VC?.stopLoading()
+                                if self.VC?.itsComeFrom == "REDEMPTIONSUBMISSION"{
+                                    self.VC?.popUpTitleText.text = "Failed".localiz()
+                                    self.VC?.popUpInfoText.text = "SomethingwentwrongTryagainLater!".localiz()
+                                    self.VC!.successPopUpView.isHidden = false
                                 }
                             }
                         }

@@ -5,7 +5,6 @@
 //  Created by ADMIN on 23/02/2023.
 //
 
-import Foundation
 import UIKit
 import LanguageManager_iOS
 class KC_ProductCatalogueListVM{
@@ -27,6 +26,10 @@ class KC_ProductCatalogueListVM{
     var plannerListArray = [ObjCatalogueList1]()
     var productCategoryListArray = [ProductCateogryModels]()
     var parameters : JSON?
+    
+    deinit{
+        
+    }
     
     func getMycartList(PartyLoyaltyID: String, LoyaltyID: String){
         self.VC?.startLoading()
@@ -358,6 +361,7 @@ class KC_ProductCatalogueListVM{
                                 self.getMycartList(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId)
                                 
                             }
+                            self.VC?.startIndex = 1
                             self.productCategoryApi()
                             let alert = UIAlertController(title: "", message: "AddedToCart".localiz(), preferredStyle: UIAlertController.Style.alert)
                             alert.addAction(UIAlertAction(title: "OK".localiz(), style: .default, handler: nil))
@@ -421,6 +425,7 @@ class KC_ProductCatalogueListVM{
                                 self.getMycartList(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId)
                                 
                             }
+                            self.VC?.startIndex = 1
                             self.productCategoryApi()
                         }else{
                             DispatchQueue.main.async{

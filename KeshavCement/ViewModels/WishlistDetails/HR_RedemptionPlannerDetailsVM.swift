@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import LanguageManager_iOS
 
 class HR_RedemptionPlannerDetailsVM{
     
@@ -73,7 +74,7 @@ class HR_RedemptionPlannerDetailsVM{
                         let response = result?.returnValue ?? 0
                         print(response, "RemoveProduct")
                         if response == 1{
-                            self.VC!.view.makeToast("Product is removed from the List", duration: 2.0, position: .bottom)
+                            self.VC!.view.makeToast("productIsRemoved".localiz(), duration: 2.0, position: .bottom)
                             
                             if self.VC?.customerTypeId ?? "" == "3" && self.VC?.partyLoyaltyId != "" || self.VC?.customerTypeId ?? "" == "4" && self.VC?.partyLoyaltyId != ""{
                                 self.redemptionPlannerList(PartyLoyaltyID: self.VC!.partyLoyaltyId)
@@ -85,7 +86,7 @@ class HR_RedemptionPlannerDetailsVM{
                         // self.VC?.redemptionPlannerTableView.reloadData()
                         }else{
                             DispatchQueue.main.async{
-                                self.VC!.view.makeToast("Redemption Failed", duration: 2.0, position: .bottom)
+                                self.VC!.view.makeToast("RedemptionFailed!".localiz(), duration: 2.0, position: .bottom)
                             }
                         }
 
@@ -191,8 +192,8 @@ class HR_RedemptionPlannerDetailsVM{
                             
                          
                            // NotificationCenter.default.post(name: .cartCount, object: nil)
-                            let alert = UIAlertController(title: "", message: "Added To Cart", preferredStyle: UIAlertController.Style.alert)
-                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler:{ (UIAlertAction) in
+                            let alert = UIAlertController(title: "", message: "AddedToCart".localiz(), preferredStyle: UIAlertController.Style.alert)
+                            alert.addAction(UIAlertAction(title: "OK".localiz(), style: .default, handler:{ (UIAlertAction) in
                                 let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyCartVC") as! KC_MyCartVC
                                 self.VC?.navigationController?.pushViewController(vc, animated: true)
 
@@ -202,7 +203,7 @@ class HR_RedemptionPlannerDetailsVM{
                         }else{
                             //PopUp Message
                             DispatchQueue.main.async{
-                                self.VC!.view.makeToast("Insufficient Point Balance", duration: 2.0, position: .bottom)
+                                self.VC!.view.makeToast("InsufficientPointBalance".localiz(), duration: 2.0, position: .bottom)
                             }
                         }
                         DispatchQueue.main.async {

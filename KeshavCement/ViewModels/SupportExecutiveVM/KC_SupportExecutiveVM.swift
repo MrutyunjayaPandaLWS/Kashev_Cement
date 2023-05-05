@@ -5,8 +5,9 @@
 //  Created by ADMIN on 28/02/2023.
 //
 
-import Foundation
+
 import UIKit
+import LanguageManager_iOS
 
 class KC_SupportExecutiveVM{
     
@@ -96,7 +97,7 @@ class KC_SupportExecutiveVM{
                             vc.modalPresentationStyle = .overFullScreen
                             self.VC!.present(vc, animated: true)
                         }else{
-                            self.VC!.view.makeToast("Something went wrong! Try again later!", duration: 2.0, position: .bottom)
+                            self.VC!.view.makeToast("SomethingwentwrongTryagainLater".localiz(), duration: 2.0, position: .bottom)
                         }
                     }
                 }else{

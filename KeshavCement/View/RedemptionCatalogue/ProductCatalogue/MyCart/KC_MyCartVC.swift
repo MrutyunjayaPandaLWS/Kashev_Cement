@@ -29,6 +29,7 @@ class KC_MyCartVC: BaseViewController, MyCartDelegate {
     let verifiedStatus = UserDefaults.standard.integer(forKey: "VerifiedStatus")
     var checkAccountStatus = UserDefaults.standard.string(forKey: "SemiActiveAccount") ?? ""
     var isRedeemable = 0
+    var productTotalPoints = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         self.VM.VC = self
@@ -46,6 +47,7 @@ class KC_MyCartVC: BaseViewController, MyCartDelegate {
         }else{
             self.VM.getMycartList(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId)
          }
+        print(self.productTotalPoints)
     }
 
     @IBAction func backBtn(_ sender: Any) {
@@ -60,6 +62,7 @@ class KC_MyCartVC: BaseViewController, MyCartDelegate {
         vc.totalRedemmablePts = Int(self.finalPoints)
         vc.partyLoyaltyId = self.partyLoyaltyId
         vc.finalPoints = self.finalPoints
+        vc.productTotalPoints = self.productTotalPoints
             self.navigationController?.pushViewController(vc, animated: true)
 //        }else{
 //            self.view.makeToast("You are not allowled to redeem .Please contact your administrator", duration: 2.0, position: .bottom)
@@ -73,10 +76,12 @@ class KC_MyCartVC: BaseViewController, MyCartDelegate {
     func increaseCount(_ cell: KC_MyCartTVC) {
         guard let tappedIndexPath = self.myCartListTableView.indexPath(for: cell) else{return}
         if cell.plusButton.tag == tappedIndexPath.row{
-            if Int(self.VM.myCartListArray[tappedIndexPath.row].sumOfTotalPointsRequired ?? 0.0) <= Int(self.pointBalance) ?? 0{
+            
+            
+            if Int(self.VM.myCartListArray[tappedIndexPath.row].sumOfTotalPointsRequired ?? 0.0) <= Int(self.pointBalance) && self.partyLoyaltyId == "" || Int(self.VM.myCartListArray[tappedIndexPath.row].sumOfTotalPointsRequired ?? 0.0) <= Int(self.productTotalPoints) ?? 0 && self.partyLoyaltyId != ""{
                 let calcValue = Int(self.VM.myCartListArray[tappedIndexPath.row].sumOfTotalPointsRequired ?? 0.0) + Int(self.VM.myCartListArray[tappedIndexPath.row].pointsPerUnit ?? 0)
                 print(calcValue, "Calculated Values")
-                if calcValue <= Int(self.pointBalance) ?? 0{
+                if calcValue <= Int(self.pointBalance) && self.partyLoyaltyId == "" || calcValue <= Int(self.productTotalPoints) ?? 0 && self.partyLoyaltyId != ""{
                     let totalQTY = Int(self.VM.myCartListArray[tappedIndexPath.row].noOfQuantity ?? 0) + 1
                     self.quantity = totalQTY
                     cell.countTF.text = "\(quantity)"
@@ -114,10 +119,10 @@ class KC_MyCartVC: BaseViewController, MyCartDelegate {
         if self.VM.myCartListArray[tappedIndexPath.row].noOfQuantity ?? 0 >= 1{
             cell.minusButton.isEnabled = true
             if cell.minusButton.tag == tappedIndexPath.row{
-                if Int(self.VM.myCartListArray[tappedIndexPath.row].sumOfTotalPointsRequired ?? 0.0) <= Int(self.pointBalance) ?? 0{
+                if Int(self.VM.myCartListArray[tappedIndexPath.row].sumOfTotalPointsRequired ?? 0.0) <= Int(self.pointBalance) && self.partyLoyaltyId == "" || Int(self.VM.myCartListArray[tappedIndexPath.row].sumOfTotalPointsRequired ?? 0.0) <= Int(self.productTotalPoints) && self.partyLoyaltyId != ""{
                     let calcValue = Int(self.VM.myCartListArray[tappedIndexPath.row].sumOfTotalPointsRequired ?? 0.0) - Int(self.VM.myCartListArray[tappedIndexPath.row].pointsPerUnit ?? 0)
                     print(calcValue, "reduceValues")
-                    if calcValue <= Int(self.pointBalance) ?? 0 {
+                    if calcValue <= Int(self.pointBalance) ?? 0 && self.partyLoyaltyId == "" || calcValue <= Int(self.productTotalPoints) ?? 0 && self.partyLoyaltyId != ""{
                         if calcValue != 0  && calcValue >= Int(self.VM.myCartListArray[tappedIndexPath.row].pointsPerUnit ?? 0){
                             let totalQuantity = Int(self.VM.myCartListArray[tappedIndexPath.row].noOfQuantity ?? 0) - 1
                             self.quantity = totalQuantity
@@ -240,8 +245,8 @@ extension KC_MyCartVC : UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 140
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 140
+//    }
     
 }

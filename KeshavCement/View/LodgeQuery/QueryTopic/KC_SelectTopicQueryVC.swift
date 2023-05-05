@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import LanguageManager_iOS
 protocol QueryTopicDelegate {
     func selectedTopic(_ vc: KC_SelectTopicQueryVC)
 }
@@ -36,7 +37,8 @@ class KC_SelectTopicQueryVC: BaseViewController{
         super.viewDidLoad()
         self.VM.VC = self
         self.nodatafound.isHidden = true
-//        self.queryHeader.text = "selectTopicQuery".localiz()
+        self.queryHeader.text = "selectTopicQuery".localiz()
+        self.nodatafound.text = "NoDataFound".localiz()
         self.queryCategoryListTableView.delegate = self
         self.queryCategoryListTableView.dataSource = self
 

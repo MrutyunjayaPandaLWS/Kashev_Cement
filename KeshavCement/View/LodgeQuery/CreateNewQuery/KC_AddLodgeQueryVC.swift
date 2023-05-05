@@ -8,10 +8,8 @@
 import UIKit
 import Photos
 import AVFoundation
-//import LanguageManager_iOS
+import LanguageManager_iOS
 class KC_AddLodgeQueryVC: BaseViewController, SelectedDataDelegate{
-    func didTapCityName(_ vc: KC_DropDownVC){}
-    func didTapAmount(_ vc: KC_DropDownVC){}
     func didTapHelpTopic(_ vc: KC_DropDownVC) {
         self.selectedItem = vc.helpTopicName
         self.selectedQueryID = vc.helpTopicId
@@ -19,22 +17,6 @@ class KC_AddLodgeQueryVC: BaseViewController, SelectedDataDelegate{
         print(self.selectedQueryID,"Selected ID")
         self.topicNameLbl.text = self.selectedItem
     }
-    
-    func didTapCustomerType(_ vc: KC_DropDownVC) {}
-    func didTapState(_ vc: KC_DropDownVC) {}
-    func didTapDistrict(_ vc: KC_DropDownVC) {}
-    func didTapTaluk(_ vc: KC_DropDownVC) {}
-    func didTapUserType(_ vc: KC_DropDownVC) {}
-    func didTapMappedUserName(_ vc: KC_DropDownVC) {}
-    func didTapProductName(_ vc: KC_DropDownVC) {}
-    func didTapWorkLevel(_ vc: KC_DropDownVC) {}
-    
-//    , QueryTopicDelegate, popUpAlertDelegate{
-//    func popupAlertDidTap(_ vc: HR_PopUpVC) {}
-//
-//    func selectedTopic(_ vc: HR_SelectTopicQueryVC) {
-
-//    }
     
 
     @IBOutlet weak var screenTitle: UILabel!
@@ -50,11 +32,13 @@ class KC_AddLodgeQueryVC: BaseViewController, SelectedDataDelegate{
     @IBOutlet weak var submitLbl: UILabel!
     @IBOutlet weak var attachedImgHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var mainViewHeightConstraint: NSLayoutConstraint!
-    var selectedItem = ""
+    
+    @IBOutlet weak var querySummaryLbl: UILabel!
+    
+   
     var selectedQueryID = 0
     let picker = UIImagePickerController()
-    var strBase64 = ""
-    var selectedQueryTopic = ""
+    var selectedItem = "", strBase64 = "", selectedQueryTopic = ""
     
     var VM = KC_NewQuerySubmissionVM()
     
@@ -74,6 +58,18 @@ class KC_AddLodgeQueryVC: BaseViewController, SelectedDataDelegate{
       //  self.attachedImgHeightConstraint.constant = 0
         self.picker.delegate = self
      //   self.mainViewHeightConstraint.constant = 380
+        
+        self.viewTitle.text = "PleaseSubmitYour".localiz()
+        self.selectTopicTitle.text = "SelectYourTopic".localiz()
+        self.topicNameLbl.text = "SelectHelpTopic".localiz()
+        self.querySummaryLbl.text = "QuerySummary".localiz()
+        self.querySummaryTF.placeholder = "Writeyourquery".localiz()
+        self.queryDetails.text = "QueryDetails".localiz()
+        self.queryDetailsTF.placeholder = "Writeyourquerydetails..".localiz()
+        self.browseLbl.text = "BrowseImage".localiz()
+        self.submitLbl.text = "SubmitQuery".localiz()
+        
+        
      }
 
 
@@ -113,12 +109,12 @@ class KC_AddLodgeQueryVC: BaseViewController, SelectedDataDelegate{
     }
     @IBAction func submitBTN(_ sender: Any) {
         
-        if self.topicNameLbl.text == "Select Topic"{
-            self.view.makeToast("SelectTopic",duration: 2.0,position: .bottom)
+        if self.topicNameLbl.text == "SelectTopic".localiz(){
+            self.view.makeToast("SelectTopic".localiz(),duration: 2.0,position: .bottom)
         }else if self.querySummaryTF.text?.count == 0{
-            self.view.makeToast("Enter Query Summary",duration: 2.0,position: .bottom)
+            self.view.makeToast("EnterQuerySummary".localiz(),duration: 2.0,position: .bottom)
         }else if self.queryDetailsTF.text?.count == 0{
-            self.view.makeToast("Enter Query Details",duration: 2.0,position: .bottom)
+            self.view.makeToast("EnterQueryDetails".localiz(),duration: 2.0,position: .bottom)
         }else{
             var parameterJSON = [
                 "ActionType":"0",
@@ -154,7 +150,7 @@ extension KC_AddLodgeQueryVC: UIImagePickerControllerDelegate, UINavigationContr
                 }
             }else{
                 DispatchQueue.main.async {
-                    let alertVC = UIAlertController(title: "NeedGallaryaccess", message: "AllowGalleryaccess", preferredStyle: .alert)
+                    let alertVC = UIAlertController(title: "Need Gallary access", message: "Allow Gallery access", preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "Allow", style: UIAlertAction.Style.default) {
                         UIAlertAction in
                         DispatchQueue.main.async {
@@ -190,7 +186,7 @@ extension KC_AddLodgeQueryVC: UIImagePickerControllerDelegate, UINavigationContr
                         }
                     } else {
                         DispatchQueue.main.async {
-                            let alertVC = UIAlertController(title: "NeedCameraAccess", message: "Allow", preferredStyle: .alert)
+                            let alertVC = UIAlertController(title: "Need Camera Access", message: "Allow", preferredStyle: .alert)
                             let okAction = UIAlertAction(title: "Allow", style: UIAlertAction.Style.default) {
                                 UIAlertAction in
                                 UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
@@ -226,7 +222,7 @@ extension KC_AddLodgeQueryVC: UIImagePickerControllerDelegate, UINavigationContr
                 }
             }else{
                 DispatchQueue.main.async {
-                    let alertVC = UIAlertController(title: "HRJohnsonneedtoaccesscameraGallery", message: "", preferredStyle: .alert)
+                    let alertVC = UIAlertController(title: "Keshav need to access camera Gallery", message: "", preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "Allow", style: UIAlertAction.Style.default) {
                         UIAlertAction in
                         UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
@@ -242,7 +238,7 @@ extension KC_AddLodgeQueryVC: UIImagePickerControllerDelegate, UINavigationContr
         }
     }
     func noCamera(){
-        let alertVC = UIAlertController(title: "NoCamera", message: "Sorrynodevice", preferredStyle: .alert)
+        let alertVC = UIAlertController(title: "No Camera", message: "Sorry no device", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style:.default, handler: nil)
         alertVC.addAction(okAction)
         present(alertVC, animated: true, completion: nil)

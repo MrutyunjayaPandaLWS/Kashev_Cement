@@ -49,6 +49,7 @@ class KC_ClaimHistoryVM{
                             }else{
                                 self.VC?.claimHistoryTableView.isHidden = true
                                 self.VC?.noDataFoundLbl.isHidden = false
+                                self.VC?.filterButtonView.isHidden = true
                                 self.VC?.noDataFoundLbl.textColor = .white
                             }
                         }else{
@@ -58,6 +59,7 @@ class KC_ClaimHistoryVM{
                             }else{
                                 self.VC?.claimHistoryTableView.isHidden = true
                                 self.VC?.noDataFoundLbl.isHidden = false
+                                self.VC?.filterButtonView.isHidden = true
                                 self.VC?.noDataFoundLbl.textColor = .white
                             }
                         }

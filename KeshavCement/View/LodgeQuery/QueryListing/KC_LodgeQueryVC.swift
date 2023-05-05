@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import LanguageManager_iOS
 
 class KC_LodgeQueryVC: BaseViewController{
 //, QueryTopicDelegate{
@@ -29,6 +30,7 @@ class KC_LodgeQueryVC: BaseViewController{
         self.VM.VC = self
         self.lodgeQueryTableView.delegate = self
         self.lodgeQueryTableView.dataSource = self
+        self.queryHeaderLbl.text = "Query".localiz()
     }
     
     override func viewWillAppear(_ animated: Bool) {

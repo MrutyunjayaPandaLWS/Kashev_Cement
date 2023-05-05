@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import LanguageManager_iOS
 class KC_WorksiteDetailsVC: BaseViewController , DateSelectedDelegate {
     func acceptDate(_ vc: KC_DOBVC) {
         if vc.isComeFrom == "1"{
@@ -47,7 +47,7 @@ class KC_WorksiteDetailsVC: BaseViewController , DateSelectedDelegate {
     var VM = WorksiteListVM()
     var noofelements = 0
     var startIndex = 1
-    var selectedStatus = -3
+    var selectedStatus = ""
     var selectedFromDate = ""
     var selectedToDate = ""
     
@@ -60,12 +60,24 @@ class KC_WorksiteDetailsVC: BaseViewController , DateSelectedDelegate {
         self.worksiteDetailsTableView.dataSource = self
         self.worksiteDetailsTableView.separatorStyle = .none
         self.worksiteDetailsTableView.register(UINib(nibName: "KC_WorksiteDetailsTVC", bundle: nil), forCellReuseIdentifier: "KC_WorksiteDetailsTVC")
+        
+        self.headerLbl.text = "WorksiteDetails".localiz()
+        self.filterLbl.text = "Filter".localiz()
+        self.noDataFoundLbl.text = "NoDataFound".localiz()
+        self.worksiteDetailsFilter.text = "WorksiteDetailsFilter".localiz()
+        self.statusLbl.text = "Status".localiz()
+        self.approvedBtn.setTitle("Approved".localiz(), for: .normal)
+        self.PendingBtn.setTitle("Pending".localiz(), for: .normal)
+        self.rejectedBtn.setTitle("Rejected".localiz(), for: .normal)
+        self.createNewLbl.text = "CreateNew".localiz()
+        self.clearBtn.setTitle("Clear".localiz(), for: .normal)
+        self.applyFilterBtn.setTitle("ApplyFilter".localiz(), for: .normal)
      
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.startIndex = 1
-        self.selectedStatus = -3
+        self.selectedStatus = ""
         self.worksitListApi(Status: self.selectedStatus, StartIndex: self.startIndex, FromDate: "", ToDate: "")
     }
     
@@ -80,13 +92,13 @@ class KC_WorksiteDetailsVC: BaseViewController , DateSelectedDelegate {
         }else{
             self.filterView.isHidden = false
             self.createNewView.isHidden = true
-            self.approvedBtn.backgroundColor = UIColor(hexString: "565656")
-            self.PendingBtn.backgroundColor = UIColor(hexString: "565656")
-            self.rejectedBtn.backgroundColor = UIColor(hexString: "565656")
-            
-            self.PendingBtn.setTitleColor(.white, for: .normal)
-            self.approvedBtn.setTitleColor(.white, for: .normal)
-            self.rejectedBtn.setTitleColor(.white, for: .normal)
+//            self.approvedBtn.backgroundColor = UIColor(hexString: "565656")
+//            self.PendingBtn.backgroundColor = UIColor(hexString: "565656")
+//            self.rejectedBtn.backgroundColor = UIColor(hexString: "565656")
+//
+//            self.PendingBtn.setTitleColor(.white, for: .normal)
+//            self.approvedBtn.setTitleColor(.white, for: .normal)
+//            self.rejectedBtn.setTitleColor(.white, for: .normal)
 //            self.VM.myPurchaseListArray.removeAll()
 //            self.myClaimPurchaseListApi(startIndex: 1, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: -3)
         }
@@ -99,18 +111,21 @@ class KC_WorksiteDetailsVC: BaseViewController , DateSelectedDelegate {
         self.createNewView.isHidden = false
 }
     @IBAction func applyFilter(_ sender: Any) {
-        if self.selectedStatus == -3 && self.selectedFromDate == "" && self.selectedToDate == ""{
-            self.view.makeToast("Select any select or date range", duration: 2.0, position: .bottom)
-        }else if self.selectedFromDate == "" && self.selectedToDate == "" && self.selectedStatus != -3{
-//            self.VM.myPurchaseListArray.removeAll()
-//            self.myClaimPurchaseListApi(startIndex: 1, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: self.selectedStatus)
+        if self.selectedStatus == "" && self.selectedFromDate == "" && self.selectedToDate == ""{
+            self.view.makeToast("Selectanystatus".localiz(), duration: 2.0, position: .bottom)
+        }else if self.selectedFromDate == "" && self.selectedToDate == "" && self.selectedStatus != ""{
+            self.VM.workSiteListArray.removeAll()
+            self.startIndex = 1
+            self.worksitListApi(Status: self.selectedStatus, StartIndex: self.startIndex, FromDate: self.selectedFromDate, ToDate: self.selectedToDate)
+            self.filterView.isHidden = true
+            self.createNewView.isHidden = false
         }else if self.selectedFromDate != "" && self.selectedToDate == ""{
-            self.view.makeToast("Select To date", duration: 2.0, position: .bottom)
+            self.view.makeToast("SelectToDate".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedFromDate == "" && self.selectedToDate != ""{
-            self.view.makeToast("Select From date", duration: 2.0, position: .bottom)
+            self.view.makeToast("SelectFromDate".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedFromDate != "" && self.selectedToDate != ""{
             if self.selectedFromDate > self.selectedToDate{
-                self.view.makeToast("To date shouldn't greater than From date", duration: 2.0, position: .bottom)
+                self.view.makeToast("TodateshouldntgreaterthanFromdate".localiz(), duration: 2.0, position: .bottom)
             }else{
                 self.VM.workSiteListArray.removeAll()
                 self.startIndex = 1
@@ -130,13 +145,14 @@ class KC_WorksiteDetailsVC: BaseViewController , DateSelectedDelegate {
         self.PendingBtn.setTitleColor(.white, for: .normal)
         self.approvedBtn.setTitleColor(.white, for: .normal)
         self.rejectedBtn.setTitleColor(.white, for: .normal)
-       self.selectedStatus = -3
-        self.fromDateLbl.text = "From Date"
-        self.toDateLbl.text = "To Date"
+       self.selectedStatus = ""
+        self.fromDateLbl.text = "SelectFromDate".localiz()
+        self.toDateLbl.text = "SelectToDate".localiz()
         self.selectedFromDate = ""
         self.selectedToDate = ""
         self.startIndex = 1
         self.VM.workSiteListArray.removeAll()
+        self.filterView.isHidden = true
         self.worksitListApi(Status: self.selectedStatus, StartIndex: self.startIndex, FromDate: self.selectedFromDate, ToDate: self.selectedToDate)
     }
     
@@ -166,10 +182,10 @@ class KC_WorksiteDetailsVC: BaseViewController , DateSelectedDelegate {
         self.PendingBtn.setTitleColor(.white, for: .normal)
         self.approvedBtn.setTitleColor(.darkGray, for: .normal)
         self.rejectedBtn.setTitleColor(.white, for: .normal)
-        self.selectedStatus = 1
+        self.selectedStatus = "2"
         self.startIndex = 1
         self.VM.workSiteListArray.removeAll()
-        self.worksitListApi(Status: self.selectedStatus, StartIndex: self.startIndex, FromDate: self.selectedFromDate, ToDate: self.selectedToDate)
+//        self.worksitListApi(Status: self.selectedStatus, StartIndex: self.startIndex, FromDate: self.selectedFromDate, ToDate: self.selectedToDate)
     }
     
     @IBAction func pendingButton(_ sender: Any) {
@@ -181,10 +197,10 @@ class KC_WorksiteDetailsVC: BaseViewController , DateSelectedDelegate {
         self.PendingBtn.setTitleColor(.darkGray, for: .normal)
         self.rejectedBtn.setTitleColor(.white, for: .normal)
         
-        self.selectedStatus = 0
+        self.selectedStatus = "1"
         self.startIndex = 1
         self.VM.workSiteListArray.removeAll()
-        self.worksitListApi(Status: self.selectedStatus, StartIndex: self.startIndex, FromDate: self.selectedFromDate, ToDate: self.selectedToDate)
+//        self.worksitListApi(Status: self.selectedStatus, StartIndex: self.startIndex, FromDate: self.selectedFromDate, ToDate: self.selectedToDate)
     }
     
     @IBAction func rejectedButton(_ sender: Any) {
@@ -195,22 +211,20 @@ class KC_WorksiteDetailsVC: BaseViewController , DateSelectedDelegate {
         self.approvedBtn.setTitleColor(.white, for: .normal)
         self.rejectedBtn.setTitleColor(.darkGray, for: .normal)
         self.PendingBtn.setTitleColor(.white, for: .normal)
-        self.selectedStatus = -1
+        self.selectedStatus = "3"
         self.startIndex = 1
         self.VM.workSiteListArray.removeAll()
-        self.worksitListApi(Status: self.selectedStatus, StartIndex: self.startIndex, FromDate: self.selectedFromDate, ToDate: self.selectedToDate)
+//        self.worksitListApi(Status: self.selectedStatus, StartIndex: self.startIndex, FromDate: self.selectedFromDate, ToDate: self.selectedToDate)
     }
     
     
-    func worksitListApi(Status: Int, StartIndex: Int, FromDate: String, ToDate: String){
+    func worksitListApi(Status: String, StartIndex: Int, FromDate: String, ToDate: String){
         let parameter = [
-            "ActionType":2,
-            "CustomerID":self.userID,
-            "ActiveStatus": Status,
-            "PageSize": "10",
+            "ActionType": 2,
+            "CustomerID": self.userID,
+            "PageSize": 10,
             "StartIndex": StartIndex,
-            "FromDate": FromDate,
-            "ToDate": ToDate
+            "VerificationStatus": Status
         ] as [String: Any]
         print(parameter)
         self.VM.worksiteListApi(parameter: parameter)

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import LanguageManager_iOS
 class KC_ClaimHistoryVC: BaseViewController, DateSelectedDelegate {
     func acceptDate(_ vc: KC_DOBVC) {
         if vc.isComeFrom == "1"{
@@ -51,6 +51,7 @@ class KC_ClaimHistoryVC: BaseViewController, DateSelectedDelegate {
     @IBOutlet weak var clearBtn: UIButton!
     @IBOutlet weak var noDataFoundLbl: UILabel!
     
+    @IBOutlet weak var filterButtonView: UIView!
     
     var noofelements = 0
     var startIndex = 1
@@ -63,13 +64,40 @@ class KC_ClaimHistoryVC: BaseViewController, DateSelectedDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.VM.VC = self
-        self.selectFromDateLbl.text = "From Date"
-        self.selectToDateLbl.text = "To Date"
+        
+        self.selectFromDateLbl.text = "SelectFromDate".localiz()
+        self.selectToDateLbl.text = "SelectToDate".localiz()
+        self.headeerText.text = "ClaimHistory".localiz()
+        self.noDataFoundLbl.text = "NoDataFound".localiz()
+        self.filterLbl.text = "Filter".localiz()
+        self.claimHistoryFilterLbl.text = "ClaimHistoryFilter".localiz()
+        self.customerTypeLbl.text = "CustomerType".localiz()
+        self.subDealerButton.setTitle("SubDealer".localiz(), for: .normal)
+        self.engineerButton.setTitle("Engineer".localiz(), for: .normal)
+        self.masonBtn.setTitle("Mason".localiz(), for: .normal)
+        self.statusLbl.text = "Status".localiz()
+        self.approvedBtn.setTitle("Approved".localiz(), for: .normal)
+        self.pendingBtn.setTitle("Pending".localiz(), for: .normal)
+        self.rejectedBtn.setTitle("Rejected".localiz(), for: .normal)
+        self.dateRangeLbl.text = "DateRange".localiz()
+        self.selectFromDateLbl.text = "SelectFromDate".localiz()
+        self.selectToDateLbl.text = "SelectToDate".localiz()
+        self.clearBtn.setTitle("Clear".localiz(), for: .normal)
+        self.applyFilterBtn.setTitle("ApplyFilter".localiz(), for: .normal)
+        
         self.noDataFoundLbl.isHidden = true
         self.filterView.isHidden = true
         self.claimHistoryTableView.delegate = self
         self.claimHistoryTableView.dataSource = self
         self.claimHistoryListApi(status:self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: self.customerTypeIds)
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if self.customerTypeId == "4"{
+            self.subDealerButton.isHidden = true
+        }else{
+            self.subDealerButton.isHidden = false
+        }
     }
 
     @IBAction func backBtn(_ sender: Any) {
@@ -93,8 +121,8 @@ class KC_ClaimHistoryVC: BaseViewController, DateSelectedDelegate {
 //            self.selectedFromDate = ""
 //            self.selectedToDate = ""
 //            self.customerTypeIds = "-1"
-//            self.VM.claimHistoryListArray.removeAll()
-//            self.claimHistoryListApi(status:self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: self.customerTypeIds)
+            self.VM.claimHistoryListArray.removeAll()
+            self.claimHistoryListApi(status:self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: self.customerTypeIds)
         }
     }
     
@@ -184,17 +212,18 @@ class KC_ClaimHistoryVC: BaseViewController, DateSelectedDelegate {
     
     @IBAction func applyFilterButton(_ sender: Any) {
         if self.selectedStatus == "-3" && self.selectedFromDate == "" && self.selectedToDate == "" && self.customerTypeIds == "-1"{
-            self.view.makeToast("Select any select or date range", duration: 2.0, position: .bottom)
+            self.view.makeToast("Selectanyselectordaterange".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedFromDate == "" && self.selectedToDate == "" && self.selectedStatus != "-3" && self.customerTypeIds != "-1" || self.selectedFromDate == "" && self.selectedToDate == "" && self.selectedStatus != "-3" && self.customerTypeIds == "-1" || self.selectedFromDate == "" && self.selectedToDate == "" && self.selectedStatus == "-3" && self.customerTypeIds != "-1"{
             self.VM.claimHistoryListArray.removeAll()
+            self.filterView.isHidden = true
             self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: self.customerTypeIds)
         }else if self.selectedFromDate != "" && self.selectedToDate == ""{
-            self.view.makeToast("Select To date", duration: 2.0, position: .bottom)
+            self.view.makeToast("SelectToDate".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedFromDate == "" && self.selectedToDate != ""{
-            self.view.makeToast("Select From date", duration: 2.0, position: .bottom)
+            self.view.makeToast("SelectFromDate".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedFromDate != "" && self.selectedToDate != ""{
             if self.selectedFromDate > self.selectedToDate{
-                self.view.makeToast("To date shouldn't greater than From date", duration: 2.0, position: .bottom)
+                self.view.makeToast("TodateshouldntgreaterthanFromdate".localiz(), duration: 2.0, position: .bottom)
             }else{
                 self.VM.claimHistoryListArray.removeAll()
                 self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: self.customerTypeIds)

@@ -5,8 +5,9 @@
 //  Created by ADMIN on 27/02/2023.
 //
 
-import Foundation
+
 import UIKit
+import LanguageManager_iOS
 
 class KC_NewSaleVM{
     
@@ -92,15 +93,15 @@ class KC_NewSaleVM{
                             self.VC!.qtyTF.text = "0"
                             self.VC?.quantity = 0
                             self.VC?.count = 0
-                            self.VC?.selectTypeLbl.text = "Select Type"
-                            self.VC?.searchTF.placeholder = "Search"
+                            self.VC?.selectTypeLbl.text = "SelectType".localiz()
+                            self.VC?.searchTF.placeholder = "Search".localiz()
                             self.VC?.searchTF.text = ""
-                            self.VC?.pleaseSelectProductLbl.text = "Please select product"
+                            self.VC?.pleaseSelectProductLbl.text = "Pleaseselectproduct".localiz()
                             self.VC?.mappedUserId = -1
                             self.VC?.selectedProductId = -1
                             self.VC!.successPopUpView.isHidden = true
                             self.VC!.otpPopUpView.isHidden = true
-                            self.VC!.view.makeToast("Insufficient quantity !!", duration: 3.0, position: .bottom)
+                            self.VC!.view.makeToast("Insufficientquantity!!".localiz(), duration: 3.0, position: .bottom)
                         }
                     }
                 }else{
@@ -134,17 +135,20 @@ class KC_NewSaleVM{
                         print(result?.returnMessage ?? "", "Claim Purchase submission")
                         if result?.returnMessage ?? "" == "1"{
                             self.VC!.successPopUpView.isHidden = false
+                            if self.VC!.itsFrom == "SendOTP"{
+                                self.VC!.popUpInfoLbl.text = "Claimissuccessfullycompleted.".localiz()
+                            }
                             self.VC!.otpPopUpView.isHidden = true
                             
                         }else if result?.returnMessage ?? "" == "2"{
                             self.VC!.successPopUpView.isHidden = true
                             self.VC!.otpPopUpView.isHidden = true
-                            self.VC!.view.makeToast("Insufficient quantity!!", duration: 2.0, position: .bottom)
+                            self.VC!.view.makeToast("Insufficientquantity!!".localiz(), duration: 2.0, position: .bottom)
                             
                         }else{
                             self.VC!.successPopUpView.isHidden = true
                             self.VC!.otpPopUpView.isHidden = true
-                            self.VC!.view.makeToast("Claim submission failed!!", duration: 2.0, position: .bottom)
+                            self.VC!.view.makeToast("Claimsubmissionfailed!!".localiz(), duration: 2.0, position: .bottom)
                         }
                     }
                 }else{

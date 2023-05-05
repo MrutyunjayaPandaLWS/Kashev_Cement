@@ -9,7 +9,7 @@ import UIKit
 import Photos
 import MapKit
 import CoreLocation
-
+import LanguageManager_iOS
 class KC_SiteDetailsVC: BaseViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate, CLLocationManagerDelegate{
 
     @IBOutlet weak var headerLbl: UILabel!
@@ -20,7 +20,8 @@ class KC_SiteDetailsVC: BaseViewController, UIImagePickerControllerDelegate,UINa
     @IBOutlet weak var changeImageBtn: UIButton!
     @IBOutlet weak var capturedImage: UIImageView!
     
-
+    @IBOutlet weak var nextButton: UIButton!
+    
     
     let manager = CLLocationManager()
     
@@ -33,13 +34,17 @@ class KC_SiteDetailsVC: BaseViewController, UIImagePickerControllerDelegate,UINa
     override func viewDidLoad() {
         super.viewDidLoad()
         picker.delegate = self
+        self.headerLbl.text = "UploadSiteImages".localiz()
+        self.infoLbl.text = "CapturesiteImagestosubmitthedetails".localiz()
+        self.changeImageBtn.setTitle("ChangeImage".localiz(), for: .normal)
+        self.nextButton.setTitle("Next".localiz(), for: .normal)
     }
     
     @IBAction func nextBtn(_ sender: Any) {
         if self.strdata1 == ""{
-            self.view.makeToast("Please select site image", duration: 2.0, position: .bottom)
+            self.view.makeToast("Pleaseselectsiteimage".localiz(), duration: 2.0, position: .bottom)
         }else if self.currentLatitude == "" || self.currentLongitude == ""{
-            self.view.makeToast("Select current location...", duration: 2.0, position: .bottom)
+            self.view.makeToast("Selectcurrentlocation....".localiz(), duration: 2.0, position: .bottom)
         }else{
             NotificationCenter.default.post(name: .navigateToUserDetails, object: self)
         }

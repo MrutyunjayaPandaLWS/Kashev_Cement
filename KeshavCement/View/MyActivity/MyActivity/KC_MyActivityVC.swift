@@ -6,13 +6,10 @@
 //
 
 import UIKit
+import LanguageManager_iOS
 
 class KC_MyActivityVC: BaseViewController, DateSelectedDelegate {
-    
-//https://keshavdemoserv.loyltwo3ks.com/Mobile/BindAssessmentRequestDetails
-//
-//{"ActionType":6,"ActiveStatus":"-3","FromDate":"","PageSize":10,"SalesPersonId":"SE00010","StartIndex":1,"ToDate":""}
-    
+        
     func acceptDate(_ vc: KC_DOBVC) {
         if vc.isComeFrom == "1"{
             self.selectedFromDate = vc.selectedDate
@@ -22,8 +19,6 @@ class KC_MyActivityVC: BaseViewController, DateSelectedDelegate {
             self.selectToDateLbl.text = vc.selectedDate
         }
     }
-    
-    func declineDate(_ vc: KC_DOBVC) {}
     
 
     @IBOutlet weak var subDealerButton: UIButton!
@@ -73,6 +68,15 @@ class KC_MyActivityVC: BaseViewController, DateSelectedDelegate {
         self.claimHistoryTableView.dataSource = self
         self.claimHistoryListApi(status: "-3", startIndex: 1, fromDate: "", toDate: "", customerTypeId: "")
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if self.customerTypeId == "4"{
+            self.subDealerButton.isHidden = true
+        }else{
+            self.subDealerButton.isHidden = false
+        }
+    }
 
     @IBAction func backBtn(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -83,13 +87,13 @@ class KC_MyActivityVC: BaseViewController, DateSelectedDelegate {
             self.filterView.isHidden = true
         }else{
             self.filterView.isHidden = false
-            self.approvedBtn.backgroundColor = UIColor(hexString: "565656")
-            self.pendingBtn.backgroundColor = UIColor(hexString: "565656")
-            self.rejectedBtn.backgroundColor = UIColor(hexString: "565656")
+//            self.approvedBtn.backgroundColor = UIColor(hexString: "565656")
+//            self.pendingBtn.backgroundColor = UIColor(hexString: "565656")
+//            self.rejectedBtn.backgroundColor = UIColor(hexString: "565656")
             
-            self.pendingBtn.setTitleColor(.white, for: .normal)
-            self.approvedBtn.setTitleColor(.white, for: .normal)
-            self.rejectedBtn.setTitleColor(.white, for: .normal)
+//            self.pendingBtn.setTitleColor(.white, for: .normal)
+//            self.approvedBtn.setTitleColor(.white, for: .normal)
+//            self.rejectedBtn.setTitleColor(.white, for: .normal)
             self.VM.claimHistoryListArray.removeAll()
             self.claimHistoryListApi(status: "-3", startIndex: 1, fromDate: "", toDate: "", customerTypeId: "")
         }
@@ -123,8 +127,8 @@ class KC_MyActivityVC: BaseViewController, DateSelectedDelegate {
         self.masonBtn.setTitleColor(.white, for: .normal)
         
         self.selectedStatus = "-3"
-        self.selectFromDateLbl.text = "From Date"
-        self.selectToDateLbl.text = "To Date"
+        self.selectFromDateLbl.text = "SelectFromDate".localiz()
+        self.selectToDateLbl.text = "SelectToDate".localiz()
         self.VM.claimHistoryListArray.removeAll()
         self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: "4")
     }
@@ -138,8 +142,8 @@ class KC_MyActivityVC: BaseViewController, DateSelectedDelegate {
         self.masonBtn.setTitleColor(.white, for: .normal)
         
         self.selectedStatus = "-3"
-        self.selectFromDateLbl.text = "From Date"
-        self.selectToDateLbl.text = "To Date"
+        self.selectFromDateLbl.text = "SelectFromDate".localiz()
+        self.selectToDateLbl.text = "SelectToDate".localiz()
         self.VM.claimHistoryListArray.removeAll()
         self.VM.claimHistoryListArray.removeAll()
         self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: "1")
@@ -155,8 +159,8 @@ class KC_MyActivityVC: BaseViewController, DateSelectedDelegate {
         
         
         self.selectedStatus = "-3"
-        self.selectFromDateLbl.text = "From Date"
-        self.selectToDateLbl.text = "To Date"
+        self.selectFromDateLbl.text = "SelectFromDate".localiz()
+        self.selectToDateLbl.text = "SelectToDate".localiz()
         self.VM.claimHistoryListArray.removeAll()
         self.VM.claimHistoryListArray.removeAll()
         self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: "2")
@@ -179,8 +183,8 @@ class KC_MyActivityVC: BaseViewController, DateSelectedDelegate {
         self.approvedBtn.setTitleColor(.white, for: .normal)
         self.rejectedBtn.setTitleColor(.white, for: .normal)
         self.selectedStatus = "-3"
-        self.selectFromDateLbl.text = "From Date"
-        self.selectToDateLbl.text = "To Date"
+        self.selectFromDateLbl.text = "SelectFromDate".localiz()
+        self.selectToDateLbl.text = "SelectToDate".localiz()
         self.VM.claimHistoryListArray.removeAll()
         self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: "")
             self.filterView.isHidden = true
@@ -188,21 +192,22 @@ class KC_MyActivityVC: BaseViewController, DateSelectedDelegate {
     
     @IBAction func applyFilterButton(_ sender: Any) {
         if self.selectedStatus == "-3" && self.selectedFromDate == "" && self.selectedToDate == ""{
-            self.view.makeToast("Select any select or date range", duration: 2.0, position: .bottom)
+            self.view.makeToast("Selectanyselectordaterange".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedFromDate == "" && self.selectedToDate == "" && self.selectedStatus != "-3"{
             self.VM.claimHistoryListArray.removeAll()
+            self.filterView.isHidden = true
             self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: "")
         }else if self.selectedFromDate != "" && self.selectedToDate == ""{
-            self.view.makeToast("Select To date", duration: 2.0, position: .bottom)
+            self.view.makeToast("SelectToDate".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedFromDate == "" && self.selectedToDate != ""{
-            self.view.makeToast("Select From date", duration: 2.0, position: .bottom)
+            self.view.makeToast("SelectFromDate".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedFromDate != "" && self.selectedToDate != ""{
             if self.selectedFromDate > self.selectedToDate{
-                self.view.makeToast("To date shouldn't greater than From date", duration: 2.0, position: .bottom)
+                self.view.makeToast("TodateshouldntgreaterthanFromdate".localiz(), duration: 2.0, position: .bottom)
             }else{
                 self.VM.claimHistoryListArray.removeAll()
                 self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: "")
-//                    self.filterView.isHidden = true
+                self.filterView.isHidden = true
             }
         }
     }

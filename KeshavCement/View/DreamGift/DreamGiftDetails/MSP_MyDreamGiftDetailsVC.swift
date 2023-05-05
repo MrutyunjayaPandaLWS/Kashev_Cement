@@ -8,6 +8,7 @@
 import UIKit
 //import Firebase
 import Lottie
+import LanguageManager_iOS
 
 protocol ReturnBackApiCallDelegate: class{
     func didTapApiCall(_ vc: MSP_MyDreamGiftDetailsVC)
@@ -95,14 +96,14 @@ class MSP_MyDreamGiftDetailsVC: BaseViewController{
 //            print(pointsRequired,"pointsRequired")
 //            print(pointsBalance,"PointBalance")
             print(tdsvalue,"TDs")
-            self.infoLbl.text = "Congratulations! you are eligible to win this existing Dream Gift"
+            self.infoLbl.text = "Congratulations!youareeligibletowinthisexistingDreamGift".localiz()
             
             self.redeemBtn.isEnabled = true
             self.redeemBtn.backgroundColor = #colorLiteral(red: 0.1686274707, green: 0.1686274707, blue: 0.1686274707, alpha: 1)
             //            self.redeemBTN.backgroundColor = UIColor(red: 199/255, green: 34/255, blue: 4/255, alpha: 0.5)
 //            self.redeemBtn.backgroundColor = UIColor(red: 189/255, green: 0/255, blue: 0/255, alpha: 1.0)
         }else{
-            self.infoLbl.text = "Congratulations! You are almost near to win this existing Dream Gift."
+            self.infoLbl.text = "Congratulations!YouarealmostneartowinthisexistingDreamGift.".localiz()
             
             redeemBtn.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
             self.redeemBtn.isEnabled = false
@@ -195,7 +196,7 @@ class MSP_MyDreamGiftDetailsVC: BaseViewController{
             print(result)
             if result == 1 {
                 DispatchQueue.main.async{
-                    self.view.makeToast("Dream Gift has been removed successfully", duration: 3.0, position: .bottom)
+                    self.view.makeToast("DreamGifthasbeenremovedsuccessfully".localiz(), duration: 3.0, position: .bottom)
                     self.navigationController?.popViewController(animated: true)
 //                    let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "PopupAlertOne_VC") as? PopupAlertOne_VC
 //                    vc!.delegate = self
@@ -209,7 +210,7 @@ class MSP_MyDreamGiftDetailsVC: BaseViewController{
                 
             }else{
                 DispatchQueue.main.async{
-                    self.view.makeToast("Dream Gift has been removed failed", duration: 3.0, position: .bottom)
+                    self.view.makeToast("DreamGifthasbeenremovedfailed".localiz(), duration: 3.0, position: .bottom)
                     
                     
 //                    let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "PopupAlertOne_VC") as? PopupAlertOne_VC
@@ -332,7 +333,7 @@ class MSP_MyDreamGiftDetailsVC: BaseViewController{
                     if self.verifiedStatus != 1{
                         DispatchQueue.main.async{
                             
-                            self.view.makeToast("You are not allowled to redeem .Please contact your administrator", duration: 3.0, position: .bottom)
+                            self.view.makeToast("Youarenotallowledtoredeem".localiz(), duration: 3.0, position: .bottom)
 //                            let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "PopupAlertOne_VC") as? PopupAlertOne_VC
 //                            vc!.delegate = self
 //                            vc!.titleInfo = ""

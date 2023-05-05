@@ -6,39 +6,33 @@
 //
 
 import UIKit
+import LanguageManager_iOS
 protocol SendUpdatedAddressDelegate {
     func updatedAddressDetails(_ vc: KC_EditAddressVC)
 }
 class KC_EditAddressVC: BaseViewController, SelectedDataDelegate, UITextFieldDelegate {
-    func didTapHelpTopic(_ vc: KC_DropDownVC) {}
-    func didTapAmount(_ vc: KC_DropDownVC){}
+    
     func didTapCityName(_ vc: KC_DropDownVC) {
            self.selectedCityName = vc.selectedCityName
            self.selectedCityId = vc.selectedCityId
            self.cityLbl.text = vc.selectedCityName
        }
-    func didTapWorkLevel(_ vc: KC_DropDownVC) {}
-    func didTapMappedUserName(_ vc: KC_DropDownVC) {}
-    func didTapProductName(_ vc: KC_DropDownVC){}
-    func didTapUserType(_ vc: KC_DropDownVC) {}
-    func didTapCustomerType(_ vc: KC_DropDownVC) {}
     func didTapState(_ vc: KC_DropDownVC) {
         self.selectedStatelb.text = vc.selectedStateName
         self.selectedState = vc.selectedStateName
         self.selectedStateID = vc.selectedStateId
         self.selectedDistrictId = -1
         self.selectedCityId = -1
-        self.districtLbl.text = "Select District"
-        self.cityLbl.text = "Select City"
+        self.districtLbl.text = "SelectDistrict".localiz()
+        self.cityLbl.text = "SelectCity".localiz()
     }
     func didTapDistrict(_ vc: KC_DropDownVC) {
         self.selectedDistrictLbl.text = vc.selectedDistrictName
         self.selectedDistrictName = vc.selectedDistrictName
         self.selectedDistrictId = vc.selectedDistrictId
         self.selectedCityId = -1
-        self.cityLbl.text = "Select City"
+        self.cityLbl.text = "SelectCity".localiz()
     }
-    func didTapTaluk(_ vc: KC_DropDownVC) {}
     
     
     @IBOutlet weak var fullNameTF: UITextField!
@@ -117,13 +111,13 @@ class KC_EditAddressVC: BaseViewController, SelectedDataDelegate, UITextFieldDel
         if selectedState != "" {
             self.selectedStatelb.text = selectedState
         }else{
-            self.selectedStatelb.text = "Select State"
+            self.selectedStatelb.text = "SelectState".localiz()
         }
        
         if selectedDistrictName != ""{
             self.selectedDistrictLbl.text = self.selectedDistrictName
         }else{
-            self.selectedDistrictLbl.text = "Select District"
+            self.selectedDistrictLbl.text = "SelectDistrict".localiz()
         }
         
         self.pincodeTF.text = selectedpincode
@@ -148,7 +142,7 @@ class KC_EditAddressVC: BaseViewController, SelectedDataDelegate, UITextFieldDel
     
     @IBAction func cityButton(_ sender: Any) {
         if self.selectedStateID == 0 || self.selectedStateID == -1{
-            self.view.makeToast("Select State", duration: 2.0, position: .bottom)
+            self.view.makeToast("SelectState".localiz(), duration: 2.0, position: .bottom)
         }else{
             let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
             vc.itsFrom = "CITY"
@@ -163,7 +157,7 @@ class KC_EditAddressVC: BaseViewController, SelectedDataDelegate, UITextFieldDel
     
     @IBAction func selectedDistrictBtn(_ sender: Any) {
         if self.selectedStateID == 0 || self.selectedStateID == -1{
-            self.view.makeToast("Select State", duration: 2.0, position: .bottom)
+            self.view.makeToast("SelectState".localiz(), duration: 2.0, position: .bottom)
         }else{
             
             let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
@@ -178,24 +172,24 @@ class KC_EditAddressVC: BaseViewController, SelectedDataDelegate, UITextFieldDel
     @IBAction func saveBtn(_ sender: Any) {
         //Api Call
          if fullNameTF.text?.count == 0{
-             self.view.makeToast("Enter full name", duration: 2.0, position: .bottom)
+             self.view.makeToast("Enterfullname".localiz(), duration: 2.0, position: .bottom)
          }else if mobileTF.text?.count == 0 {
-             self.view.makeToast("Enter mobile number", duration: 2.0, position: .bottom)
+             self.view.makeToast("Entermobilenumber".localiz(), duration: 2.0, position: .bottom)
          }else if mobileTF.text?.count != 10 {
-             self.view.makeToast("Enter valid mobile number", duration: 2.0, position: .bottom)
+             self.view.makeToast("Entervalidmobilenumber".localiz(), duration: 2.0, position: .bottom)
          }else if flatHouseNameTF.text?.count == 0{
-             self.view.makeToast("Enter flat house address", duration: 2.0, position: .bottom)
+             self.view.makeToast("Enterflathouseaddress".localiz(), duration: 2.0, position: .bottom)
              
-         }else if selectedStatelb.text == "Select state"{
-             self.view.makeToast("Select state", duration: 2.0, position: .bottom)
-         }else if selectedStatelb.text == "Select district"{
-             self.view.makeToast("Select district", duration: 2.0, position: .bottom)
+         }else if selectedStatelb.text == "SelectState".localiz(){
+             self.view.makeToast("SelectState".localiz(), duration: 2.0, position: .bottom)
+         }else if selectedStatelb.text == "SelectDistrict".localiz(){
+             self.view.makeToast("SelectDistrict".localiz(), duration: 2.0, position: .bottom)
          }else if pincodeTF.text?.count == 0{
-             self.view.makeToast("Enter pin", duration: 2.0, position: .bottom)
+             self.view.makeToast("Enterpin".localiz(), duration: 2.0, position: .bottom)
          }else if pincodeTF.text?.count != 6{
-             self.view.makeToast("Enter valid pin", duration: 2.0, position: .bottom)
+             self.view.makeToast("Entervalidpin".localiz(), duration: 2.0, position: .bottom)
          }else{
-             self.view.makeToast("Shipping Address Updated", duration: 2.0, position: .bottom)
+             self.view.makeToast("ShippingAddressUpdated".localiz(), duration: 2.0, position: .bottom)
              self.selectedname = self.fullNameTF.text!
              self.selectedmobile = self.mobileTF.text!
              self.selectedaddress = self.flatHouseNameTF.text!

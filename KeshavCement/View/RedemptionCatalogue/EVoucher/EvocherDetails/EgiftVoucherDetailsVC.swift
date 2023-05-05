@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import LanguageManager_iOS
+import LanguageManager_iOS
 //import Firebase
 import DPOTPView
 import Kingfisher
@@ -107,10 +107,10 @@ class EgiftVoucherDetailsVC: BaseViewController, UITextFieldDelegate, pointsDele
         if voucherMaxPoints != "-1"{
             selectamountView.isHidden = true
             amounttextfield.isHidden = false
-            amountRange.text = "\("Enter Amount in Range"): \(voucherMinPoints) - \(voucherMaxPoints)"
-            selectAmountButton.setTitle("Amount", for: .normal)
-            amounttextfield.placeholder = "Amount"
-            redeemButton.setTitle("REDEEM", for: .normal)
+            amountRange.text = "\("EnterAmountinRange".localiz()): \(voucherMinPoints) - \(voucherMaxPoints)"
+            selectAmountButton.setTitle("Amount".localiz(), for: .normal)
+            amounttextfield.placeholder = "Amount".localiz()
+            redeemButton.setTitle("Redeem".localiz(), for: .normal)
             
             let points = redemablePointBalance
             let minpoints = Int(voucherMinPoints)
@@ -122,10 +122,10 @@ class EgiftVoucherDetailsVC: BaseViewController, UITextFieldDelegate, pointsDele
         }else if voucherMaxPoints == "-1"{
             selectamountView.isHidden = false
             amounttextfield.isHidden = true
-            selectAmountButton.setTitle("Amount", for: .normal)
-            amountRange.text = "Select Amount"
-            amounttextfield.placeholder = "Amount"
-            redeemButton.setTitle("REDEEM", for: .normal)
+            selectAmountButton.setTitle("Amount".localiz(), for: .normal)
+            amountRange.text = "SelectAmount".localiz()
+            amounttextfield.placeholder = "Amount".localiz()
+            redeemButton.setTitle("Redeem".localiz(), for: .normal)
         }
         self.vouchername.text = voucherName
         self.categoryLbl.text = vouchercategory
@@ -159,7 +159,7 @@ class EgiftVoucherDetailsVC: BaseViewController, UITextFieldDelegate, pointsDele
     
     func localization() {
         //self.categoryHeadingLabel.text = "Category"
-        self.vouchersHeadingLabel.text = "Vouchers"
+        self.vouchersHeadingLabel.text = "Vouchers".localiz()
         //self.brandHeadingLabel.text = "Brand"
     }
     
@@ -228,7 +228,7 @@ class EgiftVoucherDetailsVC: BaseViewController, UITextFieldDelegate, pointsDele
     @IBAction func redeemButton(_ sender: Any) {
         if voucherMinPoints != "-1" || voucherMaxPoints != "-1"{
             if self.amounttextfield.text?.count == 0{
-                self.alertmsg(alertmsg: "Enter_amount_to_redeem", buttonalert: "OK")
+                self.alertmsg(alertmsg: "Enter_amount_to_redeem".localiz(), buttonalert: "OK".localiz())
             }else{
                 if Int(self.overAllPts)! >= Int(self.amounttextfield.text ?? "0")!{
                     if MyCommonFunctionalUtilities.isInternetCallTheApi() == false{
@@ -261,12 +261,12 @@ class EgiftVoucherDetailsVC: BaseViewController, UITextFieldDelegate, pointsDele
                         }
                     }
                 }else{
-                    self.alertmsg(alertmsg: "Insufficient Points Balance", buttonalert: "OK")
+                    self.alertmsg(alertmsg: "InsufficientPointBalance".localiz(), buttonalert: "OK".localiz())
                 }
             }
         }else{
             if self.selectAmountButton.currentTitle == "Amount"{
-                self.alertmsg(alertmsg: "Select_Amount_to_Redeem", buttonalert: "OK")
+                self.alertmsg(alertmsg: "Select_Amount_to_Redeem".localiz(), buttonalert: "OK".localiz())
             }else{
                 if Int((UserDefaults.standard.string(forKey:"PointsBalance") ?? ""))! >= self.selectedPoints{
                     if MyCommonFunctionalUtilities.isInternetCallTheApi() == false{
@@ -284,7 +284,7 @@ class EgiftVoucherDetailsVC: BaseViewController, UITextFieldDelegate, pointsDele
                         self.generateOTPApi()
                     }
                 }else{
-                    self.alertmsg(alertmsg: "Insufficient Points Balance", buttonalert: "OK")
+                    self.alertmsg(alertmsg: "InsufficientPointBalance".localiz(), buttonalert: "OK".localiz())
                 }
             }
         }
@@ -322,11 +322,11 @@ class EgiftVoucherDetailsVC: BaseViewController, UITextFieldDelegate, pointsDele
     
     @IBAction func otpSubmitBtn(_ sender: Any) {
         if self.enteredValue.count == 0 {
-            self.view.makeToast("Enter OTP", duration: 2.0, position: .bottom)
+            self.view.makeToast("EnterOTP".localiz(), duration: 2.0, position: .bottom)
         }else if self.enteredValue.count != 6{
-            self.view.makeToast("Enter valid OTP", duration: 2.0, position: .bottom)
+            self.view.makeToast("EntervalidOTP".localiz(), duration: 2.0, position: .bottom)
         }else if self.receivedOTP != self.enteredValue{
-            self.view.makeToast("Enter correct OTP", duration: 2.0, position: .bottom)
+            self.view.makeToast("EntercorrectOTP".localiz(), duration: 2.0, position: .bottom)
         }else{
             let yesterday = "\(Calendar.current.date(byAdding: .day, value: 0, to: Date())!)"
             let today = yesterday.split(separator: " ")

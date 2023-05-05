@@ -10,6 +10,7 @@ import LanguageManager_iOS
 //import Firebase
 import DPOTPView
 import Kingfisher
+
 class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataSource, vouchersDelegate, pointsDelegate, popUpAlertDelegate, DPOTPViewDelegate{
     func popupAlertDidTap(_ vc: RGT_popupAlertOne_VC) {}
     
@@ -58,7 +59,7 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
         print(cell.vouchersdata[0].min_points ?? "-1")
         if cell.vouchersdata[0].min_points ?? "-1" != "-1" || cell.vouchersdata[0].max_points ?? "-1" != "-1"{
             if cell.amounttf.text?.count == 0{
-                self.alertmsg(alertmsg: "Enter_amount_to_redeem", buttonalert: "OK")
+                self.alertmsg(alertmsg: "Enter_amount_to_redeem".localiz(), buttonalert: "OK")
             }else{
                 if Int(self.overAllPts)! >= Int(cell.amounttf.text ?? "0")!{
                     if MyCommonFunctionalUtilities.isInternetCallTheApi() == false{
@@ -92,12 +93,12 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
          
                     }
                 }else{
-                    self.alertmsg(alertmsg: "Insufficient Points Balance", buttonalert: "OK")
+                    self.alertmsg(alertmsg: "InsufficientPointBalance".localiz(), buttonalert: "OK".localiz())
                 }
             }
         }else{
             if cell.amount.currentTitle == "Amount"{
-                self.alertmsg(alertmsg: "Select_Amount_to_Redeem", buttonalert: "OK")
+                self.alertmsg(alertmsg: "Select_Amount_to_Redeem".localiz(), buttonalert: "OK".localiz())
             }else{
                 if Int(self.overAllPts)! >= self.selectedPoints{
                     self.popView.isHidden = false
@@ -120,7 +121,7 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
                     
 
                 }else{
-                    self.alertmsg(alertmsg: "Insufficient points balance", buttonalert: "OK")
+                    self.alertmsg(alertmsg: "InsufficientPointBalance".localiz(), buttonalert: "OK".localiz())
                 }
                 }
         }
@@ -140,7 +141,7 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
     }
     
     func alertDidTap(_ cell: QS_Vouchers_TVC) {
-        self.alertmsg(alertmsg: "\(cell.alertMsg)", buttonalert: "OK")
+        self.alertmsg(alertmsg: "\(cell.alertMsg)", buttonalert: "OK".localiz())
     }
     
     @IBOutlet var myVouchersTableview: UITableView!
@@ -150,9 +151,9 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
 //    @IBOutlet var redeemablebalance: UILabel!
     @IBOutlet var points: UILabel!
     
+    @IBOutlet weak var totalPointss: UILabel!
     
     @IBOutlet weak var successPopupView: UIView!
-    @IBOutlet weak var successMessageLbl: UILabel!
     @IBOutlet weak var otpPopUpView: UIView!
     @IBOutlet weak var resendOTPBtn: UIButton!
     @IBOutlet weak var otpView: DPOTPView!
@@ -161,6 +162,21 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
     
     @IBOutlet weak var subView: UIView!
     @IBOutlet weak var popView: UIView!
+    
+    @IBOutlet weak var successfullyLbl: UILabel!
+    
+    @IBOutlet weak var sucessMsg: UILabel!
+    
+    @IBOutlet weak var okBtn: UIButton!
+    
+    @IBOutlet weak var otpInfoLbl: UILabel!
+    
+    @IBOutlet weak var otpLbl: UILabel!
+    
+    @IBOutlet weak var OTPinfoHeaderLbl: UILabel!
+    
+    @IBOutlet weak var redeemBtn: UIButton!
+    @IBOutlet weak var popUpHeaderLbl: UILabel!
     var selectedPoints = 0
     var productcodeselected = ""
     var selectedProductValue = 0
@@ -199,8 +215,11 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
         var receiverEmail = ""
         var receiverName = ""
     
+    var productTotalPoints = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.localization()
         self.popView.isHidden = true
         self.myVouchersTableview.delegate = self
         self.myVouchersTableview.dataSource = self
@@ -239,7 +258,16 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
 
     }
     func localization() {
-        self.vouchersHeadingLabel.text = "Vouchers"
+        self.vouchersHeadingLabel.text = "Vouchers".localiz()
+        self.totalPointss.text = "TotalPoints".localiz()
+        self.noDataFoundLabel.text = "NoDataFound".localiz()
+        self.otpInfoLbl.text = "OTPwillreceiveat".localiz()
+        self.resendOTPBtn.setTitle("ResendOTP?".localiz(), for: .normal)
+        self.otpLbl.text = "OTP".localiz()
+        self.OTPinfoHeaderLbl.text = "enterOTPRaiseaRequest".localiz()
+        self.popUpHeaderLbl.text = "VoucherSubmission".localiz()
+        self.sucessMsg.text = "Youredeemedthisvoucher".localiz()
+        self.redeemBtn.setTitle("Redeem".localiz(), for: .normal)
        // self.redeemablebalance.text = "Redeemable_Balance"
        // self.points.text = "\("Points") \(redbal)"
     }
@@ -268,11 +296,11 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
     
     @IBAction func otpSubmitBtn(_ sender: Any) {
         if self.enteredValue.count == 0 {
-            self.view.makeToast("Enter OTP", duration: 2.0, position: .bottom)
+            self.view.makeToast("EnterOTP".localiz(), duration: 2.0, position: .bottom)
         }else if self.enteredValue.count != 6{
-            self.view.makeToast("Enter valid OTP", duration: 2.0, position: .bottom)
+            self.view.makeToast("EntervalidOTP".localiz(), duration: 2.0, position: .bottom)
         }else if self.receivedOTP != self.enteredValue{
-            self.view.makeToast("Enter correct OTP", duration: 2.0, position: .bottom)
+            self.view.makeToast("EntercorrectOTP".localiz(), duration: 2.0, position: .bottom)
         }else{
             let yesterday = "\(Calendar.current.date(byAdding: .day, value: 0, to: Date())!)"
             let today = yesterday.split(separator: " ")
@@ -334,7 +362,7 @@ extension QS_MyVouchers_VC{
         
         cell?.productname.text = self.vm.myvouchersArray[indexPath.row].productName ?? ""
         if self.vm.myvouchersArray[indexPath.row].min_points ?? "" == "" || self.vm.myvouchersArray[indexPath.row].max_points ?? "" == ""{
-            cell?.inrbalance.text = "Select_Amount_in_Range"
+            cell?.inrbalance.text = "Select_Amount_in_Range".localiz()
 //            cell?.amount.setTitle("Amount", for: .normal)
             cell?.amount.tag = self.vm.myvouchersArray[indexPath.row].catalogueId ?? 0
             cell?.amounttfView.isHidden = true

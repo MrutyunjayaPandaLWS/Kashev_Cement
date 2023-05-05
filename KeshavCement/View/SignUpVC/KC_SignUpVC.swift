@@ -14,13 +14,6 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
         self.selectedCityId = vc.selectedCityId
         self.cityLbl.text = vc.selectedCityName
     }
-    
-    func didTapMappedUserName(_ vc: KC_DropDownVC) {}
-    func didTapAmount(_ vc: KC_DropDownVC){}
-    func didTapHelpTopic(_ vc: KC_DropDownVC) {}
-    func didTapWorkLevel(_ vc: KC_DropDownVC) {}
-    func didTapUserType(_ vc: KC_DropDownVC) {}
-    func didTapProductName(_ vc: KC_DropDownVC){}
     func acceptDate(_ vc: KC_DOBVC) {
         if vc.isComeFrom == "DOB"{
             self.dobLbl.text = vc.selectedDate
@@ -39,7 +32,6 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
         }
     }
     
-    func declineDate(_ vc: KC_DOBVC) {}
     
     func didTapCustomerType(_ vc: KC_DropDownVC) {
         self.customerTypeLbl.text = vc.selectedCustomerType
@@ -188,7 +180,7 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
         
         self.signUp.text = "SignUp".localiz()
         self.signUpInfo.text = "plzFillRegister".localiz()
-        self.customerTopicLbl.text = "Customer Type".localiz()
+        self.customerTopicLbl.text = "CustomerType".localiz()
 //        self.customerTypeLbl.text = "SelectCustomerType".localiz()
         self.fullNameLbl.text = "FullName".localiz()
         self.fullNameTF.placeholder = "Enterfullname".localiz()
@@ -220,7 +212,7 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
         self.dateOfBirthLbl.text = "DateofBirth".localiz()
         self.dobLbl.text = "SelectDOB".localiz()
         self.doaTitleLbl.text = "DateofAnniversary".localiz()
-        self.dateOfAnniversaryLbl.text = "Select Anniversary".localiz()
+        self.dateOfAnniversaryLbl.text = "SelectAnniversary".localiz()
         self.backToLoginBtn.setTitle("Backtologin".localiz(), for: .normal)
         self.submitBtn.setTitle("Submit".localiz(), for: .normal)
         
@@ -376,7 +368,7 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
         }else if self.selectedDistrictId == -1{
             self.view.makeToast("SelectDistrict".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedDOB == ""{
-            self.view.makeToast("Select DOB", duration: 2.0, position: .bottom)
+            self.view.makeToast("SelectDOB".localiz(), duration: 2.0, position: .bottom)
         }
 //        else if self.selectedTalukId == -1{
 //            self.view.makeToast("SelectTaluk".localiz(), duration: 2.0, position: .bottom)

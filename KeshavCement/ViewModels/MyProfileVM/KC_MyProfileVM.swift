@@ -5,9 +5,9 @@
 //  Created by ADMIN on 17/02/2023.
 //
 
-import Foundation
 
 import UIKit
+import LanguageManager_iOS
 class KC_MyProfileVM{
     
     weak var VC: KC_MyProfileVC?
@@ -46,6 +46,7 @@ class KC_MyProfileVM{
                             self.VC?.districtId = "\(response[0].districtId ?? -1)"
                             self.VC?.stateId = "\(response[0].stateId ?? -1)"
                             self.VC?.talukId = "\(response[0].talukId ?? -1)"
+                            self.VC?.cityTF.text = "\(response[0].cityName ?? "")"
                             let dateOfBirth = (response[0].jdob)?.split(separator: " ")
                             let aniv = (response[0].anniversary)?.split(separator: " ")
                             self.VC?.dobTF.text = "\(dateOfBirth?[0] ?? "")"
@@ -110,9 +111,9 @@ class KC_MyProfileVM{
                     DispatchQueue.main.async {
                         self.VC?.stopLoading()
                         if result?.returnMessage ?? "" == "1"{
-                            self.VC!.view.makeToast("Profile image uploaded successfully!", duration: 2.0, position: .bottom)
+                            self.VC!.view.makeToast("Profileimageuploadedsuccessfully!".localiz(), duration: 2.0, position: .bottom)
                         }else{
-                            self.VC!.view.makeToast("Something went wrong. Try again Later!", duration: 2.0, position: .bottom)
+                            self.VC!.view.makeToast("SomethingwentwrongTryagainLater!".localiz(), duration: 2.0, position: .bottom)
                         }
                     }
                     
@@ -145,9 +146,9 @@ class KC_MyProfileVM{
                     DispatchQueue.main.async {
                         self.VC?.stopLoading()
                         if String(result?.returnMessage ?? "").prefix(1) == "1"{
-                            self.VC!.view.makeToast("Profile uploaded successfully!", duration: 2.0, position: .bottom)
+                            self.VC!.view.makeToast("Profileuploadedsuccessfully!".localiz(), duration: 2.0, position: .bottom)
                         }else{
-                            self.VC!.view.makeToast("Something went wrong. Try again Later!", duration: 2.0, position: .bottom)
+                            self.VC!.view.makeToast("SomethingwentwrongTryagainLater!".localiz(), duration: 2.0, position: .bottom)
                         }
                     }
                     

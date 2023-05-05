@@ -5,9 +5,8 @@
 //  Created by ADMIN on 01/03/2023.
 //
 
-import Foundation
 import UIKit
-
+import LanguageManager_iOS
 class KC_NewQuerySubmissionVM{
     
     weak var VC: KC_AddLodgeQueryVC?
@@ -28,11 +27,11 @@ class KC_NewQuerySubmissionVM{
                         if responsearray[0] == "-1"{
                             DispatchQueue.main.async{
                                 self.VC?.stopLoading()
-                                self.VC!.view.makeToast("Support ticket submission failed!!",duration: 2.0,position: .bottom)
+                                self.VC!.view.makeToast("Supportticketsubmissionfailed!!".localiz(),duration: 2.0,position: .bottom)
                             }
                         }else{
                             self.VC?.stopLoading()
-                            self.VC!.view.makeToast("Support ticket has been submitted successfully !!",duration: 2.0,position: .bottom)
+                            self.VC!.view.makeToast("Supporttickethasbeensubmittedsuccessfully!!".localiz(),duration: 2.0,position: .bottom)
                             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                                 self.VC!.stopLoading()
                                 for controller in self.VC!.navigationController!.viewControllers as Array {

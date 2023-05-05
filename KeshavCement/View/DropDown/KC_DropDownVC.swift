@@ -8,19 +8,19 @@
 import UIKit
 
 
-protocol SelectedDataDelegate: AnyObject{
+@objc protocol SelectedDataDelegate: AnyObject{
     
-    func didTapCustomerType(_ vc: KC_DropDownVC)
-    func didTapState(_ vc: KC_DropDownVC)
-    func didTapDistrict(_ vc: KC_DropDownVC)
-    func didTapTaluk(_ vc: KC_DropDownVC)
-    func didTapUserType(_ vc: KC_DropDownVC)
-    func didTapMappedUserName(_ vc: KC_DropDownVC)
-    func didTapProductName(_ vc: KC_DropDownVC)
-    func didTapWorkLevel(_ vc: KC_DropDownVC)
-    func didTapHelpTopic(_ vc: KC_DropDownVC)
-    func didTapCityName(_ vc: KC_DropDownVC)
-    func didTapAmount(_ vc: KC_DropDownVC)
+    @objc optional func didTapCustomerType(_ vc: KC_DropDownVC)
+    @objc optional func didTapState(_ vc: KC_DropDownVC)
+    @objc optional func didTapDistrict(_ vc: KC_DropDownVC)
+    @objc optional func didTapTaluk(_ vc: KC_DropDownVC)
+    @objc optional func didTapUserType(_ vc: KC_DropDownVC)
+    @objc optional func didTapMappedUserName(_ vc: KC_DropDownVC)
+    @objc optional func didTapProductName(_ vc: KC_DropDownVC)
+    @objc optional func didTapWorkLevel(_ vc: KC_DropDownVC)
+    @objc optional func didTapHelpTopic(_ vc: KC_DropDownVC)
+    @objc optional func didTapCityName(_ vc: KC_DropDownVC)
+    @objc optional func didTapAmount(_ vc: KC_DropDownVC)
 }
 
 
@@ -381,22 +381,22 @@ extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
         if self.itsFrom == "CUSTOMERTYPE"{
             self.selectedCustomerType = self.VM.customerTypeArray[indexPath.row].attributeValue ?? ""
             self.selectedCustomerTypeId = self.VM.customerTypeArray[indexPath.row].attributeId ?? -1
-            self.delegate?.didTapCustomerType(self)
+            self.delegate?.didTapCustomerType!(self)
             self.dismiss(animated: true)
         }else if self.itsFrom == "STATE"{
             self.selectedStateName = self.VM.stateListArray[indexPath.row].stateName ?? ""
             self.selectedStateId = self.VM.stateListArray[indexPath.row].stateId ?? -1
-            self.delegate?.didTapState(self)
+            self.delegate?.didTapState!(self)
             self.dismiss(animated: true)
         }else if self.itsFrom == "DISTRICT"{
             self.selectedDistrictName = self.VM.districtListArray[indexPath.row].districtName ?? ""
             self.selectedDistrictId = self.VM.districtListArray[indexPath.row].districtId ?? -1
-            self.delegate?.didTapDistrict(self)
+            self.delegate?.didTapDistrict!(self)
             self.dismiss(animated: true)
         }else if self.itsFrom == "TALUK"{
             self.selectedTalukName = self.VM.talukListArray[indexPath.row].talukName ?? ""
             self.selectedTalukId = self.VM.talukListArray[indexPath.row].talukId ?? -1
-            self.delegate?.didTapTaluk(self)
+            self.delegate?.didTapTaluk!(self)
             self.dismiss(animated: true)
         }else if self.itsFrom == "USERTYPE"{
             if self.customerType == "Engineer" || self.customerType == "Mason"{
@@ -414,7 +414,7 @@ extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
             }else{
                 self.selectedUserTypeId = 0
             }
-            self.delegate?.didTapUserType(self)
+            self.delegate?.didTapUserType!(self)
             self.dismiss(animated: true)
         }else if self.itsFrom == "CUSTOMERTYPE3"{
             self.selectedCustomerType = self.dealerEnrollmentArray[indexPath.row]
@@ -425,7 +425,7 @@ extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
             }else if self.selectedCustomerType == "Sub Dealer"{
                 self.selectedUserTypeId = 4
             }
-            self.delegate?.didTapCustomerType(self)
+            self.delegate?.didTapCustomerType!(self)
             self.dismiss(animated: true)
             
         }else if self.itsFrom == "CUSTOMERTYPE4"{
@@ -435,7 +435,7 @@ extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
             }else if self.selectedCustomerType == "Mason"{
                 self.selectedUserTypeId = 2
             }
-            self.delegate?.didTapCustomerType(self)
+            self.delegate?.didTapCustomerType!(self)
             self.dismiss(animated: true)
             
             
@@ -444,40 +444,40 @@ extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
             self.mappedUserId = self.VM.mappedListArray[indexPath.row].userID ?? -1
             self.mappedMobileNumber = self.VM.mappedListArray[indexPath.row].mobile ?? ""
             self.mappedLoyaltyId = self.VM.mappedListArray[indexPath.row].loyaltyID ?? ""
-            self.delegate?.didTapMappedUserName(self)
+            self.delegate?.didTapMappedUserName!(self)
             self.dismiss(animated: true)
         }else if self.itsFrom == "CLAIMPRODUCTLIST"{
             self.selectedProductId = self.VM.claimProductListArray[indexPath.row].attributeId ?? -1
             self.selectedProductName = self.VM.claimProductListArray[indexPath.row].attributeValue ?? ""
             self.selectedProductCode = self.VM.claimProductListArray[indexPath.row].attributeContents ?? ""
-            self.delegate?.didTapProductName(self)
+            self.delegate?.didTapProductName!(self)
             self.dismiss(animated: true)
         }else if self.itsFrom == "WORKLEVEL"{
             self.selectedWorkLevelId = self.VM.workLevelListArray[indexPath.row].attributeId ?? -1
             self.selectedWorkLevelTitle = self.VM.workLevelListArray[indexPath.row].attributeValue ?? ""
-            self.delegate?.didTapWorkLevel(self)
+            self.delegate?.didTapWorkLevel!(self)
             self.dismiss(animated: true)
         }else if self.itsFrom == "NEWQUERY"{
             self.helpTopicId = self.VM.queryTopicListArray[indexPath.row].helpTopicId ?? -1
             self.helpTopicName = self.VM.queryTopicListArray[indexPath.row].helpTopicName ?? ""
-            self.delegate?.didTapHelpTopic(self)
+            self.delegate?.didTapHelpTopic!(self)
             self.dismiss(animated: true)
         }else if self.itsFrom == "CITY"{
             self.selectedCityId = self.VM.cityArray[indexPath.row].cityId ?? 0
             self.selectedCityName = self.VM.cityArray[indexPath.row].cityName ?? ""
-            self.delegate?.didTapCityName(self)
+            self.delegate?.didTapCityName!(self)
             self.dismiss(animated: true)
         }else if self.itsFrom == "CASHPOINTS"{
             self.selectedAmount = self.VM.cashDetailsListArray[indexPath.row].amount ?? 0
             self.selectedCashBack = self.VM.cashDetailsListArray[indexPath.row].cashBackValue ?? 0
-            self.delegate?.didTapAmount(self)
+            self.delegate?.didTapAmount!(self)
             self.dismiss(animated: true)
         }else if self.itsFrom == "CLAIMPURCHSSS"{
             self.mappedUsername = self.VM.mapppedUserNameListArray1[indexPath.row].firstName ?? ""
             self.mappedUserId = self.VM.mapppedUserNameListArray1[indexPath.row].userID ?? -1
             self.mappedMobileNumber = self.VM.mapppedUserNameListArray1[indexPath.row].mobile ?? ""
             self.mappedLoyaltyId = self.VM.mapppedUserNameListArray1[indexPath.row].loyaltyID ?? ""
-            self.delegate?.didTapMappedUserName(self)
+            self.delegate?.didTapMappedUserName!(self)
             self.dismiss(animated: true)
         }
         

@@ -7,10 +7,12 @@
 
 import UIKit
 import Kingfisher
+import LanguageManager_iOS
 class KC_EnrollmentListVC: BaseViewController, DialPadDelegate {
   
     
 
+    @IBOutlet weak var addCustomerLbl: UILabel!
     @IBOutlet weak var noDataFoundLbl: UILabel!
     @IBOutlet weak var enrollmentListTableView: UITableView!
     @IBOutlet weak var searchTF: UITextField!
@@ -23,6 +25,10 @@ class KC_EnrollmentListVC: BaseViewController, DialPadDelegate {
         self.VM.VC = self
         self.enrollmentListTableView.delegate = self
         self.enrollmentListTableView.dataSource = self
+        self.headerTextLbl.text = "Enrollment".localiz()
+        self.searchTF.placeholder = "Searchbyname/mobilenumber".localiz()
+        self.addCustomerLbl.text = "AddCustomer".localiz()
+        self.noDataFoundLbl.text = "NoDataFound".localiz()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)

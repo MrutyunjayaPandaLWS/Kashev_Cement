@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import LanguageManager_iOS
 //import Alamofire
 //import Firebase
 import Lottie
@@ -19,6 +20,7 @@ class MSP_MyDreamGiftVC: BaseViewController, AddOrRemoveGiftDelegate, ReturnBack
      //   self.dreamGiftListApi()
     }
     
+    @IBOutlet weak var headerText: UILabel!
     
     @IBOutlet weak var notificationLbl: UILabel!
     @IBOutlet weak var myDreamGiftTableView: UITableView!
@@ -52,6 +54,8 @@ class MSP_MyDreamGiftVC: BaseViewController, AddOrRemoveGiftDelegate, ReturnBack
         super.viewDidLoad()
         self.VM.VC = self
 //        self.loaderView.isHidden = true
+        self.headerText.text = "MyDreamGift".localiz()
+        self.noDataFound.text = "NoDataFound".localiz()
         self.myDreamGiftTableView.separatorStyle = .none
         self.myDreamGiftTableView.register(UINib(nibName: "MSP_MyDreamGiftTVC", bundle: nil), forCellReuseIdentifier: "MSP_MyDreamGiftTVC")
         myDreamGiftTableView.delegate = self
@@ -162,7 +166,7 @@ class MSP_MyDreamGiftVC: BaseViewController, AddOrRemoveGiftDelegate, ReturnBack
             print(result)
             if result == 1 {
                 DispatchQueue.main.async{
-                    self.view.makeToast("Dream Gift has been removed successfully", duration: 3.0, position: .bottom)
+                    self.view.makeToast("DreamGifthasbeenremovedsuccessfully".localiz(), duration: 3.0, position: .bottom)
 //                    let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "PopupAlertOne_VC") as? PopupAlertOne_VC
 //                    vc!.delegate = self
 //                    vc!.titleInfo = ""
@@ -176,7 +180,7 @@ class MSP_MyDreamGiftVC: BaseViewController, AddOrRemoveGiftDelegate, ReturnBack
                 
             }else{
                 DispatchQueue.main.async{
-                    self.view.makeToast("Dream Gift has been removed failed", duration: 3.0, position: .bottom)
+                    self.view.makeToast("DreamGifthasbeenremovedfailed".localiz(), duration: 3.0, position: .bottom)
 //                    let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "PopupAlertOne_VC") as? PopupAlertOne_VC
 //                    vc!.delegate = self
 //                    vc!.titleInfo = ""
@@ -243,7 +247,7 @@ class MSP_MyDreamGiftVC: BaseViewController, AddOrRemoveGiftDelegate, ReturnBack
 
                     
                     if self.verifiedStatus != 1{
-                        self.view.makeToast("You are not allowled to redeem .Please contact your administrator", duration: 3.0, position: .bottom)
+                        self.view.makeToast("Youarenotallowledtoredeem".localiz(), duration: 3.0, position: .bottom)
 //                        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "PopupAlertOne_VC") as? PopupAlertOne_VC
 //                        vc!.delegate = self
 //                        vc!.titleInfo = ""

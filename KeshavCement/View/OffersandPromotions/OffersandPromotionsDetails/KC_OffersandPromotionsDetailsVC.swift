@@ -7,6 +7,7 @@
 
 import UIKit
 import WebKit
+import LanguageManager_iOS
 //import SDWebImage
 //import Firebase
 class KC_OffersandPromotionsDetailsVC: BaseViewController {
@@ -34,6 +35,7 @@ class KC_OffersandPromotionsDetailsVC: BaseViewController {
         self.shortDescriptionLbl.text = self.shortDesc
         self.productImage.sd_setImage(with: URL(string: productImg), placeholderImage: UIImage(named: "ic_default_img"))
         self.descriptionWK.loadHTMLString(self.longDesc, baseURL: nil)
+        self.headerTitle.text = "OffersandpromotionsDetails".localiz()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

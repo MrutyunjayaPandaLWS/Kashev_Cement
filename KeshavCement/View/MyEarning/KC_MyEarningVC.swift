@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import LanguageManager_iOS
 
 class KC_MyEarningVC: BaseViewController, DateSelectedDelegate {
     func acceptDate(_ vc: KC_DOBVC) {
@@ -49,6 +50,15 @@ class KC_MyEarningVC: BaseViewController, DateSelectedDelegate {
         self.myEarningTV.dataSource = self
         self.myEarningTV.separatorStyle = .none
         self.myEarningTV.register(UINib(nibName: "KC_MyEarningTVC", bundle: nil), forCellReuseIdentifier: "KC_MyEarningTVC")
+        self.myEarningHeaderLbl.text = "MyEarning".localiz()
+        self.filterHeadingLbl.text = "Filter".localiz()
+        self.myEarningFilter.text = "MyEarningFilter".localiz()
+        self.dateRangeLbl.text = "DateRange".localiz()
+        self.selectFromDateLbl.text = "SelectFromDate".localiz()
+        self.selectToDateLbl.text = "SelectToDate".localiz()
+        self.clearBtn.setTitle("Clear".localiz(), for: .normal)
+        self.applyFilterBtn.setTitle("ApplyFilter".localiz(), for: .normal)
+        self.noDataFoundLbl.text = "NoDataFound".localiz()
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -88,22 +98,22 @@ class KC_MyEarningVC: BaseViewController, DateSelectedDelegate {
         self.present(vc, animated: true)
     }
     @IBAction func clearButton(_ sender: Any) {
-        self.selectFromDateLbl.text = "Select From date"
-        self.selectToDateLbl.text = "Select To date"
+        self.selectFromDateLbl.text = "SelectFromDate".localiz()
+        self.selectToDateLbl.text = "SelectToDate".localiz()
         self.startIndex = 1
         self.VM.myEarningListArray.removeAll()
         self.myEarningListApi(StartIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate)
     }
     @IBAction func applyFilterButton(_ sender: Any) {
         if self.selectedFromDate == "" && self.selectedToDate == ""{
-            self.view.makeToast("Select date range", duration: 2.0, position: .bottom)
+            self.view.makeToast("SelectDateRange".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedFromDate != "" && self.selectedToDate == ""{
-            self.view.makeToast("Select To date", duration: 2.0, position: .bottom)
+            self.view.makeToast("SelectToDate".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedFromDate == "" && self.selectedToDate != ""{
-            self.view.makeToast("Select From date", duration: 2.0, position: .bottom)
+            self.view.makeToast("SelectFromDate".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedFromDate != "" && self.selectedToDate != ""{
             if self.selectedFromDate > self.selectedToDate{
-                self.view.makeToast("To date shouldn't greater than From date", duration: 2.0, position: .bottom)
+                self.view.makeToast("TodateshouldntgreaterthanFromdate".localiz(), duration: 2.0, position: .bottom)
             }else{
                 self.filterView.isHidden = true
                 self.VM.myEarningListArray.removeAll()

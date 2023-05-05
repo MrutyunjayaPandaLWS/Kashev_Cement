@@ -9,6 +9,7 @@ import UIKit
 import Toast_Swift
 import DPOTPView
 import Kingfisher
+import LanguageManager_iOS
 class KC_CashTranferApprovalVC: BaseViewController, DPOTPViewDelegate, CashTransferDataUpdateDelegate {
     func didApprovedButton(_ cell: KC_CashTransferApprovalTVC) {
         guard let tappedIndexPath = self.cashTransferApprovalTableView.indexPath(for: cell) else{return}
@@ -41,7 +42,7 @@ class KC_CashTranferApprovalVC: BaseViewController, DPOTPViewDelegate, CashTrans
                 self.infoLbl.text = getLastFour
                 self.generateOTPApi()
             }else{
-                self.view.makeToast("Enter remarks", duration: 2.0, position: .center)
+                self.view.makeToast("Enterremarks".localiz(), duration: 2.0, position: .center)
             }
         }
     }
@@ -106,7 +107,8 @@ class KC_CashTranferApprovalVC: BaseViewController, DPOTPViewDelegate, CashTrans
         super.viewDidLoad()
         self.VM.VC = self
         self.searchTF.textColor = .white
-        self.searchTF.attributedPlaceholder = NSAttributedString(string: "Search Name", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
+        self.headerText.text = "CashTransferApproval".localiz()
+        self.searchTF.attributedPlaceholder = NSAttributedString(string: "SearchName".localiz(), attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
         self.noDataFoundLbl.isHidden = true
         self.cashTransferApprovalTableView.delegate = self
         self.cashTransferApprovalTableView.dataSource = self
@@ -142,11 +144,11 @@ class KC_CashTranferApprovalVC: BaseViewController, DPOTPViewDelegate, CashTrans
     @IBAction func otpSubmitBtn(_ sender: Any) {
         print(self.enteredValue, "- Entered Value")
         if self.enteredValue.count == 0 {
-            self.view.makeToast("Enter OTP", duration: 2.0, position: .bottom)
+            self.view.makeToast("EnterOTP".localiz(), duration: 2.0, position: .bottom)
         }else if self.enteredValue.count != 6{
-            self.view.makeToast("Enter valid OTP", duration: 2.0, position: .bottom)
+            self.view.makeToast("EntervalidOTP".localiz(), duration: 2.0, position: .bottom)
         }else if self.receivedOTP != self.enteredValue{
-            self.view.makeToast("Enter correct OTP", duration: 2.0, position: .bottom)
+            self.view.makeToast("EntercorrectOTP".localiz(), duration: 2.0, position: .bottom)
         }else{
             self.cashTransferSubmissionApi(partyLoyalty: self.customerLoyaltyId, remarks: self.remarks, status: self.status, cashTransferId: self.cashTransferId)
         }

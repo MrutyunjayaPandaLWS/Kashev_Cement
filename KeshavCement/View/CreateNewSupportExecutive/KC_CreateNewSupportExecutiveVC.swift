@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import LanguageManager_iOS
 
 class KC_CreateNewSupportExecutiveVC: BaseViewController, UITextFieldDelegate {
 
@@ -24,21 +25,26 @@ class KC_CreateNewSupportExecutiveVC: BaseViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.mobileTF.delegate = self
-        self.mobileTF.keyboardType = .asciiCapableNumberPad
+        self.mobileTF.keyboardType = .asciiCapable
         self.VM.VC = self
+        self.submitBtn.setTitle("Submit".localiz(), for: .normal)
+        self.nameLbl.text = "Name".localiz()
+        self.mobileLbl.text = "MobileNumber".localiz()
+        self.passwordLbl.text = "Password".localiz()
+        
         self.nameTF.attributedPlaceholder = NSAttributedString(
-            string: "Enter Name",
+            string: "Entername".localiz(),
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.white]
         )
         self.nameTF.textColor = .white
 
         self.passwordTF.attributedPlaceholder = NSAttributedString(
-            string: "Enter Password",
+            string: "Enterpassword".localiz(),
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.white]
         )
         self.passwordTF.textColor = .white
         self.mobileTF.attributedPlaceholder = NSAttributedString(
-            string: "Enter Mobile Number",
+            string: "Entermobilenumber".localiz(),
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.white]
         )
         self.mobileTF.textColor = .white
@@ -57,13 +63,13 @@ class KC_CreateNewSupportExecutiveVC: BaseViewController, UITextFieldDelegate {
     @IBAction func submitButton(_ sender: Any) {
         
         if self.nameTF.text?.count == 0{
-            self.view.makeToast("Enter name", duration: 2.0, position: .bottom)
+            self.view.makeToast("Entername".localiz(), duration: 2.0, position: .bottom)
         }else if self.mobileTF.text?.count == 0{
-            self.view.makeToast("Enter mobile number", duration: 2.0, position: .bottom)
+            self.view.makeToast("Entermobilenumber".localiz(), duration: 2.0, position: .bottom)
         }else if self.mobileTF.text?.count != 10{
-            self.view.makeToast("Enter valid mobile number", duration: 2.0, position: .bottom)
+            self.view.makeToast("Entervalidmobilenumber".localiz(), duration: 2.0, position: .bottom)
         }else if self.passwordTF.text?.count == 0{
-            self.view.makeToast("Enter password", duration: 2.0, position: .bottom)
+            self.view.makeToast("Enterpassword".localiz(), duration: 2.0, position: .bottom)
         }else{
             self.createNewSupport()
         }
@@ -92,7 +98,7 @@ class KC_CreateNewSupportExecutiveVC: BaseViewController, UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-      let aSet = NSCharacterSet(charactersIn:"0123456789").inverted
+      let aSet = NSCharacterSet(charactersIn:"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz").inverted
       let compSepByCharInSet = string.components(separatedBy: aSet)
       let numberFiltered = compSepByCharInSet.joined(separator: "")
 

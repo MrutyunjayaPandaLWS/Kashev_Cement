@@ -3,6 +3,7 @@ import NotificationCenter
 import Photos
 import AVFoundation
 import SDWebImage
+import LanguageManager_iOS
 
 class HR_Chatvc2ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIDocumentPickerDelegate{
     
@@ -32,8 +33,9 @@ class HR_Chatvc2ViewController: UIViewController, UITextFieldDelegate,UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.supportHeadingLabel.text = "Support"
-        self.querySummarylabel.text = "Ticket Details"
+        self.supportHeadingLabel.text = "Support".localiz()
+        self.querySummarylabel.text = "TicketDetails".localiz()
+        self.commenttextfield.text = "WriteQueryHere...".localiz()
         tableview12.register(UINib(nibName: "senderInfoTableViewCell", bundle: nil), forCellReuseIdentifier: "senderInfoTableViewCell")
         tableview12.register(UINib(nibName: "otherInfoTableViewCell", bundle: nil), forCellReuseIdentifier: "otherInfoTableViewCell")
         tableview12.register(UINib(nibName: "senderImageTableViewCell", bundle: nil), forCellReuseIdentifier: "senderImageTableViewCell")
@@ -53,8 +55,8 @@ class HR_Chatvc2ViewController: UIViewController, UITextFieldDelegate,UITableVie
             chatListingAPI()
 //        }
         querySummarylabel.text = "Query summary : \(querysummary)"
-        self.supportHeadingLabel.text = "Support"
-        self.commenttextfield.placeholder = "Write Query Here..."
+        self.supportHeadingLabel.text = "Support".localiz()
+        self.commenttextfield.placeholder = "WriteQueryHere...".localiz()
 
     }
     

@@ -7,6 +7,7 @@
 
 import UIKit
 import Lottie
+import LanguageManager_iOS
 class KC_HelplineVC: BaseViewController {
 
    
@@ -22,6 +23,10 @@ class KC_HelplineVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         lottieAnimation(animationView: animatedLottieView)
+        self.headerText.text = "HelplineCall".localiz()
+        self.infoLbl1.text = "ForanyquestionsontheKeshavCementProgram.".localiz()
+        self.infoLbl2.text = "Pleasegiveamisscallonthefollowingnumber".localiz()
+        self.giveamissedCallLbl.setTitle("GIVEAMISSEDCALLON".localiz(), for: .normal)
        
         headerView.layer.masksToBounds = false
         headerView.layer.shadowRadius = 2

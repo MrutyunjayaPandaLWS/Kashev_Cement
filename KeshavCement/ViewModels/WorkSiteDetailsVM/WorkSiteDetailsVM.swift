@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-
+import LanguageManager_iOS
 class WorkSiteDetailsVM{
     
     weak var VC: KC_WorkDetailsVC?
@@ -39,7 +39,7 @@ class WorkSiteDetailsVM{
                             vc.modalPresentationStyle = .overFullScreen
                             self.VC!.present(vc, animated: true)
                         }else{
-                            self.VC!.view.makeToast("Submission failed", duration: 2.0, position: .bottom)
+                            self.VC!.view.makeToast("Submissionfailed".localiz(), duration: 2.0, position: .bottom)
                           
                         }
                     }

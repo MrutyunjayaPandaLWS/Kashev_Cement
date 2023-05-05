@@ -52,10 +52,7 @@ class KC_SideMenuVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.VM.VC = self
-        self.logoutLbl.text = "Logout".localiz()
-        self.editProfileBtn.setTitle("EditProfile".localiz(), for: .normal)
-        self.ptsBalanceLBl.text = "PointBalance".localiz()
-        self.memberShipIDLbl.text = "MembershipID".localiz()
+      
         
         
         self.profileView.roundCorners(corners: [.topLeft, .topRight], radius: 50.0)
@@ -82,6 +79,11 @@ class KC_SideMenuVC: BaseViewController {
             self.sideMenuTableViewHeightConstratin.constant = 850
             self.scrollViewHeight.constant = 850
         }
+        self.sideMenuTableView.reloadData()
+        self.logoutLbl.text = "Logout".localiz()
+        self.editProfileBtn.setTitle("EditProfile".localiz(), for: .normal)
+        self.ptsBalanceLBl.text = "PointBalance".localiz()
+        self.memberShipIDLbl.text = "MembershipID".localiz()
         self.sideMenuTableView.reloadData()
     }
     

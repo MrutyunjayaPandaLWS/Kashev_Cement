@@ -5,8 +5,8 @@
 //  Created by ADMIN on 20/02/2023.
 //
 
-import Foundation
 import UIKit
+import LanguageManager_iOS
 
 class KC_ClaimPurchaseVM{
     
@@ -42,7 +42,7 @@ class KC_ClaimPurchaseVM{
                             self.VC!.present(vc, animated: true)
                             self.VC!.swipeButton.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
                         }else{
-                            self.VC!.view.makeToast("Claim submission failed!", duration: 2.0, position: .bottom)
+                            self.VC!.view.makeToast("Claimsubmissionfailed!".localiz(), duration: 2.0, position: .bottom)
                             self.VC!.swipeButton.reset()
                             self.VC!.swipeButton.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
                         }

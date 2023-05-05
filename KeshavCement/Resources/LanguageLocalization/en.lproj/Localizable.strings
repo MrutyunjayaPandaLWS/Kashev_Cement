@@ -62,7 +62,6 @@
 "Enterfullname" = "Enter full name";
 "Enterfirmname" = "Enter firm name";
 "Entermobilenumber" = "Enter mobile number";
-"Entervalidmobilenumber" = "Enter valid mobile number";
 "EntervalidaadharGSTnumber" = "Enter valid aadhar / GST number";
 "Entervalidpin" = "Enter valid pin";
 
@@ -117,7 +116,7 @@
 "AskHelp?" = "Ask Help?";
 "Raiseconnectyousoon" = "Raise a ticket our team will connect you soon";
 "RaiseaTicket" = "Raise a Ticket";
-"notAllowedRedeem" = "You are not allowled to redeem .Please contact your administrator";
+"notAllowedRedeem" = "You are not allowled to redeem. Please contact your administrator";
 
 "Pleaseproductname" = "Please select product name";
 
@@ -134,7 +133,6 @@
 "Swipetoclaim" = "Swipe to claim";
 "Pleasemappeduser" = "Please select mapped user";
 "Pleaseselectusertype" = "Please select user type";
-"Pleaseselectproduct" = "Please select product";
 "Qunantityshouldnt0" = "Quantity shouldn't 0";
 
 "MyPurchaseClaim" = "My Purchase Claim";
@@ -150,7 +148,7 @@
 "Clear" = "Clear";
 "ApplyFilter" = "Apply Filter";
 "Selectanyselectordaterange" = "Select any select or date range";
-"TodateshouldntgreaterthanFromdate" = "To date shouldn't greater than From date";
+"TodateshouldntgreaterthanFromdate" = "To date shouldn't be greater than From date";
 
 "RedemptionCatalogue" = "Redemption Catalogue";
 "TotalPoints" = "Total Points";
@@ -198,3 +196,236 @@
 "EntercorrectOTP" = "Enter correct OTP";
 "Userisnactive" = "User isn't active";
 "RedemptionFailed!" = "Redemption Failed !";
+
+"Enter_amount_to_redeem" = "Enter amount to redeem";
+"Select_Amount_to_Redeem" = "Select amount to redeem";
+"Vouchers" = "Vouchers";
+"OTPwillreceiveat" = "OTP will receive at +91******";
+"ResendOTP?" = "Resend OTP?";
+"OTP" = "OTP";
+"enterOTPRaiseaRequest" = "Enter the OTP to raise a request to the dealer";
+"VoucherSubmission" = "Voucher Submission";
+"Youredeemedthisvoucher" = "You redeemed this voucher";
+"Redeem" = "Redeem";
+"Select_Amount_in_Range" = "Select the amount in Range";
+"Youdonsufficientvoucher" = "You don’t have a sufficient point balance to redeem the voucher";
+ "MemberisdeActivated" = "Member is deactivated";
+"Oops" = "Oops";
+"Unfortunately_your_redemption_has_not_been_completed" = "Unfortunately your redemption has not been completed";
+"EnterAmountinRange" = "Enter Amount in Range";
+"Amount" = "Amount";
+"SelectAmount" = "Select Amount";
+
+"HowitWorks" = "How it works?";
+"Instruction" = "Instruction";
+"CashVoucher" = "Cash Voucher";
+"CashTransfer" = "Cash Transfer";
+
+
+"Claimsubmissionfailed!!" = "Claim submission failed!!";
+"Pleaseselectpoints" = "Please select points";
+"Search ..." = "Search ...";
+"Pleaseselectpoints" = "Please select points";
+"SelectPoints" = "Select Points";
+"ValueinRupees" = "Value in Rupees";
+"Instructions" = "Instructions";
+"Pleaseselectmappeduser" = "Please select mapped user";
+"Pleaseselectamount" = "Please select amount";
+"Quantityshoulntbe0" = "Quantity shouln't be 0";
+
+"Producthasbeenremovedsuccessfully!" = "Product has been removed successfully";
+"AddToCartFailedsometime" = "Add to Cart Failed. Try after sometime";
+ "Giftproductlreadyaddedlist" = "Gift product is already added in the Redeem list";
+"RedemptionPlannerDetails" = "Redemption Planner Details";
+"Congratulations" = "Congratulations";
+ "eligibleMsg" = "you are eligible to redeem your Redemption Planner product";
+"RedeemNow" = "Redeem Now";
+"POINTS" = "POINTS";
+"RedemptionPlannerSummary" = "Redemption Planner Summary";
+"RedeemablePointsAsOnToday" = "Redeemable Points As On Today";
+"AverageEarning" = "Average Earning";
+"productIsRemoved" = "Product is removed from the List";
+ "CongratulationYouareEligibleTo" = "Congratulation! You are eligible to redeem this product";
+
+"NotmappedToAnyDealer" = "Currently you are not mapped to any dealer. Kindly contact the administrator.";
+
+"Thiscustomerisalreadyactivated" = "This customer is already activated";
+"Mobilenumberdoesntexists" = "Mobile number doesn't exists";
+
+"WorksiteDetails" = "Worksite Details";
+"WorksiteDetailsFilter" = "Worksite Details Filter";
+"CreateNew" = "Create New";
+"Selectanystatus" = "Select any status";
+"FromDate" = "From Date";
+"ToDate" = "To Date";
+"MyRdemeptionDetails" = "My Redemeption Details";
+"MyRedemptionFilter" = "My Redemption Filter";
+
+"Selectanyordaterange" = "Select any status or date range";
+"MyEarning" = "My Earning";
+"MyEarningFilter" = "My Earning Filter";
+"SelectDateRange" = "Select Date Range";
+"Entername" = "Enter name";
+"ReferandEarn" = "Refer and Earn";
+"Referyourfriendstoearnexcitingrewards" = "Refer your friends to earn exciting rewards";
+"Getexcitingrewardswhenyourfriendenrollstotheprogram" = "Get exciting rewards when your friend enrolls to the program";
+"SendInvite" = "Send Invite";
+"TextCopied" = "Text Copied";
+"Selfreferralisnotallowed" = "Self-referral is not allowed";
+"Successfullyreferralcodesenttoyourfriend" = "Successfully referral code sent to your friend";
+"Thismobilenumberalreadyreferred" = "This mobile number already referred";
+"SomethingwentwrongTryagainLater" = "Something went wrong! Try again Later";
+
+"OffersandPromotions" = "Offers and Promotions";
+"OffersandpromotionsDetails" = "Offers and promotions Details";
+"Successfullyreferralcodesenttoyourfriend" = "Successfully referral code sent to your friend";
+"Thismobilenumberalreadyreferred" = "This mobile number already referred";
+"ReferandEarn" = "Refer and Earn";
+"Referyourfriendstoearnexcitingrewards" = "Refer your friends to earne xciting rewards";
+"EnterReferralCode" = "Enter Referral Code";
+"Getexcitingrewardswhenyourfriendenrollstotheprogram" = "Get exciting rewards when your friend enrolls to the program";
+"Name" = "Name";
+"MobileNumber" = "Mobile Number";
+"SendInvite" = "Send Invite";
+"TextCopied" = "Text Copied";
+"Entername" = "Enter name";
+"Entervalidmobilenumber" = "Enter valid mobile number";
+"Selfreferralisnotallowed" = "Self-referral is not allowed";
+"WorkSite" = "WorkSite";
+"UploadSiteImages" = "Upload Site Images";
+"CapturesiteImagestosubmitthedetails" = "Capture site Images to submit the details";
+"ChangeImage" = "Change Image";
+"Next" = "Next";
+"Pleaseselectsiteimage" = "Please select site image";
+"Selectcurrentlocation...." = "Select current location....";
+"OwnerDetails" = "Owner Details";
+"OwnerName" = "Owner Name";
+"Enterownername" = "Enter owner name";
+"OwnerMobileNumber" = "Owner Mobile Number";
+"Enterownermobilenumber" = "Enter owner mobile number";
+"OwnerAddess" = "Owner Address";
+"EngineerDetails" = "Engineer Details";
+"EngineerName" = "Engineer Name";
+"Enterengineername" = "Enter engineer name";
+"EngineerMobileNumber" = "Engineer Mobile Number";
+"Enterengineermobilenumber" = "Enter engineer mobile number";
+"ownernameshouldbe15digits" = "owner name should be 15 digits";
+"Entervalidownermobilenumber" = "Enter valid owner mobile number";
+"Enterownerresidentialdetails" = "Enter owner residential details";
+"Entervalidownermobilenumber" = "Enter valid owner mobile number";
+"Submissionfailed" = "Submission failed";
+"WorkDetails" = "Work Details";
+"WorkLevel" = "Work Level";
+"SelectLevel" = "Select Level";
+"TentativeDateofcompletion" = "Tentative Date of completion";
+"SelectDate" = "Select Date";
+"Remarks" = "Remarks";
+"Selecttentativedate" = "Select tentative date";
+"Enterremarks" = "Enter remarks";
+
+"Search" = "Search";
+"Insufficientquantity!!" = "Insufficient quantity!!";
+"Claimissuccessfullycompleted" = "Claimis successfully completed";
+"Qunantityshouldnt0" = "Qunantity shouldn't 0";
+
+"Invalidreferralcode" = "Invalid referral code";
+"Enterflathouseaddress" = "Enter flat house address";
+"Enterpin" = "Enter pin";
+"ShippingAddressUpdated" = "Shipping Address Updated";
+
+"Selectusertype" = "Select user type";
+"Selectuser" = "Select user";
+"Insufficentpointbalance" = "Insufficent point balance";
+"Enrollment" = "Enrollment";
+"Searchbyname/mobilenumber" = "Search by Name /Mobile number";
+"AddCustomer" = "Add Customer";
+"PendingClaims" = "Pending Claims";
+"Pleaseselectdateofbirth" = "Please select date of birth";
+"Themobilenumberalreadyexists" = "The mobile number already exists";
+"EnrollmentFailed" = "Enrollment Failed";
+
+"AnniversarydateshouldbemorethenaDateofbirth" = "Anniversary date should be more than a Date of birth";
+"Yourclaimhasbeenapproved" = "Your claim has been approved";
+"Yourclaimhasbeenrejected" = "Your claim has been rejected";
+"Submissionfailed!!" = "Submission failed !!";
+
+"HelplineCall" = "Helpline Call";
+"ForanyquestionsontheKeshavCementProgram." = "For any questions on the Keshav Cement Program.";
+"Pleasegiveamisscallonthefollowingnumber" = "Please give a miss call on the following number.";
+"GIVEAMISSEDCALLON" = "GIVE A MISSED CALL ON";
+
+"ClaimHistory" = "Claim History";
+"ClaimHistoryFilter" = "Claim History Filter";
+
+"CashHistory" = "Cash History";
+"CashTransferFilter" = "Cash Transfer Filter";
+"Query" = "Query";
+"SupportExecutive" = "Support Executive";
+"CreateNew" = "Create New";
+"Support" = "Support";
+"WriteQueryHere..." = "Write Query Here...";
+"TicketDetails" = "Ticket Details";
+
+"PleaseSubmitYour" = "Please submit your query using this form";
+"SelectYourTopic" = "Select Your Topic";
+"SelectHelpTopic" = "Select Help Topic";
+"QuerySummary" = "Query Summary";
+"Writeyourquery" = "Write your query";
+"QueryDetails" = "Query Details";
+"Writeyourquerydetails" = "Write your query details";
+"BrowseImage" = "Browse Image";
+"SubmitQuery" = "Submit Query";
+"SelectTopic" = "Select Topic";
+"EnterQuerySummary" = "Enter query summary";
+"EnterQueryDetails" = "Enter query details";
+"selectTopicQuery" = "Select Topic Query";
+
+"Supportticketsubmissionfailed!!" = "Support ticket submission failed!!";
+"Supporttickethasbeensubmittedsuccessfully!!" = "Support ticket has been submitted successfully !!";
+"ThankYou!" = "Thank You!";
+"forregisteringtotheKeshavCementprogram.OurExecutivewillcontactyouforverification" = "for registering to the Keshav Cement program. Our Executive will contactyou for verification";
+"18years" = "It seems you are less than 18 years of age. You can apply for Keshav membership only if you are 18 years and above";
+"ItseemsYouarelessthan18years" = "It seems you are less than 18 years of age.";
+"Theaccountisnotallowedtoredeem" = "The account is not allowed to redeem. Kindly contact the administrator";
+"accept" = "Accept";
+"decline" = "Decline";
+"Youarenotallowledtoredeem" = "You are not allowed to redeem. Please contact your administrator";
+"DreamGifthasbeenremovedsuccessfully" = "Dream Gift has been removed successfully";
+"DreamGifthasbeenremovedfailed" = "Dream Gift has been removed failed";
+"Congratulations!youareeligibletowinthisexistingDreamGift" = "Congratulations! you are eligible to win this existing Dream Gift";
+"DreamGifthasbeenremovedfailed" = "Dream Gift has been removed failed";
+"Congratulations!YouarealmostneartowinthisexistingDreamGift." = "Congratulations! You are almost near to win this existing Dream Gift.";
+"DreamGifthasbeenremovedfailed" = "Dream Gift has been removed failed";
+"Invaildcustomertype" = "Invaild customer type";
+"Thismemberisalreadyexists" = "This member already exists";
+
+
+
+
+"Profileimageuploadedsuccessfully" = "Profile image uploaded successfully";
+"SomethingwentwrongTryagainLater!" = "Something went wrong! Try again Later!";
+"Profileuploadedsuccessfully!" = "Profile uploaded successfully!";
+"Currentlycontactadministrator" = "Currently you are not mapped to any dealer. Kindly contact the administrator.";
+"Accountactivateisfailed" = "Account activate is failed!!";
+"Insufficientquantity" = "Insufficient quantity";
+"Yourclaimhasbeenapproved" = "Your claim has been approved";
+"Yourclaimhasbeenrejected" = "Your claim has been rejected";
+
+"Failed" = "Failed";
+"Claimsubmissionfailed!" = "Claim submission failed!!";
+"InvalidUserName" = "Invalid User Name";
+"EarnPointsWhenPurchase" = "Earn Points When Purchase";
+"ClaimPurchase" = "Claim Purchase";
+"Sales&Earn" = "Sales & Earn";
+"StartEarning" = "Start Earning";
+"StartSelling" = "Start Selling";
+"Youraccounthasbeendeactivated" = "Your account has been deactivated..";
+"YouraccountisverificationpendingKindlycontactyouradministrator" = "Your account is verification pending! Kindly contact your administrator.";
+"YouraccountisnotactivatedKindlyactivateyouraccount." = "Your account is not activated! Kindly activate your account.";
+"YouraccounthasbeendeactivatedKindlycontactyouradministrator" = "Your account has been deactivated! Kindly contact your administrator.";
+"YouraccountverificationisfailedKindlycontactyouradministrator." = "Your account verification is failed!, Kindly contact your administrator.";
+"RegistrationFailed!!" = "Registration Failed !!";
+"Passwordisinvalid!" = "Password is invalid";
+ "Claim" = "Claim";
+
+

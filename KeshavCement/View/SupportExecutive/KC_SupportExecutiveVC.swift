@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import LanguageManager_iOS
 
 class KC_SupportExecutiveVC: BaseViewController, ChangeStatusDelegate {
     func didTapChangeStatus(_ cell: KC_SupporteExecutiveTVC) {
@@ -40,6 +41,8 @@ class KC_SupportExecutiveVC: BaseViewController, ChangeStatusDelegate {
         self.supportExecutiveTableView.delegate = self
         self.supportExecutiveTableView.dataSource = self
         self.noDataFoundLbl.isHidden = true
+        self.supportExecutiveLbl.text = "SupportExecutive".localiz()
+        self.createNewLbl.text = "CreateNew".localiz()
         NotificationCenter.default.addObserver(self, selector: #selector(navigateToPrevious), name: Notification.Name.callApi, object: nil)
         
     }

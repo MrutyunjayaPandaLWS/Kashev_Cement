@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import LanguageManager_iOS
 
 class KC_WorkSiteListDetailsVC: BaseViewController{
     @IBOutlet weak var workDetailsLbl: UILabel!
@@ -33,6 +34,7 @@ class KC_WorkSiteListDetailsVC: BaseViewController{
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleNavigation), name: Notification.Name.navigateToUserDetails, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleNavigation1), name: Notification.Name.navigateToWorkDetails, object: nil)
+        self.headerTitleLbl.text = "WorkSite".localiz()
         
         self.siteLocationLbl.textColor = #colorLiteral(red: 0.9686275125, green: 0.9686275125, blue: 0.9686276317, alpha: 1)
         self.siteLocationColorLbl.backgroundColor = #colorLiteral(red: 0.8931432366, green: 0.8535407186, blue: 0.1089305803, alpha: 1)

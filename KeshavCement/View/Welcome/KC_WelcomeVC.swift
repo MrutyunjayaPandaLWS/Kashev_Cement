@@ -30,7 +30,7 @@ class KC_WelcomeVC: BaseViewController {
         self.customerTypeTableView.dataSource = self
         self.welcomeLbl.text = "Welcome".localiz()
         self.plzSelectInfoLbl.text = "infoText".localiz()
-        self.noDataFoundLbl.text = "NoDataFound".localized()
+        self.noDataFoundLbl.text = "NoDataFound".localiz()
     }
     
     override func viewWillAppear(_ animated: Bool) {

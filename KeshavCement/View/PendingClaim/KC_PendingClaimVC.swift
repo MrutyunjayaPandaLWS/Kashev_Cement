@@ -9,6 +9,7 @@ import UIKit
 import CoreData
 import DPOTPView
 import Kingfisher
+import LanguageManager_iOS
 class KC_PendingClaimVC: BaseViewController, DataUpdateDelegate, DPOTPViewDelegate{
     func didTapPlusButton(_ cell: KC_PendingClaimTVC) {
         guard let tappedIndexPath = self.pendingClaimTableView.indexPath(for: cell) else{return}
@@ -178,8 +179,9 @@ class KC_PendingClaimVC: BaseViewController, DataUpdateDelegate, DPOTPViewDelega
         self.clearTable()
         self.pendingClaimTableView.delegate = self
         self.pendingClaimTableView.dataSource = self
+        self.headerText.text = "PendingClaims".localiz()
         self.searchByNameTF.attributedPlaceholder = NSAttributedString(
-            string: "Search by name / mobile number",
+            string: "Searchbyname/mobilenumber".localiz(),
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.white]
         )
         self.searchByNameTF.textColor = .white
@@ -223,11 +225,11 @@ class KC_PendingClaimVC: BaseViewController, DataUpdateDelegate, DPOTPViewDelega
     @IBAction func otpSubmitBtn(_ sender: Any) {
         print(self.enteredValue, "- Entered Value")
         if self.enteredValue.count == 0 {
-            self.view.makeToast("Enter OTP", duration: 2.0, position: .bottom)
+            self.view.makeToast("EnterOTP".localiz(), duration: 2.0, position: .bottom)
         }else if self.enteredValue.count != 6{
-            self.view.makeToast("Enter valid OTP", duration: 2.0, position: .bottom)
+            self.view.makeToast("EntervalidOTP".localiz(), duration: 2.0, position: .bottom)
         }else if self.receivedOTP != self.enteredValue{
-            self.view.makeToast("Enter correct OTP", duration: 2.0, position: .bottom)
+            self.view.makeToast("EntercorrectOTP".localiz(), duration: 2.0, position: .bottom)
         }else{
             let yesterday = "\(Calendar.current.date(byAdding: .day, value: 0, to: Date())!)"
             let today = yesterday.split(separator: " ")

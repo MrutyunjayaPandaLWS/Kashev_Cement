@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import LanguageManager_iOS
 protocol vouchersDelegate : class {
     func redeemDidTap(_ cell: QS_Vouchers_TVC)
     func amountDidTap(_ cell: QS_Vouchers_TVC)
@@ -107,14 +108,14 @@ class QS_Vouchers_TVC: UITableViewCell, UITextFieldDelegate {
     @IBAction func filter(_ sender: Any) {
         if vouchersdata[0].min_points ?? "" != "" || vouchersdata[0].max_points ?? "" != ""{
             if self.amounttf.text?.count == 0{
-                self.alertMsg = "Enter amount to redeem"
+                self.alertMsg = "Enter_amount_to_redeem".localiz()
                 self.delegate?.alertDidTap(self)
             }else{
                 self.delegate?.redeemDidTap(self)
             }
         }else{
             if self.amount.currentTitle == "Amount" || self.amount.currentTitle == "كمية"{
-                self.alertMsg = "Select amount to redeem"
+                self.alertMsg = "SelectAmount".localiz()
                 self.delegate?.alertDidTap(self)
             }else{
                 self.delegate?.redeemDidTap(self)

@@ -8,6 +8,7 @@
 import UIKit
 //import SDWebImage
 //import Firebase
+import LanguageManager_iOS
 
 class KC_OffersandpromotionsVC: BaseViewController, PromotionDelegate{
     func moveToNext(_ cell: KC_OffersandpromotionsTVC) {
@@ -45,6 +46,8 @@ class KC_OffersandpromotionsVC: BaseViewController, PromotionDelegate{
         self.offersandPromotionTableView.delegate = self
         self.offersandPromotionTableView.dataSource = self
         self.offersandPromotionTableView.separatorStyle = .none
+        self.noDataFound.text = "NoDataFound".localiz()
+        self.headerTitle.text = "OffersandPromotions".localiz()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

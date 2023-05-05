@@ -4,10 +4,8 @@
 //
 //  Created by ADMIN on 18/02/2023.
 //
-
-import Foundation
-
 import UIKit
+import LanguageManager_iOS
 class KC_NewEnrollmentVM{
     
     weak var VC: KC_NewEnrollementVC?
@@ -51,7 +49,7 @@ class KC_NewEnrollmentVM{
                         self.VC?.scrollViewHeightConstarint.constant = 1167
                         self.VC?.mobileTF.isEnabled = true
                         self.VC?.mobileTF.text = ""
-                        self.VC?.view.makeToast("Mobile number is already exists", duration: 2.0, position: .center)
+                        self.VC?.view.makeToast("Themobilenumberalreadyexists".localiz(), duration: 2.0, position: .center)
                         self.VC?.customerTypeLbl.isHidden = true; self.VC?.customerTypePriority.isHidden = true; self.VC?.customerTypeView.isHidden = true; self.VC?.fullNameLbl.isHidden = true; self.VC?.fullNamePriority.isHidden = true; self.VC?.fullNameView.isHidden = true; self.VC?.firmNameLbl.isHidden = true; self.VC?.firmNamePriority.isHidden = true; self.VC?.firmView.isHidden = true; self.VC?.emailLbl.isHidden = true; self.VC?.emailView.isHidden = true; self.VC?.addressLbl.isHidden = true; self.VC?.addressPriority.isHidden = true; self.VC?.addressView.isHidden = true; self.VC?.pincodeLbl.isHidden = true; self.VC?.pincodePriority.isHidden = true; self.VC?.pinCodeView.isHidden = true; self.VC?.stateLbl.isHidden = true; self.VC?.statePriority.isHidden = true; self.VC?.stateView.isHidden = true; self.VC?.districtLbl.isHidden = true; self.VC?.districtPriority.isHidden = true; self.VC?.districtView.isHidden = true; self.VC?.talukLbl.isHidden = true; self.VC?.talukPriority.isHidden = true; self.VC?.talukView.isHidden = true; self.VC?.cityTitleLbl.isHidden = true; self.VC?.cityView.isHidden = true; self.VC?.dobTitleLbl.isHidden = true; self.VC?.dobPriority.isHidden = true; self.VC?.dobView.isHidden = true; self.VC?.dateOfAnniversaryLbls.isHidden = true; self.VC?.anniversaryView.isHidden = true; self.VC?.submitButton.isHidden = true
                     }
                    
@@ -97,7 +95,7 @@ class KC_NewEnrollmentVM{
                                 vc.modalPresentationStyle = .overFullScreen
                                 self.VC!.present(vc, animated: true)
                             }else{
-                                self.VC!.view.makeToast("Enrollment Failed", duration: 3.0, position: .bottom)
+                                self.VC!.view.makeToast("EnrollmentFailed".localiz(), duration: 3.0, position: .bottom)
                                 self.VC!.navigationController?.popViewController(animated: true)
                             }
                         }

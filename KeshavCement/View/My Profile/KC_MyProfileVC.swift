@@ -10,13 +10,7 @@ import Photos
 import QCropper
 import LanguageManager_iOS
 class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelegate, SelectedDataDelegate {
-    func didTapMappedUserName(_ vc: KC_DropDownVC) {}
-    func didTapCityName(_ vc: KC_DropDownVC){}
-    func didTapAmount(_ vc: KC_DropDownVC){}
-    func didTapHelpTopic(_ vc: KC_DropDownVC) {}
-    func didTapWorkLevel(_ vc: KC_DropDownVC) {}
-    func didTapUserType(_ vc: KC_DropDownVC) {}
-    func didTapProductName(_ vc: KC_DropDownVC){}
+    
     func acceptDate(_ vc: KC_DOBVC) {
         if vc.isComeFrom == "DOB"{
             self.dobTF.text = vc.selectedDate
@@ -34,8 +28,11 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
             }
         }
     }
-    
-    func declineDate(_ vc: KC_DOBVC) {}
+    func didTapCityName(_ vc: KC_DropDownVC) {
+           self.selectedCityName = vc.selectedCityName
+           self.selectedCityId = vc.selectedCityId
+           self.cityTF.text = vc.selectedCityName
+       }
     
     func didTapCustomerType(_ vc: KC_DropDownVC) {
         self.customerTypeTF.text = vc.selectedCustomerType
@@ -108,6 +105,8 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
     
     @IBOutlet weak var dateOfBirthLbl: UILabel!
     
+    @IBOutlet weak var cityTitleLbl: UILabel!
+    @IBOutlet weak var cityTF: UITextField!
     @IBOutlet weak var dateOfAnniversaryLbl: UILabel!
     
     var address = ""
@@ -134,6 +133,8 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
     var VM = KC_MyProfileVM()
     var aadharcarNumber = ""
     var gstNumber = ""
+    var selectedCityName = ""
+    var selectedCityId = -1
 //    var loyaltyId = UserDefaults.standard.string(forKey: "LoyaltyId") ?? ""
 //    var userID = UserDefaults.standard.string(forKey: "UserID") ?? ""
     override func viewDidLoad() {
@@ -178,6 +179,7 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
         self.dateOfBirthLbl.text = "DateofBirth".localiz()
         self.dateOfAnniversaryLbl.text = "DateofAnniversary".localiz()
         self.saveChangesBtn.setTitle("SaveChanges", for: .normal)
+        self.cityTitleLbl.text = "City".localiz()
         
     }
     @IBAction func backBtn(_ sender: Any) {
@@ -224,6 +226,19 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
         }else{
             let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
             vc.itsFrom = "DISTRICT"
+            vc.delegate = self
+            vc.selectedStateId = Int(self.stateId)!
+            vc.modalTransitionStyle = .coverVertical
+            vc.modalPresentationStyle = .overFullScreen
+            self.present(vc, animated: true)
+        }
+    }
+    @IBAction func cityButton(_ sender: Any) {
+        if self.stateId == "1"{
+            self.view.makeToast("SelectState".localiz(), duration: 2.0, position: .bottom)
+        }else{
+            let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
+            vc.itsFrom = "CITY"
             vc.delegate = self
             vc.selectedStateId = Int(self.stateId)!
             vc.modalTransitionStyle = .coverVertical

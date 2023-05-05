@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import LanguageManager_iOS
 
 class KC_CashTranferHistoryVC: BaseViewController, DateSelectedDelegate {
     func acceptDate(_ vc: KC_DOBVC) {
@@ -37,6 +38,7 @@ class KC_CashTranferHistoryVC: BaseViewController, DateSelectedDelegate {
     @IBOutlet weak var filterLbl: UILabel!
     @IBOutlet weak var headerTextLbl: UILabel!
     
+    @IBOutlet weak var filterButtonView: UIView!
     @IBOutlet weak var selectFromDateLbl: UILabel!
     
     @IBOutlet weak var selectToDateLbl: UILabel!
@@ -62,13 +64,36 @@ class KC_CashTranferHistoryVC: BaseViewController, DateSelectedDelegate {
         super.viewDidLoad()
         self.noDataFoundLbl.isHidden = true
         self.VM.VC = self
+        
         self.filterView.isHidden = true
         self.cashHistoryTableView.delegate = self
         self.cashHistoryTableView.dataSource = self
         self.cashHistoryTableView.isHidden = true
-        self.selectFromDateLbl.text = "From Date"
-        self.selectToDateLbl.text = "To Date"
+        self.selectFromDateLbl.text = "SelectFromDate".localiz()
+        self.selectToDateLbl.text = "SelectToDate".localiz()
+        self.headerTextLbl.text = "CashHistory".localiz()
+        self.filterLbl.text = "Filter".localiz()
+        self.cashTransferFilterLbl.text = "CashTransferFilter".localiz()
+        self.customerTypeLbl.text = "CustomerType".localiz()
+        self.engineerButton.setTitle("Engineer".localiz(), for: .normal)
+        self.masonBtn.setTitle("Mason".localiz(), for: .normal)
+        self.statusLbl.text = "Status".localiz()
+        self.approvedBtn.setTitle("Approved".localiz(), for: .normal)
+        self.rejectButton.setTitle("Rejected".localiz(), for: .normal)
+        self.dateRangeLbl.text = "DateRange".localiz()
+        self.selectFromDateLbl.text = "SelectFromDate".localiz()
+        self.selectToDateLbl.text = "SelectToDate".localiz()
+        self.clearButton.setTitle("Clear".localiz(), for: .normal)
+        self.applyFilterButton.setTitle("ApplyFilter".localiz(), for: .normal)
         self.cashTransferListApi(startIndex: 1, status: "", fromDate: "", toDate: "", customerTypeId: "")
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if self.customerTypeId == "4"{
+            self.subDealerBtn.isHidden = true
+        }else{
+            self.subDealerBtn.isHidden = false
+        }
     }
 
     @IBAction func backBtn(_ sender: Any) {
@@ -80,14 +105,14 @@ class KC_CashTranferHistoryVC: BaseViewController, DateSelectedDelegate {
             self.filterView.isHidden = true
         }else{
             self.filterView.isHidden = false
-            self.filterView.isHidden = false
-            self.approvedBtn.backgroundColor = UIColor(hexString: "565656")
-            self.pendingBtn.backgroundColor = UIColor(hexString: "565656")
-            self.rejectButton.backgroundColor = UIColor(hexString: "565656")
+//            self.filterView.isHidden = false
+//            self.approvedBtn.backgroundColor = UIColor(hexString: "565656")
+//            self.pendingBtn.backgroundColor = UIColor(hexString: "565656")
+//            self.rejectButton.backgroundColor = UIColor(hexString: "565656")
             
-            self.pendingBtn.setTitleColor(.white, for: .normal)
-            self.approvedBtn.setTitleColor(.white, for: .normal)
-            self.rejectButton.setTitleColor(.white, for: .normal)
+//            self.pendingBtn.setTitleColor(.white, for: .normal)
+//            self.approvedBtn.setTitleColor(.white, for: .normal)
+//            self.rejectButton.setTitleColor(.white, for: .normal)
             self.VM.cashTransferApprovalListingArray.removeAll()
             self.cashTransferListApi(startIndex: 1, status: "", fromDate: "", toDate: "", customerTypeId: self.selectedCustomerTypeID)
         }
@@ -111,16 +136,15 @@ class KC_CashTranferHistoryVC: BaseViewController, DateSelectedDelegate {
     }
     
     @IBAction func pendinButton(_ sender: Any) {
-        self.approvedBtn.backgroundColor = UIColor(hexString: "565656")
-        self.pendingBtn.backgroundColor = UIColor(hexString: "FFFC9C")
-        
-        self.rejectButton.backgroundColor = UIColor(hexString: "565656")
-        self.approvedBtn.setTitleColor(.white, for: .normal)
-        self.pendingBtn.setTitleColor(.darkGray, for: .normal)
-        self.rejectButton.setTitleColor(.white, for: .normal)
-        self.selectedStatus = "0"
-//        self.VM.cashTransferApprovalListingArray.removeAll()
-//        self.cashTransferListApi(startIndex: 1, status: self.selectedStatus, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: self.selectedCustomerTypeID)
+//        self.approvedBtn.backgroundColor = UIColor(hexString: "565656")
+//        self.pendingBtn.backgroundColor = UIColor(hexString: "FFFC9C")
+//
+//        self.rejectButton.backgroundColor = UIColor(hexString: "565656")
+//        self.approvedBtn.setTitleColor(.white, for: .normal)
+//        self.pendingBtn.setTitleColor(.darkGray, for: .normal)
+//        self.rejectButton.setTitleColor(.white, for: .normal)
+//        self.selectedStatus = "0"
+
     }
     @IBAction func rejeectBtn(_ sender: Any) {
         self.approvedBtn.backgroundColor = UIColor(hexString: "565656")
@@ -172,8 +196,8 @@ class KC_CashTranferHistoryVC: BaseViewController, DateSelectedDelegate {
         self.approvedBtn.setTitleColor(.white, for: .normal)
         self.rejectButton.setTitleColor(.white, for: .normal)
         self.selectedStatus = ""
-        self.selectFromDateLbl.text = "From Date"
-        self.selectToDateLbl.text = "To Date"
+        self.selectFromDateLbl.text = "SelectFromDate".localiz()
+        self.selectToDateLbl.text = "SelectToDate".localiz()
         self.VM.cashTransferApprovalListingArray.removeAll()
         self.selectedCustomerTypeID = ""
         self.cashTransferListApi(startIndex: 1, status: self.selectedStatus, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: self.selectedCustomerTypeID)
@@ -186,18 +210,19 @@ class KC_CashTranferHistoryVC: BaseViewController, DateSelectedDelegate {
         print(self.selectedFromDate)
         print(self.selectedToDate)
         if self.selectedStatus == "" && self.selectedFromDate == "" && self.selectedToDate == "" && self.selectedCustomerTypeID == ""{
-            self.view.makeToast("Select any select or date range", duration: 2.0, position: .center)
+            self.view.makeToast("Selectanyselectordaterange".localiz(), duration: 2.0, position: .center)
         }else if self.selectedFromDate == "" && self.selectedToDate == "" && self.selectedStatus != "" || self.selectedCustomerTypeID != ""{
             self.VM.cashTransferApprovalListingArray.removeAll()
-            self.cashTransferListApi(startIndex: 1, status: self.selectedStatus, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: self.selectedCustomerTypeID)
             self.filterView.isHidden = true
+            self.cashTransferListApi(startIndex: 1, status: self.selectedStatus, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: self.selectedCustomerTypeID)
+            
         }else if self.selectedFromDate != "" && self.selectedToDate == ""{
-            self.view.makeToast("Select To date", duration: 2.0, position: .center)
+            self.view.makeToast("SelectToDate".localiz(), duration: 2.0, position: .center)
         }else if self.selectedFromDate == "" && self.selectedToDate != ""{
-            self.view.makeToast("Select From date", duration: 2.0, position: .center)
+            self.view.makeToast("SelectFromDate".localiz(), duration: 2.0, position: .center)
         }else if self.selectedFromDate != "" && self.selectedToDate != ""{
             if self.selectedFromDate > self.selectedToDate{
-                self.view.makeToast("To date shouldn't greater than From date", duration: 2.0, position: .center)
+                self.view.makeToast("TodateshouldntgreaterthanFromdate".localiz(), duration: 2.0, position: .center)
             }else{
                 self.VM.cashTransferApprovalListingArray.removeAll()
                 self.cashTransferListApi(startIndex: 1, status: self.selectedStatus, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: self.selectedCustomerTypeID)
@@ -216,12 +241,9 @@ class KC_CashTranferHistoryVC: BaseViewController, DateSelectedDelegate {
         self.masonBtn.setTitleColor(.white, for: .normal)
         
         self.selectedStatus = ""
-        self.selectFromDateLbl.text = "From Date"
-        self.selectToDateLbl.text = "To Date"
-        self.selectedCustomerTypeID = "4"
-        
-//        self.VM.cashTransferApprovalListingArray.removeAll()
-//        self.cashTransferListApi(startIndex: 1, status: self.selectedStatus, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: self.selectedCustomerTypeID)
+        self.selectFromDateLbl.text = "SelectFromDate".localiz()
+        self.selectToDateLbl.text = "SelectToDate".localiz()
+        self.selectedCustomerTypeID = "4" 
     }
     
     @IBAction func engineerBtn(_ sender: Any) {
@@ -234,8 +256,8 @@ class KC_CashTranferHistoryVC: BaseViewController, DateSelectedDelegate {
         self.masonBtn.setTitleColor(.white, for: .normal)
         
         self.selectedStatus = ""
-        self.selectFromDateLbl.text = "From Date"
-        self.selectToDateLbl.text = "To Date"
+        self.selectFromDateLbl.text = "SelectFromDate".localiz()
+        self.selectToDateLbl.text = "SelectToDate".localiz()
         self.selectedCustomerTypeID = "1"
         
 //        self.VM.cashTransferApprovalListingArray.removeAll()
@@ -253,8 +275,8 @@ class KC_CashTranferHistoryVC: BaseViewController, DateSelectedDelegate {
         
         self.selectedCustomerTypeID = "2"
         self.selectedStatus = ""
-        self.selectFromDateLbl.text = "From Date"
-        self.selectToDateLbl.text = "To Date"
+        self.selectFromDateLbl.text = "SelectFromDate".localiz()
+        self.selectToDateLbl.text = "SelectToDate".localiz()
        
 //        self.VM.cashTransferApprovalListingArray.removeAll()
 //        self.cashTransferListApi(startIndex: 1, status: self.selectedStatus, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: self.selectedCustomerTypeID)

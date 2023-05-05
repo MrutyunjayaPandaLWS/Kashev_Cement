@@ -72,7 +72,7 @@ class KC_ActivateAccountVC: BaseViewController, UITextFieldDelegate {
         self.otpLbl.text = "OTP".localiz()
         self.generateOTPBtn.setTitle("GenerateOTP".localiz(), for: .normal)
         self.otpInfoLbl.text = "OTPwillreciev".localiz()
-        self.resendOtpBtn.setTitle("ResendOTP", for: .normal)
+        self.resendOtpBtn.setTitle("ResendOTP".localiz(), for: .normal)
         self.alreadyhaveLbl.text = "Alreadyhaveanaccount".localiz()
         self.loginBtn.setTitle("Login".localiz(), for: .normal)
     }
@@ -143,11 +143,11 @@ class KC_ActivateAccountVC: BaseViewController, UITextFieldDelegate {
         }else if self.generateOTPBtn.currentTitle == "Submit".localiz(){
             print(self.enteredValue, "- Entered Value")
             if self.enteredValue.count == 0 {
-                self.view.makeToast("EnterOTP", duration: 2.0, position: .bottom)
+                self.view.makeToast("EnterOTP".localiz(), duration: 2.0, position: .bottom)
             }else if self.enteredValue.count != 6{
-                self.view.makeToast("EntervalidOTP", duration: 2.0, position: .bottom)
+                self.view.makeToast("EntervalidOTP".localiz(), duration: 2.0, position: .bottom)
             }else if self.receivedOTP != self.enteredValue{
-                self.view.makeToast("EntercorrectOTP", duration: 2.0, position: .bottom)
+                self.view.makeToast("EntercorrectOTP".localiz(), duration: 2.0, position: .bottom)
             }else{
                 self.VM.timer.invalidate()
                 self.getAccountDetailsApi()

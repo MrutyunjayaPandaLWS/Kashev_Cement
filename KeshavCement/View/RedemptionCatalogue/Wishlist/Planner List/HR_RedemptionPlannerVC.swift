@@ -7,7 +7,7 @@
 
 import UIKit
 import SDWebImage
-//import LanguageManager_iOS
+import LanguageManager_iOS
 class HR_RedemptionPlannerVC: BaseViewController, RedeemePlannedProductDelegate{
 //    func popupAlertDidTap(_ vc: HR_PopUpVC) {}
 
@@ -20,7 +20,7 @@ class HR_RedemptionPlannerVC: BaseViewController, RedeemePlannedProductDelegate{
             let filterCategory = self.VM.myCartListArray.filter { $0.catalogueId == self.VM.plannerListArray[tappedIndex.row].catalogueId ?? 0}
             if filterCategory.count > 0{
                 DispatchQueue.main.async{
-                    self.view.makeToast("Gift product is already added in the Redeem list", duration: 2.0, position: .bottom)
+                    self.view.makeToast("Giftproductlreadyaddedlist".localiz(), duration: 2.0, position: .bottom)
                 }
             }else{
                 print(self.totalCartValue, "Cart Value")
@@ -44,12 +44,12 @@ class HR_RedemptionPlannerVC: BaseViewController, RedeemePlannedProductDelegate{
                         
                     }else{
                         DispatchQueue.main.async{
-                            self.view.makeToast("Insufficent Point Balance", duration: 2.0, position: .bottom)
+                            self.view.makeToast("InsufficientPointBalance".localiz(), duration: 2.0, position: .bottom)
                         }
                     }
                 }else{
                     DispatchQueue.main.async{
-                        self.view.makeToast("Insufficent Point Balance", duration: 2.0, position: .bottom)
+                        self.view.makeToast("InsufficientPointBalance".localiz(), duration: 2.0, position: .bottom)
                     }
                 }
              
@@ -98,10 +98,11 @@ class HR_RedemptionPlannerVC: BaseViewController, RedeemePlannedProductDelegate{
     var selectedPlannerID = -1
     var totalCartValue = 0
     var partyLoyaltyId = ""
+    var productTotalPoints = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         self.VM.VC = self
-        self.screenTitle.text = "Wishlist"
+        self.screenTitle.text = "Wishlist".localiz()
         
     //    self.points.text = "POINTS"
     //    self.totalPts.text! = "\(redeemablePointsBalance)"

@@ -6,19 +6,14 @@
 //
 
 import UIKit
+import LanguageManager_iOS
 
 class KC_NewEnrollementVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegate, UITextFieldDelegate {
-    func didTapHelpTopic(_ vc: KC_DropDownVC) {}
-    func didTapWorkLevel(_ vc: KC_DropDownVC) {}
-    func didTapAmount(_ vc: KC_DropDownVC){}
-   func didTapMappedUserName(_ vc: KC_DropDownVC) {}
     func didTapCityName(_ vc: KC_DropDownVC) {
            self.selectedCityName = vc.selectedCityName
            self.selectedCityId = vc.selectedCityId
            self.cityLbl.text = vc.selectedCityName
        }
-    func didTapProductName(_ vc: KC_DropDownVC){}
-    func didTapUserType(_ vc: KC_DropDownVC) {}
     
     func acceptDate(_ vc: KC_DOBVC) {
         if vc.isComeFrom == "DOB"{
@@ -30,15 +25,13 @@ class KC_NewEnrollementVC: BaseViewController, SelectedDataDelegate, DateSelecte
             print(vc.selectedDate)
             if self.dobLbl.text ?? "" >= vc.selectedDate{
                 vc.selectedDate = ""
-                self.view.makeToast("Anniversary date should be more then a Date of birth", duration: 2.0, position: .bottom)
+                self.view.makeToast("AnniversarydateshouldbemorethenaDateofbirth".localiz(), duration: 2.0, position: .bottom)
             }else{
                 self.dateOfAnniversaryLbl.text = vc.selectedDate
                 self.selectedAnniversary = vc.selectedDate
             }
         }
     }
-    
-    func declineDate(_ vc: KC_DOBVC) {}
     
     func didTapCustomerType(_ vc: KC_DropDownVC) {
         self.selectCustomerTypeLbl.text = vc.selectedCustomerType
@@ -64,9 +57,9 @@ class KC_NewEnrollementVC: BaseViewController, SelectedDataDelegate, DateSelecte
         self.selectedDistrictId = -1
         self.selectedCityId = -1
         self.selectedTalukId = -1
-        self.selectDistrictLBl.text = "Select District"
-        self.selectTaluk.text = "Select Taluk"
-        self.cityLbl.text = "Select City"
+        self.selectDistrictLBl.text = "SelectDistrict".localiz()
+        self.selectTaluk.text = "SelectTaluk".localiz()
+        self.cityLbl.text = "SelectCity".localiz()
     }
     
     func didTapDistrict(_ vc: KC_DropDownVC) {
@@ -75,8 +68,8 @@ class KC_NewEnrollementVC: BaseViewController, SelectedDataDelegate, DateSelecte
         self.selectedDistrictId = vc.selectedDistrictId
         self.selectedCityId = -1
         self.selectedTalukId = -1
-        self.selectTaluk.text = "Select Taluk"
-        self.cityLbl.text = "Select City"
+        self.selectTaluk.text = "SelectTaluk".localiz()
+        self.cityLbl.text = "SelectCity".localiz()
 
     }
     
@@ -85,7 +78,7 @@ class KC_NewEnrollementVC: BaseViewController, SelectedDataDelegate, DateSelecte
         self.selectedTalukName = vc.selectedTalukName
         self.selectedTalukId = vc.selectedTalukId
         self.selectedCityId = -1
-        self.cityLbl.text = "Select City"
+        self.cityLbl.text = "SelectCity".localiz()
 
     }
     
@@ -195,7 +188,7 @@ class KC_NewEnrollementVC: BaseViewController, SelectedDataDelegate, DateSelecte
         if self.emailTF.text!.count != 0{
             if !isValidEmail(self.emailTF.text ?? "") {
                 self.emailTF.text = ""
-                self.view.makeToast("Enter valid email", duration: 2.0, position: .bottom)
+                self.view.makeToast("Entervalidemail".localiz(), duration: 2.0, position: .bottom)
             }
         }
     }
@@ -230,7 +223,7 @@ class KC_NewEnrollementVC: BaseViewController, SelectedDataDelegate, DateSelecte
     
     @IBAction func selectDistrictBtn(_ sender: Any) {
         if self.selectedStateId == -1{
-            self.view.makeToast("Select State", duration: 2.0, position: .bottom)
+            self.view.makeToast("SelectState".localiz(), duration: 2.0, position: .bottom)
         }else{
             
             let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
@@ -244,7 +237,7 @@ class KC_NewEnrollementVC: BaseViewController, SelectedDataDelegate, DateSelecte
     }
     @IBAction func selectTalukBtn(_ sender: Any) {
         if self.selectedDistrictId == -1{
-            self.view.makeToast("Select District", duration: 2.0, position: .bottom)
+            self.view.makeToast("SelectDistrict".localiz(), duration: 2.0, position: .bottom)
         }else{
             let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
             vc.itsFrom = "TALUK"
@@ -258,7 +251,7 @@ class KC_NewEnrollementVC: BaseViewController, SelectedDataDelegate, DateSelecte
     
     @IBAction func cityButton(_ sender: Any) {
         if self.selectedStateId == -1{
-            self.view.makeToast("Select State", duration: 2.0, position: .bottom)
+            self.view.makeToast("SelectState".localiz(), duration: 2.0, position: .bottom)
         }else{
             let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
             vc.itsFrom = "CITY"
@@ -281,7 +274,7 @@ class KC_NewEnrollementVC: BaseViewController, SelectedDataDelegate, DateSelecte
     
     @IBAction func dateOfAnniversaryButton(_ sender: Any) {
         if self.dobLbl.text!.count == 0{
-            self.view.makeToast("Please select date of birth", duration: 2.0, position: .bottom)
+            self.view.makeToast("Pleaseselectdateofbirth".localiz(), duration: 2.0, position: .bottom)
         }else{
             let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DOBVC") as! KC_DOBVC
             vc.isComeFrom = "ANNIVERSARY"
@@ -298,23 +291,23 @@ class KC_NewEnrollementVC: BaseViewController, SelectedDataDelegate, DateSelecte
     @IBAction func submitBtn(_ sender: Any) {
         
         if self.selectedCustomerTypeId == -1{
-            self.view.makeToast("Select customer type", duration: 2.0, position: .bottom)
+            self.view.makeToast("Selectcustomertype".localiz(), duration: 2.0, position: .bottom)
         }else if self.fullNameTF.text?.count == 0{
-            self.view.makeToast("Enter full name", duration: 2.0, position: .bottom)
+            self.view.makeToast("Enterfullname".localiz(), duration: 2.0, position: .bottom)
         }else if self.firmNameTF.text?.count == 0{
-            self.view.makeToast("Enter firm name", duration: 2.0, position: .bottom)
+            self.view.makeToast("Enterfirmname".localiz(), duration: 2.0, position: .bottom)
         }else if self.mobileTF.text?.count == 0{
-            self.view.makeToast("Enter mobile number", duration: 2.0, position: .bottom)
+            self.view.makeToast("Entermobilenumber".localiz(), duration: 2.0, position: .bottom)
         }else if self.addressTF.text?.count == 0{
-            self.view.makeToast("Enter address", duration: 2.0, position: .bottom)
+            self.view.makeToast("Enteraddress".localiz(), duration: 2.0, position: .bottom)
         }else if self.pincodeTF.text?.count == 0{
-            self.view.makeToast("Enter pincode", duration: 2.0, position: .bottom)
+            self.view.makeToast("Enterpincode".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedStateId == -1{
-            self.view.makeToast("Select State", duration: 2.0, position: .bottom)
+            self.view.makeToast("SelectState".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedDistrictId == -1{
-            self.view.makeToast("Select District", duration: 2.0, position: .bottom)
+            self.view.makeToast("SelectDistrict".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedDOB == ""{
-            self.view.makeToast("Select DOB", duration: 2.0, position: .bottom)
+            self.view.makeToast("SelectDOB".localiz(), duration: 2.0, position: .bottom)
         }
 //        else if self.selectedTalukId == -1{
 //            self.view.makeToast("Select Taluk", duration: 2.0, position: .bottom)
@@ -363,9 +356,9 @@ class KC_NewEnrollementVC: BaseViewController, SelectedDataDelegate, DateSelecte
     
     @IBAction func mobileEditingDidEnd(_ sender: Any) {
         if self.mobileTF.text?.count == 0 {
-            self.view.makeToast("Enter mobile number", duration: 2.0, position: .bottom)
+            self.view.makeToast("Entermobilenumber".localiz(), duration: 2.0, position: .bottom)
         }else if self.mobileTF.text?.count != 10 {
-            self.view.makeToast("Enter valid mobile number", duration: 2.0, position: .bottom)
+            self.view.makeToast("Entervalidmobilenumber".localiz(), duration: 2.0, position: .bottom)
         }else{
             let parameter = [
                 "ActionType":"65",

@@ -5,9 +5,8 @@
 //  Created by ADMIN on 24/03/2023.
 //
 
-import Foundation
 import UIKit
-
+import LanguageManager_iOS
 class KC_CashTransferApprovalVM{
     
     weak var VC: KC_CashTranferApprovalVC?
@@ -168,7 +167,7 @@ class KC_CashTransferApprovalVM{
                             self.timer.invalidate()
                             self.VC?.otpPopUpView.isHidden = true
                             self.VC?.successPopupView.isHidden = true
-                            self.VC?.view.makeToast("Something went wrong! Try again later", duration: 2.0, position: .bottom)
+                            self.VC?.view.makeToast("SomethingwentwrongTryagainlater".localiz(), duration: 2.0, position: .bottom)
                           //  self.VC!.navigationController?.popViewController(animated: true)
                         }
                     }
@@ -218,7 +217,7 @@ class KC_CashTransferApprovalVM{
 //                            self.VC?.selectedProductId = -1
 ////                            self.VC!.successPopUpView.isHidden = true
 //                            self.VC!.otpPopUpView.isHidden = true
-                            self.VC!.view.makeToast("Insufficient quantity !!", duration: 3.0, position: .bottom)
+                            self.VC!.view.makeToast("Insufficientquantity!!".localiz(), duration: 3.0, position: .bottom)
                         }
                     }
                 }else{
@@ -245,15 +244,15 @@ class KC_CashTransferApprovalVM{
                         print(result?.returnMessage ?? "", "Response")
                         if result?.returnMessage ?? "-1" == "1"{
                             if self.VC!.approvedStatus == "1"{
-                                self.VC!.successMessageLbl.text = "Your claim has been approved"
+                                self.VC!.successMessageLbl.text = "Yourclaimhasbeenapproved".localiz()
                             }else{
-                                self.VC!.successMessageLbl.text = "Your claim has been rejected"
+                                self.VC!.successMessageLbl.text = "Yourclaimhasbeenrejected".localiz()
                             }
                             
                             self.VC!.successPopupView.isHidden = false
                             self.VC!.otpPopUpView.isHidden = true
                         }else{
-                            self.VC!.view.makeToast("Submission failed!!", duration: 2.0, position: .bottom)
+                            self.VC!.view.makeToast("Submissionfailed!!".localiz(), duration: 2.0, position: .bottom)
                         }
                     }
                 }else{

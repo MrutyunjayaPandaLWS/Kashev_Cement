@@ -8,7 +8,7 @@
 import UIKit
 import Lottie
 import Toast_Swift
-
+import LanguageManager_iOS
 class KC_CashTransferSubmissionVC: BaseViewController, SelectedDataDelegate{
     func didTapAmount(_ vc: KC_DropDownVC){
         self.selectedAmount = vc.selectedAmount
@@ -17,16 +17,12 @@ class KC_CashTransferSubmissionVC: BaseViewController, SelectedDataDelegate{
         self.qtyTF.text = "\(vc.selectedCashBack)"
         self.quantity = vc.selectedCashBack
     }
-    func didTapHelpTopic(_ vc: KC_DropDownVC) {}
-    func didTapCustomerType(_ vc: KC_DropDownVC) {}
-    func didTapWorkLevel(_ vc: KC_DropDownVC) {}
-    func didTapCityName(_ vc: KC_DropDownVC){}
     func didTapMappedUserName(_ vc: KC_DropDownVC) {
         self.searchTF.text = vc.mappedUsername
         self.mappedName = vc.mappedUsername
         self.mappedUserId = vc.mappedUserId
         self.mappedLoyaltyId = vc.mappedLoyaltyId
-        self.pleaseSelectProductLbl.text = "Please select points"
+        self.pleaseSelectProductLbl.text = "Pleaseselectpoints".localiz()
         self.selectedProductId = -1
     }
     func didTapProductName(_ vc: KC_DropDownVC){
@@ -36,16 +32,13 @@ class KC_CashTransferSubmissionVC: BaseViewController, SelectedDataDelegate{
         self.selectedProductCode = vc.selectedProductCode
         
     }
-    func didTapState(_ vc: KC_DropDownVC) {}
-    func didTapDistrict(_ vc: KC_DropDownVC) {}
-    func didTapTaluk(_ vc: KC_DropDownVC) {}
     func didTapUserType(_ vc: KC_DropDownVC) {
         self.selectTypeLbl.text = vc.selectedUserTypeName
         self.selectedUserTypeName = vc.selectedUserTypeName
         self.selectedUserTypeId = vc.selectedUserTypeId
         self.searchTF.text = ""
-        self.searchTF.placeholder = "Search ..."
-        self.pleaseSelectProductLbl.text = "Please select points"
+        self.searchTF.placeholder = "Search ...".localiz()
+        self.pleaseSelectProductLbl.text = "Pleaseselectpoints".localiz()
         self.mappedUserId = -1
         self.selectedProductId = -1
         self.selectedAmount = -1
@@ -111,6 +104,16 @@ class KC_CashTransferSubmissionVC: BaseViewController, SelectedDataDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.VM.VC = self
+        self.claimHeaderLbl.text = "CashTransfer".localiz()
+        self.totalPtsLbl.text = "TotalPoints".localiz()
+        self.howToWorksBtn.setTitle("HowitWorks".localiz(), for: .normal)
+        self.nameLbl.text = "Name".localiz()
+        self.searchTF.placeholder = "Searchbyname".localiz()
+        self.selectProductLbl.text = "SelectPoints".localiz()
+        self.pleaseSelectProductLbl.text = "PleaseSelectPoints".localiz()
+        self.enterQty.text = "ValueinRupees".localiz()
+        self.instructionLbl.text = "Instructions".localiz()
+        self.okBtn.setTitle("OK".localiz(), for: .normal)
         
         formatter.dateFormat = "dd/MM/yyyy"
         let result = formatter.string(from: date)
@@ -126,7 +129,7 @@ class KC_CashTransferSubmissionVC: BaseViewController, SelectedDataDelegate{
         self.totalPoinView.clipsToBounds = true
         self.totalPoinView.cornerRadius = 20
         self.totalPoinView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
-        self.searchTF.attributedPlaceholder = NSAttributedString(string: "Search Name", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
+        self.searchTF.attributedPlaceholder = NSAttributedString(string: "SearchName".localiz(), attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
                 NotificationCenter.default.addObserver(self, selector: #selector(afterQuerySubmitted), name: Notification.Name.navigateToDashBoard, object: nil)
         self.cashDetailsApi()
             }
@@ -158,7 +161,7 @@ class KC_CashTransferSubmissionVC: BaseViewController, SelectedDataDelegate{
     
     @IBAction func selectProductBtn(_ sender: Any) {
         if self.mappedUserId == -1{
-            self.view.makeToast("Please select mapped user", duration: 2.0, position: .bottom)
+            self.view.makeToast("Pleaseselectmappeduser".localiz(), duration: 2.0, position: .bottom)
         }else{
             let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
             vc.itsFrom = "CASHPOINTS"
@@ -246,15 +249,15 @@ class KC_CashTransferSubmissionVC: BaseViewController, SelectedDataDelegate{
 //            self.swipeButton.backgroundColor = .white
 //        }else
         if self.mappedUserId == -1{
-            self.view.makeToast("Please select mapped user", duration: 2.0, position: .bottom)
+            self.view.makeToast("Pleaseselectmappeduser".localiz(), duration: 2.0, position: .bottom)
             self.swipeButton.reset()
             self.swipeButton.backgroundColor = .white
         }else if self.selectedAmount == -1{
-            self.view.makeToast("Please select amount", duration: 2.0, position: .bottom)
+            self.view.makeToast("Pleaseselectamount".localiz(), duration: 2.0, position: .bottom)
             self.swipeButton.reset()
             self.swipeButton.backgroundColor = .white
         }else if self.quantity == 0{
-            self.view.makeToast("Quantity shouln't be 0", duration: 2.0, position: .bottom)
+            self.view.makeToast("Quantityshoulntbe0".localiz(), duration: 2.0, position: .bottom)
             self.swipeButton.reset()
             self.swipeButton.backgroundColor = .white
         }else{
@@ -271,7 +274,7 @@ class KC_CashTransferSubmissionVC: BaseViewController, SelectedDataDelegate{
                 print(parameter)
                 self.VM.cashTransferSubmissionApi(parameter: parameter)
             }else{
-                self.view.makeToast("Insufficient point balance", duration: 2.0, position: .bottom)
+                self.view.makeToast("InsufficientPointBalance".localiz(), duration: 2.0, position: .bottom)
                 self.swipeButton.reset()
                 self.swipeButton.backgroundColor = .white
             }

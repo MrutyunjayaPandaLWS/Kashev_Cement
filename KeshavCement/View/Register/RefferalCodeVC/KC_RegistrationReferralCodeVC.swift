@@ -83,7 +83,7 @@ class KC_RegistrationReferralCodeVC: BaseViewController {
                 if str ?? "" == "true"{
                     DispatchQueue.main.async {
                         self.stopLoading()
-                        self.view.makeToast("Invalid referral code".localiz(), duration: 2.0, position: .bottom)
+                        self.view.makeToast("Invalidreferralcode".localiz(), duration: 2.0, position: .bottom)
                     }
                 }else{
                     DispatchQueue.main.async {

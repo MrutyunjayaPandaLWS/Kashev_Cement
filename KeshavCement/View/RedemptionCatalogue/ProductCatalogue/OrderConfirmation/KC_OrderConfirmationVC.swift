@@ -81,6 +81,7 @@ class KC_OrderConfirmationVC: BaseViewController, SendUpdatedAddressDelegate {
     var giftName = ""
     var contractorName = ""
     var giftStatusId = 0
+    var productTotalPoints = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -143,9 +144,17 @@ class KC_OrderConfirmationVC: BaseViewController, SendUpdatedAddressDelegate {
                     self.VM.getMycartList(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId)
                 }
                 self.addressTextView.isUserInteractionEnabled = false
-                let calcValue = Int(redeemablePointsBalance)! - self.totalRedemmablePts
-                self.pointBalance = calcValue
-                self.pointsBalanceLbl.text = "Point balance \(calcValue) after this purchase"
+                if self.partyLoyaltyId == ""{
+                    let calcValue = Int(redeemablePointsBalance)! - self.totalRedemmablePts
+                    self.pointBalance = calcValue
+                    self.pointsBalanceLbl.text = "Point balance \(calcValue) after this purchase"
+                }else{
+                    print(self.productTotalPoints)
+                    print(self.totalRedemmablePts)
+                    let calcValues = Int(self.productTotalPoints) - self.totalRedemmablePts
+                    self.pointBalance = calcValues
+                    self.pointsBalanceLbl.text = "Point balance \(calcValues) after this purchase"
+                }
             }
             
          
@@ -178,7 +187,10 @@ class KC_OrderConfirmationVC: BaseViewController, SendUpdatedAddressDelegate {
                     self.view.makeToast("currentlyContactAdministrator".localiz(), duration: 2.0, position: .bottom)
                 }
             }else{
-                if self.totalRedemmablePts <= Int(self.redeemablePointsBalance)!{
+                if self.partyLoyaltyId == ""{
+                    
+                }
+                if self.totalRedemmablePts <= Int(self.redeemablePointsBalance)! && self.partyLoyaltyId == "" || self.totalRedemmablePts <=  self.productTotalPoints && self.partyLoyaltyId != ""{
                     print(sender.swipe_direction)
                        if sender.swipe_direction == .right {
                            DispatchQueue.main.asyncAfter(deadline: .now()+0.9, execute: {

@@ -8,6 +8,7 @@
 import UIKit
 import Kingfisher
 import SDWebImage
+import LanguageManager_iOS 
 class KC_MappedCustomerListVC: BaseViewController {
 
     @IBOutlet weak var noDataFoundLbl: UILabel!
@@ -88,21 +89,24 @@ extension KC_MappedCustomerListVC: UITableViewDelegate, UITableViewDataSource{
             case "CATALOGUE":
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_ProductCatalogueVC") as! KC_ProductCatalogueVC
                 vc.partyLoyaltyId = self.VM.mappedCustomerListArray[indexPath.row].loyaltyID ?? ""
+                vc.productTotalPoints = self.VM.mappedCustomerListArray[indexPath.row].totalPointsBalance ?? 0
                 self.navigationController?.pushViewController(vc, animated: true)
             case "eVoucher":
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "QS_MyVouchers_VC") as! QS_MyVouchers_VC
                 vc.partyLoyaltyId = self.VM.mappedCustomerListArray[indexPath.row].loyaltyID ?? ""
+                vc.productTotalPoints = self.VM.mappedCustomerListArray[indexPath.row].totalPointsBalance ?? 0
                 self.navigationController?.pushViewController(vc, animated: true)
             case "WISHLIST":
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "HR_RedemptionPlannerVC") as! HR_RedemptionPlannerVC
                 vc.partyLoyaltyId = self.VM.mappedCustomerListArray[indexPath.row].loyaltyID ?? ""
+                vc.productTotalPoints = self.VM.mappedCustomerListArray[indexPath.row].totalPointsBalance ?? 0 
                 self.navigationController?.pushViewController(vc, animated: true)
             default:
                 print("None")
             }
             
         }else if self.VM.mappedCustomerListArray[indexPath.row].isActive ?? -1 != 1{
-            self.view.makeToast("The account is not allowed to redeem. Kindly contact the administrator", duration: 2.0, position: .bottom)
+            self.view.makeToast("Theaccountisnotallowedtoredee".localiz(), duration: 2.0, position: .bottom)
         }
        
     

@@ -5,8 +5,8 @@
 //  Created by ADMIN on 27/02/2023.
 //
 
-import Foundation
 import UIKit
+import LanguageManager_iOS
 class KC_CashTransferSubmissionVM{
     
     weak var VC: KC_CashTranferPopUpVC?
@@ -82,7 +82,7 @@ class KC_CashTransferSubmissionVM{
                         if customerDetails.count != 0{
                             if customerDetails[0].customerId ?? 0 == 0{
                                 DispatchQueue.main.async{
-                                    self.VC!.view.makeToast("Currently you are not mapped to any dealer. Kindly contact the administrator.", duration: 2.0, position: .bottom)
+                                    self.VC!.view.makeToast("Currentlycontactadministrator".localiz(), duration: 2.0, position: .bottom)
                                 }
                             }else{
 //                            self.VC?.addressTextView.text = "\(result?.lstCustomerJson?[0].address1 ?? "-"),\n\(result?.lstCustomerJson?[0].districtName ?? "-"),\n\(result?.lstCustomerJson?[0].stateName ?? "-"),\n \("India -")\(result?.lstCustomerJson?[0].zip ?? "-")\n\("PH")- \(result?.lstCustomerJson?[0].mobile ?? "-")\n\("Email")- \(result?.lstCustomerJson?[0].email ?? "-")"
@@ -168,7 +168,7 @@ class KC_CashTransferSubmissionVM{
                             self.VC!.cashTransferOtpView.isHidden = true
                             self.VC!.cashTransferSuccessPopUp.isHidden = true
                             self.VC!.dismiss(animated: true)
-                            self.VC!.view.makeToast("Something went wrong. Try again later!", duration: 2.0, position: .bottom)
+                            self.VC!.view.makeToast("SomethingwentwrongTryagainLater!".localiz(), duration: 2.0, position: .bottom)
                         }
                        
                     }

@@ -5,9 +5,8 @@
 //  Created by ADMIN on 01/03/2023.
 //
 
-import Foundation
 import UIKit
-
+import LanguageManager_iOS
 class KC_QueryTopicListVM{
     
     weak var VC: KC_SelectTopicQueryVC?
@@ -42,7 +41,7 @@ class KC_QueryTopicListVM{
                             self.VC?.queryCategoryListTableView.reloadData()
                         }else{
                             self.VC?.queryCategoryListTableView.isHidden = true
-                            self.VC?.view.makeToast("No data found !!", duration: 2.0, position: .bottom)
+                            self.VC?.view.makeToast("NoDataFound".localiz(), duration: 2.0, position: .bottom)
                         }
                         
 //                        let enrollmenteLists = result?.customerBasicInfoListJson ?? []

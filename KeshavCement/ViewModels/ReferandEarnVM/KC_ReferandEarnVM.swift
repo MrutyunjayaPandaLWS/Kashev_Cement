@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import LanguageManager_iOS
 
 class KC_ReferandEarnVM{
     
@@ -29,11 +30,11 @@ class KC_ReferandEarnVM{
                         if result?.returnMessage ?? "0" == "1"{
                             self.VC!.nameTF.text = ""
                             self.VC!.mobileTF.text = ""
-                            self.VC!.view.makeToast("Successfully referral code sent to your friend",duration: 2.0, position: .bottom)
+                            self.VC!.view.makeToast("Successfullyreferralcodesenttoyourfriend".localiz(),duration: 2.0, position: .bottom)
                         }else  if result?.returnMessage ?? "0" == "2~Mobile number already Referred"{
-                            self.VC!.view.makeToast("This mobile number already referred",duration: 2.0, position: .bottom)
+                            self.VC!.view.makeToast("Thismobilenumberalreadyreferred".localiz(),duration: 2.0, position: .bottom)
                         }else{
-                            self.VC!.view.makeToast("Something went wrong! Try again Later.",duration: 2.0, position: .bottom)
+                            self.VC!.view.makeToast("SomethingwentwrongTryagainLater.".localiz(),duration: 2.0, position: .bottom)
                         }
                     }
                     DispatchQueue.main.async {

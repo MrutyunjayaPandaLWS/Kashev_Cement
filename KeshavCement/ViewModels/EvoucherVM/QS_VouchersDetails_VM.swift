@@ -6,7 +6,7 @@
 //
 
 import UIKit
-//import LanguageManager_iOS
+import LanguageManager_iOS
 
 class QS_VouchersDetails_VM{
     
@@ -106,24 +106,24 @@ class QS_VouchersDetails_VM{
                         if message.count != 0 {
                             let separatedmessage = message.split(separator: "-")
                             if separatedmessage[2] == "0"{
-                                let alertController = UIAlertController(title: "Oops", message: "You don’t have sufficient point balance to redeem the voucher", preferredStyle: .alert)
-                                let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
+                                let alertController = UIAlertController(title: "Oops".localiz(), message: "Youdonsufficientvoucher".localiz(), preferredStyle: .alert)
+                                let okAction = UIAlertAction(title: "OK".localiz(), style: UIAlertAction.Style.default) {
                                        UIAlertAction in
                                     self.VC!.navigationController?.popViewController(animated: true)
                                    }
                                    alertController.addAction(okAction)
                                 self.VC!.present(alertController, animated: true, completion: nil)
                             }else if separatedmessage[2] == "00"{
-                                let alertController = UIAlertController(title: "Oops", message: "member is deActivated", preferredStyle: .alert)
-                                let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
+                                let alertController = UIAlertController(title: "Oops".localiz(), message: "MemberisdeActivated".localiz(), preferredStyle: .alert)
+                                let okAction = UIAlertAction(title: "OK".localiz(), style: UIAlertAction.Style.default) {
                                        UIAlertAction in
                                     self.VC!.navigationController?.popViewController(animated: true)
                                    }
                                    alertController.addAction(okAction)
                                 self.VC!.present(alertController, animated: true, completion: nil)
                             }else if separatedmessage[2] == "000"{
-                                let alertController = UIAlertController(title: "Oops", message: "Unfortunately_your_redemption_has_not_been_completed", preferredStyle: .alert)
-                                let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
+                                let alertController = UIAlertController(title: "Oops".localiz(), message: "Unfortunately_your_redemption_has_not_been_completed".localiz(), preferredStyle: .alert)
+                                let okAction = UIAlertAction(title: "OK".localiz(), style: UIAlertAction.Style.default) {
                                        UIAlertAction in
                                     self.VC!.navigationController?.popViewController(animated: true)
                                    }

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-//import LanguageManager_iOS
+import LanguageManager_iOS
 import WebKit
 protocol CheckBoxSelectDelegate{
     func accept(_ vc: HR_TermsandCondtionVC)
@@ -27,8 +27,8 @@ class HR_TermsandCondtionVC: BaseViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
 //        termsandCondtions.text = "TermsandConditions".localiz()
-//        decline.setTitle("decline".localiz(), for: .normal)
-//        accept.setTitle("accept".localiz(), for: .normal)
+        decline.setTitle("decline".localiz(), for: .normal)
+        accept.setTitle("accept".localiz(), for: .normal)
         dashboardTCApi()
     }
     func dashboardTCApi(){

@@ -7,6 +7,7 @@
 
 import UIKit
 import WebKit
+import LanguageManager_iOS
 class KC_CashTransferVC: BaseViewController, CashTranferDelegate{
     func didTapRedeemBtn(_ cell: KC_CashTransferTVC) {
         guard let tappedIndexPath = self.cashTransferTableView.indexPath(for: cell) else{return}
@@ -67,13 +68,19 @@ class KC_CashTransferVC: BaseViewController, CashTranferDelegate{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.VM.cashTransferListArray.removeAll()
+        self.totalPtsLbl.text = "TotalPoints".localiz()
+        self.howToWorksBtn.setTitle("HowitWorks?".localiz(), for: .normal)
+        self.instructionLbl.text = "Instruction".localiz()
+        self.okBtn.setTitle("OK".localiz(), for: .normal)
+        self.noDataFoundLbl.text = "NoDataFound".localiz()
+        
         if self.customerTypeId == "3"{
-            self.headerLbl.text = "Cash Voucher"
+            self.headerLbl.text = "CashVoucher".localiz()
             self.categoryId = 9
             self.cashTranferApi(categoryId: self.categoryId, startIndex: 1)
         }else{
             self.categoryId = 8
-            self.headerLbl.text = "Cash Transfer"
+            self.headerLbl.text = "CashTransfer".localiz()
             self.cashTranferApi(categoryId: self.categoryId, startIndex: 1)
         }
         let url = Bundle.main.url(forResource: "cash_transfer_instruction", withExtension:"html")
@@ -115,6 +122,17 @@ class KC_CashTransferVC: BaseViewController, CashTranferDelegate{
             "Domain": "KESHAV_CEMENT"
         ] as [String: Any]
        print(parameter)
+        
+//        let parameter = [
+//            "ActionType": "277",
+//            "ActorId": self.userID,
+//            "StartIndex": 1,
+//            "NoOfRows": 10,
+//            "ObjCatalogueDetails": [
+//                "SelectedStatus": "-1",
+//                "RedemptionTypeId": -1
+//            ]
+//        ]
         self.VM.cashTransferListApi(parameter: parameter)
     }
     

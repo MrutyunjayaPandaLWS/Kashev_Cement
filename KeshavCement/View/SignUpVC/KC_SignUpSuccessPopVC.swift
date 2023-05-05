@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import LanguageManager_iOS
 
 class KC_SignUpSuccessPopVC: BaseViewController {
 
@@ -15,8 +16,8 @@ class KC_SignUpSuccessPopVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if self.itsFrom != "ENROLLMENT"{
-            self.titleLbl.text = "Thank You!"
-            self.infoLbl.text = "for registering to the Keshav Cement program. Our Executive will contact you for verification"
+            self.titleLbl.text = "ThankYou!".localiz()
+            self.infoLbl.text = "forregisteringtotheKeshavCementprogram.OurExecutivewillcontactyouforverification".localiz()
         }
        
     }

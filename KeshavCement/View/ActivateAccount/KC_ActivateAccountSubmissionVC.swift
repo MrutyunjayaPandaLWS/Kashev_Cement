@@ -6,19 +6,14 @@
 //
 
 import UIKit
+import LanguageManager_iOS
 
 class KC_ActivateAccountSubmissionVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegate, UITextFieldDelegate {
-    func didTapMappedUserName(_ vc: KC_DropDownVC) {}
-    func didTapAmount(_ vc: KC_DropDownVC){}
     func didTapCityName(_ vc: KC_DropDownVC) {
            self.selectedCityName = vc.selectedCityName
            self.selectedCityId = vc.selectedCityId
            self.cityLbl.text = vc.selectedCityName
        }
-    func didTapHelpTopic(_ vc: KC_DropDownVC) {}
-    func didTapWorkLevel(_ vc: KC_DropDownVC) {}
-    func didTapUserType(_ vc: KC_DropDownVC) {}
-    func didTapProductName(_ vc: KC_DropDownVC){}
     func acceptDate(_ vc: KC_DOBVC) {
         if vc.isComeFrom == "DOB"{
             self.dobLbl.text = vc.selectedDate
@@ -30,8 +25,6 @@ class KC_ActivateAccountSubmissionVC: BaseViewController, SelectedDataDelegate, 
         }
     }
     
-    func declineDate(_ vc: KC_DOBVC) {}
-    
     func didTapCustomerType(_ vc: KC_DropDownVC) {
         self.customerTypeLbl.text = vc.selectedCustomerType
         self.selectedCustomerTypeId = vc.selectedCustomerTypeId
@@ -40,11 +33,11 @@ class KC_ActivateAccountSubmissionVC: BaseViewController, SelectedDataDelegate, 
         //
         //        Engineer, Manson - Adhaar card, is not manditory
         if self.selectedCustomerTypeId == 1 || self.selectedCustomerTypeId == 2{
-            self.aadharNumberLbl.text = "Aadhar Number"
-            self.aadharNumberTF.placeholder = "Enter aadhar number"
+            self.aadharNumberLbl.text = "AadharNumber".localiz()
+            self.aadharNumberTF.placeholder = "Enteraadharnumber".localiz()
         }else if self.selectedCustomerTypeId == 3 || self.selectedCustomerTypeId == 4{
-            self.aadharNumberLbl.text = "GST Number"
-            self.aadharNumberTF.placeholder = "Enter GST number"
+            self.aadharNumberLbl.text = "GSTNumber".localiz()
+            self.aadharNumberTF.placeholder = "EnterGSTnumber".localiz()
         }
     }
     
@@ -55,9 +48,9 @@ class KC_ActivateAccountSubmissionVC: BaseViewController, SelectedDataDelegate, 
         self.selectedDistrictId = -1
         self.selectedCityId = -1
         self.selectedTalukId = -1
-        self.selectDistrictLbl.text = "Select District"
-        self.selectTalukLbl.text = "Select Taluk"
-        self.cityLbl.text = "Select City"
+        self.selectDistrictLbl.text = "SelectDistrict".localiz()
+        self.selectTalukLbl.text = "SelectTaluk".localiz()
+        self.cityLbl.text = "SelectCity".localiz()
     }
     
     func didTapDistrict(_ vc: KC_DropDownVC) {
@@ -66,8 +59,8 @@ class KC_ActivateAccountSubmissionVC: BaseViewController, SelectedDataDelegate, 
         self.selectedDistrictId = vc.selectedDistrictId
         self.selectedCityId = -1
         self.selectedTalukId = -1
-        self.selectTalukLbl.text = "Select Taluk"
-        self.cityLbl.text = "Select City"
+        self.selectTalukLbl.text = "SelectTaluk".localiz()
+        self.cityLbl.text = "SelectCity".localiz()
 
     }
     
@@ -76,7 +69,7 @@ class KC_ActivateAccountSubmissionVC: BaseViewController, SelectedDataDelegate, 
         self.selectedTalukName = vc.selectedTalukName
         self.selectedTalukId = vc.selectedTalukId
         self.selectedCityId = -1
-        self.cityLbl.text = "Select City"
+        self.cityLbl.text = "SelectCity".localiz()
 
     }
     

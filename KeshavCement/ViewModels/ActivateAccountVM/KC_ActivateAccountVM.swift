@@ -5,8 +5,7 @@
 //  Created by ADMIN on 01/03/2023.
 //
 
-import Foundation
-
+import LanguageManager_iOS
 import UIKit
 class KC_ActivateAccountVM{
     
@@ -26,12 +25,12 @@ class KC_ActivateAccountVM{
                         if response.count != 0{
                             if response[0].customerId ?? 0 == 0{
                                 DispatchQueue.main.async{
-                                    self.VC!.view.makeToast("Currently you are not mapped to any dealer. Kindly contact the administrator.", duration: 2.0, position: .bottom)
+                                    self.VC!.view.makeToast("NotmappedToAnyDealer".localiz(), duration: 2.0, position: .bottom)
                                 }
                             }else{
                                 if response[0].isActive ?? -1 == 1{
                                     self.VC!.filterView.isHidden = true
-                                    self.VC!.generateOTPBtn.setTitle("Generate OTP", for: .normal)
+                                    self.VC!.generateOTPBtn.setTitle("GenerateOTP".localiz(), for: .normal)
                                     self.VC!.otpInfoLbl.isHidden = true
                                     self.VC!.otpMobilenoLbl.isHidden = true
                                     self.VC!.resendOtpBtn.isHidden = true
@@ -41,7 +40,7 @@ class KC_ActivateAccountVM{
                                     self.VC!.otpTimerLbl.isHidden = true
                                     self.VC!.mobileNumberTF.text = ""
                                     self.VC!.otpView.text = ""
-                                    self.VC!.view.makeToast("This customer is already activated", duration: 2.0, position: .bottom)
+                                    self.VC!.view.makeToast("Thiscustomerisalreadyactivated".localiz(), duration: 2.0, position: .bottom)
                                 }else{
                                     let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_ActivateAccountSubmissionVC") as! KC_ActivateAccountSubmissionVC
                                     vc.enteredMobileNumber = self.VC?.mobileNumberTF.text ?? ""
@@ -99,7 +98,7 @@ class KC_ActivateAccountVM{
                 if str ?? "" == "1"{
                     DispatchQueue.main.async{
                         self.VC?.stopLoading()
-                        self.VC?.generateOTPBtn.setTitle("Submit", for: .normal)
+                        self.VC?.generateOTPBtn.setTitle("Submit".localiz(), for: .normal)
                         self.VC?.otpInfoLbl.isHidden = false
                         self.VC?.otpMobilenoLbl.isHidden = false
                         self.VC?.resendOtpBtn.isHidden = false
@@ -113,15 +112,15 @@ class KC_ActivateAccountVM{
                 }else if str ?? "" == "3"{
                     DispatchQueue.main.async{
                         self.VC?.stopLoading()
-                        self.VC?.view.makeToast("Invaild customer type", duration: 2.0, position: .bottom)
-                        self.VC?.generateOTPBtn.setTitle("Generate OTP", for: .normal)
+                        self.VC?.view.makeToast("Invaildcustomertype".localiz(), duration: 2.0, position: .bottom)
+                        self.VC?.generateOTPBtn.setTitle("GenerateOTP".localiz(), for: .normal)
                         self.VC?.mobileNumberTF.text = ""
                     }
                 }else if str ?? "" != "1"{
                     DispatchQueue.main.async{
                         self.VC?.stopLoading()
-                        self.VC?.view.makeToast("Mobile number doesn't exists", duration: 2.0, position: .bottom)
-                        self.VC?.generateOTPBtn.setTitle("Generate OTP", for: .normal)
+                        self.VC?.view.makeToast("Mobilenumberdoesntexists".localiz(), duration: 2.0, position: .bottom)
+                        self.VC?.generateOTPBtn.setTitle("GenerateOTP".localiz(), for: .normal)
                     }
                 }
                  }catch{

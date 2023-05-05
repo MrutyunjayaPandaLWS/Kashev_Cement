@@ -5,7 +5,6 @@
 //  Created by ADMIN on 25/03/2023.
 //
 
-import Foundation
 import UIKit
 
 class KC_CashTransferHistoryVM{
@@ -48,9 +47,11 @@ class KC_CashTransferHistoryVM{
                             if self.cashTransferApprovalListingArray.count != 0 {
                                 self.VC!.cashHistoryTableView.isHidden = false
                                 self.VC!.noDataFoundLbl.isHidden = true
+                                self.VC!.filterButtonView.isHidden = false
                             }else{
                                 self.VC!.cashHistoryTableView.isHidden = true
                                 self.VC!.noDataFoundLbl.isHidden = false
+                                self.VC!.filterButtonView.isHidden = true
                             }
 //                            for data in self.pendingClaimListArray{
 //                                let pendingClaimList = PendingClaimPurcase(context: Persistanceservice.context)

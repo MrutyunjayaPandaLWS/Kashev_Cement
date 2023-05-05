@@ -60,14 +60,14 @@ class KC_RegisterVM {
                 }else if str ?? "" == "3"{
                     DispatchQueue.main.async{
                         self.VC?.stopLoading()
-                        self.VC?.view.makeToast("Invaild customer type", duration: 2.0, position: .bottom)
-                        self.VC?.generateOTPBtn.setTitle("Generate OTP", for: .normal)
+                        self.VC?.view.makeToast("Invaildcustomertype".localiz(), duration: 2.0, position: .bottom)
+                        self.VC?.generateOTPBtn.setTitle("GenerateOTP".localiz(), for: .normal)
                         self.VC?.mobileNumberTF.text = ""
                     }
                 }else if str ?? "" == "1"{
                     DispatchQueue.main.async{
                         self.VC?.stopLoading()
-                        self.VC?.view.makeToast("This member is already exists", duration: 2.0, position: .bottom)
+                        self.VC?.view.makeToast("Thismemberisalreadyexists".localiz(), duration: 2.0, position: .bottom)
                         self.VC?.generateOTPBtn.setTitle("GenerateOTP".localiz(), for: .normal)
                     }
                 }

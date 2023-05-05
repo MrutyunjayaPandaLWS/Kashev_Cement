@@ -6,7 +6,7 @@
 //
 
 import UIKit
-//import LanguageManager_iOS
+import LanguageManager_iOS
 import SDWebImage
 class HR_RedemptionPlannerDetailsVC: BaseViewController{
 //, popUpAlertDelegate{
@@ -106,7 +106,7 @@ class HR_RedemptionPlannerDetailsVC: BaseViewController{
             self.redeemBTN1.isEnabled = true
             self.redeemOfferBTNView.backgroundColor = #colorLiteral(red: 0.9049103856, green: 0.865305841, blue: 0.1212991104, alpha: 1)
             self.redeemOfferBTN.isEnabled = true
-            self.infoLbl.text = "Congratulation! You are eligible to redeem this product"
+            self.infoLbl.text = "CongratulationYouareEligibleTo".localiz()
             self.yellowView.isHidden = true
             self.whiteView.isHidden = false
 
@@ -123,19 +123,19 @@ class HR_RedemptionPlannerDetailsVC: BaseViewController{
         productImg.sd_setImage(with: urlt!, placeholderImage: #imageLiteral(resourceName: "ic_default_img"))
     }
     func localization(){
-        self.screenTitle.text = "Redemption Planner Details"
+        self.screenTitle.text = "RedemptionPlannerDetails".localiz()
      //   self.pointsLbl.text = "POINTS"
-        self.congratulationsLbl.text = "Congratulations"
-        self.messageLbl.text = "eligibleMsg"
-        self.redeemNowLbl.text = "Redeem Now"
+        self.congratulationsLbl.text = "Congratulations".localiz()
+        self.messageLbl.text = "eligibleMsg".localiz()
+        self.redeemNowLbl.text = "RedeemNow".localiz()
 //        self.recommendedLbl.text = "RecommendedProducts".localiz()
-        self.redeemedPoints.text = "POINTS"
-        self.redeemLbl.text = "RedeemNow"
-        self.redeemSummary.text = "Redemption Planner Summary"
-        self.redeemInfo.text = "Redeemable Points As On Today"
-        self.redeemedPoints.text = "Points"
-        self.earningSummaryLbl.text = "Average Earning"
-        self.earningPtsTitle.text = "Points"
+        self.redeemedPoints.text = "POINTS".localiz()
+        self.redeemLbl.text = "RedeemNow".localiz()
+        self.redeemSummary.text = "RedemptionPlannerSummaryy".localiz()
+        self.redeemInfo.text = "RedeemablePointsAsOnToday".localiz()
+        self.redeemedPoints.text = "POINTS".localiz()
+        self.earningSummaryLbl.text = "AverageEarning".localiz()
+        self.earningPtsTitle.text = "Points".localiz()
         self.expectInfoLbl.text = "Your expected redemption of \(self.productName) is in \(actualRedemptionDate)"
         
     }
@@ -155,7 +155,7 @@ class HR_RedemptionPlannerDetailsVC: BaseViewController{
         let filterCategory = self.VM.myCartListArray.filter { $0.catalogueId == selectedCatalogueID}
         if filterCategory.count > 0{
             DispatchQueue.main.async{
-                self.view.makeToast("Gift product is already added in the Redeem list", duration: 2.0, position: .bottom)
+                self.view.makeToast("Giftproductlreadyaddedlist".localiz(), duration: 2.0, position: .bottom)
             }
         }else{
             print(self.totalCartValue)
@@ -177,7 +177,7 @@ class HR_RedemptionPlannerDetailsVC: BaseViewController{
                 }else{
                 DispatchQueue.main.async{
                     
-                    self.view.makeToast("Insufficent Point Balance", duration: 2.0, position: .bottom)
+                    self.view.makeToast("InsufficientPointBalance".localiz(), duration: 2.0, position: .bottom)
                 }
             }
             
@@ -190,7 +190,7 @@ class HR_RedemptionPlannerDetailsVC: BaseViewController{
         print(filterCategory.count)
         if filterCategory.count > 0{
             DispatchQueue.main.async{
-                self.view.makeToast("Gift product is already added in the Redeem list", duration: 2.0, position: .bottom)
+                self.view.makeToast("Giftproductlreadyaddedlist".localiz(), duration: 2.0, position: .bottom)
             }
         }else{
             print(self.totalCartValue)
@@ -211,12 +211,12 @@ class HR_RedemptionPlannerDetailsVC: BaseViewController{
                     
                     }else{
                         DispatchQueue.main.async{
-                            self.view.makeToast("Insufficent Point Balance", duration: 2.0, position: .bottom)
+                            self.view.makeToast("InsufficientPointBalance".localiz(), duration: 2.0, position: .bottom)
                           
                         }
                     }}else{
                 DispatchQueue.main.async{
-                    self.view.makeToast("Insufficent Point Balance", duration: 2.0, position: .bottom)
+                    self.view.makeToast("InsufficientPointBalance".localiz(), duration: 2.0, position: .bottom)
                 }
             }
             

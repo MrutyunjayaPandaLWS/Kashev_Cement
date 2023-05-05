@@ -5,9 +5,9 @@
 //  Created by ADMIN on 28/02/2023.
 //
 
-import Foundation
-import UIKit
 
+import UIKit
+import LanguageManager_iOS
 class KC_SubmitNewExecutiveVM{
     
     weak var VC: KC_CreateNewSupportExecutiveVC?
@@ -45,7 +45,7 @@ class KC_SubmitNewExecutiveVM{
                                 
                             }
                         }else{
-                            self.VC!.view.makeToast("Something went wrong! Try again later...")
+                            self.VC!.view.makeToast("somethingwentWrong".localiz())
                         }
                     }
                 }else{

@@ -7,21 +7,14 @@
 
 import UIKit
 import DPOTPView
+import LanguageManager_iOS
 class KC_CashTranferPopUpVC: BaseViewController, DPOTPViewDelegate, SelectedDataDelegate{
-    func didTapHelpTopic(_ vc: KC_DropDownVC) {}
-    func didTapAmount(_ vc: KC_DropDownVC){}
-    func didTapCustomerType(_ vc: KC_DropDownVC) {}
-    func didTapWorkLevel(_ vc: KC_DropDownVC) {}
-    func didTapCityName(_ vc: KC_DropDownVC){}
+  
     func didTapMappedUserName(_ vc: KC_DropDownVC) {
         self.nameTF.text = vc.mappedUsername
         self.mappedName = vc.mappedUsername
         self.mappedUserId = vc.mappedUserId
     }
-    func didTapProductName(_ vc: KC_DropDownVC){}
-    func didTapState(_ vc: KC_DropDownVC) {}
-    func didTapDistrict(_ vc: KC_DropDownVC) {}
-    func didTapTaluk(_ vc: KC_DropDownVC) {}
     func didTapUserType(_ vc: KC_DropDownVC) {
         self.selectTypeLbl.text = vc.selectedUserTypeName
         self.selectedUserTypeName = vc.selectedUserTypeName
@@ -149,7 +142,7 @@ class KC_CashTranferPopUpVC: BaseViewController, DPOTPViewDelegate, SelectedData
     
     @IBAction func nameButton(_ sender: Any) {
         if self.selectedUserTypeId == -1{
-            self.view.makeToast("Please select user type", duration: 2.0, position: .bottom)
+            self.view.makeToast("Pleaseselectusertype".localiz(), duration: 2.0, position: .bottom)
         }else{
             let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as! KC_DropDownVC
             vc.itsFrom = "MAPPEDUSERS"
@@ -170,9 +163,9 @@ class KC_CashTranferPopUpVC: BaseViewController, DPOTPViewDelegate, SelectedData
     @IBAction func redeemButton(_ sender: Any) {
         
         if self.mappedUserId == -1{
-            self.view.makeToast("Select user type", duration: 2.0, position: .bottom)
+            self.view.makeToast("Selectusertype".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedUserTypeId == -1{
-            self.view.makeToast("Select user", duration: 2.0, position: .bottom)
+            self.view.makeToast("Selectuser".localiz(), duration: 2.0, position: .bottom)
         }else{
             self.VM.timer.invalidate()
             self.cashTransferOtpView.isHidden = false
@@ -189,11 +182,11 @@ class KC_CashTranferPopUpVC: BaseViewController, DPOTPViewDelegate, SelectedData
     }
     @IBAction func redeemButtons(_ sender: Any) {
             if self.enteredValue.count == 0 {
-                self.view.makeToast("Enter OTP", duration: 2.0, position: .bottom)
+                self.view.makeToast("EnterOTP".localiz(), duration: 2.0, position: .bottom)
             }else if self.enteredValue.count != 6{
-                self.view.makeToast("Enter valid OTP", duration: 2.0, position: .bottom)
+                self.view.makeToast("EntervalidOTP".localiz(), duration: 2.0, position: .bottom)
             }else if self.receivedOTP != self.enteredValue{
-                self.view.makeToast("Enter correct OTP", duration: 2.0, position: .bottom)
+                self.view.makeToast("EntercorrectOTP".localiz(), duration: 2.0, position: .bottom)
             }else{
                 
                 print(self.stateID)
@@ -209,7 +202,7 @@ class KC_CashTranferPopUpVC: BaseViewController, DPOTPViewDelegate, SelectedData
                 if Int(self.noOfPointsRequired)! <= Int(self.pointBalance)!{
                     self.cashTransferSubmissionApi(noOfPointsRequired: self.noOfPointsRequired, productCode: self.productCode, productImage: self.productImage, productName: self.productName, categoryId: Int(self.categoryId)!, termsandCondition: self.termsandCondition, vendorId: Int(self.vendorId)!, vendorName: self.vendorName)
                 }else{
-                    self.view.makeToast("Insufficent point balance!", duration: 2.0, position: .bottom)
+                    self.view.makeToast("Insufficentpointbalance!".localiz(), duration: 2.0, position: .bottom)
                 }
             }
     }

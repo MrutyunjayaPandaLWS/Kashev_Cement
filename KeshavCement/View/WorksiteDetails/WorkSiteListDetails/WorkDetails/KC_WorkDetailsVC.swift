@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import LanguageManager_iOS
 
 class KC_WorkDetailsVC: BaseViewController, DateSelectedDelegate, SelectedDataDelegate{
     func didTapWorkLevel(_ vc: KC_DropDownVC) {
@@ -14,16 +15,6 @@ class KC_WorkDetailsVC: BaseViewController, DateSelectedDelegate, SelectedDataDe
         self.selectLevelLbl.text = vc.selectedWorkLevelTitle
         self.selectLevelLbl.textColor = .darkGray
     }
-    func didTapCityName(_ vc: KC_DropDownVC){}
-    func didTapAmount(_ vc: KC_DropDownVC){}
-    func didTapHelpTopic(_ vc: KC_DropDownVC) {}
-    func didTapCustomerType(_ vc: KC_DropDownVC) {}
-    func didTapMappedUserName(_ vc: KC_DropDownVC) {}
-    func didTapProductName(_ vc: KC_DropDownVC){}
-    func didTapState(_ vc: KC_DropDownVC) {}
-    func didTapDistrict(_ vc: KC_DropDownVC) {}
-    func didTapTaluk(_ vc: KC_DropDownVC) {}
-    func didTapUserType(_ vc: KC_DropDownVC) {}
     
     func acceptDate(_ vc: KC_DOBVC) {
         if vc.isComeFrom == "TENTATIVE"{
@@ -72,6 +63,14 @@ class KC_WorkDetailsVC: BaseViewController, DateSelectedDelegate, SelectedDataDe
         super.viewDidLoad()
         self.VM.VC = self
         NotificationCenter.default.addObserver(self, selector: #selector(handleNavigation), name: Notification.Name.navigateToMain, object: nil)
+        self.workDetailsHeaderLbl.text = "WorkDetails".localiz()
+        self.workLevelLbl.text = "WorkLevel".localiz()
+        self.selectLevelLbl.text = "SelectLevel".localiz()
+        self.tentativeLbl.text = "TentativeDateofcompletion".localiz()
+        self.selectedDateLbl.text = "SelectDate".localiz()
+        self.remarksLbl.text = "Remarks".localiz()
+        self.submitButton.setTitle("Submit".localiz(), for: .normal)
+        
     }
     @objc func handleNavigation(notification: Notification){
         self.navigationController?.popViewController(animated: true)
@@ -99,25 +98,25 @@ class KC_WorkDetailsVC: BaseViewController, DateSelectedDelegate, SelectedDataDe
     @IBAction func submitBtn(_ sender: Any) {
         if self.customerTypeId != "1"{
             if self.strdata1 == ""{
-            self.view.makeToast("Please select site image", duration: 2.0, position: .bottom)
+                self.view.makeToast("Pleaseselectsiteimage".localiz(), duration: 2.0, position: .bottom)
         }else if self.currentLatitude == "" || self.currentLongitude == ""{
-            self.view.makeToast("Select current location...", duration: 2.0, position: .bottom)
+            self.view.makeToast("Selectcurrentlocation...".localiz(), duration: 2.0, position: .bottom)
         }else if self.ownerName == ""{
-            self.view.makeToast("Enter owner name", duration: 2.0, position: .bottom)
+            self.view.makeToast("Enterownername".localiz(), duration: 2.0, position: .bottom)
         }else if self.ownerMobile == ""{
-            self.view.makeToast("Enter owner mobile number", duration: 2.0, position: .bottom)
+            self.view.makeToast("Enterownermobilenumber".localiz(), duration: 2.0, position: .bottom)
         }else if self.ownerResidentialDetails == ""{
-            self.view.makeToast("Enter owner residential details", duration: 2.0, position: .bottom)
+            self.view.makeToast("Enterownerresidentialdetails".localiz(), duration: 2.0, position: .bottom)
         }else if self.engineerName == ""{
-            self.view.makeToast("Enter engineer name", duration: 2.0, position: .bottom)
+            self.view.makeToast("Enterengineername".localiz(), duration: 2.0, position: .bottom)
         }else if self.engineerNumber == ""{
-            self.view.makeToast("Enter engineer mobile number", duration: 2.0, position: .bottom)
+            self.view.makeToast("Enterengineermobilenumber".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedWordId == -1{
-            self.view.makeToast("Enter owner name", duration: 2.0, position: .bottom)
+            self.view.makeToast("Enterownername".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedDate == ""{
-            self.view.makeToast("Select tentative date", duration: 2.0, position: .bottom)
+            self.view.makeToast("Selecttentativedate".localiz(), duration: 2.0, position: .bottom)
         }else if self.remarksTextView.text == ""{
-            self.view.makeToast("Enter remarks", duration: 2.0, position: .bottom)
+            self.view.makeToast("Enterremarks".localiz(), duration: 2.0, position: .bottom)
         }else{
             print(self.currentLatitude)
             print(self.currentLongitude)
@@ -152,21 +151,21 @@ class KC_WorkDetailsVC: BaseViewController, DateSelectedDelegate, SelectedDataDe
         
     }else{
         if self.strdata1 == ""{
-        self.view.makeToast("Please select site image", duration: 2.0, position: .bottom)
+            self.view.makeToast("Pleaseselectsiteimage".localiz(), duration: 2.0, position: .bottom)
     }else if self.currentLatitude == "" || self.currentLongitude == ""{
-        self.view.makeToast("Select current location...", duration: 2.0, position: .bottom)
+        self.view.makeToast("Selectcurrentlocation...".localiz(), duration: 2.0, position: .bottom)
     }else if self.ownerName == ""{
-        self.view.makeToast("Enter owner name", duration: 2.0, position: .bottom)
+        self.view.makeToast("Enterownername".localiz(), duration: 2.0, position: .bottom)
     }else if self.ownerMobile == ""{
-        self.view.makeToast("Enter owner mobile number", duration: 2.0, position: .bottom)
+        self.view.makeToast("Enterownermobilenumber".localiz(), duration: 2.0, position: .bottom)
     }else if self.ownerResidentialDetails == ""{
-        self.view.makeToast("Enter owner residential details", duration: 2.0, position: .bottom)
+        self.view.makeToast("Enterownerresidentialdetails".localiz(), duration: 2.0, position: .bottom)
     }else if self.selectedWordId == -1{
-        self.view.makeToast("Enter owner name", duration: 2.0, position: .bottom)
+        self.view.makeToast("Enterownername".localiz(), duration: 2.0, position: .bottom)
     }else if self.selectedDate == ""{
-        self.view.makeToast("Select tentative date", duration: 2.0, position: .bottom)
+        self.view.makeToast("Selecttentativedate".localiz(), duration: 2.0, position: .bottom)
     }else if self.remarksTextView.text == ""{
-        self.view.makeToast("Enter remarks", duration: 2.0, position: .bottom)
+        self.view.makeToast("Enterremarks".localiz(), duration: 2.0, position: .bottom)
     }else{
         print(self.currentLatitude)
         print(self.currentLongitude)

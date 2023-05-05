@@ -47,15 +47,52 @@ class KC_ProductCatalgoueDetailsVM{
                         self.sumOfProductsCount = Int(result?.catalogueSaveCartDetailListResponse?[0].sumOfTotalPointsRequired ?? 0)
                         print(self.myCartListArray.count, "My cart Count")
                         self.VC?.cartCount.text = "\(self.myCartListArray.count)"
-
+                        
                         if self.VC?.customerTypeId ?? "" == "3" && self.VC?.partyLoyaltyId != "" || self.VC?.customerTypeId ?? "" == "4" && self.VC?.partyLoyaltyId != ""{
                             
-                                self.redemptionPlannerList(PartyLoyaltyID: self.VC!.partyLoyaltyId)
+                            self.redemptionPlannerList(PartyLoyaltyID: self.VC!.partyLoyaltyId)
                             
                         }else if self.VC?.customerTypeId ?? "" == "3" && self.VC?.partyLoyaltyId == "" || self.VC?.customerTypeId ?? "" == "4" && self.VC?.partyLoyaltyId == ""{
                             self.redemptionPlannerList(PartyLoyaltyID: "")
                         }else{
                             self.redemptionPlannerList(PartyLoyaltyID: "")
+                        }
+                        
+                        if self.VC?.is_Reedemable == 1{
+                            self.VC?.cartButtonView.isHidden = false
+                            self.VC?.subView.isHidden = false
+                            
+                        }else{
+                            self.VC?.cartButtonView.isHidden = true
+                            self.VC?.subView.isHidden = false
+                        }
+                        let filterArray = self.myCartListArray.filter{$0.catalogueId == self.VC!.catalogueId}
+                        
+                        if filterArray.count > 0 {
+                            self.VC!.addedToCart.isHidden = false
+                            self.VC!.addedToCart.isUserInteractionEnabled = false
+                            self.VC!.addedToCart.backgroundColor = .lightGray
+                            self.VC!.addToCart.isHidden = true
+                            self.VC!.addToPlanner.isHidden = true
+                            self.VC!.addedToPlannerBTN.isHidden = true
+                        }else{
+                            print(self.VC!.productPts)
+                            print(self.VC!.pointBalance)
+                            if self.VC?.partyLoyaltyId == ""{
+                                if Int(self.VC!.productPts) ?? 0 <= Int(self.VC!.pointBalance) ?? 0{
+                                    self.VC!.addedToCart.isHidden = true
+                                    self.VC!.addToCart.isHidden = false
+                                    self.VC!.addToPlanner.isHidden = true
+                                    self.VC!.addedToPlannerBTN.isHidden = true
+                                }
+                            }else{
+                                if Int(self.VC!.productPts) ?? 0 <= Int(self.VC!.productTotalPoints) ?? 0{
+                                    self.VC!.addedToCart.isHidden = true
+                                    self.VC!.addToCart.isHidden = false
+                                    self.VC!.addToPlanner.isHidden = true
+                                    self.VC!.addedToPlannerBTN.isHidden = true
+                                }
+                            }
                         }
                     }
                     }else{
@@ -108,6 +145,7 @@ class KC_ProductCatalgoueDetailsVM{
                         }else{
                             print(self.VC!.productPts)
                             print(self.VC!.pointBalance)
+                            if self.VC?.partyLoyaltyId == ""{
                             if Int(self.VC!.productPts) ?? 0 <= Int(self.VC!.pointBalance) ?? 0{
                                 self.VC!.addedToCart.isHidden = true
                                 self.VC!.addToCart.isHidden = false
@@ -128,6 +166,28 @@ class KC_ProductCatalgoueDetailsVM{
                                     self.VC?.addedToPlannerBTN.isHidden = true
                                 }
                             }
+                            }else{
+                                if Int(self.VC!.productPts) ?? 0 <= Int(self.VC!.productTotalPoints) ?? 0{
+                                    self.VC!.addedToCart.isHidden = true
+                                    self.VC!.addToCart.isHidden = false
+                                    self.VC!.addToPlanner.isHidden = true
+                                    self.VC!.addedToPlannerBTN.isHidden = true
+                                }else{
+                                    let filterArray1 = self.plannerListArray.filter{$0.catalogueId == self.VC!.catalogueId}
+                                    if filterArray1.count > 0 {
+                                        self.VC?.addedToPlannerBTN.isHidden = false
+                                        self.VC!.addedToPlannerBTN.isUserInteractionEnabled = false
+                                        self.VC?.addToPlanner.isHidden = true
+                                        self.VC?.addToCart.isHidden = true
+                                        self.VC?.addedToCart.isHidden = true
+                                    }else{
+                                        self.VC?.addedToCart.isHidden = true
+                                        self.VC?.addToPlanner.isHidden = false
+                                        self.VC?.addToCart.isHidden = true
+                                        self.VC?.addedToPlannerBTN.isHidden = true
+                                    }
+                                }
+                                }
                         }
                         
                         

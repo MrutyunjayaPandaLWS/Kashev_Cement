@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import LanguageManager_iOS
 class KC_UserDetailsVC: BaseViewController, UITextFieldDelegate{
     
 
@@ -50,6 +50,18 @@ class KC_UserDetailsVC: BaseViewController, UITextFieldDelegate{
         }else{
             self.engineerDetailVIew.isHidden = false
         }
+        self.ownerDetailsLbl.text = "OwnerDetails".localiz()
+        self.ownerNameLbl.text = "OwnerName".localiz()
+        self.ownerNameTF.placeholder = "Enterownername".localiz()
+        self.ownerMobileNumberLbl.text = "OwnerMobileNumber".localiz()
+        self.ownerMobileTF.placeholder = "Enterownermobilenumber".localiz()
+        self.ownerResidentialDetailsLbl.text = "OwnerAddess".localiz()
+        self.engineerDetailsLbl.text = "EngineerDetails".localiz()
+        self.engineerNameLbl.text = "EngineerName".localiz()
+        self.engineerNameTF.placeholder = "Enterengineername".localiz()
+        self.engineerNumbLbl.text = "EngineerMobileNumber".localiz()
+        self.engineerNumberTF.placeholder = "Enterengineermobilenumber".localiz()
+        self.nextBtn.setTitle("Next".localiz(), for: .normal)
         
         
     }
@@ -58,16 +70,16 @@ class KC_UserDetailsVC: BaseViewController, UITextFieldDelegate{
     @IBAction func nextButton(_ sender: Any) {
         if self.customerTypeId == "1"{
             if self.ownerNameTF.text!.count == 0{
-                self.view.makeToast("Enter owner name", duration: 2.0, position: .bottom)
+                self.view.makeToast("Enterownername".localiz(), duration: 2.0, position: .bottom)
             }else if self.ownerNameTF.text!.count > 15{
                 self.ownerNameTF.text = ""
-                self.view.makeToast("owner name should be 15 digits", duration: 2.0, position: .bottom)
+                self.view.makeToast("ownernameshouldbe15digits".localiz(), duration: 2.0, position: .bottom)
             }else if self.ownerMobileTF.text!.count == 0{
-                self.view.makeToast("Enter owner mobile number", duration: 2.0, position: .bottom)
+                self.view.makeToast("Enterownermobilenumber".localiz(), duration: 2.0, position: .bottom)
             }else if self.ownerMobileTF.text!.count != 10{
-                self.view.makeToast("Enter valid owner mobile number", duration: 2.0, position: .bottom)
+                self.view.makeToast("Entervalidownermobilenumber".localiz(), duration: 2.0, position: .bottom)
             }else if self.ownerResidentialTextView.text!.count == 0{
-                self.view.makeToast("Enter owner residential details", duration: 2.0, position: .bottom)
+                self.view.makeToast("Enterownerresidentialdetails".localiz(), duration: 2.0, position: .bottom)
             }else{
                 self.ownerName = self.ownerNameTF.text ?? ""
                 self.ownerMobile = self.ownerMobileTF.text ?? ""
@@ -80,22 +92,22 @@ class KC_UserDetailsVC: BaseViewController, UITextFieldDelegate{
             
         }else{
             if self.ownerNameTF.text!.count == 0{
-                self.view.makeToast("Enter owner name", duration: 2.0, position: .bottom)
+                self.view.makeToast("Enterownername".localiz(), duration: 2.0, position: .bottom)
             }else if self.ownerNameTF.text!.count > 15{
                 self.ownerNameTF.text = ""
-                self.view.makeToast("owner name should be 15 digits", duration: 2.0, position: .bottom)
+                self.view.makeToast("ownernameshouldbe15digits".localiz(), duration: 2.0, position: .bottom)
             }else if self.ownerMobileTF.text!.count == 0{
-                self.view.makeToast("Enter owner mobile number", duration: 2.0, position: .bottom)
+                self.view.makeToast("Enterownermobilenumber".localiz(), duration: 2.0, position: .bottom)
             }else if self.ownerMobileTF.text!.count != 10{
-                self.view.makeToast("Enter valid owner mobile number", duration: 2.0, position: .bottom)
+                self.view.makeToast("Entervalidownermobilenumber".localiz(), duration: 2.0, position: .bottom)
             }else if self.ownerResidentialTextView.text!.count == 0{
-                self.view.makeToast("Enter owner residential details", duration: 2.0, position: .bottom)
+                self.view.makeToast("Enterownerresidentialdetails".localiz(), duration: 2.0, position: .bottom)
             }else if self.engineerNameTF.text!.count == 0{
-                self.view.makeToast("Enter engineer name", duration: 2.0, position: .bottom)
+                self.view.makeToast("Enterengineername".localiz(), duration: 2.0, position: .bottom)
             }else if self.engineerNumberTF.text!.count == 0{
-                self.view.makeToast("Enter engineer mobile number", duration: 2.0, position: .bottom)
+                self.view.makeToast("Enterengineermobilenumber".localiz(), duration: 2.0, position: .bottom)
             }else if self.engineerNumberTF.text!.count != 10{
-                self.view.makeToast("Enter valid engineer mobile number", duration: 2.0, position: .bottom)
+                self.view.makeToast("Entervalidengineermobilenumber".localiz(), duration: 2.0, position: .bottom)
             }else{
                 self.ownerName = self.ownerNameTF.text ?? ""
                 self.ownerMobile = self.ownerMobileTF.text ?? ""

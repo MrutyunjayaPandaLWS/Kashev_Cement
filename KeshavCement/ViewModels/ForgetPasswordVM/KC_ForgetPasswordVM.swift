@@ -5,9 +5,9 @@
 //  Created by ADMIN on 17/02/2023.
 //
 
-import Foundation
 
 import UIKit
+import LanguageManager_iOS
 class KC_ForgetPasswordVM{
     
     weak var VC: KC_ForgetPasswordVC?
@@ -50,7 +50,7 @@ class KC_ForgetPasswordVM{
                 if str ?? "" == "1"{
                     DispatchQueue.main.async{
                         self.VC?.stopLoading()
-                        self.VC?.generateOTPBtn.setTitle("Submit", for: .normal)
+                        self.VC?.generateOTPBtn.setTitle("Submit".localiz(), for: .normal)
                         self.VC?.otpInfoLbl.isHidden = false
                         self.VC?.otpInfoLbl2.isHidden = false
                         self.VC?.resendOTPBtn.isHidden = false
@@ -64,22 +64,22 @@ class KC_ForgetPasswordVM{
                 }else if str ?? "" == "2"{
                     DispatchQueue.main.async{
                         self.VC?.stopLoading()
-                        self.VC?.view.makeToast("Your account has been deactivated..", duration: 2.0, position: .bottom)
-                        self.VC?.generateOTPBtn.setTitle("Generate OTP", for: .normal)
+                        self.VC?.view.makeToast("Youraccounthasbeendeactivated".localiz(), duration: 2.0, position: .bottom)
+                        self.VC?.generateOTPBtn.setTitle("GenerateOTP".localiz(), for: .normal)
                         self.VC?.mobileNumberTF.text = ""
                     }
                 }else if str ?? "" == "3"{
                     DispatchQueue.main.async{
                         self.VC?.stopLoading()
-                        self.VC?.view.makeToast("Invaild customer type", duration: 2.0, position: .bottom)
-                        self.VC?.generateOTPBtn.setTitle("Generate OTP", for: .normal)
+                        self.VC?.view.makeToast("Invaildcustomertype".localiz(), duration: 2.0, position: .bottom)
+                        self.VC?.generateOTPBtn.setTitle("GenerateOTP".localiz(), for: .normal)
                         self.VC?.mobileNumberTF.text = ""
                     }
                 }else if str ?? "" != "1"{
                     DispatchQueue.main.async{
                         self.VC?.stopLoading()
-                        self.VC?.view.makeToast("Mobile number doesn't exists", duration: 2.0, position: .bottom)
-                        self.VC?.generateOTPBtn.setTitle("Generate OTP", for: .normal)
+                        self.VC?.view.makeToast("Mobilenumberdoesntexists".localiz(), duration: 2.0, position: .bottom)
+                        self.VC?.generateOTPBtn.setTitle("GenerateOTP".localiz(), for: .normal)
                     }
                 }
                  }catch{
@@ -158,13 +158,13 @@ class KC_ForgetPasswordVM{
 //                                self.VC!.view.makeToast("Your account is verification pending! Kindly contact your administrator.", duration: 2.0, position: .bottom)
 //                            }
                             if loginResponse[0].isDelete ?? -1 == 1 || loginResponse[0].isUserActive ?? -1 == 0 && loginResponse[0].verifiedStatus ?? -1 == 3{
-                                self.VC!.view.makeToast("Your account is verification pending! Kindly contact your administrator.", duration: 2.0, position: .bottom)
+                                self.VC!.view.makeToast("YouraccountisverificationpendingKindlycontactyouradministrator".localiz(), duration: 2.0, position: .bottom)
                             }else if loginResponse[0].isUserActive ?? -1 == 1 && loginResponse[0].verifiedStatus ?? -1 == 0 || loginResponse[0].isUserActive ?? -1 == 0 && loginResponse[0].verifiedStatus ?? -1 == 0{
-                                self.VC!.view.makeToast("Your account is not activated! Kindly activate your account.", duration: 2.0, position: .bottom)
+                                self.VC!.view.makeToast("YouraccountisnotactivatedKindlyactivateyouraccount".localiz(), duration: 2.0, position: .bottom)
                             }else if loginResponse[0].isUserActive ?? -1 == 0 && loginResponse[0].verifiedStatus ?? -1 == 1 || loginResponse[0].isUserActive ?? -1 == 0 && loginResponse[0].verifiedStatus ?? -1 == 4{
-                                self.VC!.view.makeToast("Your account has been deactivated! Kindly contact your administrator.", duration: 2.0, position: .bottom)
+                                self.VC!.view.makeToast("YouraccounthasbeendeactivatedKindlycontactyouradministrator".localiz(), duration: 2.0, position: .bottom)
                             }else if loginResponse[0].verifiedStatus ?? -1 == 2 {
-                                self.VC!.view.makeToast("Your account verification is failed!, Kindly contact your administrator.", duration: 2.0, position: .bottom)
+                                self.VC!.view.makeToast("YouraccountverificationisfailedKindlycontactyouradministrator.".localiz(), duration: 2.0, position: .bottom)
                             }else{
                                 if loginResponse[0].result ?? -1 == 1 || loginResponse[0].isUserActive ?? -1 == 1 && loginResponse[0].verifiedStatus ?? -1 == 1 && loginResponse[0].result ?? -1 == 1 || loginResponse[0].isUserActive ?? -1 == 1 && loginResponse[0].verifiedStatus ?? -1 == 1{
                                     UserDefaults.standard.setValue(loginResponse[0].userId ?? -1, forKey: "UserID")
@@ -185,7 +185,7 @@ class KC_ForgetPasswordVM{
                             }
 //
                         }else{
-                            self.VC!.view.makeToast("Something went wrong. Try again later!", duration: 2.0, position: .bottom)
+                            self.VC!.view.makeToast("SomethingwentwrongTryagainlater".localiz(), duration: 2.0, position: .bottom)
                         }
                     
                     }
