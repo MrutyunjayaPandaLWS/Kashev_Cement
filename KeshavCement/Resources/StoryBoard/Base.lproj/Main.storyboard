@@ -28883,12 +28883,49 @@
                                                     <constraint firstAttribute="height" constant="35" id="mVR-ot-JA3"/>
                                                 </constraints>
                                             </stackView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gfv-0K-qPc">
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gfv-0K-qPc">
                                                 <rect key="frame" x="30" y="95.666666666666629" width="333" height="50"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="caret-down 3" translatesAutoresizingMaskIntoConstraints="NO" id="UGr-Lv-tGK">
+                                                        <rect key="frame" x="305" y="19" width="12" height="12"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="12" id="dMV-h1-r3e"/>
+                                                            <constraint firstAttribute="height" constant="12" id="pdQ-97-voY"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ivk-pQ-1dO">
+                                                        <rect key="frame" x="12" y="4" width="285" height="42"/>
+                                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8PN-Eb-9GM">
+                                                        <rect key="frame" x="0.0" y="0.0" width="333" height="50"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <connections>
+                                                            <action selector="selectStatusLbl:" destination="6L7-yR-Uu2" eventType="touchUpInside" id="2Se-BA-Z8x"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
+                                                    <constraint firstItem="8PN-Eb-9GM" firstAttribute="leading" secondItem="gfv-0K-qPc" secondAttribute="leading" id="1en-VK-T0V"/>
+                                                    <constraint firstItem="UGr-Lv-tGK" firstAttribute="leading" secondItem="Ivk-pQ-1dO" secondAttribute="trailing" constant="8" id="4hX-sS-Eif"/>
                                                     <constraint firstAttribute="height" constant="50" id="ITh-YD-vsW"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Ivk-pQ-1dO" secondAttribute="bottom" constant="4" id="KSb-MX-Bs6"/>
+                                                    <constraint firstItem="8PN-Eb-9GM" firstAttribute="top" secondItem="gfv-0K-qPc" secondAttribute="top" id="SLp-eq-cFg"/>
+                                                    <constraint firstAttribute="trailing" secondItem="UGr-Lv-tGK" secondAttribute="trailing" constant="16" id="W5u-kX-xXC"/>
+                                                    <constraint firstAttribute="bottom" secondItem="8PN-Eb-9GM" secondAttribute="bottom" id="XsM-cR-iBt"/>
+                                                    <constraint firstItem="Ivk-pQ-1dO" firstAttribute="leading" secondItem="gfv-0K-qPc" secondAttribute="leading" constant="12" id="jyi-Rr-n2E"/>
+                                                    <constraint firstAttribute="trailing" secondItem="8PN-Eb-9GM" secondAttribute="trailing" id="lFH-F5-eyQ"/>
+                                                    <constraint firstItem="Ivk-pQ-1dO" firstAttribute="top" secondItem="gfv-0K-qPc" secondAttribute="top" constant="4" id="m9t-co-yrf"/>
+                                                    <constraint firstItem="UGr-Lv-tGK" firstAttribute="centerY" secondItem="gfv-0K-qPc" secondAttribute="centerY" id="pFB-vV-vQs"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="16"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" red="0.18431377409999999" green="0.18431377409999999" blue="0.18431377409999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -29002,6 +29039,7 @@
                         <outlet property="myRedemptionHeaderLbl" destination="feo-P4-9NK" id="mhw-eJ-plf"/>
                         <outlet property="myRedemptionTV" destination="VEH-fy-0Ru" id="3cK-VC-wNe"/>
                         <outlet property="selectFromDate" destination="rm4-Cj-Eqe" id="9o4-1X-oGo"/>
+                        <outlet property="selectStatusLbl" destination="Ivk-pQ-1dO" id="3zq-EH-DX8"/>
                         <outlet property="selectToDate" destination="wBJ-gO-yRI" id="z3E-0M-hUB"/>
                         <outlet property="statusLbl" destination="Sv8-Ja-6EU" id="CXg-bz-AK6"/>
                     </connections>
@@ -29077,6 +29115,7 @@
         <image name="bell" width="67" height="80"/>
         <image name="calend" width="36" height="36"/>
         <image name="calendar" width="32" height="32"/>
+        <image name="caret-down 3" width="32" height="32"/>
         <image name="caret-down-2 2" width="24" height="24"/>
         <image name="cart45" width="48" height="48"/>
         <image name="cartsvg" width="26" height="21"/>

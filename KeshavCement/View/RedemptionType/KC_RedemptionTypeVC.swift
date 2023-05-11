@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 import LanguageManager_iOS
-class KC_RedemptionTypeVC: BaseViewController, DateSelectedDelegate {
+class KC_RedemptionTypeVC: BaseViewController, DateSelectedDelegate, SelectedDataDelegate {
 //    func acceptDate(_ vc: KC_DOBVC) {
 //        if vc.isComeFrom == "1"{
 //            self.selectedFromDate = vc.selectedDate
@@ -40,6 +40,11 @@ class KC_RedemptionTypeVC: BaseViewController, DateSelectedDelegate {
                 self.selectedToDate = vc.selectedDate
             }
         }
+    func didTapCustomerType(_ vc: KC_DropDownVC) {
+            selectedStatusName = vc.selectedCustomerType
+            selectedStatusId = vc.selectedCustomerTypeId
+            self.selectStatusLbl.text  = vc.selectedCustomerType
+    }
     
 
     @IBOutlet var myRedemptionHeaderLbl: UILabel!
@@ -50,11 +55,9 @@ class KC_RedemptionTypeVC: BaseViewController, DateSelectedDelegate {
     @IBOutlet weak var filterView: UIView!
     @IBOutlet weak var myRedemptionFilterLbl: UILabel!
     @IBOutlet weak var statusLbl: UILabel!
-    @IBOutlet weak var pendingBtn: UIButton!
-    @IBOutlet weak var approvedBtn: UIButton!
-    @IBOutlet weak var rejectedBtn: UIButton!
     @IBOutlet weak var dateRangeLbl: UILabel!
     
+    @IBOutlet weak var selectStatusLbl: UILabel!
     @IBOutlet weak var selectFromDate: UILabel!
     
     @IBOutlet weak var selectToDate: UILabel!
@@ -66,7 +69,8 @@ class KC_RedemptionTypeVC: BaseViewController, DateSelectedDelegate {
     
         var noofelements = 0
         var startIndex = 1
-        var selectedStatus = -1
+        var selectedStatusId = -1
+        var selectedStatusName = ""
         var selectedFromDate = ""
         var selectedToDate = ""
         
@@ -84,9 +88,9 @@ class KC_RedemptionTypeVC: BaseViewController, DateSelectedDelegate {
         self.filterLbl.text = "Filter".localiz()
         self.myRedemptionFilterLbl.text = "MyRedemptionFilter".localiz()
         self.statusLbl.text = "Status".localiz()
-        self.approvedBtn.setTitle("Approved".localiz(), for: .normal)
-        self.pendingBtn.setTitle("Pending".localiz(), for: .normal)
-        self.rejectedBtn.setTitle("Rejected".localiz(), for: .normal)
+//        self.approvedBtn.setTitle("Approved".localiz(), for: .normal)
+//        self.pendingBtn.setTitle("Pending".localiz(), for: .normal)
+//        self.rejectedBtn.setTitle("Rejected".localiz(), for: .normal)
         self.dateRangeLbl.text = "DateRange".localiz()
         self.selectFromDate.text = "SelectFromDate".localiz()
         self.selectToDate.text = "SelectToDate".localiz()
@@ -127,27 +131,27 @@ class KC_RedemptionTypeVC: BaseViewController, DateSelectedDelegate {
         self.present(vc, animated: true)
     }
     @IBAction func clearBtn(_ sender: Any) {
-        self.approvedBtn.backgroundColor = UIColor(hexString: "565656")
-        self.pendingBtn.backgroundColor = UIColor(hexString: "565656")
-        self.rejectedBtn.backgroundColor = UIColor(hexString: "565656")
-        
-        self.pendingBtn.setTitleColor(.white, for: .normal)
-        self.approvedBtn.setTitleColor(.white, for: .normal)
-        self.rejectedBtn.setTitleColor(.white, for: .normal)
+//        self.approvedBtn.backgroundColor = UIColor(hexString: "565656")
+//        self.pendingBtn.backgroundColor = UIColor(hexString: "565656")
+//        self.rejectedBtn.backgroundColor = UIColor(hexString: "565656")
+//        
+//        self.pendingBtn.setTitleColor(.white, for: .normal)
+//        self.approvedBtn.setTitleColor(.white, for: .normal)
+//        self.rejectedBtn.setTitleColor(.white, for: .normal)
      
-        self.selectedStatus = -1
+        self.selectedStatusId = -1
         self.selectFromDate.text = "SelectFromDate".localiz()
         self.selectToDate.text = "SelectToDate".localiz()
         self.filterView.isHidden = true
         self.myRedemptionListApi(startIndex: 1, fromDate: "", toDate: "", status: -1)
     }
     @IBAction func applyFilterBtn(_ sender: Any) {
-        if self.selectedStatus == -1 && self.selectedFromDate == "" && self.selectedToDate == ""{
+        if self.selectedStatusId == -1 && self.selectedFromDate == "" && self.selectedToDate == ""{
             self.view.makeToast("Selectanyordaterange".localiz(), duration: 2.0, position: .bottom)
-        }else if self.selectedFromDate == "" && self.selectedToDate == "" && self.selectedStatus != -1{
+        }else if self.selectedFromDate == "" && self.selectedToDate == "" && self.selectedStatusId != -1{
             self.filterView.isHidden = true
             self.VM.myredemptionListArray.removeAll()
-            self.myRedemptionListApi(startIndex: 1, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: self.selectedStatus)
+            self.myRedemptionListApi(startIndex: 1, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: self.selectedStatusId)
         }else if self.selectedFromDate != "" && self.selectedToDate == ""{
             self.view.makeToast("SelectToDate".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedFromDate == "" && self.selectedToDate != ""{
@@ -157,49 +161,57 @@ class KC_RedemptionTypeVC: BaseViewController, DateSelectedDelegate {
                 self.view.makeToast("TodateshouldntgreaterthanFromdate".localiz(), duration: 2.0, position: .bottom)
             }else{
                 self.VM.myredemptionListArray.removeAll()
-                self.myRedemptionListApi(startIndex: 1, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: self.selectedStatus)
+                self.myRedemptionListApi(startIndex: 1, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: self.selectedStatusId)
                     self.filterView.isHidden = true
             }
         }
     }
-    @IBAction func approvedButton(_ sender: Any) {
-        self.approvedBtn.backgroundColor = UIColor(hexString: "FFFC9C")
-        self.pendingBtn.backgroundColor = UIColor(hexString: "565656")
-        self.rejectedBtn.backgroundColor = UIColor(hexString: "565656")
-        
-        self.pendingBtn.setTitleColor(.white, for: .normal)
-        self.approvedBtn.setTitleColor(.darkGray, for: .normal)
-        self.rejectedBtn.setTitleColor(.white, for: .normal)
-        self.selectedStatus = 1
-//        self.VM.myredemptionListArray.removeAll()
-//        self.myRedemptionListApi(startIndex: 1, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: self.selectedStatus)
+    @IBAction func selectStatusLbl(_ sender: Any) {
+        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as? KC_DropDownVC
+        vc!.delegate = self
+        vc!.itsFrom = "STATUSLIST"
+        vc!.modalPresentationStyle = .overFullScreen
+        vc!.modalTransitionStyle = .crossDissolve
+        self.present(vc!, animated: true, completion: nil)
     }
-    
-    @IBAction func pendingButton(_ sender: Any) {
-        self.approvedBtn.backgroundColor = UIColor(hexString: "565656")
-        self.pendingBtn.backgroundColor = UIColor(hexString: "FFFC9C")
-        
-        self.rejectedBtn.backgroundColor = UIColor(hexString: "565656")
-        self.approvedBtn.setTitleColor(.white, for: .normal)
-        self.pendingBtn.setTitleColor(.darkGray, for: .normal)
-        self.rejectedBtn.setTitleColor(.white, for: .normal)
-        self.selectedStatus = 0
-//        self.VM.myredemptionListArray.removeAll()
-//        self.myRedemptionListApi(startIndex: 1, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: self.selectedStatus)
-    }
-    
-    @IBAction func rejectedButton(_ sender: Any) {
-        self.approvedBtn.backgroundColor = UIColor(hexString: "565656")
-        self.pendingBtn.backgroundColor = UIColor(hexString: "565656")
-        self.rejectedBtn.backgroundColor = UIColor(hexString: "FFFC9C")
-        
-        self.approvedBtn.setTitleColor(.white, for: .normal)
-        self.rejectedBtn.setTitleColor(.darkGray, for: .normal)
-        self.pendingBtn.setTitleColor(.white, for: .normal)
-        self.selectedStatus = 2
-//        self.VM.myredemptionListArray.removeAll()
-//        self.myRedemptionListApi(startIndex: 1, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: self.selectedStatus)
-    }
+    //    @IBAction func approvedButton(_ sender: Any) {
+//        self.approvedBtn.backgroundColor = UIColor(hexString: "FFFC9C")
+//        self.pendingBtn.backgroundColor = UIColor(hexString: "565656")
+//        self.rejectedBtn.backgroundColor = UIColor(hexString: "565656")
+//
+//        self.pendingBtn.setTitleColor(.white, for: .normal)
+//        self.approvedBtn.setTitleColor(.darkGray, for: .normal)
+//        self.rejectedBtn.setTitleColor(.white, for: .normal)
+//        self.selectedStatus = 1
+////        self.VM.myredemptionListArray.removeAll()
+////        self.myRedemptionListApi(startIndex: 1, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: self.selectedStatus)
+//    }
+//
+//    @IBAction func pendingButton(_ sender: Any) {
+//        self.approvedBtn.backgroundColor = UIColor(hexString: "565656")
+//        self.pendingBtn.backgroundColor = UIColor(hexString: "FFFC9C")
+//
+//        self.rejectedBtn.backgroundColor = UIColor(hexString: "565656")
+//        self.approvedBtn.setTitleColor(.white, for: .normal)
+//        self.pendingBtn.setTitleColor(.darkGray, for: .normal)
+//        self.rejectedBtn.setTitleColor(.white, for: .normal)
+//        self.selectedStatus = 0
+////        self.VM.myredemptionListArray.removeAll()
+////        self.myRedemptionListApi(startIndex: 1, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: self.selectedStatus)
+//    }
+//
+//    @IBAction func rejectedButton(_ sender: Any) {
+//        self.approvedBtn.backgroundColor = UIColor(hexString: "565656")
+//        self.pendingBtn.backgroundColor = UIColor(hexString: "565656")
+//        self.rejectedBtn.backgroundColor = UIColor(hexString: "FFFC9C")
+//
+//        self.approvedBtn.setTitleColor(.white, for: .normal)
+//        self.rejectedBtn.setTitleColor(.darkGray, for: .normal)
+//        self.pendingBtn.setTitleColor(.white, for: .normal)
+//        self.selectedStatus = 2
+////        self.VM.myredemptionListArray.removeAll()
+////        self.myRedemptionListApi(startIndex: 1, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: self.selectedStatus)
+//    }
     
     func myRedemptionListApi(startIndex: Int, fromDate: String, toDate: String, status: Int){
         let parameters = [
@@ -246,13 +258,7 @@ extension KC_RedemptionTypeVC: UITableViewDelegate,UITableViewDataSource{
         cell.cashPtsLbl.text = "\(self.VM.myredemptionListArray[indexPath.row].cashTransferedInAmount ?? 0)"
         cell.requestedToLbl.text = self.VM.myredemptionListArray[indexPath.row].cashTransferedTo ?? ""
         cell.valueLbl.text = "\(self.VM.myredemptionListArray[indexPath.row].cashTransferedPoints ?? 0)"
-        
-//        @IBOutlet weak var cashPtsLbl: UILabel!
-//           @IBOutlet weak var valueLbl: UILabel!
-//           @IBOutlet weak var currentTransferDateLbl: UILabel!
-//           @IBOutlet weak var statusLbl: UILabel!
-//           @IBOutlet weak var cashTransferLbl: UILabel!
-//           @IBOutlet weak var requestedToLbl: UILabel!
+    
        
 //        if  self.VM.myredemptionListArray.count != 0 {
             let redemptionDate = "\(self.VM.myredemptionListArray[indexPath.row].jRedemptionDate ?? "-")".split(separator: " ")
@@ -526,10 +532,10 @@ extension KC_RedemptionTypeVC: UITableViewDelegate,UITableViewDataSource{
             if indexPath.row == self.VM.myredemptionListArray.count - 1{
                 if self.noofelements == 10{
                     self.startIndex = self.startIndex + 1
-                    self.myRedemptionListApi(startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: self.selectedStatus)
+                    self.myRedemptionListApi(startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: self.selectedStatusId)
                 }else if self.noofelements > 10{
                     self.startIndex = self.startIndex + 1
-                    self.myRedemptionListApi(startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: self.selectedStatus)
+                    self.myRedemptionListApi(startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: self.selectedStatusId)
                 }else if self.noofelements < 10{
                     print("no need to hit API")
                     return
