@@ -37,7 +37,7 @@ class KC_CashTransferSubmissionVC: BaseViewController, SelectedDataDelegate{
         self.selectedUserTypeName = vc.selectedUserTypeName
         self.selectedUserTypeId = vc.selectedUserTypeId
         self.searchTF.text = ""
-        self.searchTF.placeholder = "Search ...".localiz()
+        self.searchTF.placeholder = "Search".localiz()
         self.pleaseSelectProductLbl.text = "Pleaseselectpoints".localiz()
         self.mappedUserId = -1
         self.selectedProductId = -1

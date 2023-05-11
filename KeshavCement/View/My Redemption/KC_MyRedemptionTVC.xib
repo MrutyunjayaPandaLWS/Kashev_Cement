@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -87,16 +87,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Kh-3v-XYx">
-                                <rect key="frame" x="126" y="134" width="767" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="mFc-vw-hjO"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                <rect key="frame" x="126" y="134" width="767" height="19.666666666666657"/>
+                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="cqZ-gj-TKv">
-                                <rect key="frame" x="125.99999999999999" y="172" width="41.333333333333329" height="31"/>
+                                <rect key="frame" x="125.99999999999999" y="161.66666666666666" width="41.333333333333329" height="31"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="POINTS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ceD-6k-zGS">
                                         <rect key="frame" x="0.0" y="0.0" width="41.333333333333336" height="15"/>
@@ -119,7 +116,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Zdw-te-h1X">
-                                <rect key="frame" x="187.33333333333334" y="172" width="23" height="31"/>
+                                <rect key="frame" x="187.33333333333334" y="161.66666666666666" width="23" height="31"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QTY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hqj-8b-7mU">
                                         <rect key="frame" x="0.0" y="0.0" width="23" height="15"/>
@@ -245,6 +242,7 @@
                 <outlet property="redemptionDateLbl" destination="XkR-xA-GgM" id="Wbe-P3-rOh"/>
                 <outlet property="referenceIdLbl" destination="YZN-eo-R7S" id="VG2-1d-6LO"/>
                 <outlet property="statusLbl" destination="7TY-YK-hhz" id="Z58-gk-YVv"/>
+                <outlet property="statusWidthConstraint" destination="44m-4b-sxW" id="qk7-ci-5fW"/>
             </connections>
             <point key="canvasLocation" x="600.76335877862596" y="29.577464788732396"/>
         </tableViewCell>

@@ -15,6 +15,7 @@ import LanguageManager_iOS
 class KC_DashBoardVC: BaseViewController{
     
 
+    @IBOutlet weak var redemptionTypeView: UIView!
     @IBOutlet weak var helpButton: UIButton!
     @IBOutlet weak var gradeIcon: UIImageView!
     @IBOutlet weak var defaultImage: UIImageView!
@@ -52,6 +53,12 @@ class KC_DashBoardVC: BaseViewController{
     @IBOutlet weak var languagePopUpView: UIView!
     @IBOutlet var supportImageView: UIImageView!
     @IBOutlet weak var sideMenuBTN: UIButton!
+    
+    @IBOutlet weak var redemptionTitleLbl: UILabel!
+    @IBOutlet weak var cashTransferLbl: UILabel!
+    @IBOutlet weak var otherRedemptionsLbl: UILabel!
+    
+    
    // var userID = UserDefaults.standard.string(forKey: "UserID") ?? ""
     var sourceArray = [AlamofireSource]()
     var offerimgArray = [ObjImageGalleryList]()
@@ -79,6 +86,7 @@ class KC_DashBoardVC: BaseViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.VM.VC = self
+        
         self.helpButton.isHidden = true
         self.languageTrailingSpace.constant = 16
         self.languagePopUpView.isHidden = true
@@ -126,7 +134,7 @@ class KC_DashBoardVC: BaseViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.slideMenuController()?.closeLeft()
-        
+        self.redemptionTypeView.isHidden = true
         self.tokendata()
         self.localization()
         
@@ -254,10 +262,21 @@ class KC_DashBoardVC: BaseViewController{
         let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_LodgeQueryVC") as! KC_LodgeQueryVC
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    @IBAction func cashTransferButton(_ sender: Any) {
+        let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_RedemptionTypeVC") as! KC_RedemptionTypeVC
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    @IBAction func otherRedemptionsButton(_ sender: Any) {
+        let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyRedemptionVC") as! KC_MyRedemptionVC
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
     func localization() {
         self.memberShipIdTitle.text = "MembershipID".localiz()
         self.pointBalanceTitle.text = "PointBalance".localiz()
-        self.askHelpLbl.text = "AskHelp?".localiz()
+        self.askHelpLbl.text = "AskHelp".localiz()
         self.raiseTicketLbl.text = "Raiseconnectyousoon".localiz()
         self.raiseTicketBtnLbl.text = "RaiseaTicket".localiz()
     }
@@ -433,8 +452,10 @@ extension KC_DashBoardVC: UICollectionViewDelegate, UICollectionViewDataSource{
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_RedemptionCataloguesVC") as! KC_RedemptionCataloguesVC
                 self.navigationController?.pushViewController(vc, animated: true)
             }else if indexPath.row == 2{
-                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyRedemptionVC") as! KC_MyRedemptionVC
-                self.navigationController?.pushViewController(vc, animated: true)
+//                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyRedemptionVC") as! KC_MyRedemptionVC
+//
+//                self.navigationController?.pushViewController(vc, animated: true)
+                self.redemptionTypeView.isHidden = false
             }else if indexPath.row == 3{
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyEarningVC") as! KC_MyEarningVC
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -515,8 +536,9 @@ extension KC_DashBoardVC: UICollectionViewDelegate, UICollectionViewDataSource{
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_RedemptionCataloguesVC") as! KC_RedemptionCataloguesVC
                 self.navigationController?.pushViewController(vc, animated: true)
             }else if indexPath.row == 5{
-                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyRedemptionVC") as! KC_MyRedemptionVC
-                self.navigationController?.pushViewController(vc, animated: true)
+//                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyRedemptionVC") as! KC_MyRedemptionVC
+//                self.navigationController?.pushViewController(vc, animated: true)
+                self.redemptionTypeView.isHidden = false
             }else if indexPath.row == 6{
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyEarningVC") as! KC_MyEarningVC
                 self.navigationController?.pushViewController(vc, animated: true)

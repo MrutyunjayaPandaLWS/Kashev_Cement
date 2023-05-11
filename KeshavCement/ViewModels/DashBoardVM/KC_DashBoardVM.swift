@@ -51,7 +51,7 @@ class KC_DashBoardVM: SendNewPasswordDelegate{
                                 vc.modalPresentationStyle = .overFullScreen
                                 self.VC!.present(vc, animated: true)
                             }else if loginResponse[0].result ?? -1 == -1{
-                                self.VC!.view.makeToast("InvalidUserName!".localiz(), duration: 2.0, position: .bottom)
+                                self.VC!.view.makeToast("InvalidUserName".localiz(), duration: 2.0, position: .bottom)
                             }
                             
                         }else{

@@ -89,17 +89,23 @@ extension KC_MappedCustomerListVC: UITableViewDelegate, UITableViewDataSource{
             case "CATALOGUE":
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_ProductCatalogueVC") as! KC_ProductCatalogueVC
                 vc.partyLoyaltyId = self.VM.mappedCustomerListArray[indexPath.row].loyaltyID ?? ""
+                vc.mappedUserId = self.VM.mappedCustomerListArray[indexPath.row].userID ?? -1
                 vc.productTotalPoints = self.VM.mappedCustomerListArray[indexPath.row].totalPointsBalance ?? 0
+                vc.mobile = self.VM.mappedCustomerListArray[indexPath.row].mobile ?? ""
                 self.navigationController?.pushViewController(vc, animated: true)
             case "eVoucher":
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "QS_MyVouchers_VC") as! QS_MyVouchers_VC
                 vc.partyLoyaltyId = self.VM.mappedCustomerListArray[indexPath.row].loyaltyID ?? ""
                 vc.productTotalPoints = self.VM.mappedCustomerListArray[indexPath.row].totalPointsBalance ?? 0
+                vc.mappedUserId = self.VM.mappedCustomerListArray[indexPath.row].userID ?? -1
+                vc.mobile = self.VM.mappedCustomerListArray[indexPath.row].mobile ?? ""
                 self.navigationController?.pushViewController(vc, animated: true)
             case "WISHLIST":
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "HR_RedemptionPlannerVC") as! HR_RedemptionPlannerVC
                 vc.partyLoyaltyId = self.VM.mappedCustomerListArray[indexPath.row].loyaltyID ?? ""
-                vc.productTotalPoints = self.VM.mappedCustomerListArray[indexPath.row].totalPointsBalance ?? 0 
+                vc.productTotalPoints = self.VM.mappedCustomerListArray[indexPath.row].totalPointsBalance ?? 0
+                vc.mappedUserId = self.VM.mappedCustomerListArray[indexPath.row].userID ?? -1
+                //vc.mobile = self.VM.mappedCustomerListArray[indexPath.row].mobile ?? ""
                 self.navigationController?.pushViewController(vc, animated: true)
             default:
                 print("None")

@@ -51,6 +51,18 @@ class RestAPI_Requests {
             }
         }
     }
+    func claimOTP_Api(parameters: JSON, completion: @escaping (ClaimRedemptionOTPModel?, Error?) -> ()) -> URLSessionDataTask? {
+        return client.load(path: otp_URLMethod, method: .post, params: parameters) { data, error in
+            do{
+                if data != nil{
+                    let result1 =  try JSONDecoder().decode(ClaimRedemptionOTPModel?.self, from: data as! Data)
+                    completion(result1, nil)
+                }
+            }catch{
+                completion(nil, error)
+            }
+        }
+    }
 //    // MARK : - STATE LISTING DETAILS
     func state_Post_API(parameters: JSON, completion: @escaping (StateListModel?, Error?) -> ()) -> URLSessionDataTask? {
         return client.load(path: stateList_URLMethod, method: .post, params: parameters) { data, error in
@@ -422,7 +434,7 @@ class RestAPI_Requests {
         }
     }
     
-    func myRedemptionListApi(parameters: JSON, completion: @escaping (MyRedemptionListModel?, Error?) -> ()) -> URLSessionDataTask? {
+     func myRedemptionListApi(parameters: JSON, completion: @escaping (MyRedemptionListModel?, Error?) -> ()) -> URLSessionDataTask? {
         return client.load(path: myRedemptionListURLMethod, method: .post, params: parameters) { data, error in
             do{
                 if data != nil{
@@ -1575,6 +1587,21 @@ class RestAPI_Requests {
            do{
                if data != nil{
                    let result1 =  try JSONDecoder().decode(NotificationModels?.self, from: data as! Data)
+                   completion(result1, nil)
+               }
+           }catch{
+               completion(nil, error)
+           }
+       }
+    }
+    
+    // Cash Transfer Redemption List
+    
+    func cashTransferRedemptionTypeList(parameters: JSON, completion: @escaping (CashTransferRedemptionTypeModel?, Error?) -> ()) -> URLSessionDataTask? {
+       return client.load(path: myRedemptionListURLMethod, method: .post, params: parameters) { data, error in
+           do{
+               if data != nil{
+                   let result1 =  try JSONDecoder().decode(CashTransferRedemptionTypeModel?.self, from: data as! Data)
                    completion(result1, nil)
                }
            }catch{

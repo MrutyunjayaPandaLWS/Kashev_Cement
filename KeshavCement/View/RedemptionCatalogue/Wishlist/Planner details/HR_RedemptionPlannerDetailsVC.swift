@@ -39,7 +39,8 @@ class HR_RedemptionPlannerDetailsVC: BaseViewController{
     @IBOutlet weak var earnedTotalPts: UILabel!
     @IBOutlet weak var earningPtsTitle: UILabel!
     @IBOutlet weak var expectInfoLbl: UILabel!
-    @IBOutlet weak var redeemOfferBTNView: GradientView!
+    
+    @IBOutlet weak var redeemOfferBTNView: UIView!
     @IBOutlet weak var redeemBTNView: GradientView!
     @IBOutlet weak var infoLbl: UILabel!
     var VM = HR_RedemptionPlannerDetailsVM()
@@ -64,7 +65,7 @@ class HR_RedemptionPlannerDetailsVC: BaseViewController{
     var productDesc = ""
     var termsandContions = ""
     var totalCartValue = 0
-    
+    var mappedUserId = -1
     var redeemablePointsBalance = UserDefaults.standard.string(forKey: "RedeemablePointBalance") ?? ""
     
     override func viewDidLoad() {
@@ -95,20 +96,23 @@ class HR_RedemptionPlannerDetailsVC: BaseViewController{
         if self.requiredPoints >= Int(redeemablePointsBalance) ?? 0{
             self.redeemBTNView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
             self.redeemBTN1.isEnabled = false
+            self.redeemLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             self.redeemOfferBTNView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
             self.redeemOfferBTN.isEnabled = false
             let calcValues = Int(self.requiredPoints) - (Int(redeemablePointsBalance) ?? 0)
             self.yellowView.isHidden = false
+            
             self.whiteView.isHidden = true
             self.infoLbl.text = "You need \(calcValues) more redeemable points to redeem this product"
         }else if self.requiredPoints <= Int(redeemablePointsBalance) ?? 0{
-            self.redeemBTNView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+           // self.redeemBTNView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             self.redeemBTN1.isEnabled = true
-            self.redeemOfferBTNView.backgroundColor = #colorLiteral(red: 0.9049103856, green: 0.865305841, blue: 0.1212991104, alpha: 1)
+            self.redeemOfferBTNView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            self.redeemLbl.textColor = #colorLiteral(red: 0.96686095, green: 0.8517517447, blue: 0.4868039489, alpha: 1)
             self.redeemOfferBTN.isEnabled = true
-            self.infoLbl.text = "CongratulationYouareEligibleTo".localiz()
-            self.yellowView.isHidden = true
-            self.whiteView.isHidden = false
+            self.infoLbl.text = "Your eligible to redeem this product."
+            self.yellowView.isHidden = false
+            self.whiteView.isHidden = true
 
         }
         
@@ -131,7 +135,7 @@ class HR_RedemptionPlannerDetailsVC: BaseViewController{
 //        self.recommendedLbl.text = "RecommendedProducts".localiz()
         self.redeemedPoints.text = "POINTS".localiz()
         self.redeemLbl.text = "RedeemNow".localiz()
-        self.redeemSummary.text = "RedemptionPlannerSummaryy".localiz()
+        self.redeemSummary.text = "RedemptionPlannerSummary".localiz()
         self.redeemInfo.text = "RedeemablePointsAsOnToday".localiz()
         self.redeemedPoints.text = "POINTS".localiz()
         self.earningSummaryLbl.text = "AverageEarning".localiz()

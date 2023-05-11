@@ -32,11 +32,23 @@ class KC_ProductCatalogueVC: BaseViewController, AddToCartDelegate, SelectedItem
                     self.plannerProductId = self.VM.catalgoueListArray[tappedIndexPath.row].catalogueId ?? 0
                     
                     if self.customerTypeId ?? "" == "3" && self.partyLoyaltyId != "" || self.customerTypeId ?? "" == "4" && self.partyLoyaltyId != ""{
-                           self.VM.addedToPlanner(PartyLoyaltyID: self.partyLoyaltyId)
+                        if self.mappedUserId == -1{
+                            self.VM.addedToPlanner(PartyLoyaltyID: self.partyLoyaltyId, userId: Int(self.userID)!)
+                        }else{
+                            self.VM.addedToPlanner(PartyLoyaltyID: self.partyLoyaltyId, userId: self.mappedUserId)
+                        }
                     }else if self.customerTypeId ?? "" == "3" && self.partyLoyaltyId == "" || self.customerTypeId ?? "" == "4" && self.partyLoyaltyId == ""{
-                        self.VM.addedToPlanner(PartyLoyaltyID: "")
+                        if self.mappedUserId == -1{
+                            self.VM.addedToPlanner(PartyLoyaltyID: "", userId: Int(self.userID)!)
+                        }else{
+                            self.VM.addedToPlanner(PartyLoyaltyID: "", userId: self.mappedUserId)
+                        }
                     }else{
-                        self.VM.addedToPlanner(PartyLoyaltyID: "")
+                        if self.mappedUserId == -1{
+                            self.VM.addedToPlanner(PartyLoyaltyID: "", userId: Int(self.userID)!)
+                        }else{
+                            self.VM.addedToPlanner(PartyLoyaltyID: "", userId: self.mappedUserId)
+                        }
                     }
                 }else{
                     DispatchQueue.main.async{
@@ -73,11 +85,24 @@ class KC_ProductCatalogueVC: BaseViewController, AddToCartDelegate, SelectedItem
                         print(self.customerTypeId)
                         
                         if self.customerTypeId ?? "" == "3" && self.partyLoyaltyId != "" || self.customerTypeId ?? "" == "4" && self.partyLoyaltyId != ""{
-                            self.VM.addToCartApi(PartyLoyaltyID: self.loyaltyId, LoyaltyID: self.partyLoyaltyId)
+                            if self.mappedUserId == -1{
+                                self.VM.addToCartApi(PartyLoyaltyID: self.loyaltyId, LoyaltyID: self.partyLoyaltyId, userId: Int(self.userID)!)
+                            }else{
+                                self.VM.addToCartApi(PartyLoyaltyID: self.loyaltyId, LoyaltyID: self.partyLoyaltyId, userId: self.mappedUserId)
+                            }
                         }else if self.customerTypeId ?? "" == "3" && self.partyLoyaltyId == "" || self.customerTypeId ?? "" == "4" && self.partyLoyaltyId == ""{
-                            self.VM.addToCartApi(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId)
+                            if self.mappedUserId == -1{
+                                self.VM.addToCartApi(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId, userId: Int(self.userID)!)
+                            }else{
+                                self.VM.addToCartApi(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId, userId: self.mappedUserId)
+                            }
                         }else{
-                            self.VM.addToCartApi(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId)
+                            if self.mappedUserId == -1{
+                                self.VM.addToCartApi(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId, userId: Int(self.userID)!)
+                            }else{
+                                self.VM.addToCartApi(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId, userId: self.mappedUserId)
+                            }
+                            
                         }
                         
                         //NotificationCenter.default.post(name: .cartCount, object: nil)
@@ -170,7 +195,8 @@ class KC_ProductCatalogueVC: BaseViewController, AddToCartDelegate, SelectedItem
     var productTotalPoints = 0
     var parameters : JSON?
    
-
+    var mobile = ""
+    var mappedUserId = -1
     override func viewDidLoad() {
         super.viewDidLoad()
         self.VM.VC = self
@@ -315,7 +341,11 @@ class KC_ProductCatalogueVC: BaseViewController, AddToCartDelegate, SelectedItem
             }else{
                 self.VM.getMycartList(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId)
              }
-            self.VM.productCategoryApi()
+            if self.mappedUserId == -1{
+                self.VM.productCategoryApi(userId: Int(self.userID)!)
+            }else{
+                self.VM.productCategoryApi(userId: self.mappedUserId)
+            }
             self.productsDetailCollectionView.reloadData()
           //  NotificationCenter.default.post(name: .cartCount, object: nil)
             
@@ -331,7 +361,11 @@ class KC_ProductCatalogueVC: BaseViewController, AddToCartDelegate, SelectedItem
         self.VM.catalgoueListArray.removeAll()
         self.startIndex = 1
         self.itsFrom = "Search"
-        self.VM.catalogueListApi(searchText: self.searchProductTF.text ?? "", startIndex: self.startIndex)
+        if self.mappedUserId == -1{
+            self.VM.catalogueListApi(searchText: self.searchProductTF.text ?? "", startIndex: self.startIndex, userId: Int(self.userID)!)
+        }else{
+            self.VM.catalogueListApi(searchText: self.searchProductTF.text ?? "", startIndex: self.startIndex, userId: self.mappedUserId)
+        }
     }
     
     
@@ -347,7 +381,11 @@ class KC_ProductCatalogueVC: BaseViewController, AddToCartDelegate, SelectedItem
         self.VM.catalgoueListArray.removeAll()
         self.startIndex = 1
         self.itsFrom = "PtsRange"
-        self.VM.catalogueListApi(searchText: self.searchProductTF.text ?? "", startIndex: self.startIndex)
+        if self.mappedUserId == -1{
+            self.VM.catalogueListApi(searchText: self.searchProductTF.text ?? "", startIndex: self.startIndex, userId: Int(self.userID)!)
+        }else{
+            self.VM.catalogueListApi(searchText: self.searchProductTF.text ?? "", startIndex: self.startIndex, userId: self.mappedUserId)
+        }
     }
     @IBAction func searchBtn(_ sender: Any) {
         self.VM.catalgoueListArray.removeAll()
@@ -373,7 +411,11 @@ class KC_ProductCatalogueVC: BaseViewController, AddToCartDelegate, SelectedItem
         self.itsFrom = "Search"
         self.highToLowBtn.setTitle("Low To High", for: .normal)
         self.separatorLbl.isHidden = true
-        self.VM.catalogueListApi(searchText: self.searchProductTF.text ?? "", startIndex: self.startIndex)
+        if self.mappedUserId == -1{
+            self.VM.catalogueListApi(searchText: self.searchProductTF.text ?? "", startIndex: self.startIndex, userId: Int(self.userID)!)
+        }else{
+            self.VM.catalogueListApi(searchText: self.searchProductTF.text ?? "", startIndex: self.startIndex, userId: self.mappedUserId)
+        }
     }
     @IBAction func categoryBtn(_ sender: Any) {
         self.VM.catalgoueListArray.removeAll()
@@ -408,7 +450,12 @@ class KC_ProductCatalogueVC: BaseViewController, AddToCartDelegate, SelectedItem
         }else{
             self.VM.getMycartList(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId)
          }
-        self.VM.productCategoryApi()
+        if self.mappedUserId == -1{
+            self.VM.productCategoryApi(userId: Int(self.userID)!)
+        }else{
+            self.VM.productCategoryApi(userId: self.mappedUserId)
+        }
+        
        // self.VM.catalogueListApi(searchText: self.searchProductTF.text ?? "", startIndex: self.startIndex)
     }
     
@@ -442,7 +489,12 @@ class KC_ProductCatalogueVC: BaseViewController, AddToCartDelegate, SelectedItem
         }else{
             self.VM.getMycartList(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId)
          }
-        self.VM.productCategoryApi()
+        if self.mappedUserId == -1{
+            self.VM.productCategoryApi(userId: Int(self.userID)!)
+        }else{
+            self.VM.productCategoryApi(userId: self.mappedUserId)
+        }
+    
        // self.VM.catalogueListApi(searchText: self.searchProductTF.text ?? "", startIndex: self.startIndex)
         
     }
@@ -454,6 +506,8 @@ class KC_ProductCatalogueVC: BaseViewController, AddToCartDelegate, SelectedItem
         vc.partyLoyaltyId = self.partyLoyaltyId
         vc.productTotalPoints = self.productTotalPoints
         print(self.productTotalPoints)
+        vc.mobile = mobile
+        vc.mappedUserId = self.mappedUserId
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
@@ -629,7 +683,12 @@ extension KC_ProductCatalogueVC: UICollectionViewDelegate, UICollectionViewDataS
                         }else{
                             self.VM.getMycartList(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId)
                          }
-                        self.VM.productCategoryApi()
+                        if self.mappedUserId == 1{
+                            self.VM.productCategoryApi(userId: Int(self.userID)!)
+                        }else{
+                            self.VM.productCategoryApi(userId: self.mappedUserId)
+                        }
+                        
                     }else{
                         //self.categoryId = -1
                         self.categoriesId = 2
@@ -651,8 +710,13 @@ extension KC_ProductCatalogueVC: UICollectionViewDelegate, UICollectionViewDataS
                         self.startIndex = 1
                         self.itsFrom = "PtsRange"
                         self.productCategoryCollectionView.reloadData()
-                        self.VM.productCategoryApi()
-                        self.VM.catalogueListApi(searchText: self.searchProductTF.text ?? "", startIndex: self.startIndex)
+                        if self.mappedUserId == -1{
+                            self.VM.productCategoryApi(userId: Int(self.userID)!)
+                            self.VM.catalogueListApi(searchText: self.searchProductTF.text ?? "", startIndex: self.startIndex, userId: Int(self.userID)!)
+                        }else{
+                            self.VM.productCategoryApi(userId: self.mappedUserId)
+                            self.VM.catalogueListApi(searchText: self.searchProductTF.text ?? "", startIndex: self.startIndex, userId: self.mappedUserId)
+                        }
                         
                     }
                    
@@ -682,6 +746,7 @@ extension KC_ProductCatalogueVC: UICollectionViewDelegate, UICollectionViewDataS
             vc.itsFrom = self.itsFrom
             vc.partyLoyaltyId = self.partyLoyaltyId
             vc.productTotalPoints = self.productTotalPoints
+      //      vc.mappedUserId = self.mappedUserId
             self.navigationController?.pushViewController(vc, animated: true)
             
         }
@@ -693,10 +758,22 @@ extension KC_ProductCatalogueVC: UICollectionViewDelegate, UICollectionViewDataS
             if indexPath.row == self.VM.catalgoueListArray.count - 1{
                 if self.noofelements == 10{
                     self.startIndex = self.startIndex + 1
-                    self.VM.catalogueListApi(searchText: self.searchProductTF.text ?? "", startIndex: self.startIndex)
+                    if self.mappedUserId == -1{
+                        self.VM.catalogueListApi(searchText: self.searchProductTF.text ?? "", startIndex: self.startIndex, userId: Int(self.userID)!)
+                    }else{
+                        self.VM.catalogueListApi(searchText: self.searchProductTF.text ?? "", startIndex: self.startIndex, userId: self.mappedUserId)
+                    }
+                    print("Its contain first index")
                 }else if self.noofelements > 10{
                     self.startIndex = self.startIndex + 1
-                    self.VM.catalogueListApi(searchText: self.searchProductTF.text ?? "", startIndex: self.startIndex)
+                    if self.mappedUserId == -1{
+                        self.VM.catalogueListApi(searchText: self.searchProductTF.text ?? "", startIndex: self.startIndex, userId: Int(self.userID)!)
+                    }else{
+                        self.VM.catalogueListApi(searchText: self.searchProductTF.text ?? "", startIndex: self.startIndex, userId: self.mappedUserId)
+                    }
+                    
+                    print("Its Contain more than index")
+                    return
                 }else if self.noofelements < 10{
                     print("no need to hit API")
                     return

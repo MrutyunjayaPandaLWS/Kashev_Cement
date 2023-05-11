@@ -13,7 +13,6 @@
 "SubDealer" = "उप डीलर";
 "SupExecu" = "समर्थन कार्यकारी";
 "NoDataFound" = "डाटा प्राप्त नहीं हुआ !!";
-
 "Login" = "लॉगिन";
 "Please_log_in" = "कृपया लॉग इन करने के लिए दिए गए विवरण को दर्ज करें";
 "MobileNoID" = "मोबाइल नंबर / सदस्यता आईडी";
@@ -65,8 +64,6 @@
 "Entervalidmobilenumber" = "मान्य मोबाइल नंबर दर्ज करें";
 "EntervalidaadharGSTnumber" = "मान्य आधार / GST नंबर दर्ज करें";
 "Entervalidpin" = "वैध पिन दर्ज करें";
-
-
 "Activate" = "सक्रिय";
 "OTP" = "ओटीपी";
 "GenerateOTP" = "ओटीपी जनरेट करें";
@@ -79,7 +76,6 @@
 "EntercorrectOTP" = "सही ओटीपी डालें";
 "Pleaseregister" = "रजिस्टर करने के लिए कृपया दिए गए विवरण दर्ज करें";
 "SignUp" = "साइन अप";
-
 "Submit" = "जमा करना";
 "ForgotPassword" = "पासवर्ड भूल गए";
 "Pleasesetthenewpassword" = "कृपया नया पासवर्ड सेट करें";
@@ -95,7 +91,6 @@
 "referralcodefriend" = "अपने मित्र द्वारा भेजा गया अपना रेफ़रल कोड दर्ज करें";
 "ReferralCode" = "रेफरल कोड";
 "Verify" = "सत्यापित करना";
-
 "SelectCity" = "शहर चुनें";
 "SelectTaluk" = "तालुक चुनें";
 "plzFillRegister" = "अपना खाता पंजीकृत करने के लिए कृपया दिए गए विवरण भरें";
@@ -114,12 +109,11 @@
 "EditProfile" = "प्रोफ़ाइल संपादित करें";
 "PointBalance" = "प्वाइंट बैलेंस";
 "MembershipID" = "सदस्यता आईडी";
-"AskHelp?" = "मदद मांगें?";
+"AskHelp" = "मदद मांगें?";
 "Raiseconnectyousoon" = "एक टिकट प्राप्त करें हमारी टीम आपको जल्द ही कनेक्ट करेगी";
 "RaiseaTicket" = "एक टिकट उठाओ";
 "notAllowedRedeem" = "आपको रिडीम करने की अनुमति नहीं है। कृपया अपने व्यवस्थापक से संपर्क करें";
 "Pleaseproductname" = "कृपया उत्पाद का नाम चुनें";
-
 "Search...." = "खोज ....";
 "SearchName" = "खोज नाम";
 "PurchaseRequest" = "खरीद के अनुरोध";
@@ -135,7 +129,6 @@
 "Pleaseselectusertype" = "कृपया उपयोगकर्ता प्रकार चुनें";
 "Pleaseselectproduct" = "कृपया उत्पाद का चयन करें";
 "Qunantityshouldnt0" = "मात्रा 0 नहीं होनी चाहिए";
-
 "MyPurchaseClaim" = "मेरा खरीद दावा";
 "Filter" = "फ़िल्टर";
 "MyPurchaseFilter" = "मेरी खरीद फ़िल्टर";
@@ -145,12 +138,11 @@
 "Pending" = "लंबित";
 "Rejected" = "अस्वीकार कर दिया";
 "SelectFromDate" = "तिथि से चयन करें";
-"SelectToDate" = "Select To Date";
+"SelectToDate" = "अंतिम तिथि चुनें";
 "Clear" = "साफ़";
 "ApplyFilter" = "फिल्टर लागू करें";
 "Selectanyselectordaterange" = "किसी भी चयन या तिथि सीमा का चयन करें";
 "TodateshouldntgreaterthanFromdate" = "तिथि तिथि से तिथि से अधिक नहीं होनी चाहिए";
-
 "RedemptionCatalogue" = "मोचन कैटलॉग";
 "TotalPoints" = "कुल पॉइंट्स";
 "SelectRedemptionDeliveryType" = "मोचन वितरण प्रकार का चयन करें";
@@ -158,10 +150,8 @@
 "ForOthers" = "दूसरों के लिए";
 "SelectRedemptionType" = "मोचन प्रकार का चयन करें";
 "redeemYourEarned" = "अपने अर्जित अंकों को विभिन्न तरीकों से भुनाएं";
-
 "ProductCatalgoue" = "उत्पाद सूचिका";
 "NoDataFound" = "डाटा प्राप्त नहीं हुआ!!";
-
 "YoucanaddthisproductsintoyourplannerList" = "आप इस उत्पाद को अपनी योजनाकार सूची में नहीं जोड़ सकते";
 "ProductisaddedintothePlanner" = "उत्पाद प्लानर में जोड़ा जाता है";
 "InsufficientPointBalance" = "अपर्याप्त बिंदु संतुलन";
@@ -171,14 +161,12 @@
 "NeedSufficientPointBalance" = "पर्याप्त प्वाइंट बैलेंस चाहिए";
 "SearchProducts" = "उत्पादों को खोजना";
 "OK" = "ठीक";
-
 "ProductDetails" = "उत्पाद विवरण";
 "Descriptions" = "विवरण";
 "Termsandconditions" = "नियम और शर्तें";
 "MyCart" = "मेरी गाड़ी";
 "somethingwentWrong" = "कुछ गलत हो गया! बाद में पुन: प्रयास!";
 "ProducthasbeenRemovedfromCart" = "उत्पाद को कार्ट से हटा दिया गया है";
-
 "OrderConfirmation" = "आदेश की पुष्टि";
 "DeliveryAddress" = "डिलिवरी का पता";
 "DeliveryTo" = "को सुपुर्दगी";
@@ -187,7 +175,6 @@
 "Redeem" = "रिडीम करें";
 "currentlyContactAdministrator" = "वर्तमान में आप किसी डीलर के साथ मैप नहीं किए गए हैं। कृपया व्यवस्थापक से संपर्क करें।";
 "ForRedemptioKYCverificationprocess" = "मोचन के लिए, कृपया केवाईसी सत्यापन प्रक्रिया को पूरा करें";
-
 "EntertheOTPSubmitRedemption" = "मोचन जमा करने के लिए ओटीपी दर्ज करें";
 "Redemption" =  "पाप मुक्ति";
 "EnterOTP" = "ओटीपी दर्ज करें";
@@ -195,12 +182,11 @@
 "EntercorrectOTP" = "सही ओटीपी दर्ज करें";
 "Userisnactive" = "उपयोगकर्ता सक्रिय नहीं है";
 "RedemptionFailed!" = "मोचन विफल!";
-
 "Enter_amount_to_redeem" = "रिडीम करने के लिए राशि दर्ज करें";
 "Select_Amount_to_Redeem" = "रिडीम करने के लिए राशि का चयन करें";
 "Vouchers" = "वाउचर";
 "OTPwillreceiveat" = "ओटीपी +91******** पर प्राप्त होगा";
-"ResendOTP?" = "ओटीपी पुनः भेजें?";
+"ResendOTP" = "ओटीपी पुनः भेजें?";
 "OTP" = "ओटीपी";
 "enterOTPRaiseaRequest" = "डीलर से अनुरोध करने के लिए ओटीपी दर्ज करें";
 "VoucherSubmission" = "वाउचर सबमिशन";
@@ -214,12 +200,10 @@
 "EnterAmountinRange" = "रेंज में राशि दर्ज करें";
 "Amount" = "मात्रा";
 "SelectAmount" = "राशि का चयन करें";
-
 "HowitWorks" = "यह कैसे कार्य करता है?";
 "Instruction" = "अनुदेश";
 "CashVoucher" = "कैश वाउचर";
 "CashTransfer" = "नकद अंतरण";
-
 "Claimsubmissionfailed!" = "दावा प्रस्तुत करना विफल रहा!";
 "Pleaseselectpoints" = "कृपया अंक चुनें";
 "Search ..." = "खोज ...";
@@ -243,12 +227,9 @@
 "AverageEarning" = "औसत कमाई";
 "productIsRemoved" = "उत्पाद को सूची से हटा दिया गया है";
  "CongratulationYouareEligibleTo" = "बधाई हो! आप इस उत्पाद को रिडीम करने के योग्य हैं";
-
 "NotmappedToAnyDealer" = "वर्तमान में आप किसी डीलर के साथ मैप नहीं किए गए हैं। कृपया व्यवस्थापक से संपर्क करें।";
-
 "Thiscustomerisalreadyactivated" = "यह ग्राहक पहले से सक्रिय है";
 "Mobilenumberdoesntexists" = "मोबाइल नंबर मौजूद नहीं है";
-
 "WorksiteDetails" = "कार्यस्थल विवरण";
 "WorksiteDetailsFilter" = "वर्कसाइट विवरण फ़िल्टर";
 "CreateNew" = "नया निर्माण";
@@ -257,7 +238,6 @@
 "ToDate" = "तारीख तक";
 "MyRdemeptionDetails" = "मेरा मोचन विवरण";
 "MyRedemptionFilter" = "मेरा मोचन फ़िल्टर";
-
 "Selectanyordaterange" = "किसी भी स्थिति या तिथि सीमा का चयन करें";
 "MyEarning" = "मेरी कमाई";
 "MyEarningFilter" = "मेरी कमाई फ़िल्टर";
@@ -272,7 +252,6 @@
 "Successfullyreferralcodesenttoyourfriend" = "आपके मित्र को सफलतापूर्वक रेफ़रल कोड भेजा गया";
 "Thismobilenumberalreadyreferred" = "यह मोबाइल नंबर पहले से ही संदर्भित है";
 "SomethingwentwrongTryagainLater" = "कुछ गलत हो गया! बाद में पुन: प्रयास";
-
 "OffersandPromotions" = "ऑफ़र और प्रचार";
 "OffersandpromotionsDetails" = "ऑफ़र और प्रचार विवरण";
 "Successfullyreferralcodesenttoyourfriend" = "आपके मित्र को सफलतापूर्वक रेफ़रल कोड भेजा गया";
@@ -287,7 +266,6 @@
 "SendInvite" = "आमंत्रण भेजो";
 "TextCopied" = "टेक्स्ट कॉपी किया गया";
 "Entermobilenumber" = "मोबाइल नंबर दर्ज करें";
-"Entervalidmobilenumber" = "एक मान्य मोबाइल नंबर दर्ज करें";
 "Selfreferralisnotallowed" = "स्व-रेफरल की अनुमति नहीं है";
 "WorkSite" = "कार्यस्थल";
 "UploadSiteImages" = "साइट छवियां अपलोड करें";
@@ -320,7 +298,6 @@
 "Remarks" = "टिप्पणियां";
 "Selecttentativedate" = "संभावित तिथि का चयन करें";
 "Enterremarks" = "टिप्पणी दर्ज करें";
-
 "Search" = "खोज";
 "Insufficientquantity!!" = "काफी मात्रा में !!";
 "Claimissuccessfullycompleted" = "दावा सफलतापूर्वक पूरा हुआ";
@@ -329,7 +306,6 @@
 "Enterflathouseaddress" = "फ्लैट घर का पता दर्ज करें";
 "Enterpin" = "पिन दर्ज करें";
 "ShippingAddressUpdated" = "शिपिंग पता अपडेट किया गया";
-
 "Selectusertype" = "उपयोगकर्ता प्रकार का चयन करें";
 "Selectuser" = "उपयोगकर्ता का चयन करें";
 "Insufficentpointbalance" = "अपर्याप्त बिंदु संतुलन";
@@ -340,20 +316,16 @@
 "Pleaseselectdateofbirth" = "कृपया जन्म तिथि चुनें";
 "Themobilenumberalreadyexists" = "मोबाइल नंबर पहले से मौजूद है";
 "EnrollmentFailed" = "नामांकन विफल";
-
 "AnniversarydateshouldbemorethenaDateofbirth" = "वर्षगांठ तिथि जन्म तिथि से अधिक होनी चाहिए";
 "Yourclaimhasbeenapproved" = "आपका दावा स्वीकृत हो गया है";
 "Yourclaimhasbeenrejected" = "आपका दावा खारिज कर दिया गया है";
 "Submissionfailed!!" = "सबमिशन विफल !!";
-
 "HelplineCall" = "हेल्पलाइन कॉल";
 "ForanyquestionsontheKeshavCementProgram." = "केशव सीमेंट कार्यक्रम पर किसी भी प्रश्न के लिए।";
 "Pleasegiveamisscallonthefollowingnumber" = "कृपया नीचे दिए गए नंबर पर मिस कॉल दें।";
 "GIVEAMISSEDCALLON" = "मिस्ड कॉल दें";
-
 "ClaimHistory" = "दावा इतिहास";
 "ClaimHistoryFilter" = "दावा इतिहास फ़िल्टर";
-
 "CashHistory" = "नकद इतिहास";
 "CashTransferFilter" = "कैश ट्रांसफर फ़िल्टर";
 "Query" = "जिज्ञासा";
@@ -362,7 +334,6 @@
 "Support" = "सहायता";
 "WriteQueryHere..." = "प्रश्न यहां लिखें...";
 "TicketDetails" = "टिकट विवरण";
-
 "PleaseSubmitYour" = "कृपया इस फ़ॉर्म का उपयोग करके अपनी क्वेरी सबमिट करें";
 "SelectYourTopic" = "अपना विषय चुनें";
 "SelectHelpTopic" = "सहायता विषय का चयन करें";
@@ -376,7 +347,6 @@
 "EnterQuerySummary" = "क्वेरी सारांश दर्ज करें";
 "EnterQueryDetails" = "क्वेरी विवरण दर्ज करें";
 "selectTopicQuery" = "विषय क्वेरी का चयन करें";
-
 "Supportticketsubmissionfailed!!" = "समर्थन टिकट जमा करना विफल!!";
 "Supporttickethasbeensubmittedsuccessfully!!" = "समर्थन टिकट सफलतापूर्वक सबमिट कर दिया गया है !!";
 "ThankYou!" = "धन्यवाद!";
@@ -395,7 +365,6 @@
 "DreamGifthasbeenremovedfailed" = "ड्रीम गिफ्ट को हटा दिया गया है विफल";
 "Invaildcustomertype" = "अमान्य ग्राहक प्रकार";
 "Thismemberisalreadyexists" = "यह सदस्य पहले से मौजूद है";
-
 "Profileimageuploadedsuccessfully" = "प्रोफ़ाइल छवि सफलतापूर्वक अपलोड की गई";
 "SomethingwentwrongTryagainLater!" = "कुछ गलत हो गया! बाद में पुन: प्रयास!";
 "Profileuploadedsuccessfully!" = "प्रोफ़ाइल सफलतापूर्वक अपलोड की गई!";
@@ -404,7 +373,6 @@
 "Insufficientquantity" = "काफी मात्रा में";
 "Yourclaimhasbeenapproved" = "आपका दावा स्वीकृत हो गया है";
 "Yourclaimhasbeenrejected" = "आपका दावा खारिज कर दिया गया है";
-
 "Failed" = "असफल";
 "Claimsubmissionfailed!" = "दावा प्रस्तुत करना विफल!!";
 "InvalidUserName" = "अमान्य उपयोगकर्ता नाम";

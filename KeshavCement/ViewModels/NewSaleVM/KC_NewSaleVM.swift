@@ -27,7 +27,7 @@ class KC_NewSaleVM{
             self.VC?.startLoading()
         }
         
-        self.requestAPIs.otp_Post_API(parameters: parameter) { (result, error) in
+        self.requestAPIs.claimOTP_Api(parameters: parameter) { (result, error) in
             
             if result == nil{
                 DispatchQueue.main.async {
@@ -136,7 +136,7 @@ class KC_NewSaleVM{
                         if result?.returnMessage ?? "" == "1"{
                             self.VC!.successPopUpView.isHidden = false
                             if self.VC!.itsFrom == "SendOTP"{
-                                self.VC!.popUpInfoLbl.text = "Claimissuccessfullycompleted.".localiz()
+                                self.VC!.popUpInfoLbl.text = "Claimissuccessfullycompleted".localiz()
                             }
                             self.VC!.otpPopUpView.isHidden = true
                             

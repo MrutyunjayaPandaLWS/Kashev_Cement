@@ -68,11 +68,11 @@ class KC_ProductCatalogueListVM{
     }
     
     
-    func productCategoryApi(){
+    func productCategoryApi(userId: Int){
         self.VC?.startLoading()
         let parameters = [
                "ActionType": "1",
-               "ActorId": "\(self.userID)",
+               "ActorId": userId,
                 "IsActive": 1
         ] as [String : Any]
         print(parameters)
@@ -94,7 +94,11 @@ class KC_ProductCatalogueListVM{
                             
 //                            self.VC?.noDataFoundCategoryList.isHidden = true
                             self.VC?.productCategoryCollectionView.reloadData()
-                            self.catalogueListApi(searchText: self.VC?.searchProductTF.text ?? "", startIndex: self.VC!.startIndex)
+                            if self.VC!.mappedUserId == -1{
+                                self.catalogueListApi(searchText: self.VC?.searchProductTF.text ?? "", startIndex: self.VC!.startIndex, userId: Int(self.VC!.userID)!)
+                            }else{
+                                self.catalogueListApi(searchText: self.VC?.searchProductTF.text ?? "", startIndex: self.VC!.startIndex, userId: self.VC!.mappedUserId)
+                            }
                         }else{
                             self.VC?.productCategoryCollectionView.isHidden = true
                             
@@ -115,14 +119,14 @@ class KC_ProductCatalogueListVM{
             }
         }
     }
-    func catalogueListApi(searchText: String, startIndex: Int){
+    func catalogueListApi(searchText: String, startIndex: Int, userId: Int){
         self.VC?.startLoading()
         self.parameters?.removeAll()
         if self.VC?.itsFrom == "Search"{
             self.parameters = [
                 "ActionType": "6",
                 "Domain": "KESHAV_CEMENT",
-                "ActorId": "\(self.userID)",
+                "ActorId": userId,
                   "ObjCatalogueDetails": [
                       "MerchantId": 1,
                       "CatogoryId": -1,
@@ -139,7 +143,7 @@ class KC_ProductCatalogueListVM{
             self.parameters = [
                 "ActionType": "6",
                 "Domain": "KESHAV_CEMENT",
-                "ActorId": "\(self.userID)",
+                "ActorId": userId,
                   "ObjCatalogueDetails": [
                       "MerchantId": 1,
                       "CatogoryId": "\(self.VC?.categoryId ?? -1)",
@@ -162,8 +166,6 @@ class KC_ProductCatalogueListVM{
                             let catalogueProductsList = result?.objCatalogueList ?? []
                             print(catalogueProductsList.count, "catalogueProductsList List Count")
                             if catalogueProductsList.isEmpty == false || catalogueProductsList.count != 0{
-                                
-                                
                                 self.catalgoueListArray = self.catalgoueListArray + catalogueProductsList
                                 self.VC?.noofelements = self.catalgoueListArray.count
                                 self.brandArray = self.catalgoueListArray
@@ -172,32 +174,55 @@ class KC_ProductCatalogueListVM{
                                     self.VC?.productsDetailCollectionView.isHidden = false
                                     self.VC?.noDataFound.isHidden = true
                                     self.VC?.productsDetailCollectionView.reloadData()
-                                }else{
-                                    self.VC?.startIndex = 1
-                                    self.VC?.productsDetailCollectionView.isHidden = true
-                                    self.VC?.noDataFound.isHidden = false
+                                    print("Catalgoue Count is not equal to 10")
                                 }
+//                                else{
+//                                    //self.VC?.startIndex = 1
+//                                    self.VC?.productsDetailCollectionView.isHidden = true
+//                                    self.VC?.noDataFound.isHidden = false
+//                                    print("Catalgoue Count is equal to 10")
+//                                }
                                 if self.VC?.customerTypeId ?? "" == "3" && self.VC?.partyLoyaltyId != "" || self.VC?.customerTypeId ?? "" == "4" && self.VC?.partyLoyaltyId != ""{
                                     
                                         self.getMycartList(PartyLoyaltyID: self.loyaltyId, LoyaltyID: self.VC!.partyLoyaltyId)
-                                        self.redemptionPlannerList(PartyLoyaltyID: self.VC!.partyLoyaltyId)
+                                   
+                                    if self.VC!.mappedUserId != -1{
+                                        self.redemptionPlannerList(PartyLoyaltyID: self.VC!.partyLoyaltyId, userId: self.VC!.mappedUserId)
+                                    }else{
+                                        self.redemptionPlannerList(PartyLoyaltyID: self.VC!.partyLoyaltyId, userId: Int(self.userID)!)
+                                    }
+                                    
+                                    
+                                    
                                 }else if self.VC?.customerTypeId ?? "" == "3" && self.VC?.partyLoyaltyId == "" || self.VC?.customerTypeId ?? "" == "4" && self.VC?.partyLoyaltyId == ""{
                                     self.getMycartList(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId)
-                                    self.redemptionPlannerList(PartyLoyaltyID: "")
+                                    
+                                    if self.VC!.mappedUserId == -1{
+                                        self.redemptionPlannerList(PartyLoyaltyID: "", userId: Int(self.userID)!)
+                                    }else{
+                                        self.redemptionPlannerList(PartyLoyaltyID: "", userId: self.VC!.mappedUserId)
+                                    }
                                 }else{
                                         self.getMycartList(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId)
-                                        self.redemptionPlannerList(PartyLoyaltyID: "")
+                                    if self.VC!.mappedUserId == -1{
+                                        self.redemptionPlannerList(PartyLoyaltyID: "", userId: Int(self.userID)!)
+                                    }else{
+                                        self.redemptionPlannerList(PartyLoyaltyID: "", userId: self.VC!.mappedUserId)
+                                    }
                                     }
                                     
                                 
                                 
                             }else{
                                 if self.VC?.itsFrom == "Search" && self.VC!.startIndex > 1 || self.VC?.itsFrom == "Category" && self.VC!.startIndex > 1 || self.VC?.itsFrom == "PtsRange" && self.VC!.startIndex > 1{
-                                    self.VC?.startIndex = 1
-                                    self.VC?.noofelements = 9
+                                    print(self.VC!.itsFrom, "shdfjlsadk;fgdlgkjfkldsglfsf")
+//                                    self.VC?.startIndex = 1
+//                                    self.VC?.noofelements = 9
+                                    print("Catalgoue Count is 10")
                                 }else{
                                     self.VC?.productsDetailCollectionView.isHidden = true
                                     self.VC?.noDataFound.isHidden = false
+                                    print("sadfasdfjasdklfsadkljfsdakljfsdaflasdflj")
                                 }
 
                             }
@@ -243,11 +268,11 @@ class KC_ProductCatalogueListVM{
 //            }
 //        }
 //    }
-    func redemptionPlannerList(PartyLoyaltyID: String){
+    func redemptionPlannerList(PartyLoyaltyID: String, userId: Int){
         self.VC?.startLoading()
         let parameters = [
             "ActionType": "6",
-            "ActorId": self.userID,
+            "ActorId": userId,
              "StartIndex": 1,
              "PageSize": 10,
              "PartyLoyaltyID": PartyLoyaltyID
@@ -325,11 +350,11 @@ class KC_ProductCatalogueListVM{
 //
     //Add to Cart Api
     
-    func addToCartApi(PartyLoyaltyID: String, LoyaltyID: String){
+    func addToCartApi(PartyLoyaltyID: String, LoyaltyID: String, userId: Int){
         self.VC?.startLoading()
         let parameters = [
                 "ActionType": "1",
-                "ActorId": "\(userID)",
+                "ActorId": userId,
                 "CatalogueSaveCartDetailListRequest": [
                     [
                         "CatalogueId": "\(self.VC?.selectedCatalogueID ?? 0)",
@@ -362,7 +387,12 @@ class KC_ProductCatalogueListVM{
                                 
                             }
                             self.VC?.startIndex = 1
-                            self.productCategoryApi()
+                            if self.VC!.mappedUserId == -1{
+                                self.productCategoryApi(userId: Int(self.userID)!)
+                            }else{
+                                self.productCategoryApi(userId: self.VC!.mappedUserId)
+                            }
+                            
                             let alert = UIAlertController(title: "", message: "AddedToCart".localiz(), preferredStyle: UIAlertController.Style.alert)
                             alert.addAction(UIAlertAction(title: "OK".localiz(), style: .default, handler: nil))
                             self.VC?.present(alert, animated: true, completion: nil)
@@ -393,12 +423,12 @@ class KC_ProductCatalogueListVM{
       
     }
     
-    func addedToPlanner(PartyLoyaltyID: String){
+    func addedToPlanner(PartyLoyaltyID: String, userId: Int){
         self.VC?.startLoading()
         let parameters = [
             "ActionType": 0,
             "PartyLoyaltyID": PartyLoyaltyID,
-              "ActorId": "\(userID)",
+              "ActorId": userId,
               "ObjCatalogueDetails": [
                   "CatalogueId": self.VC?.plannerProductId ?? 0
               ]
@@ -426,7 +456,12 @@ class KC_ProductCatalogueListVM{
                                 
                             }
                             self.VC?.startIndex = 1
-                            self.productCategoryApi()
+                            if self.VC!.mappedUserId != -1{
+                                self.productCategoryApi(userId: self.VC!.mappedUserId)
+                            }else{
+                                self.productCategoryApi(userId: Int(self.userID)!)
+                            }
+                            
                         }else{
                             DispatchQueue.main.async{
                                 let alert = UIAlertController(title: "", message: "YoucanaddthisproductsintoyourplannerList".localiz(), preferredStyle: UIAlertController.Style.alert)

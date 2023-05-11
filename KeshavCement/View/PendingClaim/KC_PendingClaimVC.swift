@@ -64,7 +64,7 @@ class KC_PendingClaimVC: BaseViewController, DataUpdateDelegate, DPOTPViewDelega
             self.quantity = Int(self.claimPurchaseListArray[tappedIndexPath.row].quantity ?? "")!
             self.approvedStatus = "1"
             self.remarks = self.claimPurchaseListArray[tappedIndexPath.row].remarks ?? ""
-            
+            self.claimedMobileNumber = self.claimPurchaseListArray[tappedIndexPath.row].mobile ?? ""
             self.validatePointBalanceApi(productCode: self.claimPurchaseListArray[tappedIndexPath.row].productCode ?? "", quantity: String(self.quantity))
             
             
@@ -84,7 +84,7 @@ class KC_PendingClaimVC: BaseViewController, DataUpdateDelegate, DPOTPViewDelega
                         
                         self.approvedStatus = "-1"
                         self.remarks = self.claimPurchaseListArray[tappedIndexPath.row].remarks ?? ""
-                        
+                        self.claimedMobileNumber = self.claimPurchaseListArray[tappedIndexPath.row].mobile ?? ""
                         for receievedData in self.VM.pendingClaimListArray{
                             if receievedData.ltyTranTempID ?? -1 == Int(self.claimPurchaseListArray[tappedIndexPath.row].temperId ?? "")!{
                                 self.quantity = Int(receievedData.quantity ?? -1)
@@ -168,6 +168,7 @@ class KC_PendingClaimVC: BaseViewController, DataUpdateDelegate, DPOTPViewDelega
     var quantity = 0
     var approvedStatus = ""
     var remarks = ""
+    var claimedMobileNumber = ""
     
     
     var VM = KC_PendingClaimListVM()
@@ -309,11 +310,16 @@ class KC_PendingClaimVC: BaseViewController, DataUpdateDelegate, DPOTPViewDelega
     
     func generateOTPApi(){
         let parameter = [
+//            "MerchantUserName": "KeshavCementDemo",
+//            "MobileNo": self.claimedMobileNumber,
+//            "UserId": self.userID,
+//            "UserName": self.loyaltyId,
+//            "Name": self.firstname
             "MerchantUserName": "KeshavCementDemo",
-            "MobileNo": mobilenumber,
-            "UserId": self.userID,
-            "UserName": self.loyaltyId,
-            "Name": self.firstname
+              "MobileNo": self.claimedMobileNumber,
+              "OTPType": "OTPForRewardCardsENCashAuthorization",
+              "UserId": self.userID,
+              "UserName": self.loyaltyId,
         ] as [String: Any]
         print(parameter)
         self.VM.getOTPApi(parameter: parameter)
@@ -363,7 +369,8 @@ extension KC_PendingClaimVC: UITableViewDelegate, UITableViewDataSource{
             cell.claimImage.image = UIImage(named: "ic_default_img")
         }
         cell.categoryTypeLbl.text = self.claimPurchaseListArray[indexPath.row].memberType ?? ""
-        cell.userNameLbl.text = self.claimPurchaseListArray[indexPath.row].memberName ?? ""
+        let userName = self.claimPurchaseListArray[indexPath.row].memberName ?? ""
+        cell.userNameLbl.text = userName + " (\(self.claimPurchaseListArray[indexPath.row].mobile ?? ""))"
         cell.locationLbl.text = self.claimPurchaseListArray[indexPath.row].locationName ?? ""
         cell.productName.text = self.claimPurchaseListArray[indexPath.row].productName ?? ""
         cell.qtyTF.text = self.claimPurchaseListArray[indexPath.row].quantity ?? ""

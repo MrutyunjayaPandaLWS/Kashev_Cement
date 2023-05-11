@@ -168,11 +168,17 @@ class KC_EvoucherPopUpVC: BaseViewController, DPOTPViewDelegate{
     }
     func generateOTPApi(loyaltyId: String){
             let parameter = [
+//                "MerchantUserName": "KeshavCementDemo",
+//                "MobileNo": mobilenumber,
+//                "UserId": self.userID,
+//                "UserName": loyaltyId,
+//                "Name": self.customerName
+                
                 "MerchantUserName": "KeshavCementDemo",
                 "MobileNo": mobilenumber,
+                "OTPType": "OTPForRewardCardsENCashAuthorization",
                 "UserId": self.userID,
-                "UserName": loyaltyId,
-                "Name": self.customerName
+                "UserName": loyaltyId
             ] as [String: Any]
             print(parameter)
             self.VM.getOTPApi(parameter: parameter)
@@ -200,7 +206,7 @@ class KC_EvoucherPopUpVC: BaseViewController, DPOTPViewDelegate{
                             "DomainName": "KESHAV_CEMENT"
                     ],
                 "ObjCatalogueList": self.VM.newproductArray  as [[String: Any]],
-                "ObjCustShippingAddressDetails":["Address1":"\(self.address1)","CityId":"\(self.cityID)", "CityName":"\(self.cityName)","CountryId":"\(self.countryId)","StateName": "\(self.stateName)","StateId":"\(self.stateID)","Zip":"\(self.pincode)","Email":"\(self.emailId)","FullName":"\(self.customerName)","Mobile": self.mobile],"SourceMode":5
+                "ObjCustShippingAddressDetails":["Address1":"\(self.address1)","CityId":"\(self.cityID)", "CityName":"\(self.cityName)","CountryId":"15","StateName": "\(self.stateName)","StateId":"\(self.stateID)","Zip":"\(self.pincode)","Email":"\(self.emailId)","FullName":"\(self.customerName)","Mobile": self.mobile],"SourceMode":5
             ]
             print(productsParameter ?? [])
         }else{
@@ -208,14 +214,11 @@ class KC_EvoucherPopUpVC: BaseViewController, DPOTPViewDelegate{
                     "ActionType": 51,
                     "ActorId": userID,
                     "MemberName": "\(contractorName)",
-                    "ObjCatalogueDetails": [
-                                "DomainName": "KESHAV_CEMENT"
-                        ],
                     "ObjCatalogueList": [
                         [
                             "DreamGiftId": "\(dreamGiftId)",
                             "LoyaltyId": loyaltyId,
-                            "PointBalance": "\(pointBalance)",
+                            "PointBalance": UserDefaults.standard.string(forKey: "RedeemablePointBalance") ?? "",
                             "NoOfPointsDebit": "\(giftPts)",
                             "NoOfQuantity": 1,
                             "PointsRequired": "\(giftPts)",
@@ -227,10 +230,10 @@ class KC_EvoucherPopUpVC: BaseViewController, DPOTPViewDelegate{
                         "Address1": "\(self.address1)",
                         "CityId": self.cityID,
                         "CityName": "\(self.cityName)",
-                        "CountryId": 103,
+                        "CountryId": 15,
                         "Email": "\(self.emailId)",
                         "FullName": "\(contractorName)",
-                        "Mobile": loyaltyId,
+                        "Mobile": self.mobilenumber,
                         "StateId": self.stateID,
                         "StateName": "\(self.stateName)",
                         "Zip": "\(self.pincode)"
@@ -263,7 +266,7 @@ class KC_EvoucherPopUpVC: BaseViewController, DPOTPViewDelegate{
                    "ActionType": 4,
                    "ActorId": "\(self.userID)",
                    "DreamGiftId": "\(dreamGiftId)",
-                   "GiftStatusId": 4
+                   "GiftStatusId": 5
            ] as [String: Any]
            print(parameters)
            self.VM.removeDreamGift(parameters: parameters) { response in

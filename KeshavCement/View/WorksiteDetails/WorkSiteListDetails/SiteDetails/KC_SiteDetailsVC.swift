@@ -44,7 +44,7 @@ class KC_SiteDetailsVC: BaseViewController, UIImagePickerControllerDelegate,UINa
         if self.strdata1 == ""{
             self.view.makeToast("Pleaseselectsiteimage".localiz(), duration: 2.0, position: .bottom)
         }else if self.currentLatitude == "" || self.currentLongitude == ""{
-            self.view.makeToast("Selectcurrentlocation....".localiz(), duration: 2.0, position: .bottom)
+            self.view.makeToast("Selectcurrentlocation".localiz(), duration: 2.0, position: .bottom)
         }else{
             NotificationCenter.default.post(name: .navigateToUserDetails, object: self)
         }

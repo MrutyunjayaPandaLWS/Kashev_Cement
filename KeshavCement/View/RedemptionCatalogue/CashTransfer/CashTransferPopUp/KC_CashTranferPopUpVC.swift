@@ -202,7 +202,7 @@ class KC_CashTranferPopUpVC: BaseViewController, DPOTPViewDelegate, SelectedData
                 if Int(self.noOfPointsRequired)! <= Int(self.pointBalance)!{
                     self.cashTransferSubmissionApi(noOfPointsRequired: self.noOfPointsRequired, productCode: self.productCode, productImage: self.productImage, productName: self.productName, categoryId: Int(self.categoryId)!, termsandCondition: self.termsandCondition, vendorId: Int(self.vendorId)!, vendorName: self.vendorName)
                 }else{
-                    self.view.makeToast("Insufficentpointbalance!".localiz(), duration: 2.0, position: .bottom)
+                    self.view.makeToast("Insufficentpointbalance".localiz(), duration: 2.0, position: .bottom)
                 }
             }
     }
@@ -217,11 +217,17 @@ class KC_CashTranferPopUpVC: BaseViewController, DPOTPViewDelegate, SelectedData
     
     func generateOTPApi(){
         let parameter = [
+//            "MerchantUserName": "KeshavCementDemo",
+//            "MobileNo": mobilenumber,
+//            "UserId": self.userID,
+//            "UserName": self.loyaltyId,
+//            "Name": self.customerName
             "MerchantUserName": "KeshavCementDemo",
             "MobileNo": mobilenumber,
+            "OTPType": "OTPForRewardCardsENCashAuthorization",
             "UserId": self.userID,
-            "UserName": self.loyaltyId,
-            "Name": self.customerName
+            "UserName": self.loyaltyId
+            
         ] as [String: Any]
         print(parameter)
         self.VM.getOTPApi(parameter: parameter)

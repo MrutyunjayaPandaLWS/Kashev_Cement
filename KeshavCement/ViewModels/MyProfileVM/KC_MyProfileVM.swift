@@ -111,7 +111,7 @@ class KC_MyProfileVM{
                     DispatchQueue.main.async {
                         self.VC?.stopLoading()
                         if result?.returnMessage ?? "" == "1"{
-                            self.VC!.view.makeToast("Profileimageuploadedsuccessfully!".localiz(), duration: 2.0, position: .bottom)
+                            self.VC!.view.makeToast("Profileimageuploadedsuccessfully".localiz(), duration: 2.0, position: .bottom)
                         }else{
                             self.VC!.view.makeToast("SomethingwentwrongTryagainLater!".localiz(), duration: 2.0, position: .bottom)
                         }

@@ -289,7 +289,7 @@ extension KC_MyActivityVC: UITableViewDelegate, UITableViewDataSource{
             cell.dateLbl.text = "-"
         }
         cell.categoryLbl.text = self.VM.claimHistoryListArray[indexPath.row].customer_Type ?? ""
-        cell.userNameLbl.text = self.VM.claimHistoryListArray[indexPath.row].requestTo ?? ""
+        cell.userNameLbl.text = self.VM.claimHistoryListArray[indexPath.row].salesPersonsName ?? ""
         if self.VM.claimHistoryListArray[indexPath.row].status ?? "" == "Pending"{
             cell.statusLbl.backgroundColor = #colorLiteral(red: 0.8848068118, green: 0.9562426209, blue: 0.8934361935, alpha: 1)
             cell.statusLbl.textColor = .green

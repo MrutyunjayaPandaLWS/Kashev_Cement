@@ -21,6 +21,7 @@ class KC_MyCartVC: BaseViewController, MyCartDelegate {
     
     var VM = KC_MyCartVM()
     var pointBalance = UserDefaults.standard.double(forKey: "RedeemablePointBalance")
+    var mobile = ""
     var customerCartId = 0
     var quantity = 1
     var productValue = ""
@@ -30,6 +31,7 @@ class KC_MyCartVC: BaseViewController, MyCartDelegate {
     var checkAccountStatus = UserDefaults.standard.string(forKey: "SemiActiveAccount") ?? ""
     var isRedeemable = 0
     var productTotalPoints = 0
+    var mappedUserId = -1
     override func viewDidLoad() {
         super.viewDidLoad()
         self.VM.VC = self
@@ -62,7 +64,9 @@ class KC_MyCartVC: BaseViewController, MyCartDelegate {
         vc.totalRedemmablePts = Int(self.finalPoints)
         vc.partyLoyaltyId = self.partyLoyaltyId
         vc.finalPoints = self.finalPoints
+        vc.mobile = self.mobile
         vc.productTotalPoints = self.productTotalPoints
+        vc.mappedUserId = self.mappedUserId
             self.navigationController?.pushViewController(vc, animated: true)
 //        }else{
 //            self.view.makeToast("You are not allowled to redeem .Please contact your administrator", duration: 2.0, position: .bottom)

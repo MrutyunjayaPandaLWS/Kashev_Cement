@@ -75,7 +75,11 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
                     }else{
                         self.popView.isHidden = false
                         self.generateOTPApi()
-                        self.receiverMobile = self.mobilenumber
+                        if self.mobile == ""{
+                            self.receiverMobile = self.mobilenumber
+                        }else{
+                            self.receiverMobile = self.mobile
+                        }
                         self.actorId = userID
                         self.countryID = cell.vouchersdata[0].countryID ?? -1
                         self.merchantId = "\(self.merchantID)"
@@ -103,7 +107,11 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
                 if Int(self.overAllPts)! >= self.selectedPoints{
                     self.popView.isHidden = false
                     self.generateOTPApi()
-                    self.receiverMobile = self.mobilenumber
+                    if self.mobile == ""{
+                        self.receiverMobile = self.mobilenumber
+                    }else{
+                        self.receiverMobile = self.mobile
+                    }
                     self.actorId = userID
                     self.countryID = cell.vouchersdata[0].countryID ?? -1
                     self.merchantId = "\(self.merchantID)"
@@ -181,6 +189,7 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
     var productcodeselected = ""
     var selectedProductValue = 0
     var receivedOTP = ""
+    var mobile = ""
     
     var partyLoyaltyId = ""
     let vm = QS_Vouchers_VM()
@@ -214,7 +223,7 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
         var vendorName = ""
         var receiverEmail = ""
         var receiverName = ""
-    
+    var mappedUserId = -1
     var productTotalPoints = 0
     
     override func viewDidLoad() {
@@ -262,7 +271,7 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
         self.totalPointss.text = "TotalPoints".localiz()
         self.noDataFoundLabel.text = "NoDataFound".localiz()
         self.otpInfoLbl.text = "OTPwillreceiveat".localiz()
-        self.resendOTPBtn.setTitle("ResendOTP?".localiz(), for: .normal)
+        self.resendOTPBtn.setTitle("ResendOTP".localiz(), for: .normal)
         self.otpLbl.text = "OTP".localiz()
         self.OTPinfoHeaderLbl.text = "enterOTPRaiseaRequest".localiz()
         self.popUpHeaderLbl.text = "VoucherSubmission".localiz()
@@ -424,6 +433,13 @@ extension QS_MyVouchers_VC{
             vc?.vouchervendorID = self.vm.myvouchersArray[indexPath.row].vendorId ?? -1
             vc?.voucherCountryID = self.vm.myvouchersArray[indexPath.row].countryID ?? -1
             vc?.voucherdelivarytype = self.vm.myvouchersArray[indexPath.row].deliveryType ?? ""
+            vc?.mappedUserId = self.mappedUserId
+            if self.mobile == ""{
+                self.receiverMobile = self.mobilenumber
+            
+            }else{
+                self.receiverMobile = self.mobile
+            }
             
             self.navigationController?.pushViewController(vc!, animated: true)
         }

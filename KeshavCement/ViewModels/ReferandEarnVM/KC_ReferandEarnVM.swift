@@ -34,7 +34,7 @@ class KC_ReferandEarnVM{
                         }else  if result?.returnMessage ?? "0" == "2~Mobile number already Referred"{
                             self.VC!.view.makeToast("Thismobilenumberalreadyreferred".localiz(),duration: 2.0, position: .bottom)
                         }else{
-                            self.VC!.view.makeToast("SomethingwentwrongTryagainLater.".localiz(),duration: 2.0, position: .bottom)
+                            self.VC!.view.makeToast("SomethingwentwrongTryagainLater".localiz(),duration: 2.0, position: .bottom)
                         }
                     }
                     DispatchQueue.main.async {

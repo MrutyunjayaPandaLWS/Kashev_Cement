@@ -62,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
               UserDefaults.standard.setValue(token, forKey: "UD_DEVICE_TOKEN")
             }
           }
-        
+        print("App Launch Screen")
         
         return true
     }

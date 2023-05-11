@@ -99,6 +99,8 @@ class HR_RedemptionPlannerVC: BaseViewController, RedeemePlannedProductDelegate{
     var totalCartValue = 0
     var partyLoyaltyId = ""
     var productTotalPoints = 0
+    var mobile = ""
+    var mappedUserId = -1
     override func viewDidLoad() {
         super.viewDidLoad()
         self.VM.VC = self
@@ -223,6 +225,7 @@ extension HR_RedemptionPlannerVC: UITableViewDelegate, UITableViewDataSource{
         vc.termsandContions = self.VM.plannerListArray[indexPath.row].termsCondition ?? ""
         vc.actualRedemptionDate = self.VM.plannerListArray[indexPath.row].actualRedemptionDate ?? ""
         vc.partyLoyaltyId = self.partyLoyaltyId
+        vc.mappedUserId = self.mappedUserId
         self.navigationController?.pushViewController(vc, animated: true)
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

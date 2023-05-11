@@ -452,11 +452,16 @@ class KC_NewSaleVC: BaseViewController, SelectedDataDelegate, DPOTPViewDelegate{
     
     func generateOTPApi(){
         let parameter = [
+//            "MerchantUserName": "KeshavCementDemo",
+//            "MobileNo": self.mappedUserMobile,
+//            "UserId": self.mappedUserId,
+//            "UserName": self.mappedName,
+//            "Name": self.mappedName
             "MerchantUserName": "KeshavCementDemo",
-            "MobileNo": self.mappedUserMobile,
-            "UserId": self.mappedUserId,
-            "UserName": self.mappedName,
-            "Name": self.mappedName
+              "MobileNo": self.mappedUserMobile,
+              "OTPType": "OTPForRewardCardsENCashAuthorization",
+              "UserId": self.mappedUserId,
+              "UserName": self.mappedName,
         ] as [String: Any]
         print(parameter)
         self.VM.getOTPApi(parameter: parameter)

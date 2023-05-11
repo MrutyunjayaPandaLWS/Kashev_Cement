@@ -106,8 +106,8 @@ class KC_MyPurchaseClaimVC: BaseViewController, DateSelectedDelegate, DialPadsDe
 //            self.pendingBtn.setTitleColor(.white, for: .normal)
 //            self.approvedBtn.setTitleColor(.white, for: .normal)
 //            self.rejectedBtn.setTitleColor(.white, for: .normal)
-            self.VM.myPurchaseListArray.removeAll()
-            self.myClaimPurchaseListApi(startIndex: 1, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: -3)
+//            self.VM.myPurchaseListArray.removeAll()
+//            self.myClaimPurchaseListApi(startIndex: 1, fromDate: self.selectedFromDate, toDate: self.selectedToDate, status: -3)
         }
     }
     

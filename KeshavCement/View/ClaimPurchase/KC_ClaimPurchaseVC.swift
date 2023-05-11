@@ -29,7 +29,7 @@ class KC_ClaimPurchaseVC: BaseViewController, SelectedDataDelegate{
         self.selectedUserTypeName = vc.selectedUserTypeName
         self.selectedUserTypeId = vc.selectedUserTypeId
         self.searchTF.text = ""
-        self.searchTF.placeholder = "Search....".localiz()
+        self.searchTF.placeholder = "Search".localiz()
         self.pleaseSelectProductLbl.text = "Pleaseproductname".localiz()
         self.mappedUserId = -1
         self.selectedProductId = -1
@@ -53,6 +53,7 @@ class KC_ClaimPurchaseVC: BaseViewController, SelectedDataDelegate{
 
     @IBOutlet weak var swipeButton: TGFlingActionButton!
     
+    @IBOutlet weak var quantityWidthConstraint: NSLayoutConstraint!
     private var animationView: LottieAnimationView?
     
 //    var customerType = ""

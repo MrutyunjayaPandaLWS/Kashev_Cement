@@ -21,6 +21,7 @@ import UIKit
     @objc optional func didTapHelpTopic(_ vc: KC_DropDownVC)
     @objc optional func didTapCityName(_ vc: KC_DropDownVC)
     @objc optional func didTapAmount(_ vc: KC_DropDownVC)
+    @objc optional func didCatalogueType(_ vc: KC_DropDownVC)
 }
 
 
@@ -44,6 +45,9 @@ class KC_DropDownVC: BaseViewController,UISearchBarDelegate {
     
     var helpTopicId = -1
     var helpTopicName = ""
+    
+    var selectedCatalogueType = ""
+    var selectedCatalogueTypeId = -1
  
     var VM = KC_DropDownVM()
     var delegate: SelectedDataDelegate?
@@ -55,6 +59,7 @@ class KC_DropDownVC: BaseViewController,UISearchBarDelegate {
     var subdealerArray = ["Dealer"]
     var dealerEnrollmentArray = ["Engineer", "Mason", "Sub Dealer"]
     var subDealerEnrollmentArray = ["Engineer", "Mason"]
+    var catalogueListTypeArray = ["Select Catalogue Type","Catalogue", "eVouchers", "Dream Gift", "Cash Voucher"]
 //    var customerType = ""
     var selectedUserTypeName = ""
     var selectedUserTypeId = -1
@@ -119,8 +124,9 @@ class KC_DropDownVC: BaseViewController,UISearchBarDelegate {
             self.cashDetailsApi(customerTypeId: self.selectedCustomerTypeIds)
         }else if self.itsFrom == "CLAIMPURCHSSS"{
             self.mappedUserNamelistAPI()
+        }else if self.itsFrom == "STATUSLIST"{
+            self.selectStatusLisApi()
         }
-        
         
     }
     
@@ -161,6 +167,14 @@ class KC_DropDownVC: BaseViewController,UISearchBarDelegate {
     func customerTypeApi(){
         let parameter = [
             "ActionType":"33"
+        ] as [String: Any]
+        print(parameter)
+        self.VM.customerTypeListApi(parameter: parameter)
+    }
+    
+    func selectStatusLisApi(){
+        let parameter = [
+            "ActionType":"138"
         ] as [String: Any]
         print(parameter)
         self.VM.customerTypeListApi(parameter: parameter)
@@ -271,7 +285,7 @@ extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
     
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.itsFrom == "CUSTOMERTYPE"{
+        if self.itsFrom == "CUSTOMERTYPE" || self.itsFrom == "STATUSLIST"{
             return self.VM.customerTypeArray.count
         }else if self.itsFrom == "STATE"{
             return self.VM.stateListArray.count
@@ -305,13 +319,15 @@ extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
             }
         }else if self.itsFrom == "CLAIMPURCHSSS"{
             return self.VM.mapppedUserNameListArray1.count
+        }else if self.itsFrom == "CATALOGUELIST"{
+            return self.catalogueListTypeArray.count
         }else{
             return 1
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "KC_DropDownTVC", for: indexPath) as! KC_DropDownTVC
-        if self.itsFrom == "CUSTOMERTYPE"{
+        if self.itsFrom == "CUSTOMERTYPE" || self.itsFrom == "STATUSLIST"{
             cell.selectedTitleLbl.text = self.VM.customerTypeArray[indexPath.row].attributeValue ?? ""
         }else if self.itsFrom == "STATE"{
             cell.selectedTitleLbl.text = self.VM.stateListArray[indexPath.row].stateName ?? ""
@@ -373,14 +389,22 @@ extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
             cell.selectedTitleLbl.text = self.VM.queryTopicListArray[indexPath.row].helpTopicName ?? ""
         }else if self.itsFrom == "CASHPOINTS"{
             cell.selectedTitleLbl.text = "\(self.VM.cashDetailsListArray[indexPath.row].amount ?? -1)"
+        }else if self.itsFrom == "CATALOGUELIST"{
+            cell.selectedTitleLbl.text = "\(self.catalogueListTypeArray[indexPath.row])"
+            if self.catalogueListTypeArray.count <= 20{
+                self.tableViewHeightConstraint.constant = CGFloat(self.catalogueListTypeArray.count * 40)
+            }else{
+                self.tableViewHeightConstraint.constant = CGFloat(500)
+            }
         }
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(self.itsFrom)
-        if self.itsFrom == "CUSTOMERTYPE"{
+        if self.itsFrom == "CUSTOMERTYPE" || self.itsFrom == "STATUSLIST"{
             self.selectedCustomerType = self.VM.customerTypeArray[indexPath.row].attributeValue ?? ""
             self.selectedCustomerTypeId = self.VM.customerTypeArray[indexPath.row].attributeId ?? -1
+            print(self.selectedCustomerTypeId)
             self.delegate?.didTapCustomerType!(self)
             self.dismiss(animated: true)
         }else if self.itsFrom == "STATE"{
@@ -478,6 +502,22 @@ extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
             self.mappedMobileNumber = self.VM.mapppedUserNameListArray1[indexPath.row].mobile ?? ""
             self.mappedLoyaltyId = self.VM.mapppedUserNameListArray1[indexPath.row].loyaltyID ?? ""
             self.delegate?.didTapMappedUserName!(self)
+            self.dismiss(animated: true)
+        }else if self.itsFrom == "CATALOGUELIST"{
+            
+            self.selectedCatalogueType = self.catalogueListTypeArray[indexPath.row]
+            if self.selectedCatalogueType == "Select Catalogue Type"{
+                self.selectedCatalogueTypeId = -1
+            }else if self.selectedCatalogueType == "Catalogue"{
+                self.selectedCatalogueTypeId = 1
+            }else if self.selectedCatalogueType == "eVouchers"{
+                self.selectedCatalogueTypeId = 4
+            }else if self.selectedCatalogueType == "Dream Gift"{
+                self.selectedCatalogueTypeId = 3
+            }else if self.selectedCatalogueType == "Cash Voucher"{
+                self.selectedCatalogueTypeId = 9
+            }
+            self.delegate?.didCatalogueType!(self)
             self.dismiss(animated: true)
         }
         

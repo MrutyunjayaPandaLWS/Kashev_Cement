@@ -60,11 +60,17 @@ class KC_DefaultAddressVC: BaseViewController, SendUpdatedAddressDelegate {
     var giftName = ""
     var contractorName = ""
     var giftStatusId = 0
+    var mappedUserId = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.VM.myAccountDetailsApi()
+        if self.mappedUserId == -1{
+            self.VM.myAccountDetailsApi(userId: self.userID)
+        }else{
+            self.VM.myAccountDetailsApi(userId: "\(self.mappedUserId)")
+        }
+        
+        
  //       NotificationCenter.default.addObserver(self, selector: #selector(afterDismissed), name: Notification.Name.dismissCurrentVC, object: nil)
     }
     override func viewWillAppear(_ animated: Bool) {

@@ -140,6 +140,8 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         self.VM.VC = self
+//        let numbers = [0]
+//             let _ = numbers[1]
         self.customerTypeTF.isUserInteractionEnabled = false
         self.stateTF.isUserInteractionEnabled = false
         self.districtTF.isUserInteractionEnabled = false

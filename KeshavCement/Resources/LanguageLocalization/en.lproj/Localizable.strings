@@ -13,7 +13,6 @@
 "SubDealer" = "Sub Dealer";
 "SupExecu" = "Support Executive";
 "NoDataFound" = "No data found !!";
-
 "Login" = "Login";
 "Please_log_in" = "Please Enter the given details to log in";
 "MobileNoID" = "Mobile No / Membership ID";
@@ -64,8 +63,6 @@
 "Entermobilenumber" = "Enter mobile number";
 "EntervalidaadharGSTnumber" = "Enter valid aadhar / GST number";
 "Entervalidpin" = "Enter valid pin";
-
-
 "Activate" = "Activate";
 "OTP" = "OTP";
 "GenerateOTP" = "Generate OTP";
@@ -78,7 +75,6 @@
 "EntercorrectOTP" = "Enter correct OTP";
 "Pleaseregister" = "Please enter the given details to register";
 "SignUp" = "Sign Up";
-
 "Submit" = "Submit";
 "ForgotPassword" = "Forgot Password";
 "Pleasesetthenewpassword" = "Please set the new password";
@@ -94,7 +90,6 @@
 "referralcodefriend" = "Enter your referral code sent by your friend";
 "ReferralCode" = "Referral Code";
 "Verify" = "Verify";
-
 "SelectCity" = "Select City";
 "SelectTaluk" = "Select Taluk";
 "plzFillRegister" = "Please fill in the given details to register your account";
@@ -113,14 +108,12 @@
 "EditProfile" = "Edit Profile";
 "PointBalance" = "Point Balance";
 "MembershipID" = "Membership ID";
-"AskHelp?" = "Ask Help?";
+"AskHelp" = "Ask Help?";
 "Raiseconnectyousoon" = "Raise a ticket our team will connect you soon";
 "RaiseaTicket" = "Raise a Ticket";
 "notAllowedRedeem" = "You are not allowled to redeem. Please contact your administrator";
-
 "Pleaseproductname" = "Please select product name";
-
-"Search...." = "Search ....";
+"Search" = "Search ....";
 "SearchName" = "Search Name";
 "PurchaseRequest" = "Purchase Request";
 "UserType" = "User Type";
@@ -134,7 +127,6 @@
 "Pleasemappeduser" = "Please select mapped user";
 "Pleaseselectusertype" = "Please select user type";
 "Qunantityshouldnt0" = "Quantity shouldn't 0";
-
 "MyPurchaseClaim" = "My Purchase Claim";
 "Filter" = "Filter";
 "MyPurchaseFilter" = "My Purchase Filter";
@@ -149,7 +141,6 @@
 "ApplyFilter" = "Apply Filter";
 "Selectanyselectordaterange" = "Select any select or date range";
 "TodateshouldntgreaterthanFromdate" = "To date shouldn't be greater than From date";
-
 "RedemptionCatalogue" = "Redemption Catalogue";
 "TotalPoints" = "Total Points";
 "SelectRedemptionDeliveryType" = "Select Redemption Delivery Type";
@@ -157,10 +148,8 @@
 "ForOthers" = "For Others";
 "SelectRedemptionType" = "Select Redemption Type";
 "redeemYourEarned" = "Redeem your earned points in various ways";
-
 "ProductCatalgoue" = "Product Catalgoue";
 "NoDataFound" = "No data found!!";
-
 "YoucanaddthisproductsintoyourplannerList" = "You can't add this products into your planner List";
 "ProductisaddedintothePlanner" = "Product is added into the Planner";
 "InsufficientPointBalance" = "Insufficient Point Balance";
@@ -170,15 +159,12 @@
 "NeedSufficientPointBalance" = "Need Sufficient Point Balance";
 "SearchProducts" = "Search Products";
 "OK" = "OK";
- 
 "ProductDetails" = "Product Details";
 "Descriptions" = "Descriptions";
 "Termsandconditions" = "Terms and conditions";
-
 "MyCart" = "My Cart";
 "somethingwentWrong" = "Something went wrong! Try again later!";
 "ProducthasbeenRemovedfromCart" = "Product has been removed from Cart";
-
 "OrderConfirmation" = "Order Confirmation";
 "DeliveryAddress" = "Delivery Address";
 "DeliveryTo" = "Delivery To";
@@ -187,8 +173,6 @@
 "Redeem" = "Redeem";
 "currentlyContactAdministrator" = "Currently you are not mapped to any dealer. Kindly contact the administrator.";
 "ForRedemptioKYCverificationprocess" = "For Redemption, please complete the KYC verification process";
-
-
 "EntertheOTPSubmitRedemption" = "Enter the OTP to submit the redemption";
 "Redemption" =  "Redemption";
 "EnterOTP" = "Enter OTP";
@@ -196,12 +180,11 @@
 "EntercorrectOTP" = "Enter correct OTP";
 "Userisnactive" = "User isn't active";
 "RedemptionFailed!" = "Redemption Failed !";
-
 "Enter_amount_to_redeem" = "Enter amount to redeem";
 "Select_Amount_to_Redeem" = "Select amount to redeem";
 "Vouchers" = "Vouchers";
 "OTPwillreceiveat" = "OTP will receive at +91******";
-"ResendOTP?" = "Resend OTP?";
+"ResendOTP" = "Resend OTP?";
 "OTP" = "OTP";
 "enterOTPRaiseaRequest" = "Enter the OTP to raise a request to the dealer";
 "VoucherSubmission" = "Voucher Submission";
@@ -215,13 +198,10 @@
 "EnterAmountinRange" = "Enter Amount in Range";
 "Amount" = "Amount";
 "SelectAmount" = "Select Amount";
-
 "HowitWorks" = "How it works?";
 "Instruction" = "Instruction";
 "CashVoucher" = "Cash Voucher";
 "CashTransfer" = "Cash Transfer";
-
-
 "Claimsubmissionfailed!!" = "Claim submission failed!!";
 "Pleaseselectpoints" = "Please select points";
 "Search ..." = "Search ...";
@@ -232,7 +212,6 @@
 "Pleaseselectmappeduser" = "Please select mapped user";
 "Pleaseselectamount" = "Please select amount";
 "Quantityshoulntbe0" = "Quantity shouln't be 0";
-
 "Producthasbeenremovedsuccessfully!" = "Product has been removed successfully";
 "AddToCartFailedsometime" = "Add to Cart Failed. Try after sometime";
  "Giftproductlreadyaddedlist" = "Gift product is already added in the Redeem list";
@@ -246,12 +225,9 @@
 "AverageEarning" = "Average Earning";
 "productIsRemoved" = "Product is removed from the List";
  "CongratulationYouareEligibleTo" = "Congratulation! You are eligible to redeem this product";
-
 "NotmappedToAnyDealer" = "Currently you are not mapped to any dealer. Kindly contact the administrator.";
-
 "Thiscustomerisalreadyactivated" = "This customer is already activated";
 "Mobilenumberdoesntexists" = "Mobile number doesn't exists";
-
 "WorksiteDetails" = "Worksite Details";
 "WorksiteDetailsFilter" = "Worksite Details Filter";
 "CreateNew" = "Create New";
@@ -260,7 +236,6 @@
 "ToDate" = "To Date";
 "MyRdemeptionDetails" = "My Redemeption Details";
 "MyRedemptionFilter" = "My Redemption Filter";
-
 "Selectanyordaterange" = "Select any status or date range";
 "MyEarning" = "My Earning";
 "MyEarningFilter" = "My Earning Filter";
@@ -275,7 +250,6 @@
 "Successfullyreferralcodesenttoyourfriend" = "Successfully referral code sent to your friend";
 "Thismobilenumberalreadyreferred" = "This mobile number already referred";
 "SomethingwentwrongTryagainLater" = "Something went wrong! Try again Later";
-
 "OffersandPromotions" = "Offers and Promotions";
 "OffersandpromotionsDetails" = "Offers and promotions Details";
 "Successfullyreferralcodesenttoyourfriend" = "Successfully referral code sent to your friend";
@@ -297,7 +271,7 @@
 "ChangeImage" = "Change Image";
 "Next" = "Next";
 "Pleaseselectsiteimage" = "Please select site image";
-"Selectcurrentlocation...." = "Select current location....";
+"Selectcurrentlocation" = "Select current location....";
 "OwnerDetails" = "Owner Details";
 "OwnerName" = "Owner Name";
 "Enterownername" = "Enter owner name";
@@ -322,17 +296,14 @@
 "Remarks" = "Remarks";
 "Selecttentativedate" = "Select tentative date";
 "Enterremarks" = "Enter remarks";
-
 "Search" = "Search";
 "Insufficientquantity!!" = "Insufficient quantity!!";
 "Claimissuccessfullycompleted" = "Claimis successfully completed";
 "Qunantityshouldnt0" = "Qunantity shouldn't 0";
-
 "Invalidreferralcode" = "Invalid referral code";
 "Enterflathouseaddress" = "Enter flat house address";
 "Enterpin" = "Enter pin";
 "ShippingAddressUpdated" = "Shipping Address Updated";
-
 "Selectusertype" = "Select user type";
 "Selectuser" = "Select user";
 "Insufficentpointbalance" = "Insufficent point balance";
@@ -343,20 +314,16 @@
 "Pleaseselectdateofbirth" = "Please select date of birth";
 "Themobilenumberalreadyexists" = "The mobile number already exists";
 "EnrollmentFailed" = "Enrollment Failed";
-
 "AnniversarydateshouldbemorethenaDateofbirth" = "Anniversary date should be more than a Date of birth";
 "Yourclaimhasbeenapproved" = "Your claim has been approved";
 "Yourclaimhasbeenrejected" = "Your claim has been rejected";
 "Submissionfailed!!" = "Submission failed !!";
-
 "HelplineCall" = "Helpline Call";
 "ForanyquestionsontheKeshavCementProgram." = "For any questions on the Keshav Cement Program.";
 "Pleasegiveamisscallonthefollowingnumber" = "Please give a miss call on the following number.";
 "GIVEAMISSEDCALLON" = "GIVE A MISSED CALL ON";
-
 "ClaimHistory" = "Claim History";
 "ClaimHistoryFilter" = "Claim History Filter";
-
 "CashHistory" = "Cash History";
 "CashTransferFilter" = "Cash Transfer Filter";
 "Query" = "Query";
@@ -365,7 +332,6 @@
 "Support" = "Support";
 "WriteQueryHere..." = "Write Query Here...";
 "TicketDetails" = "Ticket Details";
-
 "PleaseSubmitYour" = "Please submit your query using this form";
 "SelectYourTopic" = "Select Your Topic";
 "SelectHelpTopic" = "Select Help Topic";
@@ -379,7 +345,6 @@
 "EnterQuerySummary" = "Enter query summary";
 "EnterQueryDetails" = "Enter query details";
 "selectTopicQuery" = "Select Topic Query";
-
 "Supportticketsubmissionfailed!!" = "Support ticket submission failed!!";
 "Supporttickethasbeensubmittedsuccessfully!!" = "Support ticket has been submitted successfully !!";
 "ThankYou!" = "Thank You!";
@@ -398,10 +363,6 @@
 "DreamGifthasbeenremovedfailed" = "Dream Gift has been removed failed";
 "Invaildcustomertype" = "Invaild customer type";
 "Thismemberisalreadyexists" = "This member already exists";
-
-
-
-
 "Profileimageuploadedsuccessfully" = "Profile image uploaded successfully";
 "SomethingwentwrongTryagainLater!" = "Something went wrong! Try again Later!";
 "Profileuploadedsuccessfully!" = "Profile uploaded successfully!";
@@ -410,7 +371,6 @@
 "Insufficientquantity" = "Insufficient quantity";
 "Yourclaimhasbeenapproved" = "Your claim has been approved";
 "Yourclaimhasbeenrejected" = "Your claim has been rejected";
-
 "Failed" = "Failed";
 "Claimsubmissionfailed!" = "Claim submission failed!!";
 "InvalidUserName" = "Invalid User Name";

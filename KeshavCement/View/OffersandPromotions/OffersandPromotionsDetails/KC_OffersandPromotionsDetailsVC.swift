@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 import LanguageManager_iOS
-//import SDWebImage
+import SDWebImage
 //import Firebase
 class KC_OffersandPromotionsDetailsVC: BaseViewController {
 

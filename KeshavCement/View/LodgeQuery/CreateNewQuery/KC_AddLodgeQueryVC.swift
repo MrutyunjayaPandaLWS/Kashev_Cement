@@ -65,7 +65,7 @@ class KC_AddLodgeQueryVC: BaseViewController, SelectedDataDelegate{
         self.querySummaryLbl.text = "QuerySummary".localiz()
         self.querySummaryTF.placeholder = "Writeyourquery".localiz()
         self.queryDetails.text = "QueryDetails".localiz()
-        self.queryDetailsTF.placeholder = "Writeyourquerydetails..".localiz()
+        self.queryDetailsTF.placeholder = "Writeyourquerydetails".localiz()
         self.browseLbl.text = "BrowseImage".localiz()
         self.submitLbl.text = "SubmitQuery".localiz()
         

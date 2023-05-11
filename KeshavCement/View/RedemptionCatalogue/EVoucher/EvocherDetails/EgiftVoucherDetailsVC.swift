@@ -77,8 +77,10 @@ class EgiftVoucherDetailsVC: BaseViewController, UITextFieldDelegate, pointsDele
     var productDesc = ""
     var termsandCond = ""
     var enteredValue = ""
-    var vm = QS_VouchersDetails_VM()
     
+    var mappedUserId = -1
+    var vm = QS_VouchersDetails_VM()
+    var recieverMobile = ""
     let redemablePointBalance = UserDefaults.standard.integer(forKey: "PointsBalance")
 //    let userID = UserDefaults.standard.string(forKey: "UserID") ?? "-1"
     let layaltyID = UserDefaults.standard.string(forKey: "LoyaltyID") ?? ""
@@ -144,9 +146,15 @@ class EgiftVoucherDetailsVC: BaseViewController, UITextFieldDelegate, pointsDele
         otpView.fontTextField = UIFont.systemFont(ofSize: 25)
         otpView.textEdgeInsets = UIEdgeInsets(top: 0, left: -1, bottom: 0, right: 0)
         otpView.editingTextEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        let getLastFour = String(mobilenumber.suffix(4))
-        print(getLastFour)
-        self.mobileNumberLbl.text = getLastFour
+        if self.recieverMobile == ""{
+            let getLastFour = String(mobilenumber.suffix(4))
+            print(getLastFour)
+            self.mobileNumberLbl.text = getLastFour
+        }else{
+            let getLastFour = String(recieverMobile.suffix(4))
+            print(getLastFour)
+            self.mobileNumberLbl.text = getLastFour
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -331,8 +339,12 @@ class EgiftVoucherDetailsVC: BaseViewController, UITextFieldDelegate, pointsDele
             let yesterday = "\(Calendar.current.date(byAdding: .day, value: 0, to: Date())!)"
             let today = yesterday.split(separator: " ")
             let desiredDateFormat = self.convertDateFormater("\(today[0])", fromDate: "yyyy-MM-dd", toDate: "yyyy-MM-dd")
-           print("\(desiredDateFormat)")
-            self.vm.voucherSubmission(ReceiverMobile: mobilenumber, ActorId: userID, CountryID: voucherCountryID, MerchantId: merchantID, CatalogueId: voucherID, DeliveryType: voucherdelivarytype, pointsrequired: String(selectedPoints), ProductCode: voucherCode, ProductImage: voucherImag, ProductName: voucherName, NoOfQuantity: "1", VendorId: vouchervendorID, VendorName: vouchervendorname, ReceiverEmail: emailid, ReceiverName: firstname)
+            print("\(desiredDateFormat)")
+            if self.recieverMobile == ""{
+                self.vm.voucherSubmission(ReceiverMobile: mobilenumber, ActorId: userID, CountryID: voucherCountryID, MerchantId: merchantID, CatalogueId: voucherID, DeliveryType: voucherdelivarytype, pointsrequired: String(selectedPoints), ProductCode: voucherCode, ProductImage: voucherImag, ProductName: voucherName, NoOfQuantity: "1", VendorId: vouchervendorID, VendorName: vouchervendorname, ReceiverEmail: emailid, ReceiverName: firstname)
+            }else{
+                self.vm.voucherSubmission(ReceiverMobile: self.recieverMobile, ActorId: userID, CountryID: voucherCountryID, MerchantId: merchantID, CatalogueId: voucherID, DeliveryType: voucherdelivarytype, pointsrequired: String(selectedPoints), ProductCode: voucherCode, ProductImage: voucherImag, ProductName: voucherName, NoOfQuantity: "1", VendorId: vouchervendorID, VendorName: vouchervendorname, ReceiverEmail: emailid, ReceiverName: firstname)
+            }
             
         }
         

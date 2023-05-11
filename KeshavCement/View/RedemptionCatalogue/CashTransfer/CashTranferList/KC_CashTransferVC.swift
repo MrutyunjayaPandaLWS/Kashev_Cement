@@ -69,7 +69,7 @@ class KC_CashTransferVC: BaseViewController, CashTranferDelegate{
         super.viewWillAppear(true)
         self.VM.cashTransferListArray.removeAll()
         self.totalPtsLbl.text = "TotalPoints".localiz()
-        self.howToWorksBtn.setTitle("HowitWorks?".localiz(), for: .normal)
+        self.howToWorksBtn.setTitle("HowitWorks".localiz(), for: .normal)
         self.instructionLbl.text = "Instruction".localiz()
         self.okBtn.setTitle("OK".localiz(), for: .normal)
         self.noDataFoundLbl.text = "NoDataFound".localiz()

@@ -57,6 +57,7 @@ class KC_PendingClaimListVM{
                                 pendingClaimList.productImage = data.productImage
                                 pendingClaimList.productCode = data.prodCode
                                 pendingClaimList.invoiceNo = data.invoiceNo ?? "-"
+                                pendingClaimList.mobile = data.mobile ?? ""
                                 Persistanceservice.saveContext()
                                 self.VC!.fetchCartDetails()
                             }
@@ -96,7 +97,7 @@ class KC_PendingClaimListVM{
             self.VC?.startLoading()
         }
         
-        self.requestAPIs.otp_Post_API(parameters: parameter) { (result, error) in
+        self.requestAPIs.claimOTP_Api(parameters: parameter) { (result, error) in
             
             if result == nil{
                 DispatchQueue.main.async {

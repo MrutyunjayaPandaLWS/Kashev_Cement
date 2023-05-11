@@ -8,6 +8,7 @@
 import UIKit
 
 class KC_MyRedemptionTVC: UITableViewCell {
+    @IBOutlet weak var statusWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var referenceIdLbl: UILabel!
     @IBOutlet weak var categoryView: UIView!
     @IBOutlet weak var pointsPerUnitLbl: UILabel!

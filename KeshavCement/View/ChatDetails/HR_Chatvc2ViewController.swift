@@ -30,6 +30,8 @@ class HR_Chatvc2ViewController: UIViewController, UITextFieldDelegate,UITableVie
     var FileType = ""
     var strBase64 = ""
     var chatlistingArray = [ObjQueryResponseJsonList]()
+    var queryStatus = ""
+    var queryStatusId = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +59,21 @@ class HR_Chatvc2ViewController: UIViewController, UITextFieldDelegate,UITableVie
         querySummarylabel.text = "Query summary : \(querysummary)"
         self.supportHeadingLabel.text = "Support".localiz()
         self.commenttextfield.placeholder = "WriteQueryHere...".localiz()
-
+        
+        if self.queryStatus == "Closed"{
+            self.textfieldview.isHidden = true
+        }else{
+            self.textfieldview.isHidden = false
+            if self.queryStatus == "Resolved" || self.queryStatus == "Reopen"{
+                self.queryStatusId = 2
+            }else if self.queryStatus == "Resolved-Follow Up"{
+                self.queryStatusId = 5
+            }else if self.queryStatus == "Closed"{
+                self.queryStatusId = 4
+            }else if self.queryStatus == "Pending"{
+                self.queryStatusId = 1
+            }
+        }
     }
     
     
@@ -311,7 +327,7 @@ class HR_Chatvc2ViewController: UIViewController, UITextFieldDelegate,UITableVie
                 "HelpTopicID":"\(helptopicid)",
                 "IsQueryFromMobile":false,
                 "QueryDetails":"\(commenttextfield.text ?? "")",
-                "QueryStatus":"1",
+                "QueryStatus":self.queryStatusId,
                 
             ] as! [String:Any]
             print(parameterJSON)

@@ -23,6 +23,7 @@ class KC_UserDetailsVC: BaseViewController, UITextFieldDelegate{
     @IBOutlet weak var engineerNumbLbl: UILabel!
     @IBOutlet weak var engineerNumberTF: UITextField!
     
+    @IBOutlet weak var topSpacConstraintButton: NSLayoutConstraint!
     @IBOutlet weak var engineerDetailVIew: UIView!
     @IBOutlet weak var nextBtn: UIButton!
     
@@ -47,8 +48,10 @@ class KC_UserDetailsVC: BaseViewController, UITextFieldDelegate{
         
         if self.customerTypeId == "1"{
             self.engineerDetailVIew.isHidden = true
+            self.topSpacConstraintButton.constant = 30
         }else{
             self.engineerDetailVIew.isHidden = false
+            self.topSpacConstraintButton.constant = 280
         }
         self.ownerDetailsLbl.text = "OwnerDetails".localiz()
         self.ownerNameLbl.text = "OwnerName".localiz()

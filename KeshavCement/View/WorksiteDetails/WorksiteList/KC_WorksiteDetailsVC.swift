@@ -238,7 +238,7 @@ extension KC_WorksiteDetailsVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "KC_WorksiteDetailsTVC", for: indexPath) as! KC_WorksiteDetailsTVC
         cell.selectionStyle = .none
-        cell.statusLbl.text = self.VM.workSiteListArray[indexPath.row].verificationStatus ?? ""
+        
         cell.createdDateLbl.text = self.VM.workSiteListArray[indexPath.row].createdDate ?? ""
         cell.locationLbl.text = self.VM.workSiteListArray[indexPath.row].siteName ?? "-"
         if self.VM.workSiteListArray[indexPath.row].siteName ?? "-" == ""{
@@ -256,6 +256,29 @@ extension KC_WorksiteDetailsVC: UITableViewDelegate, UITableViewDataSource{
             cell.engineerNameLbl.isHidden = true
         }else{
             cell.engineerNameLbl.isHidden = false
+        }
+        
+        if self.VM.workSiteListArray[indexPath.row].verificationStatus ?? "" == "Rejected"{
+            cell.statusLbl.text = "Rejected"
+            cell.statusLbl.textColor = UIColor.white
+            cell.statusLbl.backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
+            cell.statusLbl.borderColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
+            
+        }else if self.VM.workSiteListArray[indexPath.row].verificationStatus ?? "" == "Approved" || self.VM.workSiteListArray[indexPath.row].verificationStatus ?? "" == "Verified"{
+            cell.statusLbl.text = "Approved"
+            cell.statusLbl.textColor = #colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1)
+            cell.statusLbl.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
+            cell.statusLbl.borderColor = #colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1)
+        }else if self.VM.workSiteListArray[indexPath.row].verificationStatus ?? "" == "Pending"{
+            cell.statusLbl.text = "Pending"
+            cell.statusLbl.textColor = #colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1)
+            cell.statusLbl.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+            cell.statusLbl.borderColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+        }else{
+            cell.statusLbl.text = self.VM.workSiteListArray[indexPath.row].verificationStatus ?? ""
+            cell.statusLbl.textColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
+            cell.statusLbl.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+            cell.statusLbl.borderColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
         }
         return cell
         

@@ -76,8 +76,8 @@ class KC_ProductCatalogueDetailsVC: BaseViewController{
     var isPlanner: Bool?
     var selectedCatalogueID = 0
     var productTotalPoints = 0
-    
-    
+    var mappedUserId = -1
+    var mobile = ""
     var VM = KC_ProductCatalgoueDetailsVM()
     
     override func viewDidLoad() {
@@ -185,6 +185,7 @@ class KC_ProductCatalogueDetailsVC: BaseViewController{
         vc.partyLoyaltyId = self.partyLoyaltyId
         print(self.productTotalPoints)
         vc.productTotalPoints = self.productTotalPoints
+        vc.mobile = mobile
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

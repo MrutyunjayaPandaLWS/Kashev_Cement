@@ -6,7 +6,7 @@
 //
 
 import UIKit
-//import SDWebImage
+import SDWebImage
 //import Firebase
 import LanguageManager_iOS
 
@@ -14,9 +14,9 @@ class KC_OffersandpromotionsVC: BaseViewController, PromotionDelegate{
     func moveToNext(_ cell: KC_OffersandpromotionsTVC) {
         guard let tappedIndexPath = self.offersandPromotionTableView.indexPath(for: cell) else{return}
         if cell.viewBtn.tag == tappedIndexPath.row{
-            let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "MSP_OffersandPromotionsDetailsVC") as! KC_OffersandPromotionsDetailsVC
+            let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_OffersandPromotionsDetailsVC") as! KC_OffersandPromotionsDetailsVC
             vc.productName = self.VM.offersandPromotionsArray[tappedIndexPath.row].promotionName ?? ""
-            let receivedImg = (self.VM.offersandPromotionsArray[tappedIndexPath.row].proImage ?? "").dropFirst(3)
+            let receivedImg = (self.VM.offersandPromotionsArray[tappedIndexPath.row].proImage ?? "").dropFirst(2)
             let totalImgURLs = PROMO_IMG1 + receivedImg
 
             vc.productImg = totalImgURLs
@@ -60,11 +60,11 @@ class KC_OffersandpromotionsVC: BaseViewController, PromotionDelegate{
 //        tracker.send(builder.build() as [NSObject : AnyObject])
     }
     
-    @IBAction func notificaitonBtn(_ sender: Any) {
+   // @IBAction func notificaitonBtn(_ sender: Any) {
 //        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "MSP_NotificationVC") as! MSP_NotificationVC
 //        self.navigationController?.pushViewController(vc, animated: true)
         
-    }
+    //}
     @IBAction func backBtn(_ sender: Any) {
 //        if self.fromSideMenu == "SideMenu"{
 //            NotificationCenter.default.post(name: .sideMenuClosing, object: nil)
@@ -142,8 +142,9 @@ extension KC_OffersandpromotionsVC: UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "KC_OffersandpromotionsTVC") as? KC_OffersandpromotionsTVC
         cell?.delegate = self
         cell?.titleLbl.text = VM.offersandPromotionsArray[indexPath.row].promotionName ?? ""
-        let receivedImage = (self.VM.offersandPromotionsArray[indexPath.row].proImage ?? "").dropFirst(3)
+        let receivedImage = (self.VM.offersandPromotionsArray[indexPath.row].proImage ?? "").dropFirst(2)
         let totalImgURL = PROMO_IMG1 + receivedImage
+        print(totalImgURL)
         cell?.productImage.sd_setImage(with: URL(string: totalImgURL), placeholderImage: UIImage(named: "ic_default_img"))
         cell?.viewBtn.tag = indexPath.row
         return cell!

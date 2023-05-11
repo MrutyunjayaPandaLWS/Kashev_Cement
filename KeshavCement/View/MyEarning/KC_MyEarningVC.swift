@@ -121,6 +121,9 @@ class KC_MyEarningVC: BaseViewController, DateSelectedDelegate {
             }
         }
     }
+    @IBAction func closeButton(_ sender: Any) {
+        self.filterView.isHidden = true
+    }
     
     func myEarningListApi(StartIndex: Int, fromDate: String, toDate: String){
         

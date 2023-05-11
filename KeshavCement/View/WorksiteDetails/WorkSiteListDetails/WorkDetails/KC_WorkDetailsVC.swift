@@ -100,7 +100,7 @@ class KC_WorkDetailsVC: BaseViewController, DateSelectedDelegate, SelectedDataDe
             if self.strdata1 == ""{
                 self.view.makeToast("Pleaseselectsiteimage".localiz(), duration: 2.0, position: .bottom)
         }else if self.currentLatitude == "" || self.currentLongitude == ""{
-            self.view.makeToast("Selectcurrentlocation...".localiz(), duration: 2.0, position: .bottom)
+            self.view.makeToast("Selectcurrentlocation".localiz(), duration: 2.0, position: .bottom)
         }else if self.ownerName == ""{
             self.view.makeToast("Enterownername".localiz(), duration: 2.0, position: .bottom)
         }else if self.ownerMobile == ""{
@@ -153,7 +153,7 @@ class KC_WorkDetailsVC: BaseViewController, DateSelectedDelegate, SelectedDataDe
         if self.strdata1 == ""{
             self.view.makeToast("Pleaseselectsiteimage".localiz(), duration: 2.0, position: .bottom)
     }else if self.currentLatitude == "" || self.currentLongitude == ""{
-        self.view.makeToast("Selectcurrentlocation...".localiz(), duration: 2.0, position: .bottom)
+        self.view.makeToast("Selectcurrentlocation".localiz(), duration: 2.0, position: .bottom)
     }else if self.ownerName == ""{
         self.view.makeToast("Enterownername".localiz(), duration: 2.0, position: .bottom)
     }else if self.ownerMobile == ""{

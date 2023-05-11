@@ -55,6 +55,7 @@ class KC_OrderConfirmationVC: BaseViewController, SendUpdatedAddressDelegate {
     var redeemablePointsBalance = UserDefaults.standard.string(forKey: "RedeemablePointBalance") ?? "0"
     var VM = KC_DefaultAddressVM()
     var receiverName = ""
+    var itsComeFrom = ""
     var address = ""
     var stateID = -1
     var stateName = ""
@@ -82,11 +83,17 @@ class KC_OrderConfirmationVC: BaseViewController, SendUpdatedAddressDelegate {
     var contractorName = ""
     var giftStatusId = 0
     var productTotalPoints = 0
-    
+    var mappedUserId = -1
     override func viewDidLoad() {
         super.viewDidLoad()
         self.VM.VC = self
-        self.VM.myAccountDetailsApi()
+        print(self.mappedUserId)
+        if self.mappedUserId == -1{
+            self.VM.myAccountDetailsApi(userId: self.userID)
+        }else{
+            self.VM.myAccountDetailsApi(userId: "\(self.mappedUserId)")
+        }
+            
         self.orderConfirmationTableView.delegate = self
         self.orderConfirmationTableView.dataSource = self
         mainView.clipsToBounds = false
@@ -197,9 +204,9 @@ class KC_OrderConfirmationVC: BaseViewController, SendUpdatedAddressDelegate {
                                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_EvoucherPopUpVC") as? KC_EvoucherPopUpVC
                                vc!.itsComeFrom = "REDEMPTIONSUBMISSION"
                                vc!.stateID = self.stateID
-                               vc!.cityID = self.cityID
+                               vc!.cityID = self.districtID
                                vc!.stateName = self.stateName
-                               vc!.cityName = self.cityName
+                               vc!.cityName = self.districtName
                                vc!.pincode = self.pincode
                                vc!.address1 = self.address1
                                vc!.customerName = self.customerNameLbl.text ?? ""

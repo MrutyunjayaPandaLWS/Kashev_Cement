@@ -66,11 +66,11 @@ class KC_DefaultAddressVM{
             }
         }
     }
-    func myAccountDetailsApi(){
+    func myAccountDetailsApi(userId: String){
         self.VC?.startLoading()
         let parameters = [
             "ActionType": "6",
-            "CustomerId": "\(userID)"
+            "CustomerId": userId
         ]  as [String : Any]
         print(parameters)
         
