@@ -45,9 +45,9 @@ class KC_RedemptionOTPVM{
                                     self.getMycartList(PartyLoyaltyID: "", LoyaltyID: self.VC!.loyaltyId)
                                 }
                             if self.VC!.partyLoyaltyId == ""{
-                                self.VC?.generateOTPApi(loyaltyId: self.VC!.loyaltyID)
+                                self.VC?.generateOTPApi(loyaltyId: self.VC!.loyaltyID, userId: self.VC!.userID, mobilenumber: self.VC!.mobilenumber)
                             }else{
-                                self.VC?.generateOTPApi(loyaltyId: self.VC!.partyLoyaltyId)
+                                self.VC?.generateOTPApi(loyaltyId: self.VC!.partyLoyaltyId, userId: String(self.VC!.mappedUserId), mobilenumber: self.VC!.mobile)
                             }
                             
                         }else{
@@ -193,13 +193,13 @@ class KC_RedemptionOTPVM{
                                         self.getMycartList(PartyLoyaltyID: "", LoyaltyID: self.VC!.loyaltyID)
                                     }
                                 if self.VC?.contractorName != ""{
-                                    self.VC?.removeDreamGift()
+                                    self.VC?.removeDreamGift(userID: self.VC!.userID)
                                 }
                                 
                                 if self.VC?.partyLoyaltyId == ""{
-                                    self.VC!.sendSuccessMessage(loyaltyId: self.VC!.loyaltyID)
+                                    self.VC!.sendSuccessMessage(loyaltyId: self.VC!.loyaltyID, mobile: self.VC!.mobilenumber)
                                 }else{
-                                    self.VC!.sendSuccessMessage(loyaltyId: self.VC!.partyLoyaltyId)
+                                    self.VC!.sendSuccessMessage(loyaltyId: self.VC!.partyLoyaltyId, mobile: self.VC!.mobile)
                                 }
                             }
                         }else{

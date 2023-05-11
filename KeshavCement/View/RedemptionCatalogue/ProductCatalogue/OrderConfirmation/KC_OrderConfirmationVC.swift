@@ -224,6 +224,7 @@ class KC_OrderConfirmationVC: BaseViewController, SendUpdatedAddressDelegate {
                                vc!.dreamGiftId = self.dreamGiftID
                                vc!.giftPts = self.totalPoint
                                vc!.giftName = self.giftName
+                               vc!.mappedUserId = self.mappedUserId
                                vc!.modalTransitionStyle = .coverVertical
                                vc!.modalPresentationStyle = .overFullScreen
                                self.present(vc!, animated: true)
