@@ -33,6 +33,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         self.tokendata()
         let isUserLoggedIn: Bool = UserDefaults.standard.bool(forKey: "IsloggedIn?")
         print(isUserLoggedIn)
+        if UserDefaults.standard.string(forKey: "CURRENTLANGUAGE") ?? "" == "en"{
+            LanguageManager.shared.setLanguage(language: .en)
+
+        }else if UserDefaults.standard.string(forKey: "CURRENTLANGUAGE") ?? "" == "hi"{
+            LanguageManager.shared.setLanguage(language: .hi)
+
+        }else if UserDefaults.standard.string(forKey: "CURRENTLANGUAGE") ?? "" == "knIn"{
+            LanguageManager.shared.setLanguage(language: .knIn)
+
+        }else{
+            LanguageManager.shared.setLanguage(language: .en)
+        }
         if isUserLoggedIn {
             self.setHomeAsRootViewController()
         } else {
@@ -88,6 +100,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
 
     }
     func setHomeAsRootViewController(){
+        if UserDefaults.standard.string(forKey: "CURRENTLANGUAGE") ?? "" == "en"{
+            LanguageManager.shared.setLanguage(language: .en)
+
+        }else if UserDefaults.standard.string(forKey: "CURRENTLANGUAGE") ?? "" == "hi"{
+            LanguageManager.shared.setLanguage(language: .hi)
+
+        }else if UserDefaults.standard.string(forKey: "CURRENTLANGUAGE") ?? "" == "knIn"{
+            LanguageManager.shared.setLanguage(language: .knIn)
+
+        }else{
+            LanguageManager.shared.setLanguage(language: .en)
+        }
         let leftVC = storyboard.instantiateViewController(withIdentifier: "KC_SideMenuVC") as! KC_SideMenuVC
         let homeVC = storyboard.instantiateViewController(withIdentifier: "KC_DashBoardVC") as! KC_DashBoardVC
         slider = SlideMenuController(mainViewController: homeVC, leftMenuViewController: leftVC)
@@ -97,6 +121,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         window?.makeKeyAndVisible()
     }
     func setInitialViewAsRootViewController(){
+        if UserDefaults.standard.string(forKey: "CURRENTLANGUAGE") ?? "" == "en"{
+            LanguageManager.shared.setLanguage(language: .en)
+
+        }else if UserDefaults.standard.string(forKey: "CURRENTLANGUAGE") ?? "" == "hi"{
+            LanguageManager.shared.setLanguage(language: .hi)
+
+        }else if UserDefaults.standard.string(forKey: "CURRENTLANGUAGE") ?? "" == "knIn"{
+            LanguageManager.shared.setLanguage(language: .knIn)
+
+        }else{
+            LanguageManager.shared.setLanguage(language: .en)
+        }
         let mainStoryboard = UIStoryboard(name: "Main" , bundle: nil)
         let initialVC = mainStoryboard.instantiateViewController(withIdentifier: "KC_LanguageVC") as! KC_LanguageVC
         nav = UINavigationController(rootViewController: initialVC)
@@ -123,16 +159,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
 
     // MARK: - Core Data stack
     func tokendata(){
-        if UserDefaults.standard.string(forKey: "CURRENTLANGUAGE") ?? "" == "en"{
-            LanguageManager.shared.setLanguage(language: .en)
-
-        }else if UserDefaults.standard.string(forKey: "CURRENTLANGUAGE") ?? "" == "hi"{
-            LanguageManager.shared.setLanguage(language: .hi)
-
-        }else if UserDefaults.standard.string(forKey: "CURRENTLANGUAGE") ?? "" == "knIn"{
-            LanguageManager.shared.setLanguage(language: .knIn)
-
-        }
+ 
             if MyCommonFunctionalUtilities.isInternetCallTheApi() == false{
             }else{
                 let parameters : Data = "username=\(username)&password=\(password)&grant_type=password".data(using: .utf8)!

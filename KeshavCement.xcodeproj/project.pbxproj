@@ -1121,12 +1121,10 @@
 				844EF95E2A064A67007719A4 /* RedemptionType */,
 				84A601FA29F40C71008EEC4C /* HistoryNotifications */,
 				84A601E729F3DE42008EEC4C /* DealerHelpPopUp */,
-				8431480E29C4928300704584 /* New Group */,
 				845882F229B618AC00C1BB6F /* DreamGift */,
 				848A4EEB299E57CC002280C0 /* DateOfBirth */,
 				843395DD299BB9F00041685B /* DropDown */,
 				84C1E3A52975533F00D188C5 /* Termsandcondition */,
-				84A5BBF42972CB80003AFBB7 /* ClaimHistory */,
 				84DA342B29AF25AD00078CF2 /* ChatDetails */,
 				848EF1C8296C51C80091ADB7 /* LodgeQuery */,
 				848EF1D4296C54250091ADB7 /* NewSale */,
@@ -1625,13 +1623,6 @@
 				8431480829C4925D00704584 /* QS_VouchersDetails_VM.swift */,
 			);
 			path = EvoucherVM;
-			sourceTree = "<group>";
-		};
-		8431480E29C4928300704584 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		8431482829C497B000704584 /* VoucherRedemptionDetailsModel */ = {
@@ -2248,13 +2239,6 @@
 				84A11F4E29A0FBFD00A126B9 /* KC_NewEnrollmentVM.swift */,
 			);
 			path = NewEnrollmentVM;
-			sourceTree = "<group>";
-		};
-		84A5BBF42972CB80003AFBB7 /* ClaimHistory */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ClaimHistory;
 			sourceTree = "<group>";
 		};
 		84A601E729F3DE42008EEC4C /* DealerHelpPopUp */ = {
@@ -4013,9 +3997,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2HG885J5KS;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HG885J5KS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotificationService/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotificationService;
@@ -4030,6 +4016,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "loyltwo3ks-Pvt-Ltd.KeshavCement.NotificationService";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = KashevDevCertificate;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -4041,9 +4028,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2HG885J5KS;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HG885J5KS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotificationService/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotificationService;
@@ -4058,6 +4047,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "loyltwo3ks-Pvt-Ltd.KeshavCement.NotificationService";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = KashevDevCertificate;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

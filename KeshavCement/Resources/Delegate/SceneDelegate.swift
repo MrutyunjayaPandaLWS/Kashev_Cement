@@ -7,6 +7,7 @@
 
 import UIKit
 import SlideMenuControllerSwift
+import LanguageManager_iOS
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -26,6 +27,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         RunLoop.current.run(until: Date(timeIntervalSinceNow: 4.0))
         let isUserLoggedIn: Bool = UserDefaults.standard.bool(forKey: "IsloggedIn?")
         print(isUserLoggedIn)
+        if UserDefaults.standard.string(forKey: "CURRENTLANGUAGE") ?? "" == "en"{
+            LanguageManager.shared.setLanguage(language: .en)
+
+        }else if UserDefaults.standard.string(forKey: "CURRENTLANGUAGE") ?? "" == "hi"{
+            LanguageManager.shared.setLanguage(language: .hi)
+
+        }else if UserDefaults.standard.string(forKey: "CURRENTLANGUAGE") ?? "" == "knIn"{
+            LanguageManager.shared.setLanguage(language: .knIn)
+
+        }else{
+            LanguageManager.shared.setLanguage(language: .en)
+        }
         if isUserLoggedIn {
             self.setHomeAsRootViewController()
         } else {
@@ -33,6 +46,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
     func setHomeAsRootViewController(){
+        if UserDefaults.standard.string(forKey: "CURRENTLANGUAGE") ?? "" == "en"{
+            LanguageManager.shared.setLanguage(language: .en)
+
+        }else if UserDefaults.standard.string(forKey: "CURRENTLANGUAGE") ?? "" == "hi"{
+            LanguageManager.shared.setLanguage(language: .hi)
+
+        }else if UserDefaults.standard.string(forKey: "CURRENTLANGUAGE") ?? "" == "knIn"{
+            LanguageManager.shared.setLanguage(language: .knIn)
+
+        }else{
+            LanguageManager.shared.setLanguage(language: .en)
+        }
         let leftVC = storyboard.instantiateViewController(withIdentifier: "KC_SideMenuVC") as! KC_SideMenuVC
         let homeVC = storyboard.instantiateViewController(withIdentifier: "KC_DashBoardVC") as! KC_DashBoardVC
         slider = SlideMenuController(mainViewController: homeVC, leftMenuViewController: leftVC)
@@ -42,6 +67,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
     }
     func setInitialViewAsRootViewController(){
+        if UserDefaults.standard.string(forKey: "CURRENTLANGUAGE") ?? "" == "en"{
+            LanguageManager.shared.setLanguage(language: .en)
+
+        }else if UserDefaults.standard.string(forKey: "CURRENTLANGUAGE") ?? "" == "hi"{
+            LanguageManager.shared.setLanguage(language: .hi)
+
+        }else if UserDefaults.standard.string(forKey: "CURRENTLANGUAGE") ?? "" == "knIn"{
+            LanguageManager.shared.setLanguage(language: .knIn)
+
+        }else{
+            LanguageManager.shared.setLanguage(language: .en)
+        }
         let mainStoryboard = UIStoryboard(name: "Main" , bundle: nil)
         let initialVC = mainStoryboard.instantiateViewController(withIdentifier: "KC_LanguageVC") as! KC_LanguageVC
         nav = UINavigationController(rootViewController: initialVC)

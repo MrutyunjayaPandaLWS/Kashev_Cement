@@ -175,7 +175,7 @@ class KC_CashTranferApprovalVC: BaseViewController, DPOTPViewDelegate, CashTrans
             "MobileNo": mobilenumber,
             "UserId": self.userID,
             "UserName": self.loyaltyId,
-            "Name": self.firstname
+            "OTPType": "OTPForRewardCardsENCashAuthorization",
         ] as [String: Any]
         print(parameter)
         self.VM.getOTPApi(parameter: parameter)
