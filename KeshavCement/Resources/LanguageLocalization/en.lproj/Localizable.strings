@@ -298,7 +298,7 @@
 "Enterremarks" = "Enter remarks";
 "Search" = "Search";
 "Insufficientquantity!!" = "Insufficient quantity!!";
-"Claimissuccessfullycompleted" = "Claimis successfully completed";
+"Claimissuccessfullycompleted" = "Claim is successfully completed";
 "Qunantityshouldnt0" = "Qunantity shouldn't 0";
 "Invalidreferralcode" = "Invalid referral code";
 "Enterflathouseaddress" = "Enter flat house address";
@@ -351,7 +351,7 @@
 "forregisteringtotheKeshavCementprogram.OurExecutivewillcontactyouforverification" = "for registering to the Keshav Cement program. Our Executive will contactyou for verification";
 "18years" = "It seems you are less than 18 years of age. You can apply for Keshav membership only if you are 18 years and above";
 "ItseemsYouarelessthan18years" = "It seems you are less than 18 years of age.";
-"Theaccountisnotallowedtoredeem" = "The account is not allowed to redeem. Kindly contact the administrator";
+"Theaccountisnotallowedtoredee" = "The account is not allowed to redeem. Kindly contact the administrator";
 "accept" = "Accept";
 "decline" = "Decline";
 "Youarenotallowledtoredeem" = "You are not allowed to redeem. Please contact your administrator";
@@ -376,7 +376,7 @@
 "InvalidUserName" = "Invalid User Name";
 "EarnPointsWhenPurchase" = "Earn Points When Purchase";
 "ClaimPurchase" = "Claim Purchase";
-"Sales&Earn" = "Sales & Earn";
+"Sales&Earn" = "Sale & Earn";
 "StartEarning" = "Start Earning";
 "StartSelling" = "Start Selling";
 "Youraccounthasbeendeactivated" = "Your account has been deactivated..";
@@ -387,5 +387,9 @@
 "RegistrationFailed!!" = "Registration Failed !!";
 "Passwordisinvalid!" = "Password is invalid";
  "Claim" = "Claim";
-
-
+"Enter_redeemable_amount_in_range" = "Enter redeemable amount in range";
+"Please _Choose_Correct_Product" = "Please  Choose Correct Product  (or) Contact Your Dealer";
+"ComingSoon" = "This language is coming soon!";
+"mobilenumberExistance" = "Your Enterd Mobile Number is already exist, Please try with new number";
+"AccDeleted" = "Account deleted successfully";
+"SureWantToDelete" = "Sure you want to delete ?";

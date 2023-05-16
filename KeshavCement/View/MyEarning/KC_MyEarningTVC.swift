@@ -32,6 +32,7 @@ class KC_MyEarningTVC: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.timeLbl.isHidden = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

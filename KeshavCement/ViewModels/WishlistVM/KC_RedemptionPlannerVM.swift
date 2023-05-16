@@ -56,12 +56,14 @@ class KC_RedemptionPlannerVM {
             }
         }
     }
+    
 
-    func redemptionPlannerList(PartyLoyaltyID: String){
+    //"\(self.VC?.mappedUserId ?? 0)",
+    func redemptionPlannerList(PartyLoyaltyID: String, ActorId: String){
         self.VC?.startLoading()
         let parameters = [
             "ActionType": "6",
-            "ActorId": self.userID,
+            "ActorId": ActorId,
              "StartIndex": 1,
              "PageSize": 10,
              "PartyLoyaltyID": PartyLoyaltyID
@@ -99,13 +101,14 @@ class KC_RedemptionPlannerVM {
             }
         }
     }
-   
-
-    func removeRedemptionPlanner(redemptionPlannerId: Int, PartyLoyaltyID: String){
+//https://keshavliveserv.loyltwo3ks.com/Mobile/GetPlannerAddedOrNot
+    //{"ActionType":17,"ActorId":"16","RedemptionPlannerId":156,"PartyLoyaltyID":"D00002"}
+    //["PartyLoyaltyID": "E00001", "ActionType": "17", "ActorId": "10", "RedemptionPlannerId": "150"]
+    func removeRedemptionPlanner(redemptionPlannerId: Int, PartyLoyaltyID: String, ActorID: String){
         self.VC?.startLoading()
         let parameters = [
             "ActionType":"17",
-            "ActorId":"\(userID)",
+            "ActorId": ActorID,
             "RedemptionPlannerId": "\(self.VC?.removeProductId ?? 0)",
             "PartyLoyaltyID": PartyLoyaltyID
         ] as [String : Any]
@@ -119,11 +122,12 @@ class KC_RedemptionPlannerVM {
                         print(response, "RemoveProduct")
                         if response == 1{
                             if self.VC?.customerTypeId ?? "" == "3" && self.VC?.partyLoyaltyId != "" || self.VC?.customerTypeId ?? "" == "4" && self.VC?.partyLoyaltyId != ""{
-                                self.redemptionPlannerList(PartyLoyaltyID: self.VC!.partyLoyaltyId)
+                                //self.VM.redemptionPlannerList(PartyLoyaltyID: self.partyLoyaltyId, ActorId: "\(self.mappedUserId)")
+                                self.redemptionPlannerList(PartyLoyaltyID: self.loyaltyId, ActorId: "\(self.VC?.mappedUserId ?? 0)")
                             }else if self.VC?.customerTypeId ?? "" == "3" && self.VC?.partyLoyaltyId == "" || self.VC?.customerTypeId ?? "" == "4" && self.VC?.partyLoyaltyId == ""{
-                                self.redemptionPlannerList(PartyLoyaltyID: "")
+                                self.redemptionPlannerList(PartyLoyaltyID: "", ActorId: self.userID)
                             }else{
-                                self.redemptionPlannerList(PartyLoyaltyID: "")
+                                self.redemptionPlannerList(PartyLoyaltyID: "", ActorId: self.userID)
                             }
                           
                             self.VC?.redemptionPlannerTableView.reloadData()
@@ -177,14 +181,14 @@ class KC_RedemptionPlannerVM {
                             //self.cartCountApi()
                             if self.VC?.customerTypeId ?? "" == "3" && self.VC?.partyLoyaltyId != "" || self.VC?.customerTypeId ?? "" == "4" && self.VC?.partyLoyaltyId != ""{
                                     self.getMycartList(PartyLoyaltyID: self.VC!.loyaltyId, LoyaltyID: self.VC!.partyLoyaltyId)
-                                    self.removeRedemptionPlanner(redemptionPlannerId: redemptionPlannerId, PartyLoyaltyID: self.VC!.partyLoyaltyId)
+                                self.removeRedemptionPlanner(redemptionPlannerId: redemptionPlannerId, PartyLoyaltyID: self.VC!.partyLoyaltyId, ActorID: "\(self.VC?.mappedUserId)")
                                 
                             }else if self.VC?.customerTypeId ?? "" == "3" && self.VC?.partyLoyaltyId == "" || self.VC?.customerTypeId ?? "" == "4" && self.VC?.partyLoyaltyId == ""{
                                 self.getMycartList(PartyLoyaltyID: "", LoyaltyID: self.VC!.loyaltyId)
-                                self.removeRedemptionPlanner(redemptionPlannerId: redemptionPlannerId, PartyLoyaltyID: "")
+                                self.removeRedemptionPlanner(redemptionPlannerId: redemptionPlannerId, PartyLoyaltyID: "", ActorID: "\(self.VC?.mappedUserId)")
                             }else{
                                 self.getMycartList(PartyLoyaltyID: "", LoyaltyID: self.VC!.loyaltyId)
-                                self.removeRedemptionPlanner(redemptionPlannerId: redemptionPlannerId, PartyLoyaltyID: "")
+                                self.removeRedemptionPlanner(redemptionPlannerId: redemptionPlannerId, PartyLoyaltyID: "", ActorID: self.userID)
                                 
                             }
                             

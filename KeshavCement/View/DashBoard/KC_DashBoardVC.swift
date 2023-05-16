@@ -330,7 +330,7 @@ class KC_DashBoardVC: BaseViewController{
 //            bannerImage.pageControl.pageIndicatorTintColor = UIColor.lightGray
         }else{
             bannerImage.setImageInputs([
-                ImageSource(image: UIImage(named: "dashboardIMG222")!)
+                ImageSource(image: UIImage(named: "ic_default_img")!)
             ])
         }
     }

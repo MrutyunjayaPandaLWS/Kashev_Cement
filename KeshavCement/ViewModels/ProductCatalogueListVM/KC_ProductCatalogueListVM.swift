@@ -487,36 +487,6 @@ class KC_ProductCatalogueListVM{
    
     
     
-//    func plannerAddOrNot(){
-//        self.VC?.startLoading()
-//        let parameters = [
-//            "ActionType":"18",
-//            "ActorId":"\(userID)"
-//        ] as [String : Any]
-//        print(parameters)
-//        self.requestAPIs.plannerAddedOrNotApi(parameters: parameters) { (result, error) in
-//             if error == nil{
-//                if result != nil{
-//                    DispatchQueue.main.async{
-////                        self.productListArray = result?.objCatalogueList ?? []
-////                        print(self.productListArray.count, "Add To Planner Or Not")
-//                    }
-//                    DispatchQueue.main.async{
-//                        self.VC?.stopLoading()
-//                    }
-//                }else{
-//                    DispatchQueue.main.async{
-//                        self.VC?.stopLoading()
-//                    }
-//                }
-//                
-//            }else{
-//                DispatchQueue.main.async{
-//                    self.VC?.stopLoading()
-//                }
-//            }
-//        }
-//    }
     
 }
 class ProductCateogryModels : NSObject{

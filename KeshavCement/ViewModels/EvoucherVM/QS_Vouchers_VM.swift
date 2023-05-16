@@ -36,9 +36,10 @@ class QS_Vouchers_VM{
                 if error == nil{
                     DispatchQueue.main.async {
                         self.VC?.stopLoading()
-                        self.VC?.receivedOTP = result?.returnMessage ?? ""
+//                        self.VC?.receivedOTP = result?.returnMessage ?? ""
+                        let response = result?.returnMessage ?? ""
                         print(result?.returnMessage ?? "", "-OTP")
-                        self.VC?.receivedOTP = "123456"
+                        self.VC?.receivedOTP = response
                         self.VC?.otpPopUpView.isHidden = false
                         self.VC?.successPopupView.isHidden = true
                        
@@ -84,51 +85,70 @@ class QS_Vouchers_VM{
         print(parametersJSON)
         self.requestAPIs.evoucherListApi(parameters: parametersJSON) { (result, error) in
             if error == nil{
-                    self.myvouchersArray = (result?.objCatalogueList)!
-                DispatchQueue.main.async {
-                    self.VC!.myVouchersTableview.reloadData()
-                    self.VC!.stopLoading()
+                if result != nil{
+                    DispatchQueue.main.async {
+                        //let redemptionListArray = result?.objCatalogueRedemReqList ?? []
+                        self.myvouchersArray = result?.objCatalogueList ?? []
+                        print(self.myvouchersArray.count,"djsbdjhbjd")
+                        if self.myvouchersArray.count > 0 {
+                            self.VC?.myVouchersTableview.isHidden = false
+                            self.VC?.myVouchersTableview.reloadData()
+                            self.VC?.noDataFoundLabel.isHidden = true
+                            self.VC?.stopLoading()
+                        }else{
+                            self.VC?.myVouchersTableview.isHidden = true
+                            self.VC?.noDataFoundLabel.isHidden = false
+                            self.VC?.stopLoading()
+                        }
+                       
+                    }
+                }else{
+                    print("NO RESPONSE")
+                    DispatchQueue.main.async {
+                        self.VC?.stopLoading()
+                    }
                 }
             }else{
                 print(error)
                 DispatchQueue.main.async {
-                    self.VC!.stopLoading()
+                    self.VC?.stopLoading()
                 }
                 
             }
         }
     }
-    func voucherSubmission(ReceiverMobile:String,ActorId:String,CountryID:Int,MerchantId:Int,CatalogueId:Int,DeliveryType:String,pointsrequired:String,ProductCode:String,ProductImage:String,ProductName:String,NoOfQuantity:String,VendorId:Int,VendorName:String,ReceiverEmail:String,ReceiverName:String){
+    func voucherSubmission(ReceiverMobile:String,ActorId:String,CountryID:Int,MerchantId:Int,CatalogueId:Int,DeliveryType:String,pointsrequired:String,ProductCode:String,ProductImage:String,ProductName:String,NoOfQuantity:String,VendorId:Int,VendorName:String,ReceiverEmail:String,ReceiverName:String, LoyaltyId: String){
         
         self.VC?.startLoading()
         let parameterJSON = [
-            "ActionType": "51",
-            "ActorId": ActorId,
-            "CountryID": CountryID,
-            "MerchantId": MerchantId,
-            "ObjCatalogueList": [
-                [
-                    "CatalogueId": CatalogueId,
-                    "CountryCurrencyCode": "",
-                    "DeliveryType": DeliveryType,
-                    "HasPartialPayment": false,
-                    "NoOfPointsDebit": pointsrequired,
-                    "PointsRequired": pointsrequired,
-                    "ProductCode": ProductCode,
-                    "ProductImage": ProductImage,
-                    "ProductName": ProductName,
-                    "RedemptionId": 0,
-                    "RedemptionTypeId": 4,
-                    "NoOfQuantity": NoOfQuantity,
-                    "Status": 0,
-                    "VendorId": VendorId,
-                    "VendorName": VendorName
-                ]
-            ],
-            "ReceiverEmail": ReceiverEmail,
-            "ReceiverName": ReceiverName,
-            "ReceiverMobile": ReceiverMobile,
-            "SourceMode": "5"
+                "ActionType": "51",
+                "ActorId": ActorId,
+                "CountryID": CountryID,
+                "MerchantId": MerchantId,
+                "DealerLoyaltyId": LoyaltyId,
+                "ObjCatalogueList": [
+                    [
+                        "CatalogueId": CatalogueId,
+                        "CountryCurrencyCode": "",
+                        "DeliveryType": DeliveryType,
+                        "HasPartialPayment": false,
+                        "NoOfPointsDebit": pointsrequired,
+                        "PointsRequired": pointsrequired,
+                        "ProductCode": ProductCode,
+                        "ProductImage": ProductImage,
+                        "ProductName": ProductName,
+                        "RedemptionId": 0,
+                        "RedemptionTypeId": 4,
+                        "NoOfQuantity": NoOfQuantity,
+                        "Status": 0,
+                        "VendorId": VendorId,
+                        "VendorName": VendorName
+                    ]
+                ],
+                "ReceiverEmail": ReceiverEmail,
+                "ReceiverName": ReceiverName,
+                "ReceiverMobile": ReceiverMobile,
+                "SourceMode": "5"
         ] as [String:Any]
         print(parameterJSON)
         self.requestAPIs.voucherSubmission_Post_API(parameters: parameterJSON) { (result, error) in

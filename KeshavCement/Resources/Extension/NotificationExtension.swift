@@ -32,4 +32,6 @@ extension Notification.Name{
     
     static let dreamGiftRemoved = Notification.Name(rawValue: "dreamGiftRemoved")
     static let showPopUp = Notification.Name(rawValue: "showPopUp")
+    static let deleteAccount = Notification.Name(rawValue: "deleteAccount")
+    
 }

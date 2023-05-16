@@ -18,6 +18,8 @@ class KC_TermsandconditionVC: BaseViewController {
             super.viewDidLoad()
             dashboardTCApi()
         self.headerText.text = "TermsandConditions".localiz()
+//        termsandConditionWebview.multipleTouchEnabled = NO;
+//        termsandConditionWebview.scalesPageToFit = NO;
         }
 
     @IBAction func backBtn(_ sender: Any) {

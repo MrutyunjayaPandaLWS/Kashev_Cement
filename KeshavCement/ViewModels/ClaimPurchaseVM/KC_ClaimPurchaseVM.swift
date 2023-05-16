@@ -57,4 +57,46 @@ class KC_ClaimPurchaseVM{
         }
         
     }
+    
+    
+    func claimPurchaseSubmissionApi1(parameter: JSON){
+        
+        DispatchQueue.main.async {
+            self.VC?.startLoading()
+        }
+        
+        self.requestAPIs.claimPurchaseSubmissionApi1(parameters: parameter) { (result, error) in
+            
+            if result == nil{
+                
+                DispatchQueue.main.async {
+                    self.VC?.stopLoading()
+                }
+            }else{
+                if error == nil{
+                    DispatchQueue.main.async {
+                        self.VC?.stopLoading()
+                        print(result?.pointsBalance ?? "", "Claim Purchase submission")
+                        if result?.pointsBalance == 1{
+                            self.VC?.claimPurchaseSubmissionAPIs()
+                        }else{
+                            self.VC?.view.makeToast("Please _Choose_Correct_Product".localiz(), duration: 2.0, position: .bottom)
+                            self.VC?.swipeButton.reset()
+                            self.VC?.swipeButton.backgroundColor = .white
+                        }
+                    }
+                }else{
+                    DispatchQueue.main.async {
+                        print(error)
+                        self.VC?.stopLoading()
+                    }
+                }
+            }
+        }
+        
+    }
+    
+    
+    
+    
 }

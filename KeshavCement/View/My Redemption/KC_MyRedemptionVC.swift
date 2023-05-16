@@ -12,7 +12,7 @@ class KC_MyRedemptionVC: BaseViewController, DateSelectedDelegate, SelectedDataD
     func acceptDate(_ vc: KC_DOBVC) {
         if vc.isComeFrom == "1"{
     
-            let convertFormatter = convertDateFormater(vc.selectedDate, fromDate: "yyyy-MM-dd", toDate: "MM/dd/yyyy")
+            let convertFormatter = convertDateFormater(vc.selectedDate, fromDate: "yyyy-MM-dd", toDate: "dd/MM/yyyy")
             
             self.selectFromDate.text = "\(convertFormatter)"
             
@@ -21,7 +21,7 @@ class KC_MyRedemptionVC: BaseViewController, DateSelectedDelegate, SelectedDataD
             
             
         }else{
-            let convertFormatter = convertDateFormater(vc.selectedDate, fromDate: "yyyy-MM-dd", toDate: "MM/dd/yyyy")
+            let convertFormatter = convertDateFormater(vc.selectedDate, fromDate: "yyyy-MM-dd", toDate: "dd/MM/yyyy")
             self.selectToDate.text = "\(convertFormatter)"
             
            // let convertFormatter1 = convertDateFormater(vc.selectedDate, fromDate: "dd/MM/yyyy", toDate: "MM/dd/yyyy")
@@ -195,6 +195,8 @@ class KC_MyRedemptionVC: BaseViewController, DateSelectedDelegate, SelectedDataD
     }
     
     func myRedemptionListApi(startIndex: Int, fromDate: String, toDate: String, status: Int, catalogueType: Int){
+        
+        //{"ActionType":"52","ActorId":"542","StartIndex":1,"NoOfRows":10,"ObjCatalogueDetails":{"SelectedStatus":"-1","RedemptionTypeId":-1}}
         let parameters = [
             "ActionType": "52",
             "ActorId": self.userID,

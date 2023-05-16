@@ -67,7 +67,7 @@ class KC_ForgetPasswordVC: BaseViewController, DPOTPViewDelegate{
         self.forgotPwdLbl.text = "ForgotPassword".localiz()
         self.forgotPwdTitle.text = "ForgotPassword".localiz()
         self.pleaseSetPwdLbl.text = "Pleasesetthenewpassword".localiz()
-        self.mobileNoLbl.text = "MobileNoID".localiz()
+        self.mobileNoLbl.text = "MobileNumber".localiz()
         self.mobileNumberTF.placeholder = "Entermobilenumber".localiz()
         self.otpLbl.text = "OTP".localiz()
         self.otpInfoLbl.text = "OTPwillreciev".localiz()
@@ -175,7 +175,7 @@ class KC_ForgetPasswordVC: BaseViewController, DPOTPViewDelegate{
             "UserId": -1,
             "MobileNo": "\(self.mobileNumberTF.text ?? "")",
             "OTPType": "Enrollment",
-            "MerchantUserName": "KeshavCementDemo"
+            "MerchantUserName": MerchantUserName
         ] as [String: Any]
         print(parameter)
         self.VM.getOTPApi(parameter: parameter)

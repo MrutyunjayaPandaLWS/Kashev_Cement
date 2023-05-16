@@ -27,6 +27,8 @@ class KC_DOBVC: UIViewController {
         super.viewDidLoad()
         if self.isComeFrom != "TENTATIVE"{
             datePicker.maximumDate = date
+        }else{
+            datePicker.minimumDate = Date()
         }
         
     }
@@ -58,11 +60,13 @@ class KC_DOBVC: UIViewController {
             }
 //
         }else if isComeFrom == "TENTATIVE"{
-                let formatter = DateFormatter()
-                formatter.dateFormat = "yyyy-MM-dd"
-                selectedDate = formatter.string(from: datePicker.date)
+            //let sevenDaysBeforeToday = Calendar.current.date(byAdding: .year, value: -18, to: today)!
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            selectedDate = formatter.string(from: datePicker.date)
             self.delegate.acceptDate!(self)
-                self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
+            
         }else if isComeFrom == "ANNIVERSARY"{
             if datePicker.date > sevenDaysBeforeToday{
                 let alert = UIAlertController(title: "", message: "ItseemsYouarelessthan18years".localiz(), preferredStyle: UIAlertController.Style.alert)

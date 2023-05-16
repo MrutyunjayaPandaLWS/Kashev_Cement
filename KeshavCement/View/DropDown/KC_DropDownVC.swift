@@ -22,6 +22,7 @@ import UIKit
     @objc optional func didTapCityName(_ vc: KC_DropDownVC)
     @objc optional func didTapAmount(_ vc: KC_DropDownVC)
     @objc optional func didCatalogueType(_ vc: KC_DropDownVC)
+    @objc optional func didCashTransferType(_ vc: KC_DropDownVC)
 }
 
 
@@ -59,7 +60,8 @@ class KC_DropDownVC: BaseViewController,UISearchBarDelegate {
     var subdealerArray = ["Dealer"]
     var dealerEnrollmentArray = ["Engineer", "Mason", "Sub Dealer"]
     var subDealerEnrollmentArray = ["Engineer", "Mason"]
-    var catalogueListTypeArray = ["Select Catalogue Type","Catalogue", "eVouchers", "Dream Gift", "Cash Voucher"]
+    var catalogueListTypeArray = ["Select Catalogue Type","Catalogue", "eVouchers", "Dream Gift"]
+    var cashTransferFilterArray = ["Pending","Approved","Rejected"]
 //    var customerType = ""
     var selectedUserTypeName = ""
     var selectedUserTypeId = -1
@@ -321,6 +323,8 @@ extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
             return self.VM.mapppedUserNameListArray1.count
         }else if self.itsFrom == "CATALOGUELIST"{
             return self.catalogueListTypeArray.count
+        }else if self.itsFrom == "STATUSLISTS"{
+            return self.cashTransferFilterArray.count
         }else{
             return 1
         }
@@ -396,6 +400,10 @@ extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
             }else{
                 self.tableViewHeightConstraint.constant = CGFloat(500)
             }
+        }else if self.itsFrom == "STATUSLISTS" {
+            cell.selectedTitleLbl.text = self.cashTransferFilterArray[indexPath.row]
+            self.tableViewHeightConstraint.constant = CGFloat(self.cashTransferFilterArray.count * 40)
+            
         }
         return cell
     }
@@ -519,6 +527,19 @@ extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
             }
             self.delegate?.didCatalogueType!(self)
             self.dismiss(animated: true)
+        }else if self.itsFrom == "STATUSLISTS" {
+           // ["Pending","Approved","Rejected"]
+            self.selectedCustomerType = self.cashTransferFilterArray[indexPath.row]
+            if self.selectedCustomerType == "Pending"{
+                self.selectedUserTypeId = 0
+            }else if self.selectedCustomerType == "Approved"{
+                self.selectedUserTypeId = 1
+            }else{
+                self.selectedUserTypeId = 2
+            }
+            self.delegate?.didCashTransferType!(self)
+            self.dismiss(animated: true)
+            
         }
         
     }

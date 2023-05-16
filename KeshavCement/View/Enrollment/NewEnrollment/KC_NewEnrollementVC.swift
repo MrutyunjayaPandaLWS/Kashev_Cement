@@ -361,7 +361,7 @@ class KC_NewEnrollementVC: BaseViewController, SelectedDataDelegate, DateSelecte
             self.view.makeToast("Entervalidmobilenumber".localiz(), duration: 2.0, position: .bottom)
         }else{
             let parameter = [
-                "ActionType":"65",
+                "ActionType":"70",
                 "ActorId": self.userID,
                 "Location":[
                     "UserName":"\(self.mobileTF.text ?? "")"

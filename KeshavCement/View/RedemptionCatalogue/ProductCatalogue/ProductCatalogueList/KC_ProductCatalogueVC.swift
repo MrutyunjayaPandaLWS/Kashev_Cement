@@ -31,11 +31,11 @@ class KC_ProductCatalogueVC: BaseViewController, AddToCartDelegate, SelectedItem
                 if filterCategory1.count == 0{
                     self.plannerProductId = self.VM.catalgoueListArray[tappedIndexPath.row].catalogueId ?? 0
                     
-                    if self.customerTypeId ?? "" == "3" && self.partyLoyaltyId != "" || self.customerTypeId ?? "" == "4" && self.partyLoyaltyId != ""{
+                    if self.customerTypeId == "3" || self.customerTypeId ?? "" == "4" {
                         if self.mappedUserId == -1{
-                            self.VM.addedToPlanner(PartyLoyaltyID: self.partyLoyaltyId, userId: Int(self.userID)!)
+                            self.VM.addedToPlanner(PartyLoyaltyID: self.loyaltyId, userId: Int(self.userID)!)
                         }else{
-                            self.VM.addedToPlanner(PartyLoyaltyID: self.partyLoyaltyId, userId: self.mappedUserId)
+                            self.VM.addedToPlanner(PartyLoyaltyID: self.loyaltyId, userId: self.mappedUserId)
                         }
                     }else if self.customerTypeId ?? "" == "3" && self.partyLoyaltyId == "" || self.customerTypeId ?? "" == "4" && self.partyLoyaltyId == ""{
                         if self.mappedUserId == -1{
@@ -76,47 +76,96 @@ class KC_ProductCatalogueVC: BaseViewController, AddToCartDelegate, SelectedItem
             if cell.addToCartBtn.tag == tappedIndexPath.row{
                 print(self.redeemablePointsBalance , "Redeemable Point Balance")
                 print(self.VM.sumOfProductsCount, "Sum of products Count")
-                if self.VM.sumOfProductsCount <= Int(self.redeemablePointsBalance) ?? 0 && Int(self.VM.catalgoueListArray[tappedIndexPath.row].pointsRequired ?? 0) != 0 {
-                    let calcValue = self.VM.sumOfProductsCount + Int(self.VM.catalgoueListArray[tappedIndexPath.row].pointsRequired ?? 0)
-                    print(calcValue, "calcValues")
-                    if calcValue <= Int(self.redeemablePointsBalance) ?? 0{
-                        self.selectedCatalogueID = self.VM.catalgoueListArray[tappedIndexPath.row].catalogueId ?? 0
-                        print(self.partyLoyaltyId)
-                        print(self.customerTypeId)
-                        
-                        if self.customerTypeId ?? "" == "3" && self.partyLoyaltyId != "" || self.customerTypeId ?? "" == "4" && self.partyLoyaltyId != ""{
-                            if self.mappedUserId == -1{
-                                self.VM.addToCartApi(PartyLoyaltyID: self.loyaltyId, LoyaltyID: self.partyLoyaltyId, userId: Int(self.userID)!)
+                
+                if self.mappedUserId == -1{
+                    
+                    if self.VM.sumOfProductsCount <= Int(self.redeemablePointsBalance) ?? 0 && Int(self.VM.catalgoueListArray[tappedIndexPath.row].pointsRequired ?? 0) != 0 {
+                        let calcValue = self.VM.sumOfProductsCount + Int(self.VM.catalgoueListArray[tappedIndexPath.row].pointsRequired ?? 0)
+                        print(calcValue, "calcValues")
+                        if calcValue <= Int(self.redeemablePointsBalance) ?? 0{
+                            self.selectedCatalogueID = self.VM.catalgoueListArray[tappedIndexPath.row].catalogueId ?? 0
+                            print(self.partyLoyaltyId)
+                            print(self.customerTypeId)
+                            
+                            if self.customerTypeId ?? "" == "3" && self.partyLoyaltyId != "" || self.customerTypeId ?? "" == "4" && self.partyLoyaltyId != ""{
+                                if self.mappedUserId == -1{
+                                    self.VM.addToCartApi(PartyLoyaltyID: self.loyaltyId, LoyaltyID: self.partyLoyaltyId, userId: Int(self.userID)!)
+                                }else{
+                                    self.VM.addToCartApi(PartyLoyaltyID: self.loyaltyId, LoyaltyID: self.partyLoyaltyId, userId: self.mappedUserId)
+                                }
+                            }else if self.customerTypeId ?? "" == "3" && self.partyLoyaltyId == "" || self.customerTypeId ?? "" == "4" && self.partyLoyaltyId == ""{
+                                if self.mappedUserId == -1{
+                                    self.VM.addToCartApi(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId, userId: Int(self.userID)!)
+                                }else{
+                                    self.VM.addToCartApi(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId, userId: self.mappedUserId)
+                                }
                             }else{
-                                self.VM.addToCartApi(PartyLoyaltyID: self.loyaltyId, LoyaltyID: self.partyLoyaltyId, userId: self.mappedUserId)
-                            }
-                        }else if self.customerTypeId ?? "" == "3" && self.partyLoyaltyId == "" || self.customerTypeId ?? "" == "4" && self.partyLoyaltyId == ""{
-                            if self.mappedUserId == -1{
-                                self.VM.addToCartApi(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId, userId: Int(self.userID)!)
-                            }else{
-                                self.VM.addToCartApi(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId, userId: self.mappedUserId)
-                            }
-                        }else{
-                            if self.mappedUserId == -1{
-                                self.VM.addToCartApi(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId, userId: Int(self.userID)!)
-                            }else{
-                                self.VM.addToCartApi(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId, userId: self.mappedUserId)
+                                if self.mappedUserId == -1{
+                                    self.VM.addToCartApi(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId, userId: Int(self.userID)!)
+                                }else{
+                                    self.VM.addToCartApi(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId, userId: self.mappedUserId)
+                                }
+                                
                             }
                             
+                            //NotificationCenter.default.post(name: .cartCount, object: nil)
+                        }else{
+                            DispatchQueue.main.async{
+                                self.view.makeToast("NeedSufficientPointBalance".localiz(), duration: 2.0, position: .bottom)
+                            }
                         }
                         
-                        //NotificationCenter.default.post(name: .cartCount, object: nil)
                     }else{
                         DispatchQueue.main.async{
                             self.view.makeToast("NeedSufficientPointBalance".localiz(), duration: 2.0, position: .bottom)
+                            
                         }
                     }
-
                 }else{
-                    DispatchQueue.main.async{
-                        self.view.makeToast("NeedSufficientPointBalance".localiz(), duration: 2.0, position: .bottom)
-                     
+                    
+                    if self.VM.sumOfProductsCount <= Int(self.productTotalPoints) ?? 0 && Int(self.VM.catalgoueListArray[tappedIndexPath.row].pointsRequired ?? 0) != 0 {
+                        let calcValue = self.VM.sumOfProductsCount + Int(self.VM.catalgoueListArray[tappedIndexPath.row].pointsRequired ?? 0)
+                        print(calcValue, "calcValues")
+                        if calcValue <= Int(self.productTotalPoints) ?? 0{
+                            self.selectedCatalogueID = self.VM.catalgoueListArray[tappedIndexPath.row].catalogueId ?? 0
+                            print(self.partyLoyaltyId)
+                            print(self.customerTypeId)
+                            
+                            if self.customerTypeId ?? "" == "3" && self.partyLoyaltyId != "" || self.customerTypeId ?? "" == "4" && self.partyLoyaltyId != ""{
+                                if self.mappedUserId == -1{
+                                    self.VM.addToCartApi(PartyLoyaltyID: self.loyaltyId, LoyaltyID: self.partyLoyaltyId, userId: Int(self.userID)!)
+                                }else{
+                                    self.VM.addToCartApi(PartyLoyaltyID: self.loyaltyId, LoyaltyID: self.partyLoyaltyId, userId: self.mappedUserId)
+                                }
+                            }else if self.customerTypeId ?? "" == "3" && self.partyLoyaltyId == "" || self.customerTypeId ?? "" == "4" && self.partyLoyaltyId == ""{
+                                if self.mappedUserId == -1{
+                                    self.VM.addToCartApi(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId, userId: Int(self.userID)!)
+                                }else{
+                                    self.VM.addToCartApi(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId, userId: self.mappedUserId)
+                                }
+                            }else{
+                                if self.mappedUserId == -1{
+                                    self.VM.addToCartApi(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId, userId: Int(self.userID)!)
+                                }else{
+                                    self.VM.addToCartApi(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId, userId: self.mappedUserId)
+                                }
+                                
+                            }
+                            
+                            //NotificationCenter.default.post(name: .cartCount, object: nil)
+                        }else{
+                            DispatchQueue.main.async{
+                                self.view.makeToast("NeedSufficientPointBalance".localiz(), duration: 2.0, position: .bottom)
+                            }
+                        }
+                        
+                    }else{
+                        DispatchQueue.main.async{
+                            self.view.makeToast("NeedSufficientPointBalance".localiz(), duration: 2.0, position: .bottom)
+                            
+                        }
                     }
+                    
                 }
                 self.productsDetailCollectionView.reloadData()
             }

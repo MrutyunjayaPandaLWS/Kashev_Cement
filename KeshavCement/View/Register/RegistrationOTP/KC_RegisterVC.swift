@@ -235,7 +235,7 @@ class KC_RegisterVC:  BaseViewController, UITextFieldDelegate {
             "UserId": -1,
             "MobileNo": "\(self.mobileNumberTF.text ?? "")",
             "OTPType": "Enrollment",
-            "MerchantUserName": "KeshavCementDemo"
+            "MerchantUserName": MerchantUserName
         ] as [String: Any]
         print(parameter)
         self.VM.getOTPApi(parameter: parameter)

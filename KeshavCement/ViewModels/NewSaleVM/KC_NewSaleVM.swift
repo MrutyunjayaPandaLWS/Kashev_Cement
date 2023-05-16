@@ -37,8 +37,8 @@ class KC_NewSaleVM{
                 if error == nil{
                     DispatchQueue.main.async {
                         self.VC?.stopLoading()
-                        self.VC?.receivedOTP = result?.returnMessage ?? ""
-                        self.VC?.receivedOTP = "123456"
+                        let response = result?.returnMessage ?? ""
+                        self.VC?.receivedOTP = response
                         print(result?.returnMessage ?? "", "-OTP")
                         self.VC?.successPopUpView.isHidden = true
                         self.VC?.otpPopUpView.isHidden = false

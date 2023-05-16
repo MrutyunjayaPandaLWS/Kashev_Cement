@@ -147,15 +147,21 @@ extension KC_MyEarningVC : UITableViewDelegate,UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "KC_MyEarningTVC") as! KC_MyEarningTVC
         cell.selectionStyle = .none
         let receivedDate = String(self.VM.myEarningListArray[indexPath.row].jTranDate ?? "-").split(separator: " ")
+        let convertedFormat = convertDateFormater(String(receivedDate[0]), fromDate: "MM/dd/yyyy", toDate: "dd/MM/yyyy")
+       
         if receivedDate.count != 0 {
-            cell.dateHeaderLbl.text = "\(receivedDate[0])"
-            cell.timeLbl.text = "\(receivedDate[1])"
+            cell.dateHeaderLbl.text = convertedFormat
+            //cell.timeLbl.text = "\(receivedDate[1])"
         }else{
             cell.dateHeaderLbl.text = "-"
-            cell.timeLbl.text = "-"
+            //cell.timeLbl.text = "-"
         }
         cell.pointsLbl.text = "\(Int(self.VM.myEarningListArray[indexPath.row].rewardPoints ?? 0.0))"
         cell.productNameLbl.text = self.VM.myEarningListArray[indexPath.row].prodName ?? "-"
+        
+        
+        
+        
         if self.VM.myEarningListArray[indexPath.row].transactionType ?? "" == "BONUS"{
             cell.remarksDetailsLbl.text = self.VM.myEarningListArray[indexPath.row].bonusName ?? "-"
         }else if self.VM.myEarningListArray[indexPath.row].transactionType ?? "" == "Referral"{
@@ -164,6 +170,8 @@ extension KC_MyEarningVC : UITableViewDelegate,UITableViewDataSource{
             cell.remarksDetailsLbl.text = "Enrollment Complimentary"
         }else if self.VM.myEarningListArray[indexPath.row].transactionType ?? "" == "WORKSITE"{
             cell.remarksDetailsLbl.text = "Worksite Program"
+        }else if self.VM.myEarningListArray[indexPath.row].transactionType ?? "" == "Cash Transfer"{
+            cell.remarksDetailsLbl.text = "Cash Transfer"
         }else{
             if self.VM.myEarningListArray[indexPath.row].invoiceNo ?? "" == "--"{
                 cell.remarksDetailsLbl.text = "Reward Adjusted"

@@ -101,6 +101,11 @@ extension KC_SupportExecutiveVC: UITableViewDelegate, UITableViewDataSource{
         cell.titleLbl.text = self.VM.supportExecutiveListArray[indexPath.row].firstName ?? ""
         cell.mobileNumber.text = self.VM.supportExecutiveListArray[indexPath.row].mobile ?? ""
         cell.memberShipId.text = self.VM.supportExecutiveListArray[indexPath.row].loyaltyID ?? ""
+        
+        let receivedImage = String(self.VM.supportExecutiveListArray[indexPath.row].customerImage ?? "").dropFirst(1)
+        let userImage = URL(string: "\(PROMO_IMG1)\(receivedImage)")
+        cell.queryImage.kf.setImage(with: userImage, placeholder: UIImage(named: "Mask Group 1"))
+        
         if self.VM.supportExecutiveListArray[indexPath.row].isActive ?? -1 == 1{
             cell.queryStatusLbl.text = "Deactivate"
             cell.statusLbl.text = "Active"

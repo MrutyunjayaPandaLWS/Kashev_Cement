@@ -25,8 +25,11 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
                 print(Int(self.vm.myvouchersArray[tappedIndexPath.row].max_points!)!)
                 print(amt)
                 if amt < Int(self.vm.myvouchersArray[tappedIndexPath.row].min_points!)! || amt > Int(self.vm.myvouchersArray[tappedIndexPath.row].max_points!)!{
-                    cell.filter.backgroundColor = UIColor.gray
+//                    cell.filter.backgroundColor = UIColor.gray
+//                    cell.filter.isEnabled = false
+                    self.alertmsg(alertmsg: "Enter_redeemable_amount_in_range".localiz(), buttonalert: "OK")
                     cell.filter.isEnabled = false
+                    cell.amounttf.text = ""
                 }else{
                    // cell.filter.backgroundColor = UIColor(red: 1/255, green: 105/255, blue: 56/255, alpha: 1.0)
                     cell.filter.isEnabled = true
@@ -74,13 +77,21 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
                         }
                     }else{
                         self.popView.isHidden = false
-                        self.generateOTPApi()
+                        
                         if self.mobile == ""{
                             self.receiverMobile = self.mobilenumber
+                            self.generateOTPApi(mobilenumber: self.mobilenumber, userID: self.userID, loyaltyId: self.loyaltyId, firstname: self.firstname)
+                            self.actorId = userID
+                            self.receiverEmail = emailid
+                            self.receiverName = firstname
                         }else{
                             self.receiverMobile = self.mobile
+                            self.generateOTPApi(mobilenumber: self.mobile, userID: "\(self.mappedUserId)", loyaltyId: self.partyLoyaltyId, firstname: self.firstNAME)
+                            self.actorId = "\(self.mappedUserId)"
+                            self.receiverEmail = self.emailData
+                            self.receiverName = firstNAME
                         }
-                        self.actorId = userID
+                       
                         self.countryID = cell.vouchersdata[0].countryID ?? -1
                         self.merchantId = "\(self.merchantID)"
                         self.catalogueId = cell.vouchersdata[0].catalogueId ?? -1
@@ -88,12 +99,12 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
                         self.pointsrequired = cell.amounttf.text ?? "0"
                         self.productCode = cell.vouchersdata[0].productCode ?? ""
                         self.productImage = cell.vouchersdata[0].productImage ?? ""
+                        print(self.productImage)
                         self.productName = cell.vouchersdata[0].productName ?? ""
                         self.noOfQuantity = "1"
                         self.vendorId = "\(cell.vouchersdata[0].vendorId ?? -1)"
                         self.vendorName = cell.vouchersdata[0].vendorName ?? ""
-                        self.receiverEmail = emailid
-                        self.receiverName = firstname
+                        
          
                     }
                 }else{
@@ -106,13 +117,21 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
             }else{
                 if Int(self.overAllPts)! >= self.selectedPoints{
                     self.popView.isHidden = false
-                    self.generateOTPApi()
+                    
                     if self.mobile == ""{
                         self.receiverMobile = self.mobilenumber
+                        self.generateOTPApi(mobilenumber: self.mobilenumber, userID: self.userID, loyaltyId: self.loyaltyId, firstname: self.firstname)
+                        self.actorId = userID
+                        self.receiverName = firstname
+                        self.receiverEmail = emailid
                     }else{
                         self.receiverMobile = self.mobile
+                        self.generateOTPApi(mobilenumber: self.mobile, userID: "\(self.mappedUserId)", loyaltyId: self.partyLoyaltyId, firstname: self.firstNAME)
+                        self.actorId = "\(self.mappedUserId)"
+                        self.receiverName = firstNAME
+                        self.receiverEmail = emailData
                     }
-                    self.actorId = userID
+                   
                     self.countryID = cell.vouchersdata[0].countryID ?? -1
                     self.merchantId = "\(self.merchantID)"
                     self.catalogueId = cell.vouchersdata[0].catalogueId ?? -1
@@ -120,12 +139,13 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
                     self.pointsrequired = cell.amount.currentTitle!
                     self.productCode = cell.vouchersdata[0].productCode ?? ""
                     self.productImage = cell.vouchersdata[0].productImage ?? ""
+                    print(self.productImage)
                     self.productName = cell.vouchersdata[0].productName ?? ""
                     self.noOfQuantity = "1"
                     self.vendorId = "\(cell.vouchersdata[0].vendorId ?? -1)"
                     self.vendorName = cell.vouchersdata[0].vendorName ?? ""
-                    self.receiverEmail = emailid
-                    self.receiverName = firstname
+                    
+                    
                     
 
                 }else{
@@ -190,6 +210,7 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
     var selectedProductValue = 0
     var receivedOTP = ""
     var mobile = ""
+    var firstNAME = ""
     
     var partyLoyaltyId = ""
     let vm = QS_Vouchers_VM()
@@ -200,14 +221,19 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
     var mobilenumber = UserDefaults.standard.string(forKey: "CustomerMobileNumber") ?? ""
         var emailid = UserDefaults.standard.string(forKey: "CustomerEmail") ?? ""
         var firstname = UserDefaults.standard.string(forKey: "FirstName") ?? ""
-        var merchantID = UserDefaults.standard.integer(forKey: "MerchantID") ?? 1
-        let layaltyID = UserDefaults.standard.string(forKey: "LoyaltyID") ?? ""
-    var enteredValue = ""
-    let merchantUserName = UserDefaults.standard.string(forKey: "MerchantEmail") ?? ""
-    var merchanMobile = UserDefaults.standard.string(forKey: "MerchantMobile") ?? ""
+    let layaltyID = UserDefaults.standard.string(forKey: "LoyaltyId") ?? ""
     var pointBalance = UserDefaults.standard.string(forKey: "RedeemablePointBalance") ?? ""
     
     
+    var merchantID = UserDefaults.standard.integer(forKey: "MerchantID") ?? 1
+    let merchantUserName = UserDefaults.standard.string(forKey: "MerchantEmail") ?? ""
+    var merchanMobile = UserDefaults.standard.string(forKey: "MerchantMobile") ?? ""
+    
+    var merchantIds = ""
+    let merchantUserNamE = ""
+    var merchanMobilE = ""
+    var enteredValue = ""
+        var emailData = ""
         var receiverMobile = ""
         var actorId = ""
         var countryID = 0
@@ -235,7 +261,18 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
         self.successPopupView.isHidden = true
         self.otpPopUpView.isHidden = true
         self.vm.VC = self
-        self.points.text = "\(self.overAllPts)"
+        if self.mappedUserId == -1{
+            self.points.text = "\(self.overAllPts)"
+            let getLastFour = String(mobilenumber.suffix(4))
+            print(getLastFour)
+            self.mobileNumberLbl.text = getLastFour
+        }else{
+            self.points.text = "\(self.productTotalPoints)"
+            let getLastFour = String(mobile.suffix(4))
+            print(getLastFour)
+            self.mobileNumberLbl.text = getLastFour
+            }
+       
         self.subView.clipsToBounds = true
         self.subView.cornerRadius = 20
         self.subView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
@@ -243,9 +280,7 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
         otpView.fontTextField = UIFont.systemFont(ofSize: 25)
         otpView.textEdgeInsets = UIEdgeInsets(top: 0, left: -1, bottom: 0, right: 0)
         otpView.editingTextEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        let getLastFour = String(mobilenumber.suffix(4))
-        print(getLastFour)
-        self.mobileNumberLbl.text = getLastFour
+     
         
         if MyCommonFunctionalUtilities.isInternetCallTheApi() == false{
             DispatchQueue.main.async{
@@ -258,7 +293,13 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
                 self.present(vc!, animated: true, completion: nil)
             }
         }else{
-        self.vm.myVouchersAPI(userID: userID)
+            if self.mappedUserId == -1{
+                self.vm.myVouchersAPI(userID: userID)
+            }else{
+            
+                self.vm.myVouchersAPI(userID: "\(mappedUserId)")
+                }
+        
         }
         NotificationCenter.default.addObserver(self, selector: #selector(handlepopupdateclose), name: Notification.Name.showPopUp, object: nil)
     }
@@ -297,10 +338,26 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
     
     @IBAction func resendOTPBtn(_ sender: Any) {
             self.vm.timer.invalidate()
-            self.generateOTPApi()
+        
+        if self.mobile == ""{
+            //self.receiverMobile = self.mobilenumber
+            self.generateOTPApi(mobilenumber: self.mobilenumber, userID: self.userID, loyaltyId: self.loyaltyId, firstname: self.firstname)
+            //self.actorId = userID
+//            self.receiverName = firstname
+//            self.receiverEmail = emailid
+        }else{
+            //self.receiverMobile = self.mobile
+            self.generateOTPApi(mobilenumber: self.mobile, userID: "\(self.mappedUserId)", loyaltyId: self.partyLoyaltyId, firstname: self.firstNAME)
+//            self.actorId = "\(self.mappedUserId)"
+//            self.receiverName = firstNAME
+//            self.receiverEmail = emailData
+        }
+        //self.generateOTPApi(mobilenumber: <#String#>, userID: <#String#>, loyaltyId: <#String#>, firstname: <#String#>)
     }
     @IBAction func closeBtn(_ sender: Any) {
         self.otpPopUpView.isHidden = true
+        self.successPopupView.isHidden = true
+        self.popView.isHidden = true
     }
     
     @IBAction func otpSubmitBtn(_ sender: Any) {
@@ -315,7 +372,10 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
             let today = yesterday.split(separator: " ")
             let desiredDateFormat = self.convertDateFormater("\(today[0])", fromDate: "yyyy-MM-dd", toDate: "yyyy-MM-dd")
            print("\(desiredDateFormat)")
-            self.vm.voucherSubmission(ReceiverMobile: self.receiverMobile, ActorId: self.userID, CountryID: self.countryID, MerchantId: Int(self.merchantId)!, CatalogueId: self.catalogueId, DeliveryType: self.deliveryType, pointsrequired: self.pointsrequired, ProductCode: self.productCode, ProductImage: self.productImage, ProductName: self.productName, NoOfQuantity: "1", VendorId: Int(self.vendorId)!, VendorName: self.vendorName, ReceiverEmail: self.receiverEmail, ReceiverName: self.receiverEmail)
+            print(layaltyID,"dlksd")
+            
+            
+            self.vm.voucherSubmission(ReceiverMobile: self.receiverMobile, ActorId: self.actorId, CountryID: self.countryID, MerchantId: Int(self.merchantId)!, CatalogueId: self.catalogueId, DeliveryType: self.deliveryType, pointsrequired: self.pointsrequired, ProductCode: self.productCode, ProductImage: self.productImage, ProductName: self.productName, NoOfQuantity: "1", VendorId: Int(self.vendorId)!, VendorName: self.vendorName, ReceiverEmail: self.receiverEmail, ReceiverName: self.firstname, LoyaltyId: layaltyID)
             
         }
         
@@ -323,13 +383,13 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
     
 
     
-    func generateOTPApi(){
+    func generateOTPApi(mobilenumber: String,userID: String,loyaltyId: String, firstname: String){
         let parameter = [
-            "MerchantUserName": "KeshavCementDemo",
+            "MerchantUserName": MerchantUserName,
             "MobileNo": mobilenumber,
-            "UserId": self.userID,
-            "UserName": self.loyaltyId,
-            "Name": self.firstname
+            "UserId": userID,
+            "UserName": loyaltyId,
+            "Name": firstname
         ] as [String: Any]
         print(parameter)
         self.vm.getOTPApi(parameter: parameter)
@@ -434,11 +494,13 @@ extension QS_MyVouchers_VC{
             vc?.voucherCountryID = self.vm.myvouchersArray[indexPath.row].countryID ?? -1
             vc?.voucherdelivarytype = self.vm.myvouchersArray[indexPath.row].deliveryType ?? ""
             vc?.mappedUserId = self.mappedUserId
+            vc?.firstNAME = self.firstNAME
+            print(self.mobile)
             if self.mobile == ""{
-                self.receiverMobile = self.mobilenumber
+                vc?.recieverMobile = self.mobilenumber
             
             }else{
-                self.receiverMobile = self.mobile
+                vc?.recieverMobile = self.mobile
             }
             
             self.navigationController?.pushViewController(vc!, animated: true)

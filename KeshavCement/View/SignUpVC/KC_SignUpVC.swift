@@ -376,18 +376,19 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
         else{
             let parameter = [
                 
-                    "ActionType": "0",
-                    "lstIdentityInfo": [
+                    "actiontype": "0",
+                    "lstidentityinfo": [
                         [
-                            "IdentityID": "2",
-                            "IdentityNo": "\(self.aadharcarNumber)",
-                            "IdentityType": "4"
+                            "identityid": "2",
+                            "identityno": "\(self.aadharcarNumber)",
+                            "identitytype": "2"
                         ]
                     ],
-                    "ObjCustomer": [
-                        "Address": "\(self.addressTF.text ?? "")",
-                        "CustomerEmail": "\(self.emailTF.text ?? "")",
+                    "objcustomer": [
+                        "address": "\(self.addressTF.text ?? "")",
+                        "customeremail": "\(self.emailTF.text ?? "")",
                         "CustomerMobile": "\(self.mobileTF.text ?? "")",
+                        "CustomerCityId": "\(self.selectedCityId)",
                         "CustomerStateId": "\(self.selectedStateId)",
                         "CustomerTypeID": "\(self.selectedCustomerTypeId)",
                         "CustomerZip": "\(self.pincodeTF.text ?? "")",

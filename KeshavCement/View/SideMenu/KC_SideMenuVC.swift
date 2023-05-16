@@ -8,7 +8,10 @@
 import UIKit
 import SlideMenuControllerSwift
 import LanguageManager_iOS
-class KC_SideMenuVC: BaseViewController {
+class KC_SideMenuVC: BaseViewController, popUpAlertDelegate {
+    func popupAlertDidTap(_ vc: RGT_popupAlertOne_VC) {
+    }
+    
 
     @IBOutlet weak var ptsBalanceLBl: UILabel!
     @IBOutlet weak var memberShipIDLbl: UILabel!
@@ -31,7 +34,8 @@ class KC_SideMenuVC: BaseViewController {
     var benefitsItem = [SecondMenuList]()
     var selectedTitle = ""
     var itsFrom = ""
-//    var customerType = ""
+    var parameters: JSON?
+    var requestAPIs = RestAPI_Requests()
     var itsComeFrom = ""
 //    var userID = UserDefaults.standard.string(forKey: "UserID") ?? ""
     var customerTypeIds = -1
@@ -60,7 +64,7 @@ class KC_SideMenuVC: BaseViewController {
         self.sideMenuTableView.delegate = self
         self.sideMenuTableView.dataSource = self
      //   self.sideMenuViewHeightConstraint.constant = CGFloat(550)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(deletedAccount), name: Notification.Name.deleteAccount, object: nil)
         
       
     }
@@ -70,11 +74,11 @@ class KC_SideMenuVC: BaseViewController {
         self.addItemsIntoArray()
      
         if self.customerTypeIds == 1 || self.customerTypeIds == 2{
-            self.sideMenuTableViewHeightConstratin.constant = 635
-            self.scrollViewHeight.constant = 635
+            self.sideMenuTableViewHeightConstratin.constant = 650
+            self.scrollViewHeight.constant = 650
         }else if self.customerTypeIds == 3{
-            self.sideMenuTableViewHeightConstratin.constant = 750
-            self.scrollViewHeight.constant = 750
+            self.sideMenuTableViewHeightConstratin.constant = 780
+            self.scrollViewHeight.constant = 780
         }else{
             self.sideMenuTableViewHeightConstratin.constant = 850
             self.scrollViewHeight.constant = 850
@@ -87,6 +91,23 @@ class KC_SideMenuVC: BaseViewController {
         self.sideMenuTableView.reloadData()
     }
     
+    
+                                               
+                                               
+    @objc func deletedAccount(){
+        UserDefaults.standard.setValue(false, forKey: "IsloggedIn?")
+        let domain = Bundle.main.bundleIdentifier!
+        UserDefaults.standard.removePersistentDomain(forName: domain)
+        UserDefaults.standard.synchronize()
+        if #available(iOS 13.0, *) {
+            let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate
+            sceneDelegate?.setInitialViewAsRootViewController()
+            
+        } else {
+            let appDelegate = UIApplication.shared.delegate as? AppDelegate
+            appDelegate?.setInitialViewAsRootViewController()
+        }
+    }
 
     @IBAction func logoutButton(_ sender: Any) {
         
@@ -122,6 +143,71 @@ class KC_SideMenuVC: BaseViewController {
             }
         }
     }
+    
+    @IBAction func deleteActBtn(_ sender: Any) {
+        
+        if MyCommonFunctionalUtilities.isInternetCallTheApi() == false{
+            DispatchQueue.main.async{
+                self.view.makeToast("NoInternet".localiz(), duration: 2.0,position: .bottom)
+            }
+        }else{
+            let alert = UIAlertController(title: "", message: "SureWantToDelete".localiz(), preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Yes".localiz(), style: .default, handler: { UIAlertAction in
+                self.parameters = [
+                    "ActionType": 1,
+                    "userid":"\(self.userID)"
+                ] as [String : Any]
+                print(self.parameters!)
+                self.deleteAccountAPI(paramters: self.parameters!)
+            }))
+            alert.addAction(UIAlertAction(title: "no".localiz(), style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            
+        }
+        
+        
+        
+        
+    }
+    
+    func deleteAccountAPI(paramters: JSON){
+        self.requestAPIs.deleteAccount(parameters: paramters) { (result, error) in
+            if error == nil{
+                if result != nil{
+                DispatchQueue.main.async {
+                    if result?.returnMessage ?? "-1" == "1"{
+                        DispatchQueue.main.async{
+                                let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "RGT_popupAlertOne_VC") as? RGT_popupAlertOne_VC
+                                vc!.delegate = self
+                                vc!.titleInfo = ""
+                                vc!.itsComeFrom = "AccounthasbeenDeleted"
+                                vc!.descriptionInfo = "AccDeleted".localiz()
+                                vc!.modalPresentationStyle = .overCurrentContext
+                                vc!.modalTransitionStyle = .crossDissolve
+                                self.present(vc!, animated: true, completion: nil)
+                            
+                            }
+                    }else{
+                        DispatchQueue.main.async{
+                            self.view.makeToast("SomethingWrong".localiz(), duration: 2.0,position: .bottom)
+                            }
+                    }
+                  self.stopLoading()
+                    }
+                }else{
+                    DispatchQueue.main.async {
+                    self.stopLoading()
+                    }
+                }
+            }else{
+                DispatchQueue.main.async {
+                self.stopLoading()
+                }
+            }
+        }
+        
+    }
+    
     
     @IBAction func editProfileBtn(_ sender: Any) {
         let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_MyProfileVC") as! KC_MyProfileVC

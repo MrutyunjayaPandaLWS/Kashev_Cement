@@ -67,6 +67,12 @@ class KC_CashTranferPopUpVC: BaseViewController, DPOTPViewDelegate, SelectedData
     var totalRedemmablePts = 0
 //    var pointBalance = 0
     var partyLoyaltyId = ""
+    var redemptionIDs = ""
+    var customerCartID = ""
+    var totalCashData = ""
+    var noOfQuantitys = ""
+    var countryIDs = ""
+    
     
     
     var loyaltyID = UserDefaults.standard.string(forKey: "LoyaltyId") ?? ""
@@ -94,6 +100,7 @@ class KC_CashTranferPopUpVC: BaseViewController, DPOTPViewDelegate, SelectedData
     var termsandCondition = ""
     var vendorId = ""
     var vendorName = ""
+    var catalogeID = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -222,7 +229,7 @@ class KC_CashTranferPopUpVC: BaseViewController, DPOTPViewDelegate, SelectedData
 //            "UserId": self.userID,
 //            "UserName": self.loyaltyId,
 //            "Name": self.customerName
-            "MerchantUserName": "KeshavCementDemo",
+            "MerchantUserName": MerchantUserName,
             "MobileNo": mobilenumber,
             "OTPType": "OTPForRewardCardsENCashAuthorization",
             "UserId": self.userID,
@@ -245,55 +252,124 @@ class KC_CashTranferPopUpVC: BaseViewController, DPOTPViewDelegate, SelectedData
     //                self.VC?.countryName = result?.lstCustomerJson?[0].countryName ?? "-"
     //                self.VC?.customerName = result?.lstCustomerJson?[0].firstName ?? "-"
     //                self.VC?.emailId = result?.lstCustomerJson?[0].email ?? "-"
+    
+    
+//    "CatalogueId": item.catalogueId ?? 0,
+//    "DeliveryType": "In Store",
+//    "HasPartialPayment": false,
+//    "NoOfPointsDebit": "\(Int(item.pointsRequired!))",
+//    "NoOfQuantity": item.noOfQuantity ?? 0,
+//    "PointsRequired": "\(item.pointsRequired ?? 0)",
+//    "ProductCode": "\(item.productCode ?? "")",
+//    "ProductImage": "\(item.productImage ?? "")",
+//    "ProductName": "\(item.productName ?? "")",
+//    "RedemptionDate": "\(desiredDateFormat ?? "")",
+//    "RedemptionId": item.redemptionId ?? 0,
+//    "RedemptionTypeId": 1,
+//    "Status": 13,
+//    "CatogoryId": item.categoryID ?? 0,
+//    "CustomerCartId": item.customerCartId ?? 0,
+//    "TermsCondition": "\(item.termsCondition ?? "")",
+//    "TotalCash": item.totalCash ?? 0,
+//    "VendorId": item.vendorId ?? 0
+    
+    
     func cashTransferSubmissionApi(noOfPointsRequired: String, productCode: String, productImage: String, productName: String, categoryId: Int, termsandCondition: String, vendorId: Int, vendorName: String){
         let yesterday = "\(Calendar.current.date(byAdding: .day, value: 0, to: Date())!)"
         let today = yesterday.split(separator: " ")
         let desiredDateFormat = self.convertDateFormater("\(today[0])", fromDate: "yyyy-MM-dd", toDate: "yyyy-MM-dd")
        print("\(desiredDateFormat)")
-        let parameter = [
-            "ActionType": 51,
-            "ActorId": self.userID,
-             "MemberName": "\(self.customerName)",
-            "DealerLoyaltyId": "\(self.loyaltyID)",
-             "ObjCatalogueList": [
-                 [
-                     "CatalogueId": 8,
-                     "DeliveryType": "In Store",
-                     "HasPartialPayment": false,
-                     "NoOfPointsDebit": noOfPointsRequired,
-                     "NoOfQuantity": 0,
-                     "PointsRequired": noOfPointsRequired,
-                     "ProductCode": productCode,
-                     "ProductImage": productImage,
-                     "ProductName": productName,
-                     "RedemptionDate": "\(desiredDateFormat)",
-                     "RedemptionId": 0,
-                     "RedemptionTypeId": 1,
-                     "Status": 0,
-                     "CatogoryId": categoryId,
-                     "CustomerCartId": 0,
-                     "TermsCondition": termsandCondition,
-                     "TotalCash": 0,
-                     "VendorId": vendorId,
-                     "VendorName": vendorName
-                 ]
-             ],
-             "ObjCustShippingAddressDetails": [
-                "Address1": "\(self.address1)",
-                "CityId": "\(self.cityID)",
-                "Cityname": "\(self.cityName)",
-                 "CountryId": 0,
-                "Email": "\(self.emailId)",
-                "FullName": "\(self.customerName)",
-                "Mobile": "\(self.mobile)",
-                "StateId": "\(self.stateID)",
-                "StateName": "\(self.stateName)",
-                "Zip": "\(self.pincode)"
-             ],
-             "SourceMode": 5
-        ] as [String: Any]
-        print(parameter)
-        self.VM.cashSubmissionApi(parameter: parameter)
+        if self.customerTypeId == "3"{
+            let parameter = [
+                "ActionType": 51,
+                "ActorId": self.userID,
+                "MemberName": "\(self.customerName)",
+                "DealerLoyaltyId": "",
+                "ObjCatalogueList": [
+                    [
+                        "CatalogueId": self.catalogeID,
+                        "DeliveryType": "In Store",
+                        "HasPartialPayment": false,
+                        "NoOfPointsDebit": noOfPointsRequired,
+                        "NoOfQuantity": self.noOfQuantitys,
+                        "PointsRequired": noOfPointsRequired,
+                        "ProductCode": productCode,
+                        "ProductImage": productImage,
+                        "ProductName": productName,
+                        "RedemptionDate": "\(desiredDateFormat)",
+                        "RedemptionId": "\(redemptionIDs)",
+                        "RedemptionTypeId": 9,
+                        "Status": 0,
+                        "CatogoryId": categoryId,
+                        "CustomerCartId": "\(customerCartID)",
+                        "TermsCondition": termsandCondition,
+                        "TotalCash": self.totalCashData,
+                        "VendorId": vendorId,
+                        "VendorName": vendorName
+                    ]
+                ],
+                "ObjCustShippingAddressDetails": [
+                    "Address1": "\(self.address1)",
+                    "CityId": "\(self.cityID)",
+                    "Cityname": "\(self.cityName)",
+                    "CountryId": countryID,
+                    "Email": "\(self.emailId)",
+                    "FullName": "\(self.customerName)",
+                    "Mobile": "\(self.mobile)",
+                    "StateId": "\(self.stateID)",
+                    "StateName": "\(self.stateName)",
+                    "Zip": "\(self.pincode)"
+                ],
+                "SourceMode": 5
+            ] as [String: Any]
+            print(parameter)
+            self.VM.cashSubmissionApi(parameter: parameter)
+        }else{
+            let parameter = [
+                "ActionType": 51,
+                "ActorId": self.userID,
+                "MemberName": "\(self.customerName)",
+                "DealerLoyaltyId": "\(self.loyaltyID)",
+                "ObjCatalogueList": [
+                    [
+                        "CatalogueId": self.catalogeID,
+                        "DeliveryType": "In Store",
+                        "HasPartialPayment": false,
+                        "NoOfPointsDebit": noOfPointsRequired,
+                        "NoOfQuantity": self.noOfQuantitys,
+                        "PointsRequired": noOfPointsRequired,
+                        "ProductCode": productCode,
+                        "ProductImage": productImage,
+                        "ProductName": productName,
+                        "RedemptionDate": "\(desiredDateFormat)",
+                        "RedemptionId": "\(redemptionIDs)",
+                        "RedemptionTypeId": 9,
+                        "Status": 0,
+                        "CatogoryId": categoryId,
+                        "CustomerCartId": "\(customerCartID)",
+                        "TermsCondition": termsandCondition,
+                        "TotalCash": self.totalCashData,
+                        "VendorId": vendorId,
+                        "VendorName": vendorName
+                    ]
+                ],
+                "ObjCustShippingAddressDetails": [
+                    "Address1": "\(self.address1)",
+                    "CityId": "\(self.cityID)",
+                    "Cityname": "\(self.cityName)",
+                    "CountryId": countryID,
+                    "Email": "\(self.emailId)",
+                    "FullName": "\(self.customerName)",
+                    "Mobile": "\(self.mobile)",
+                    "StateId": "\(self.stateID)",
+                    "StateName": "\(self.stateName)",
+                    "Zip": "\(self.pincode)"
+                ],
+                "SourceMode": 5
+            ] as [String: Any]
+            print(parameter)
+            self.VM.cashSubmissionApi(parameter: parameter)
+        }
     }
     
     func dpOTPViewAddText(_ text: String, at position: Int) {

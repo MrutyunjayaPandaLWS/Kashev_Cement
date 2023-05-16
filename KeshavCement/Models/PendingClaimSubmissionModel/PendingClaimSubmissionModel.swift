@@ -13,7 +13,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 import Foundation
 struct PendingClaimSubmissionModel : Codable {
-	let lstTransactionApprovalDetails : [String]?
+	let lstTransactionApprovalDetails : [LstTransactionApprovalDetails]?
 	let lstCustOrderDeliveryDetails : String?
 	let rewardPoints : Double?
 	let returnValue : Int?
@@ -32,7 +32,7 @@ struct PendingClaimSubmissionModel : Codable {
 
 	init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
-		lstTransactionApprovalDetails = try values.decodeIfPresent([String].self, forKey: .lstTransactionApprovalDetails)
+		lstTransactionApprovalDetails = try values.decodeIfPresent([LstTransactionApprovalDetails].self, forKey: .lstTransactionApprovalDetails)
 		lstCustOrderDeliveryDetails = try values.decodeIfPresent(String.self, forKey: .lstCustOrderDeliveryDetails)
 		rewardPoints = try values.decodeIfPresent(Double.self, forKey: .rewardPoints)
 		returnValue = try values.decodeIfPresent(Int.self, forKey: .returnValue)

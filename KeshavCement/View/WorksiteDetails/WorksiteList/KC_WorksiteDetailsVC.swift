@@ -239,7 +239,10 @@ extension KC_WorksiteDetailsVC: UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "KC_WorksiteDetailsTVC", for: indexPath) as! KC_WorksiteDetailsTVC
         cell.selectionStyle = .none
         
-        cell.createdDateLbl.text = self.VM.workSiteListArray[indexPath.row].createdDate ?? ""
+        let createDateLbl = "\(self.VM.workSiteListArray[indexPath.row].createdDate ?? "")".split(separator: " ")
+        let convertedFormat = convertDateFormater(String(createDateLbl[0]), fromDate: "yyyy/MM/dd", toDate: "dd/MM/yyyy")
+        cell.createdDateLbl.text = convertedFormat
+        
         cell.locationLbl.text = self.VM.workSiteListArray[indexPath.row].siteName ?? "-"
         if self.VM.workSiteListArray[indexPath.row].siteName ?? "-" == ""{
             cell.ownerNametopSpaceConstraint.constant = 35
@@ -250,7 +253,10 @@ extension KC_WorksiteDetailsVC: UITableViewDelegate, UITableViewDataSource{
         cell.engineerName.text = self.VM.workSiteListArray[indexPath.row].contactPersonName1 ?? ""
         cell.engineerMobileLbl.text = self.VM.workSiteListArray[indexPath.row].contactNumber1 ?? ""
         cell.workLevel.text = self.VM.workSiteListArray[indexPath.row].worklevel ?? ""
-        cell.tentativeDate.text = self.VM.workSiteListArray[indexPath.row].tentativeDate ?? ""
+        print(self.VM.workSiteListArray[indexPath.row].tentativeDate ?? "")
+        let data = "\(self.VM.workSiteListArray[indexPath.row].tentativeDate ?? "")".split(separator: " ")
+        //let convertedFormat = convertDateFormater(String(receivedDate[0]), fromDate: "MM/dd/yyyy", toDate: "dd/MM/yyyy")
+        cell.tentativeDate.text = "\(data[0])"
         cell.remarks.text = self.VM.workSiteListArray[indexPath.row].remarks ?? ""
         if self.customerTypeId == "1"{
             cell.engineerNameLbl.isHidden = true

@@ -30,7 +30,7 @@ class RGT_popupAlertOne_VC: BaseViewController {
     @IBAction func OK(_ sender: Any) {
         if itsComeFrom == "AccounthasbeenDeleted"{
             self.dismiss(animated: true){
-               // NotificationCenter.default.post(name: .deleteAccount, object: nil)
+                NotificationCenter.default.post(name: .deleteAccount, object: nil)
             }
         }else{
             delegate?.popupAlertDidTap(self)

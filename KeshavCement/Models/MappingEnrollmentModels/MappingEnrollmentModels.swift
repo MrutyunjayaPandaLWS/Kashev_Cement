@@ -12,38 +12,23 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 */
 
 import Foundation
-struct StockDetailsModel : Codable {
-	let firstName : String?
-	let mobile : String?
-	let creditedPoints : Int?
-	let pointsBalance : Int?
-	let lstVehicles : String?
-	let objProductFileStatus : String?
+struct MappingEnrollmentModels : Codable {
 	let returnValue : Int?
 	let returnMessage : String?
+	let totalRecords : Int?
 
 	enum CodingKeys: String, CodingKey {
 
-		case firstName = "firstName"
-		case mobile = "mobile"
-		case creditedPoints = "creditedPoints"
-		case pointsBalance = "pointsBalance"
-		case lstVehicles = "lstVehicles"
-		case objProductFileStatus = "objProductFileStatus"
 		case returnValue = "returnValue"
 		case returnMessage = "returnMessage"
+		case totalRecords = "totalRecords"
 	}
 
 	init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
-		firstName = try values.decodeIfPresent(String.self, forKey: .firstName)
-		mobile = try values.decodeIfPresent(String.self, forKey: .mobile)
-		creditedPoints = try values.decodeIfPresent(Int.self, forKey: .creditedPoints)
-		pointsBalance = try values.decodeIfPresent(Int.self, forKey: .pointsBalance)
-		lstVehicles = try values.decodeIfPresent(String.self, forKey: .lstVehicles)
-		objProductFileStatus = try values.decodeIfPresent(String.self, forKey: .objProductFileStatus)
 		returnValue = try values.decodeIfPresent(Int.self, forKey: .returnValue)
 		returnMessage = try values.decodeIfPresent(String.self, forKey: .returnMessage)
+		totalRecords = try values.decodeIfPresent(Int.self, forKey: .totalRecords)
 	}
 
 }

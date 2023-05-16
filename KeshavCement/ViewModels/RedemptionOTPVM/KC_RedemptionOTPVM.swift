@@ -297,9 +297,11 @@ class KC_RedemptionOTPVM{
                 if error == nil{
                     DispatchQueue.main.async {
                         self.VC?.stopLoading()
-                        self.VC?.receivedOTP = result?.returnMessage ?? ""
-                        print(result?.returnMessage ?? "", "-OTP")
-                        self.VC?.receivedOTP = "123456"
+//                        self.VC?.receivedOTP = result?.returnMessage ?? ""
+//                        print(result?.returnMessage ?? "", "-OTP")
+//                        self.VC?.receivedOTP = "123456"
+                        let response = result?.returnMessage ?? ""
+                        self.VC?.receivedOTP = response
                        
                     }
                 }else{

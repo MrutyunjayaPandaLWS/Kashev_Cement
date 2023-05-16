@@ -116,9 +116,9 @@ class KC_CashTransferApprovalVM{
                 if error == nil{
                     DispatchQueue.main.async {
                         self.VC?.stopLoading()
-                        self.VC?.receivedOTP = result?.returnMessage ?? ""
+                        let response = result?.returnMessage ?? ""
                         print(result?.returnMessage ?? "", "-OTP")
-                        self.VC?.receivedOTP = "123456"
+                        self.VC?.receivedOTP = response
                         self.VC?.otpPopUpView.isHidden = false
                         self.VC?.successPopupView.isHidden = true
                        
@@ -163,6 +163,11 @@ class KC_CashTransferApprovalVM{
                         if result?.returnValue ?? -1 > 0 {
                             self.VC?.otpPopUpView.isHidden = true
                             self.VC?.successPopupView.isHidden = false
+                            if self.VC?.status == 1{
+                                self.VC?.successMessageLbl.text = "Yourclaimhasbeenapproved".localiz()
+                            }else{
+                                self.VC?.successMessageLbl.text = "Yourclaimhasbeenrejected".localiz()
+                            }
                         }else{
                             self.timer.invalidate()
                             self.VC?.otpPopUpView.isHidden = true

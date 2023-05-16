@@ -15,6 +15,12 @@ class KC_CashTransferVC: BaseViewController, CashTranferDelegate{
         if cell.redeemButton.tag == tappedIndexPath.row{
             if self.VM.cashTransferListArray[tappedIndexPath.row].pointsRequired ?? -1 <= Int(self.totalRedeemablePoints)!{
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_CashTranferPopUpVC") as! KC_CashTranferPopUpVC
+                vc.catalogeID = "\(self.VM.cashTransferListArray[tappedIndexPath.row].catalogueId ?? 0)"
+                vc.redemptionIDs = "\(self.VM.cashTransferListArray[tappedIndexPath.row].redemptionId ?? 0)"
+                vc.customerCartID = "\(self.VM.cashTransferListArray[tappedIndexPath.row].customerCartId ?? 0)"
+                vc.totalCashData = "\(self.VM.cashTransferListArray[tappedIndexPath.row].totalCash ?? 0)"
+                vc.noOfQuantitys = "\(self.VM.cashTransferListArray[tappedIndexPath.row].noOfQuantity ?? 0)"
+                vc.countryIDs = "\(self.VM.cashTransferListArray[tappedIndexPath.row].countryID ?? 0)"
                 vc.noOfPointsRequired = "\(self.VM.cashTransferListArray[tappedIndexPath.row].pointsRequired ?? -1)"
                 vc.productCode = self.VM.cashTransferListArray[tappedIndexPath.row].productCode ?? ""
                 vc.productImage = self.VM.cashTransferListArray[tappedIndexPath.row].productImage ?? ""

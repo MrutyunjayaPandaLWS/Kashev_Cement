@@ -40,7 +40,10 @@ class KC_CashTranferApprovalVC: BaseViewController, DPOTPViewDelegate, CashTrans
                 let getLastFour = String(customerMobile.suffix(4))
                 print(getLastFour)
                 self.infoLbl.text = getLastFour
-                self.generateOTPApi()
+//                self.generateOTPApi()
+                self.cashTransferSubmissionApi(partyLoyalty: self.customerLoyaltyId, remarks: self.remarks, status: self.status, cashTransferId: self.cashTransferId)
+//                self.successPopupView.isHidden = false
+//                self.successMessageLbl.text = "Yourclaimhasbeenrejected".localiz()
             }else{
                 self.view.makeToast("Enterremarks".localiz(), duration: 2.0, position: .center)
             }
@@ -81,6 +84,7 @@ class KC_CashTranferApprovalVC: BaseViewController, DPOTPViewDelegate, CashTrans
     var noOfQuantity = 0
 //    var claimPurchaseListArray: Array = [PendingClaimPurcase]()
     var enteredValue = ""
+    var approvalMeassage = ""
     
     var loyaltyID = UserDefaults.standard.string(forKey: "LoyaltyId") ?? ""
     var mobilenumber = UserDefaults.standard.string(forKey: "CustomerMobileNumber") ?? ""
@@ -154,6 +158,12 @@ class KC_CashTranferApprovalVC: BaseViewController, DPOTPViewDelegate, CashTrans
         }
     }
     
+    @IBAction func closeActBTN(_ sender: Any) {
+        self.successPopupView.isHidden = true
+        self.otpPopUpView.isHidden = true
+    }
+    
+    
     
     func cashTransferSubmissionApi(partyLoyalty: String, remarks: String, status: Int, cashTransferId: Int){
         let parameter = [
@@ -171,8 +181,8 @@ class KC_CashTranferApprovalVC: BaseViewController, DPOTPViewDelegate, CashTrans
     
     func generateOTPApi(){
         let parameter = [
-            "MerchantUserName": "KeshavCementDemo",
-            "MobileNo": mobilenumber,
+            "MerchantUserName": MerchantUserName,
+            "MobileNo": customerMobile,
             "UserId": self.userID,
             "UserName": self.loyaltyId,
             "OTPType": "OTPForRewardCardsENCashAuthorization",
@@ -242,10 +252,10 @@ extension KC_CashTranferApprovalVC : UITableViewDelegate, UITableViewDataSource{
             
             let receivedImage = String(self.VM.cashTransferApprovalListingArray[indexPath.row].dispalyImage ?? "").dropFirst(1)
             let userImage = URL(string: "\(PROMO_IMG1)\(receivedImage)")
-            cell.cashTransferImage.kf.setImage(with: userImage, placeholder: UIImage(named: "ic_default_img"))
+            cell.cashTransferImage.kf.setImage(with: userImage, placeholder: UIImage(named: "Mask Group 1"))
             
         }else{
-            cell.cashTransferImage.image = UIImage(named: "ic_default_img")
+            cell.cashTransferImage.image = UIImage(named: "Mask Group 1")
         }
         cell.categoryLbl.text = self.VM.cashTransferApprovalListingArray[indexPath.row].customerType ?? ""
         cell.userNameLbl.text = self.VM.cashTransferApprovalListingArray[indexPath.row].customerName ?? ""

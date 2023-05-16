@@ -9,15 +9,6 @@ import UIKit
 import SDWebImage
 import LanguageManager_iOS
 class KC_RedemptionTypeVC: BaseViewController, DateSelectedDelegate, SelectedDataDelegate {
-//    func acceptDate(_ vc: KC_DOBVC) {
-//        if vc.isComeFrom == "1"{
-//            self.selectedFromDate = vc.selectedDate
-//            self.selectFromDate.text = vc.selectedDate
-//        }else{
-//            self.selectedToDate = vc.selectedDate
-//            self.selectToDate.text = vc.selectedDate
-//        }
-    //}
     
     func acceptDate(_ vc: KC_DOBVC) {
             if vc.isComeFrom == "1"{
@@ -40,10 +31,13 @@ class KC_RedemptionTypeVC: BaseViewController, DateSelectedDelegate, SelectedDat
                 self.selectedToDate = vc.selectedDate
             }
         }
-    func didTapCustomerType(_ vc: KC_DropDownVC) {
-            selectedStatusName = vc.selectedCustomerType
-            selectedStatusId = vc.selectedCustomerTypeId
-            self.selectStatusLbl.text  = vc.selectedCustomerType
+    func didCashTransferType(_ vc:KC_DropDownVC) {
+        selectedStatusName = vc.selectedCustomerType
+        selectedStatusId = vc.selectedUserTypeId
+        print(selectedStatusId,"dskjds")
+        print(selectedFromDate,"skhds")
+        print(selectedToDate,"skhds")
+        self.selectStatusLbl.text  = vc.selectedCustomerType
     }
     
 
@@ -169,7 +163,7 @@ class KC_RedemptionTypeVC: BaseViewController, DateSelectedDelegate, SelectedDat
     @IBAction func selectStatusLbl(_ sender: Any) {
         let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DropDownVC") as? KC_DropDownVC
         vc!.delegate = self
-        vc!.itsFrom = "STATUSLIST"
+        vc!.itsFrom = "STATUSLISTS"
         vc!.modalPresentationStyle = .overFullScreen
         vc!.modalTransitionStyle = .crossDissolve
         self.present(vc!, animated: true, completion: nil)
@@ -262,9 +256,11 @@ extension KC_RedemptionTypeVC: UITableViewDelegate,UITableViewDataSource{
        
 //        if  self.VM.myredemptionListArray.count != 0 {
             let redemptionDate = "\(self.VM.myredemptionListArray[indexPath.row].jRedemptionDate ?? "-")".split(separator: " ")
-
+    
+        let convertedFormat = convertDateFormater(String(redemptionDate[0]), fromDate: "MM/dd/yyyy", toDate: "dd/MM/yyyy")
+        
             if redemptionDate.count != 0 {
-                cell.currentTransferDateLbl.text = "\(redemptionDate[0])"
+                cell.currentTransferDateLbl.text = "\(convertedFormat)"
             }else{
                 cell.currentTransferDateLbl.text = "-"
             }

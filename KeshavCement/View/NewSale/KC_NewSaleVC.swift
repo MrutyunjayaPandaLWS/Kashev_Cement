@@ -457,7 +457,7 @@ class KC_NewSaleVC: BaseViewController, SelectedDataDelegate, DPOTPViewDelegate{
 //            "UserId": self.mappedUserId,
 //            "UserName": self.mappedName,
 //            "Name": self.mappedName
-            "MerchantUserName": "KeshavCementDemo",
+            "MerchantUserName": MerchantUserName,
               "MobileNo": self.mappedUserMobile,
               "OTPType": "OTPForRewardCardsENCashAuthorization",
               "UserId": self.mappedUserId,

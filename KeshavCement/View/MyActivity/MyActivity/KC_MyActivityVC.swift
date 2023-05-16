@@ -21,9 +21,9 @@ class KC_MyActivityVC: BaseViewController, DateSelectedDelegate {
     }
     
 
-    @IBOutlet weak var subDealerButton: UIButton!
-    @IBOutlet weak var engineerButton: UIButton!
-    @IBOutlet weak var masonBtn: UIButton!
+//    @IBOutlet weak var subDealerButton: UIButton!
+//    @IBOutlet weak var engineerButton: UIButton!
+//    @IBOutlet weak var masonBtn: UIButton!
     @IBOutlet weak var filterView: UIView!
     @IBOutlet weak var claimHistoryTableView: UITableView!
     @IBOutlet weak var filterLbl: UILabel!
@@ -71,11 +71,11 @@ class KC_MyActivityVC: BaseViewController, DateSelectedDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if self.customerTypeId == "4"{
-            self.subDealerButton.isHidden = true
-        }else{
-            self.subDealerButton.isHidden = false
-        }
+//        if self.customerTypeId == "4"{
+//            self.subDealerButton.isHidden = true
+//        }else{
+//            self.subDealerButton.isHidden = false
+//        }
     }
 
     @IBAction func backBtn(_ sender: Any) {
@@ -87,13 +87,6 @@ class KC_MyActivityVC: BaseViewController, DateSelectedDelegate {
             self.filterView.isHidden = true
         }else{
             self.filterView.isHidden = false
-//            self.approvedBtn.backgroundColor = UIColor(hexString: "565656")
-//            self.pendingBtn.backgroundColor = UIColor(hexString: "565656")
-//            self.rejectedBtn.backgroundColor = UIColor(hexString: "565656")
-            
-//            self.pendingBtn.setTitleColor(.white, for: .normal)
-//            self.approvedBtn.setTitleColor(.white, for: .normal)
-//            self.rejectedBtn.setTitleColor(.white, for: .normal)
             self.VM.claimHistoryListArray.removeAll()
             self.claimHistoryListApi(status: "-3", startIndex: 1, fromDate: "", toDate: "", customerTypeId: "")
         }
@@ -117,67 +110,67 @@ class KC_MyActivityVC: BaseViewController, DateSelectedDelegate {
         self.present(vc, animated: true)
     }
     
-    @IBAction func subDealerBtn(_ sender: Any) {
-        self.subDealerButton.backgroundColor = UIColor(hexString: "FFFC9C")
-        self.engineerButton.backgroundColor = UIColor(hexString: "565656")
-        self.masonBtn.backgroundColor = UIColor(hexString: "565656")
-        
-        self.subDealerButton.setTitleColor(.darkGray, for: .normal)
-        self.engineerButton.setTitleColor(.white, for: .normal)
-        self.masonBtn.setTitleColor(.white, for: .normal)
-        
-        self.selectedStatus = "-3"
-        self.selectFromDateLbl.text = "SelectFromDate".localiz()
-        self.selectToDateLbl.text = "SelectToDate".localiz()
-        self.VM.claimHistoryListArray.removeAll()
-        self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: "4")
-    }
-    @IBAction func engineerBtn(_ sender: Any) {
-        self.subDealerButton.backgroundColor = UIColor(hexString: "565656")
-        self.engineerButton.backgroundColor = UIColor(hexString: "FFFC9C")
-        self.masonBtn.backgroundColor = UIColor(hexString: "565656")
-        
-        self.subDealerButton.setTitleColor(.white, for: .normal)
-        self.engineerButton.setTitleColor(.darkGray, for: .normal)
-        self.masonBtn.setTitleColor(.white, for: .normal)
-        
-        self.selectedStatus = "-3"
-        self.selectFromDateLbl.text = "SelectFromDate".localiz()
-        self.selectToDateLbl.text = "SelectToDate".localiz()
-        self.VM.claimHistoryListArray.removeAll()
-        self.VM.claimHistoryListArray.removeAll()
-        self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: "1")
-    }
-    @IBAction func masonBtn(_ sender: Any) {
-        self.subDealerButton.backgroundColor = UIColor(hexString: "565656")
-        self.engineerButton.backgroundColor = UIColor(hexString: "565656")
-        self.masonBtn.backgroundColor = UIColor(hexString: "FFFC9C")
-        
-        self.subDealerButton.setTitleColor(.white, for: .normal)
-        self.engineerButton.setTitleColor(.white, for: .normal)
-        self.masonBtn.setTitleColor(.darkGray, for: .normal)
-        
-        
-        self.selectedStatus = "-3"
-        self.selectFromDateLbl.text = "SelectFromDate".localiz()
-        self.selectToDateLbl.text = "SelectToDate".localiz()
-        self.VM.claimHistoryListArray.removeAll()
-        self.VM.claimHistoryListArray.removeAll()
-        self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: "2")
-    }
+//    @IBAction func subDealerBtn(_ sender: Any) {
+//        self.subDealerButton.backgroundColor = UIColor(hexString: "FFFC9C")
+//        self.engineerButton.backgroundColor = UIColor(hexString: "565656")
+//        self.masonBtn.backgroundColor = UIColor(hexString: "565656")
+//
+//        self.subDealerButton.setTitleColor(.darkGray, for: .normal)
+//        self.engineerButton.setTitleColor(.white, for: .normal)
+//        self.masonBtn.setTitleColor(.white, for: .normal)
+//
+//        self.selectedStatus = "-3"
+//        self.selectFromDateLbl.text = "SelectFromDate".localiz()
+//        self.selectToDateLbl.text = "SelectToDate".localiz()
+//        self.VM.claimHistoryListArray.removeAll()
+//        self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: "4")
+//    }
+//    @IBAction func engineerBtn(_ sender: Any) {
+//        self.subDealerButton.backgroundColor = UIColor(hexString: "565656")
+//        self.engineerButton.backgroundColor = UIColor(hexString: "FFFC9C")
+//        self.masonBtn.backgroundColor = UIColor(hexString: "565656")
+//
+//        self.subDealerButton.setTitleColor(.white, for: .normal)
+//        self.engineerButton.setTitleColor(.darkGray, for: .normal)
+//        self.masonBtn.setTitleColor(.white, for: .normal)
+//
+//        self.selectedStatus = "-3"
+//        self.selectFromDateLbl.text = "SelectFromDate".localiz()
+//        self.selectToDateLbl.text = "SelectToDate".localiz()
+//        self.VM.claimHistoryListArray.removeAll()
+//        self.VM.claimHistoryListArray.removeAll()
+//        self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: "1")
+//    }
+//    @IBAction func masonBtn(_ sender: Any) {
+//        self.subDealerButton.backgroundColor = UIColor(hexString: "565656")
+//        self.engineerButton.backgroundColor = UIColor(hexString: "565656")
+//        self.masonBtn.backgroundColor = UIColor(hexString: "FFFC9C")
+//
+//        self.subDealerButton.setTitleColor(.white, for: .normal)
+//        self.engineerButton.setTitleColor(.white, for: .normal)
+//        self.masonBtn.setTitleColor(.darkGray, for: .normal)
+//
+//
+//        self.selectedStatus = "-3"
+//        self.selectFromDateLbl.text = "SelectFromDate".localiz()
+//        self.selectToDateLbl.text = "SelectToDate".localiz()
+//        self.VM.claimHistoryListArray.removeAll()
+//        self.VM.claimHistoryListArray.removeAll()
+//        self.claimHistoryListApi(status: self.selectedStatus, startIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate, customerTypeId: "2")
+//    }
     
     @IBAction func clearButton(_ sender: Any) {
         self.approvedBtn.backgroundColor = UIColor(hexString: "565656")
         self.pendingBtn.backgroundColor = UIColor(hexString: "565656")
         self.rejectedBtn.backgroundColor = UIColor(hexString: "565656")
         
-        self.subDealerButton.backgroundColor = UIColor(hexString: "565656")
-        self.engineerButton.backgroundColor = UIColor(hexString: "565656")
-        self.masonBtn.backgroundColor = UIColor(hexString: "565656")
-        
-        self.subDealerButton.setTitleColor(.white, for: .normal)
-        self.engineerButton.setTitleColor(.white, for: .normal)
-        self.masonBtn.setTitleColor(.white, for: .normal)
+//        self.subDealerButton.backgroundColor = UIColor(hexString: "565656")
+//        self.engineerButton.backgroundColor = UIColor(hexString: "565656")
+//        self.masonBtn.backgroundColor = UIColor(hexString: "565656")
+//
+//        self.subDealerButton.setTitleColor(.white, for: .normal)
+//        self.engineerButton.setTitleColor(.white, for: .normal)
+//        self.masonBtn.setTitleColor(.white, for: .normal)
         
         self.pendingBtn.setTitleColor(.white, for: .normal)
         self.approvedBtn.setTitleColor(.white, for: .normal)

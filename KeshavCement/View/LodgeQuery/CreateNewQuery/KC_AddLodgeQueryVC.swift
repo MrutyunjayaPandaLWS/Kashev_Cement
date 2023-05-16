@@ -76,6 +76,13 @@ class KC_AddLodgeQueryVC: BaseViewController, SelectedDataDelegate{
 
 
     @IBAction func backBTN(_ sender: Any) {
+        
+//        for controller in self.VC?.navigationController!.viewControllers as Array {
+//            if controller.isKind(of: KC_LodgeQueryVC.self) {
+//                self.VC?.navigationController!.popToViewController(controller, animated: true)
+//                break
+//            }
+//        }
         self.navigationController?.popViewController(animated: true)
         
         }

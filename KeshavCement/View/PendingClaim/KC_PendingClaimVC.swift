@@ -65,7 +65,11 @@ class KC_PendingClaimVC: BaseViewController, DataUpdateDelegate, DPOTPViewDelega
             self.approvedStatus = "1"
             self.remarks = self.claimPurchaseListArray[tappedIndexPath.row].remarks ?? ""
             self.claimedMobileNumber = self.claimPurchaseListArray[tappedIndexPath.row].mobile ?? ""
+            print(claimedMobileNumber,"dksd")
             self.validatePointBalanceApi(productCode: self.claimPurchaseListArray[tappedIndexPath.row].productCode ?? "", quantity: String(self.quantity))
+            let getLastFour = String(claimedMobileNumber.suffix(4))
+            print(getLastFour)
+            self.mobileNumberLbl.text = getLastFour
             
             
         }
@@ -91,7 +95,7 @@ class KC_PendingClaimVC: BaseViewController, DataUpdateDelegate, DPOTPViewDelega
                             }
                         }
                         
-                        self.generateOTPApi()
+                        self.pendingClaimSubmissionApi()
                     }
                 }
             }
@@ -193,9 +197,6 @@ class KC_PendingClaimVC: BaseViewController, DataUpdateDelegate, DPOTPViewDelega
         otpView.fontTextField = UIFont.systemFont(ofSize: 25)
         otpView.textEdgeInsets = UIEdgeInsets(top: 0, left: -1, bottom: 0, right: 0)
         otpView.editingTextEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        let getLastFour = String(mobilenumber.suffix(4))
-        print(getLastFour)
-        self.mobileNumberLbl.text = getLastFour
     }
     
     @IBAction func backBtn(_ sender: Any) {
@@ -271,6 +272,8 @@ class KC_PendingClaimVC: BaseViewController, DataUpdateDelegate, DPOTPViewDelega
         print(parameter)
         self.VM.pendingClaimSubmission(parameter: parameter)
     }
+    
+    //{"ActorId":"576","ProductSaveDetailList":[{"ProductCode":"5","Quantity":"2"}],"RitailerId":"576","Approval_Status":"5"}
  
     func validatePointBalanceApi(productCode: String, quantity: String){
         if self.customerTypeId == "5"{
@@ -303,20 +306,13 @@ class KC_PendingClaimVC: BaseViewController, DataUpdateDelegate, DPOTPViewDelega
             self.VM.checkPointBalanceApi(parameter: parameter)
         }
         
-       
-        
-        
     }
     
     func generateOTPApi(){
+        print(claimedMobileNumber,"dksd")
         let parameter = [
-//            "MerchantUserName": "KeshavCementDemo",
-//            "MobileNo": self.claimedMobileNumber,
-//            "UserId": self.userID,
-//            "UserName": self.loyaltyId,
-//            "Name": self.firstname
-            "MerchantUserName": "KeshavCementDemo",
-              "MobileNo": self.claimedMobileNumber,
+            "MerchantUserName": MerchantUserName,
+            "MobileNo": self.claimedMobileNumber,
               "OTPType": "OTPForRewardCardsENCashAuthorization",
               "UserId": self.userID,
               "UserName": self.loyaltyId,
@@ -363,10 +359,10 @@ extension KC_PendingClaimVC: UITableViewDelegate, UITableViewDataSource{
             
             let receivedImage = String(self.claimPurchaseListArray[indexPath.row].productImage ?? "").dropFirst(1)
             let userImage = URL(string: "\(PROMO_IMG1)\(receivedImage)")
-            cell.claimImage.kf.setImage(with: userImage, placeholder: UIImage(named: "ic_default_img"))
+            cell.claimImage.kf.setImage(with: userImage, placeholder: UIImage(named: "Mask Group 1"))
             
         }else{
-            cell.claimImage.image = UIImage(named: "ic_default_img")
+            cell.claimImage.image = UIImage(named: "Mask Group 1")
         }
         cell.categoryTypeLbl.text = self.claimPurchaseListArray[indexPath.row].memberType ?? ""
         let userName = self.claimPurchaseListArray[indexPath.row].memberName ?? ""

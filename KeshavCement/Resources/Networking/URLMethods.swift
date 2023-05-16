@@ -78,4 +78,6 @@ let cashTransferHistoryList = "GetCustomerCashTransferList"
 let cashTransferApproveOrRejectionSubmission = "CustomerCashTransferApprovalOrRejection"
 let myredemptionDetails_URLMethodName = "GetCustomerRedemptionHistorydetails"
 let getProductDetails_URLMethodName = "GetProductDetails"
+let saveParentAndChildMapping_URLMethodName = "SaveParentAndChildMapping"
 
+let deleteAccount_URLMethodName = "CustomerAccountDelete"

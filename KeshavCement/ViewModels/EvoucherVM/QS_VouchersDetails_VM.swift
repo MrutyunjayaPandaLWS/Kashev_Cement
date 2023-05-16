@@ -34,9 +34,10 @@ class QS_VouchersDetails_VM{
                 if error == nil{
                     DispatchQueue.main.async {
                         self.VC?.stopLoading()
-                        self.VC?.receivedOTP = result?.returnMessage ?? ""
+//                        self.VC?.receivedOTP = result?.returnMessage ?? ""
+                        let response = result?.returnMessage ?? ""
                         print(result?.returnMessage ?? "", "-OTP")
-                        self.VC?.receivedOTP = "123456"
+                        self.VC?.receivedOTP = response
                         self.VC?.otpPopUpView.isHidden = false
                         self.VC?.successPopupView.isHidden = true
                        
@@ -62,7 +63,7 @@ class QS_VouchersDetails_VM{
             self.timer.invalidate()
         }
     }
-    func voucherSubmission(ReceiverMobile:String,ActorId:String,CountryID:Int,MerchantId:Int,CatalogueId:Int,DeliveryType:String,pointsrequired:String,ProductCode:String,ProductImage:String,ProductName:String,NoOfQuantity:String,VendorId:Int,VendorName:String,ReceiverEmail:String,ReceiverName:String){
+    func voucherSubmission(ReceiverMobile:String,ActorId:String,CountryID:Int,MerchantId:Int,CatalogueId:Int,DeliveryType:String,pointsrequired:String,ProductCode:String,ProductImage:String,ProductName:String,NoOfQuantity:String,VendorId:Int,VendorName:String,ReceiverEmail:String,ReceiverName:String, LoyaltyId: String){
         self.VC?.startLoading()
         let parameterJSON = [
 
@@ -70,6 +71,7 @@ class QS_VouchersDetails_VM{
                 "ActorId": ActorId,
                 "CountryID": CountryID,
                 "MerchantId": MerchantId,
+                "DealerLoyaltyId": LoyaltyId,
                 "ObjCatalogueList": [
                     [
                         "CatalogueId": CatalogueId,
@@ -81,18 +83,18 @@ class QS_VouchersDetails_VM{
                         "ProductCode": ProductCode,
                         "ProductImage": ProductImage,
                         "ProductName": ProductName,
-                        "redemptionid": 1,
-                        "redemptiontypeid": 4,
-                        "noofquantity": 1,
-                        "status": 0,
-                        "vendorid": VendorId,
-                        "vendorname": VendorName
+                        "RedemptionId": 1,
+                        "RedemptionTypeId": 4,
+                        "NoOfQuantity": 1,
+                        "Status": 0,
+                        "VendorId": VendorId,
+                        "VendorName": VendorName
                     ]
                 ],
-                "receiveremail": ReceiverEmail,
+                "ReceiverEmail": ReceiverEmail,
                 "ReceiverName": ReceiverName,
                 "ReceiverMobile": ReceiverMobile,
-                "SourceMode": "3"
+                "SourceMode": "5"
         ] as [String:Any]
         print(parameterJSON)
 

@@ -17,8 +17,9 @@ struct ClaimPurchaseSubmissionModel : Codable {
 	let mobile : String?
 	let creditedPoints : Int?
 	let pointsBalance : Int?
-	let lstVehicles : String?
+	let lstVehicles : [LstVehicles]?
 	let objProductFileStatus : String?
+	let product : String?
 	let returnValue : Int?
 	let returnMessage : String?
 
@@ -30,6 +31,7 @@ struct ClaimPurchaseSubmissionModel : Codable {
 		case pointsBalance = "pointsBalance"
 		case lstVehicles = "lstVehicles"
 		case objProductFileStatus = "objProductFileStatus"
+		case product = "product"
 		case returnValue = "returnValue"
 		case returnMessage = "returnMessage"
 	}
@@ -40,8 +42,9 @@ struct ClaimPurchaseSubmissionModel : Codable {
 		mobile = try values.decodeIfPresent(String.self, forKey: .mobile)
 		creditedPoints = try values.decodeIfPresent(Int.self, forKey: .creditedPoints)
 		pointsBalance = try values.decodeIfPresent(Int.self, forKey: .pointsBalance)
-		lstVehicles = try values.decodeIfPresent(String.self, forKey: .lstVehicles)
+		lstVehicles = try values.decodeIfPresent([LstVehicles].self, forKey: .lstVehicles)
 		objProductFileStatus = try values.decodeIfPresent(String.self, forKey: .objProductFileStatus)
+		product = try values.decodeIfPresent(String.self, forKey: .product)
 		returnValue = try values.decodeIfPresent(Int.self, forKey: .returnValue)
 		returnMessage = try values.decodeIfPresent(String.self, forKey: .returnMessage)
 	}

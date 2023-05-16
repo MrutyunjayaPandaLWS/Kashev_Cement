@@ -72,6 +72,9 @@ class QS_Vouchers_TVC: UITableViewCell, UITextFieldDelegate {
 //
 //    }
 
+    @IBAction func amountTFACT(_ sender: Any) {
+        self.delegate!.enteredAmount(self)
+    }
     @IBAction func amountTF(_ sender: Any) {
 //        if amounttf.text?.count != 0{
 //

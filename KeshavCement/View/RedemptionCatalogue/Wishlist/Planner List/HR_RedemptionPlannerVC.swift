@@ -34,7 +34,7 @@ class HR_RedemptionPlannerVC: BaseViewController, RedeemePlannedProductDelegate{
                         
                         if self.customerTypeId ?? "" == "3" && self.partyLoyaltyId != "" || self.customerTypeId ?? "" == "4" && self.partyLoyaltyId != ""{
                           
-                                self.VM.addToCartApi(redemptionPlannerId: self.VM.plannerListArray[tappedIndex.row].redemptionPlannerId ?? 0, PartyLoyaltyID: self.partyLoyaltyId, LoyaltyID: self.loyaltyId)
+                                self.VM.addToCartApi(redemptionPlannerId: self.VM.plannerListArray[tappedIndex.row].redemptionPlannerId ?? 0, PartyLoyaltyID: self.loyaltyId, LoyaltyID: self.loyaltyId)
                             
                         }else if self.customerTypeId ?? "" == "3" && self.partyLoyaltyId == "" || self.customerTypeId ?? "" == "4" && self.partyLoyaltyId == ""{
                             self.VM.addToCartApi(redemptionPlannerId: self.VM.plannerListArray[tappedIndex.row].redemptionPlannerId ?? 0, PartyLoyaltyID: "", LoyaltyID: self.loyaltyId)
@@ -68,15 +68,17 @@ class HR_RedemptionPlannerVC: BaseViewController, RedeemePlannedProductDelegate{
             print(self.removeProductId, "Selected Product Id")
             
             if self.customerTypeId ?? "" == "3" && self.partyLoyaltyId != "" || self.customerTypeId ?? "" == "4" && self.partyLoyaltyId != ""{
-             
-                    self.VM.removeRedemptionPlanner(redemptionPlannerId: self.removeProductId, PartyLoyaltyID: self.partyLoyaltyId)
+                
+//                if self.mappedUserId == -1{
+                self.VM.removeRedemptionPlanner(redemptionPlannerId: self.removeProductId, PartyLoyaltyID: loyaltyId, ActorID: "\(mappedUserId)")
+               
              
             }else  if self.customerTypeId ?? "" == "3" && self.partyLoyaltyId == "" || self.customerTypeId ?? "" == "4" && self.partyLoyaltyId == ""{
                 
-                self.VM.removeRedemptionPlanner(redemptionPlannerId: self.removeProductId, PartyLoyaltyID: "")
+                self.VM.removeRedemptionPlanner(redemptionPlannerId: self.removeProductId, PartyLoyaltyID: "", ActorID: self.userID)
          
             }else{
-                self.VM.removeRedemptionPlanner(redemptionPlannerId: self.removeProductId, PartyLoyaltyID: "")
+                self.VM.removeRedemptionPlanner(redemptionPlannerId: self.removeProductId, PartyLoyaltyID: "", ActorID: self.userID)
             }
         }
     }
@@ -125,16 +127,16 @@ class HR_RedemptionPlannerVC: BaseViewController, RedeemePlannedProductDelegate{
             if self.customerTypeId ?? "" == "3" && self.partyLoyaltyId != "" || self.customerTypeId ?? "" == "4" && self.partyLoyaltyId != ""{
                 
                 self.VM.getMycartList(PartyLoyaltyID: self.partyLoyaltyId, LoyaltyID: self.loyaltyId)
-                self.VM.redemptionPlannerList(PartyLoyaltyID: self.partyLoyaltyId)
+                self.VM.redemptionPlannerList(PartyLoyaltyID: self.loyaltyId, ActorId: "\(self.mappedUserId)")
                 
             }else if self.customerTypeId ?? "" == "3" && self.partyLoyaltyId == "" || self.customerTypeId ?? "" == "4" && self.partyLoyaltyId == ""{
                 
                 self.VM.getMycartList(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId)
-                self.VM.redemptionPlannerList(PartyLoyaltyID: "")
+                self.VM.redemptionPlannerList(PartyLoyaltyID: "", ActorId: userID)
            
         }else{
                 self.VM.getMycartList(PartyLoyaltyID: "", LoyaltyID: self.loyaltyId)
-                self.VM.redemptionPlannerList(PartyLoyaltyID: "")
+            self.VM.redemptionPlannerList(PartyLoyaltyID: "", ActorId: userID)
             }
            
 //            self.VM.cartCountApi()
@@ -144,12 +146,12 @@ class HR_RedemptionPlannerVC: BaseViewController, RedeemePlannedProductDelegate{
         
         if self.customerTypeId ?? "" == "3" && self.partyLoyaltyId != "" || self.customerTypeId ?? "" == "4" && self.partyLoyaltyId != ""{
             
-                self.VM.redemptionPlannerList(PartyLoyaltyID: self.partyLoyaltyId)
+            self.VM.redemptionPlannerList(PartyLoyaltyID: self.loyaltyId, ActorId: "\(self.mappedUserId)")
             
         }else if self.customerTypeId ?? "" == "3" && self.partyLoyaltyId == "" || self.customerTypeId ?? "" == "4" && self.partyLoyaltyId == ""{
-            self.VM.redemptionPlannerList(PartyLoyaltyID: "")
+            self.VM.redemptionPlannerList(PartyLoyaltyID: "", ActorId: userID)
         }else{
-            self.VM.redemptionPlannerList(PartyLoyaltyID: "")
+            self.VM.redemptionPlannerList(PartyLoyaltyID: "", ActorId: userID)
         }
     }
     
@@ -167,6 +169,7 @@ class HR_RedemptionPlannerVC: BaseViewController, RedeemePlannedProductDelegate{
 //    }
     @IBAction func addToPlannerBTN(_ sender: Any) {
         let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_ProductCatalogueVC") as! KC_ProductCatalogueVC
+        vc.mappedUserId = mappedUserId
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

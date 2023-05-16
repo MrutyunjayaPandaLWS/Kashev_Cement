@@ -6,7 +6,10 @@
 //
 import UIKit
 import LanguageManager_iOS
-class KC_NewEnrollmentVM{
+class KC_NewEnrollmentVM: sendMappedData{
+    func enrollmentPopup(_ vc: EnrollmentPopupMessageVC) {
+        self.VC?.mobileTF.text = ""
+    }
     
     weak var VC: KC_NewEnrollementVC?
     var requestAPIs = RestAPI_Requests()
@@ -42,21 +45,37 @@ class KC_NewEnrollmentVM{
                 DispatchQueue.main.async{
                     
                     if str ?? "" == "0"{
-                        self.VC?.customerTypeLbl.isHidden = false; self.VC?.customerTypePriority.isHidden = false; self.VC?.customerTypeView.isHidden = false; self.VC?.fullNameLbl.isHidden = false; self.VC?.fullNamePriority.isHidden = false; self.VC?.fullNameView.isHidden = false; self.VC?.firmNameLbl.isHidden = false; self.VC?.firmNamePriority.isHidden = false; self.VC?.firmView.isHidden = false; self.VC?.emailLbl.isHidden = false; self.VC?.emailView.isHidden = false; self.VC?.addressLbl.isHidden = false; self.VC?.addressPriority.isHidden = false; self.VC?.addressView.isHidden = false; self.VC?.pincodeLbl.isHidden = false; self.VC?.pincodePriority.isHidden = false; self.VC?.pinCodeView.isHidden = false; self.VC?.stateLbl.isHidden = false; self.VC?.statePriority.isHidden = false; self.VC?.stateView.isHidden = false; self.VC?.districtLbl.isHidden = false; self.VC?.districtPriority.isHidden = false; self.VC?.districtView.isHidden = false; self.VC?.talukLbl.isHidden = false; self.VC?.talukPriority.isHidden = true; self.VC?.talukView.isHidden = false; self.VC?.cityTitleLbl.isHidden = false; self.VC?.cityView.isHidden = false; self.VC?.dobTitleLbl.isHidden = false; self.VC?.dobPriority.isHidden = false; self.VC?.dobView.isHidden = false; self.VC?.dateOfAnniversaryLbls.isHidden = false; self.VC?.anniversaryView.isHidden = false; self.VC?.submitButton.isHidden = false
-                        self.VC?.mobileTF.isEnabled = false
-                        self.VC?.scrollViewHeightConstarint.constant = 1167
-                    }else{
+                        print(self.VC?.selectedCustomerTypeId,"dksdhisdj")
+//                        if self.VC?.customerTypeId == "3" || self.VC?.customerTypeId == "4" || self.VC?.customerTypeId == "5"{
+//                            self.VC?.view.makeToast("mobilenumberExistance".localiz(), duration: 2.0, position: .center)
+//                        }else{
+                            self.VC?.customerTypeLbl.isHidden = false; self.VC?.customerTypePriority.isHidden = false; self.VC?.customerTypeView.isHidden = false; self.VC?.fullNameLbl.isHidden = false; self.VC?.fullNamePriority.isHidden = false; self.VC?.fullNameView.isHidden = false; self.VC?.firmNameLbl.isHidden = false; self.VC?.firmNamePriority.isHidden = false; self.VC?.firmView.isHidden = false; self.VC?.emailLbl.isHidden = false; self.VC?.emailView.isHidden = false; self.VC?.addressLbl.isHidden = false; self.VC?.addressPriority.isHidden = false; self.VC?.addressView.isHidden = false; self.VC?.pincodeLbl.isHidden = false; self.VC?.pincodePriority.isHidden = false; self.VC?.pinCodeView.isHidden = false; self.VC?.stateLbl.isHidden = false; self.VC?.statePriority.isHidden = false; self.VC?.stateView.isHidden = false; self.VC?.districtLbl.isHidden = false; self.VC?.districtPriority.isHidden = false; self.VC?.districtView.isHidden = false; self.VC?.talukLbl.isHidden = false; self.VC?.talukPriority.isHidden = true; self.VC?.talukView.isHidden = false; self.VC?.cityTitleLbl.isHidden = false; self.VC?.cityView.isHidden = false; self.VC?.dobTitleLbl.isHidden = false; self.VC?.dobPriority.isHidden = false; self.VC?.dobView.isHidden = false; self.VC?.dateOfAnniversaryLbls.isHidden = false; self.VC?.anniversaryView.isHidden = false; self.VC?.submitButton.isHidden = false
+                            self.VC?.mobileTF.isEnabled = false
+                            self.VC?.scrollViewHeightConstarint.constant = 1167
+//                        }
+                    }else if str ?? "" == "2" || str ?? "" == "1" || str ?? "" == "4" {
+                        
+                        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "EnrollmentPopupMessageVC") as? EnrollmentPopupMessageVC
+                        vc!.delegate = self
+                        vc!.contactNumbert = self.VC?.mobileTF.text ?? ""
+                        vc!.descriptionInfo = "Do you want to map ?"
+                        vc!.modalPresentationStyle = .overCurrentContext
+                        vc!.modalTransitionStyle = .crossDissolve
+                        self.VC?.present(vc!, animated: true, completion: nil)
+                        
                         self.VC?.scrollViewHeightConstarint.constant = 1167
                         self.VC?.mobileTF.isEnabled = true
-                        self.VC?.mobileTF.text = ""
-                        self.VC?.view.makeToast("Themobilenumberalreadyexists".localiz(), duration: 2.0, position: .center)
-                        self.VC?.customerTypeLbl.isHidden = true; self.VC?.customerTypePriority.isHidden = true; self.VC?.customerTypeView.isHidden = true; self.VC?.fullNameLbl.isHidden = true; self.VC?.fullNamePriority.isHidden = true; self.VC?.fullNameView.isHidden = true; self.VC?.firmNameLbl.isHidden = true; self.VC?.firmNamePriority.isHidden = true; self.VC?.firmView.isHidden = true; self.VC?.emailLbl.isHidden = true; self.VC?.emailView.isHidden = true; self.VC?.addressLbl.isHidden = true; self.VC?.addressPriority.isHidden = true; self.VC?.addressView.isHidden = true; self.VC?.pincodeLbl.isHidden = true; self.VC?.pincodePriority.isHidden = true; self.VC?.pinCodeView.isHidden = true; self.VC?.stateLbl.isHidden = true; self.VC?.statePriority.isHidden = true; self.VC?.stateView.isHidden = true; self.VC?.districtLbl.isHidden = true; self.VC?.districtPriority.isHidden = true; self.VC?.districtView.isHidden = true; self.VC?.talukLbl.isHidden = true; self.VC?.talukPriority.isHidden = true; self.VC?.talukView.isHidden = true; self.VC?.cityTitleLbl.isHidden = true; self.VC?.cityView.isHidden = true; self.VC?.dobTitleLbl.isHidden = true; self.VC?.dobPriority.isHidden = true; self.VC?.dobView.isHidden = true; self.VC?.dateOfAnniversaryLbls.isHidden = true; self.VC?.anniversaryView.isHidden = true; self.VC?.submitButton.isHidden = true
-                    }
-                   
-                    
-                        self.VC?.stopLoading()
-                    
                         
+                        self.VC?.customerTypeLbl.isHidden = true; self.VC?.customerTypePriority.isHidden = true; self.VC?.customerTypeView.isHidden = true; self.VC?.fullNameLbl.isHidden = true; self.VC?.fullNamePriority.isHidden = true; self.VC?.fullNameView.isHidden = true; self.VC?.firmNameLbl.isHidden = true; self.VC?.firmNamePriority.isHidden = true; self.VC?.firmView.isHidden = true; self.VC?.emailLbl.isHidden = true; self.VC?.emailView.isHidden = true; self.VC?.addressLbl.isHidden = true; self.VC?.addressPriority.isHidden = true; self.VC?.addressView.isHidden = true; self.VC?.pincodeLbl.isHidden = true; self.VC?.pincodePriority.isHidden = true; self.VC?.pinCodeView.isHidden = true; self.VC?.stateLbl.isHidden = true; self.VC?.statePriority.isHidden = true; self.VC?.stateView.isHidden = true; self.VC?.districtLbl.isHidden = true; self.VC?.districtPriority.isHidden = true; self.VC?.districtView.isHidden = true; self.VC?.talukLbl.isHidden = true; self.VC?.talukPriority.isHidden = true; self.VC?.talukView.isHidden = true; self.VC?.cityTitleLbl.isHidden = true; self.VC?.cityView.isHidden = true; self.VC?.dobTitleLbl.isHidden = true; self.VC?.dobPriority.isHidden = true; self.VC?.dobView.isHidden = true; self.VC?.dateOfAnniversaryLbls.isHidden = true; self.VC?.anniversaryView.isHidden = true; self.VC?.submitButton.isHidden = true
+                        
+                    }else if str ?? "" == "-1"{
+                        self.VC?.view.makeToast("Can't be mapped!", duration: 2.0, position: .center)
+                        self.VC?.mobileTF.text = ""
+                    }else{
+                        self.VC?.view.makeToast("mobilenumberExistance".localiz(), duration: 2.0, position: .center)
+                        self.VC?.mobileTF.text = ""
+                    }
+                    self.VC?.stopLoading()
                     }
                 }catch{
                      DispatchQueue.main.async{
@@ -67,6 +86,11 @@ class KC_NewEnrollmentVM{
         })
         task.resume()
     }
+    
+    
+   
+    
+    
     
     func registrationSubmission(parameter: JSON){
         

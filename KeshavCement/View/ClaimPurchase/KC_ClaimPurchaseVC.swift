@@ -218,11 +218,11 @@ class KC_ClaimPurchaseVC: BaseViewController, SelectedDataDelegate{
         
     }
     func claimSubmissionApi(){
-//        if self.selectedUserTypeId == -1{
-//            self.view.makeToast("Pleaseselectusertype".localiz(), duration: 2.0, position: .bottom)
-//            self.swipeButton.reset()
-//            self.swipeButton.backgroundColor = .white
-//        }else
+        //        if self.selectedUserTypeId == -1{
+        //            self.view.makeToast("Pleaseselectusertype".localiz(), duration: 2.0, position: .bottom)
+        //            self.swipeButton.reset()
+        //            self.swipeButton.backgroundColor = .white
+        //        }else
         if self.mappedUserId == -1{
             self.view.makeToast("Pleasemappeduser".localiz(), duration: 2.0, position: .bottom)
             self.swipeButton.reset()
@@ -238,23 +238,42 @@ class KC_ClaimPurchaseVC: BaseViewController, SelectedDataDelegate{
         }else{
             
             self.swipeButton.backgroundColor = #colorLiteral(red: 1, green: 0.9882352941, blue: 0.6117647059, alpha: 1)
-            let parameter = [
-                "ActorId": self.userID,
-                "tranDate": getDate(date:Date()),
-                "ProductSaveDetailList": [
-                    [
-                        "ProductCode": self.selectedProductCode,
-                        "Quantity": self.quantity
-                    ]
-                ],
-                "RitailerId": self.mappedUserId,
-                "SourceDevice": 1
-            ] as [String: Any]
-            print(parameter)
-            self.VM.claimPurchaseSubmissionApi(parameter: parameter)
+            claimProductDetails()
         }
     }
     
+    func claimPurchaseSubmissionAPIs(){
+        let parameter = [
+            "ActorId": self.userID,
+            "TranDate": getDate(date:Date()),
+            "ProductSaveDetailList": [
+                [
+                    "ProductCode": self.selectedProductCode,
+                    "Quantity": self.quantity
+                ]
+            ],
+            "RitailerId": self.mappedUserId,
+            "SourceDevice": 1
+        ] as [String: Any]
+        print(parameter)
+        self.VM.claimPurchaseSubmissionApi(parameter: parameter)
+    }
+    
+    func claimProductDetails(){
+        let parameter = [
+            "ActorId": self.mappedUserId,
+            "ProductSaveDetailList":[
+                [
+                "ProductCode": self.selectedProductCode,
+                "Quantity": "\(self.quantity)"
+                ]
+            ],
+            "RitailerId": "\(self.mappedUserId)",
+            "Approval_Status": "5"
+        ]as [String: Any]
+        print(parameter)
+        self.VM.claimPurchaseSubmissionApi1(parameter: parameter)
+    }
     
     @IBAction func filterByNameBtn(_ sender: Any) {
 //        if self.selectedUserTypeId == -1{

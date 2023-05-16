@@ -9,8 +9,19 @@
 /* Begin PBXBuildFile section */
 		25102340295C756200028D09 /* KC_LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2510233F295C756200028D09 /* KC_LoginVC.swift */; };
 		251C4D29295C201B007939F3 /* PersistanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251C4D28295C201B007939F3 /* PersistanceService.swift */; };
+		2560D8CF2A0FAAF80009256C /* LstVehicles1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560D8CD2A0FAAF70009256C /* LstVehicles1.swift */; };
+		2560D8D02A0FAAF80009256C /* StockDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560D8CE2A0FAAF80009256C /* StockDetailsModel.swift */; };
+		2560D8D32A0FB76A0009256C /* LstTransactionApprovalDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560D8D12A0FB7690009256C /* LstTransactionApprovalDetails.swift */; };
+		2560D8D42A0FB76A0009256C /* PendingClaimSubmissionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560D8D22A0FB76A0009256C /* PendingClaimSubmissionModel.swift */; };
+		25624A122A0E224F00B6E68C /* ClaimPurchaseSubmissionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25624A102A0E224E00B6E68C /* ClaimPurchaseSubmissionModel.swift */; };
+		25624A132A0E224F00B6E68C /* LstVehicles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25624A112A0E224F00B6E68C /* LstVehicles.swift */; };
+		258176562A13A93E00459AAC /* CashSubmissionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258176552A13A93E00459AAC /* CashSubmissionModel.swift */; };
+		258176592A13C15100459AAC /* KC_DeleteAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258176582A13C15100459AAC /* KC_DeleteAccountVC.swift */; };
+		2581765C2A13C60D00459AAC /* DeleteAccountModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2581765B2A13C60D00459AAC /* DeleteAccountModels.swift */; };
 		2598BF4829BA11C2003CD01E /* KC_MyActivityTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2598BF4729BA11C2003CD01E /* KC_MyActivityTVC.swift */; };
 		2598BF4B29BA12A5003CD01E /* KC_MyActivityVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2598BF4A29BA12A4003CD01E /* KC_MyActivityVM.swift */; };
+		2598FC742A1230FD0050B801 /* ClaimPurchaseDataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2598FC722A1230FC0050B801 /* ClaimPurchaseDataModels.swift */; };
+		2598FC752A1230FD0050B801 /* LstVehicles2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2598FC732A1230FD0050B801 /* LstVehicles2.swift */; };
 		25DC5BE2295C1A3F00818258 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DC5BE1295C1A3F00818258 /* AppDelegate.swift */; };
 		25DC5BE4295C1A3F00818258 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DC5BE3295C1A3F00818258 /* SceneDelegate.swift */; };
 		25DC5BE6295C1A3F00818258 /* KC_WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DC5BE5295C1A3F00818258 /* KC_WelcomeVC.swift */; };
@@ -46,6 +57,8 @@
 		25DC5C4E295C1C4B00818258 /* TextfieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DC5C42295C1C4B00818258 /* TextfieldExtension.swift */; };
 		25DC5C4F295C1C4B00818258 /* ViewControllerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DC5C43295C1C4B00818258 /* ViewControllerUtils.swift */; };
 		25E7817B295D49E90026A86C /* KC_RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E7817A295D49E90026A86C /* KC_RegisterVC.swift */; };
+		25F3A6722A0E04F500E11F39 /* MappingEnrollmentModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F3A6712A0E04F500E11F39 /* MappingEnrollmentModels.swift */; };
+		25F3A6742A0E0E3400E11F39 /* EnrollmentPopupMessageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F3A6732A0E0E3400E11F39 /* EnrollmentPopupMessageVC.swift */; };
 		3E6EC6F5A6C16076FE9B3309 /* Pods_KeshavCement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B467AA392AE23C7BC4DC69 /* Pods_KeshavCement.framework */; };
 		8400469429C59641007DC492 /* SubmitVoucherModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400469329C59641007DC492 /* SubmitVoucherModels.swift */; };
 		8400469629C59700007DC492 /* QS_SuccessTransfer_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400469529C59700007DC492 /* QS_SuccessTransfer_VC.swift */; };
@@ -56,7 +69,6 @@
 		840CC63529A74AFB005B438D /* CatalogueSaveCartDetailListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840CC63329A74AFB005B438D /* CatalogueSaveCartDetailListResponse.swift */; };
 		840CC63629A74AFB005B438D /* ProductMyCartListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840CC63429A74AFB005B438D /* ProductMyCartListModel.swift */; };
 		840CC63E29A76024005B438D /* ProductAddToPlannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840CC63D29A76024005B438D /* ProductAddToPlannerModel.swift */; };
-		840F25DA29ADD72700736786 /* PendingClaimSubmissionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840F25D929ADD72700736786 /* PendingClaimSubmissionModel.swift */; };
 		840F25DE29AE070D00736786 /* CustomerBasicInfoListJson8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840F25DC29AE070C00736786 /* CustomerBasicInfoListJson8.swift */; };
 		840F25DF29AE070D00736786 /* ClaimHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840F25DD29AE070D00736786 /* ClaimHistoryModel.swift */; };
 		840F25E229AE0B5400736786 /* KC_ClaimHistoryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840F25E129AE0B5400736786 /* KC_ClaimHistoryVM.swift */; };
@@ -85,7 +97,6 @@
 		8419A4D9295EE671000A0AAB /* KC_MyProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8419A4D8295EE671000A0AAB /* KC_MyProfileVC.swift */; };
 		8419A4DC295EF192000A0AAB /* KC_LanguageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8419A4DB295EF192000A0AAB /* KC_LanguageVC.swift */; };
 		841AE9FA29C039AF008C45A2 /* KC_LanguageTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841AE9F929C039AF008C45A2 /* KC_LanguageTVC.swift */; };
-		841AE9FD29C07086008C45A2 /* Json4Swift_Base-66.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841AE9FC29C07086008C45A2 /* Json4Swift_Base-66.swift */; };
 		841C096429697EA600B70F5C /* KC_OrderConfirmationTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841C096329697EA600B70F5C /* KC_OrderConfirmationTVC.swift */; };
 		841E1EAF29F6302A008F0EB5 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E1EAE29F6302A008F0EB5 /* NotificationService.swift */; };
 		841E1EB329F6302A008F0EB5 /* NotificationService.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 841E1EAC29F6302A008F0EB5 /* NotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -273,7 +284,6 @@
 		84C0C35D29AC7C1F00F615C4 /* KC_CashTransferDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C0C35C29AC7C1F00F615C4 /* KC_CashTransferDetailsVC.swift */; };
 		84C0C36029AC822500F615C4 /* cash_transfer_instruction.html in Resources */ = {isa = PBXBuildFile; fileRef = 84C0C35F29AC822500F615C4 /* cash_transfer_instruction.html */; };
 		84C0C36329AC8EE600F615C4 /* KC_CashTransferSubmissionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C0C36229AC8EE600F615C4 /* KC_CashTransferSubmissionVM.swift */; };
-		84C0C36629ACA47300F615C4 /* CashSubmissionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C0C36529ACA47300F615C4 /* CashSubmissionModel.swift */; };
 		84C0C36B29ACB98B00F615C4 /* LstCustomerJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C0C36729ACB98B00F615C4 /* LstCustomerJson.swift */; };
 		84C0C36C29ACB98B00F615C4 /* LstCustomerIdentityInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C0C36829ACB98B00F615C4 /* LstCustomerIdentityInfo.swift */; };
 		84C0C36D29ACB98B00F615C4 /* MyProfileListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C0C36929ACB98B00F615C4 /* MyProfileListModel.swift */; };
@@ -288,7 +298,6 @@
 		84C27ABA29A357C700536992 /* KC_ClaimPurchaseVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C27AB929A357C700536992 /* KC_ClaimPurchaseVM.swift */; };
 		84C27ABE29A37EC000536992 /* ClaimProductListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C27ABC29A37EBF00536992 /* ClaimProductListModel.swift */; };
 		84C27ABF29A37EC000536992 /* LstAttributesDetails12.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C27ABD29A37EBF00536992 /* LstAttributesDetails12.swift */; };
-		84C27AC229A3830500536992 /* ClaimPurchaseSubmissionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C27AC129A3830500536992 /* ClaimPurchaseSubmissionModel.swift */; };
 		84CA8E39299CA24D000692F4 /* KC_SignUpVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA8E38299CA24D000692F4 /* KC_SignUpVM.swift */; };
 		84CA8E3C299CA409000692F4 /* KC_DropDownVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA8E3B299CA409000692F4 /* KC_DropDownVM.swift */; };
 		84CA8E40299CA8D0000692F4 /* StateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA8E3E299CA8D0000692F4 /* StateList.swift */; };
@@ -424,8 +433,19 @@
 		20B467AA392AE23C7BC4DC69 /* Pods_KeshavCement.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KeshavCement.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2510233F295C756200028D09 /* KC_LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_LoginVC.swift; sourceTree = "<group>"; };
 		251C4D28295C201B007939F3 /* PersistanceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistanceService.swift; sourceTree = "<group>"; };
+		2560D8CD2A0FAAF70009256C /* LstVehicles1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LstVehicles1.swift; sourceTree = "<group>"; };
+		2560D8CE2A0FAAF80009256C /* StockDetailsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockDetailsModel.swift; sourceTree = "<group>"; };
+		2560D8D12A0FB7690009256C /* LstTransactionApprovalDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LstTransactionApprovalDetails.swift; sourceTree = "<group>"; };
+		2560D8D22A0FB76A0009256C /* PendingClaimSubmissionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingClaimSubmissionModel.swift; sourceTree = "<group>"; };
+		25624A102A0E224E00B6E68C /* ClaimPurchaseSubmissionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimPurchaseSubmissionModel.swift; sourceTree = "<group>"; };
+		25624A112A0E224F00B6E68C /* LstVehicles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LstVehicles.swift; sourceTree = "<group>"; };
+		258176552A13A93E00459AAC /* CashSubmissionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CashSubmissionModel.swift; sourceTree = "<group>"; };
+		258176582A13C15100459AAC /* KC_DeleteAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_DeleteAccountVC.swift; sourceTree = "<group>"; };
+		2581765B2A13C60D00459AAC /* DeleteAccountModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteAccountModels.swift; sourceTree = "<group>"; };
 		2598BF4729BA11C2003CD01E /* KC_MyActivityTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_MyActivityTVC.swift; sourceTree = "<group>"; };
 		2598BF4A29BA12A4003CD01E /* KC_MyActivityVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_MyActivityVM.swift; sourceTree = "<group>"; };
+		2598FC722A1230FC0050B801 /* ClaimPurchaseDataModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimPurchaseDataModels.swift; sourceTree = "<group>"; };
+		2598FC732A1230FD0050B801 /* LstVehicles2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LstVehicles2.swift; sourceTree = "<group>"; };
 		25DC5BDE295C1A3F00818258 /* KeshavCement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeshavCement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25DC5BE1295C1A3F00818258 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25DC5BE3295C1A3F00818258 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -465,6 +485,8 @@
 		25DC5C42295C1C4B00818258 /* TextfieldExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextfieldExtension.swift; sourceTree = "<group>"; };
 		25DC5C43295C1C4B00818258 /* ViewControllerUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerUtils.swift; sourceTree = "<group>"; };
 		25E7817A295D49E90026A86C /* KC_RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_RegisterVC.swift; sourceTree = "<group>"; };
+		25F3A6712A0E04F500E11F39 /* MappingEnrollmentModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingEnrollmentModels.swift; sourceTree = "<group>"; };
+		25F3A6732A0E0E3400E11F39 /* EnrollmentPopupMessageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollmentPopupMessageVC.swift; sourceTree = "<group>"; };
 		3B61DF5F9C162E24326C4C39 /* Pods-KeshavCement.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KeshavCement.release.xcconfig"; path = "Target Support Files/Pods-KeshavCement/Pods-KeshavCement.release.xcconfig"; sourceTree = "<group>"; };
 		8400469329C59641007DC492 /* SubmitVoucherModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitVoucherModels.swift; sourceTree = "<group>"; };
 		8400469529C59700007DC492 /* QS_SuccessTransfer_VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QS_SuccessTransfer_VC.swift; sourceTree = "<group>"; };
@@ -476,7 +498,6 @@
 		840CC63329A74AFB005B438D /* CatalogueSaveCartDetailListResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogueSaveCartDetailListResponse.swift; sourceTree = "<group>"; };
 		840CC63429A74AFB005B438D /* ProductMyCartListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductMyCartListModel.swift; sourceTree = "<group>"; };
 		840CC63D29A76024005B438D /* ProductAddToPlannerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductAddToPlannerModel.swift; sourceTree = "<group>"; };
-		840F25D929ADD72700736786 /* PendingClaimSubmissionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingClaimSubmissionModel.swift; sourceTree = "<group>"; };
 		840F25DC29AE070C00736786 /* CustomerBasicInfoListJson8.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerBasicInfoListJson8.swift; sourceTree = "<group>"; };
 		840F25DD29AE070D00736786 /* ClaimHistoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimHistoryModel.swift; sourceTree = "<group>"; };
 		840F25E129AE0B5400736786 /* KC_ClaimHistoryVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_ClaimHistoryVM.swift; sourceTree = "<group>"; };
@@ -505,7 +526,6 @@
 		8419A4D8295EE671000A0AAB /* KC_MyProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_MyProfileVC.swift; sourceTree = "<group>"; };
 		8419A4DB295EF192000A0AAB /* KC_LanguageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_LanguageVC.swift; sourceTree = "<group>"; };
 		841AE9F929C039AF008C45A2 /* KC_LanguageTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_LanguageTVC.swift; sourceTree = "<group>"; };
-		841AE9FC29C07086008C45A2 /* Json4Swift_Base-66.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Json4Swift_Base-66.swift"; sourceTree = "<group>"; };
 		841C096329697EA600B70F5C /* KC_OrderConfirmationTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_OrderConfirmationTVC.swift; sourceTree = "<group>"; };
 		841E1EAC29F6302A008F0EB5 /* NotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		841E1EAE29F6302A008F0EB5 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
@@ -701,7 +721,6 @@
 		84C0C35C29AC7C1F00F615C4 /* KC_CashTransferDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_CashTransferDetailsVC.swift; sourceTree = "<group>"; };
 		84C0C35F29AC822500F615C4 /* cash_transfer_instruction.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = cash_transfer_instruction.html; sourceTree = "<group>"; };
 		84C0C36229AC8EE600F615C4 /* KC_CashTransferSubmissionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_CashTransferSubmissionVM.swift; sourceTree = "<group>"; };
-		84C0C36529ACA47300F615C4 /* CashSubmissionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CashSubmissionModel.swift; sourceTree = "<group>"; };
 		84C0C36729ACB98B00F615C4 /* LstCustomerJson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LstCustomerJson.swift; sourceTree = "<group>"; };
 		84C0C36829ACB98B00F615C4 /* LstCustomerIdentityInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LstCustomerIdentityInfo.swift; sourceTree = "<group>"; };
 		84C0C36929ACB98B00F615C4 /* MyProfileListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileListModel.swift; sourceTree = "<group>"; };
@@ -716,7 +735,6 @@
 		84C27AB929A357C700536992 /* KC_ClaimPurchaseVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_ClaimPurchaseVM.swift; sourceTree = "<group>"; };
 		84C27ABC29A37EBF00536992 /* ClaimProductListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimProductListModel.swift; sourceTree = "<group>"; };
 		84C27ABD29A37EBF00536992 /* LstAttributesDetails12.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LstAttributesDetails12.swift; sourceTree = "<group>"; };
-		84C27AC129A3830500536992 /* ClaimPurchaseSubmissionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimPurchaseSubmissionModel.swift; sourceTree = "<group>"; };
 		84CA8E38299CA24D000692F4 /* KC_SignUpVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_SignUpVM.swift; sourceTree = "<group>"; };
 		84CA8E3B299CA409000692F4 /* KC_DropDownVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_DropDownVM.swift; sourceTree = "<group>"; };
 		84CA8E3E299CA8D0000692F4 /* StateList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateList.swift; sourceTree = "<group>"; };
@@ -878,6 +896,22 @@
 			path = GoogleServices;
 			sourceTree = "<group>";
 		};
+		258176572A13C13300459AAC /* DeleteAccount */ = {
+			isa = PBXGroup;
+			children = (
+				258176582A13C15100459AAC /* KC_DeleteAccountVC.swift */,
+			);
+			path = DeleteAccount;
+			sourceTree = "<group>";
+		};
+		2581765A2A13C60D00459AAC /* DeleteAccountModels */ = {
+			isa = PBXGroup;
+			children = (
+				2581765B2A13C60D00459AAC /* DeleteAccountModels.swift */,
+			);
+			path = DeleteAccountModels;
+			sourceTree = "<group>";
+		};
 		2598BF4629BA117F003CD01E /* MyActivity */ = {
 			isa = PBXGroup;
 			children = (
@@ -893,6 +927,15 @@
 				2598BF4A29BA12A4003CD01E /* KC_MyActivityVM.swift */,
 			);
 			path = MyActivityVM;
+			sourceTree = "<group>";
+		};
+		2598FC6F2A1230990050B801 /* Claim PurchasModels */ = {
+			isa = PBXGroup;
+			children = (
+				2598FC722A1230FC0050B801 /* ClaimPurchaseDataModels.swift */,
+				2598FC732A1230FD0050B801 /* LstVehicles2.swift */,
+			);
+			path = "Claim PurchasModels";
 			sourceTree = "<group>";
 		};
 		25DC5BD5295C1A3F00818258 = {
@@ -981,6 +1024,7 @@
 		25DC5C17295C1B1900818258 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2598FC6F2A1230990050B801 /* Claim PurchasModels */,
 				843D62C72A09258800BDCD5F /* ClaimRedemptionOTPModel */,
 				8425FC412A0662F900CDF9CC /* CashTransferRedemptionTypeModel */,
 				8461FDBD29F40E9B002A229A /* NotificationModels */,
@@ -992,7 +1036,7 @@
 				84F78F2829CC9B8B00E14197 /* CashTrasnSubmissionModel */,
 				84F78F2029CC8F4900E14197 /* CashDetailsModel */,
 				8400469229C595FA007DC492 /* SubmitVoucherModel */,
-				8400469129C5957E007DC492 /* VoucherModels */,
+				8400469129C5957E007DC492 /* MappingEnrollmentModels */,
 				84BCCC1529C5819D00DAB3BD /* VoucherListsModels */,
 				8431482829C497B000704584 /* VoucherRedemptionDetailsModel */,
 				8431480229C48CAA00704584 /* AdharCardModels */,
@@ -1066,6 +1110,7 @@
 			isa = PBXGroup;
 			children = (
 				8461FDBA29F40E6B002A229A /* HistoryNotifications */,
+				2581765A2A13C60D00459AAC /* DeleteAccountModels */,
 				84A601F129F3E6BB008EEC4C /* DealerHelpVM */,
 				845D316829CEF5E10089CBF1 /* CashTransferHistoryVM */,
 				846925AE29CD7CB60070DE69 /* CashTransferApprovalVM */,
@@ -1118,6 +1163,7 @@
 		25DC5C19295C1B2900818258 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				258176572A13C13300459AAC /* DeleteAccount */,
 				844EF95E2A064A67007719A4 /* RedemptionType */,
 				84A601FA29F40C71008EEC4C /* HistoryNotifications */,
 				84A601E729F3DE42008EEC4C /* DealerHelpPopUp */,
@@ -1259,11 +1305,12 @@
 			path = Register;
 			sourceTree = "<group>";
 		};
-		8400469129C5957E007DC492 /* VoucherModels */ = {
+		8400469129C5957E007DC492 /* MappingEnrollmentModels */ = {
 			isa = PBXGroup;
 			children = (
+				25F3A6712A0E04F500E11F39 /* MappingEnrollmentModels.swift */,
 			);
-			path = VoucherModels;
+			path = MappingEnrollmentModels;
 			sourceTree = "<group>";
 		};
 		8400469229C595FA007DC492 /* SubmitVoucherModel */ = {
@@ -1338,7 +1385,8 @@
 		840F25D829ADD6DD00736786 /* PendingClaimSubmissionModel */ = {
 			isa = PBXGroup;
 			children = (
-				840F25D929ADD72700736786 /* PendingClaimSubmissionModel.swift */,
+				2560D8D22A0FB76A0009256C /* PendingClaimSubmissionModel.swift */,
+				2560D8D12A0FB7690009256C /* LstTransactionApprovalDetails.swift */,
 			);
 			path = PendingClaimSubmissionModel;
 			sourceTree = "<group>";
@@ -1494,7 +1542,8 @@
 		841AE9FB29C07076008C45A2 /* StockDetailsModel */ = {
 			isa = PBXGroup;
 			children = (
-				841AE9FC29C07086008C45A2 /* Json4Swift_Base-66.swift */,
+				2560D8CE2A0FAAF80009256C /* StockDetailsModel.swift */,
+				2560D8CD2A0FAAF70009256C /* LstVehicles1.swift */,
 			);
 			path = StockDetailsModel;
 			sourceTree = "<group>";
@@ -2475,7 +2524,7 @@
 		84C0C36429ACA45B00F615C4 /* CashTransferSubmissionModel */ = {
 			isa = PBXGroup;
 			children = (
-				84C0C36529ACA47300F615C4 /* CashSubmissionModel.swift */,
+				258176552A13A93E00459AAC /* CashSubmissionModel.swift */,
 			);
 			path = CashTransferSubmissionModel;
 			sourceTree = "<group>";
@@ -2543,7 +2592,8 @@
 		84C27AC029A382F300536992 /* ClaimPurchaseSubmissionModel */ = {
 			isa = PBXGroup;
 			children = (
-				84C27AC129A3830500536992 /* ClaimPurchaseSubmissionModel.swift */,
+				25624A102A0E224E00B6E68C /* ClaimPurchaseSubmissionModel.swift */,
+				25624A112A0E224F00B6E68C /* LstVehicles.swift */,
 			);
 			path = ClaimPurchaseSubmissionModel;
 			sourceTree = "<group>";
@@ -3029,6 +3079,7 @@
 				84BCCC2E29C58DA500DAB3BD /* RGT_popupAlertOne_VC.swift */,
 				84BCCC2D29C58DA400DAB3BD /* RGT_popupAlertTwo_VC.swift */,
 				84F8432A2968320B000ABA34 /* KC_EvoucherPopUpVC.swift */,
+				25F3A6732A0E0E3400E11F39 /* EnrollmentPopupMessageVC.swift */,
 			);
 			path = PopUpMessage;
 			sourceTree = "<group>";
@@ -3330,6 +3381,7 @@
 				84AAEA4E2964526500F930D9 /* KC_RedemptionCatalogueCVC.swift in Sources */,
 				8432DFAE29717F9600AA2079 /* KC_SupportExecutiveVC.swift in Sources */,
 				84DA346629AF72D600078CF2 /* AccountDeactivatedModel.swift in Sources */,
+				25F3A6722A0E04F500E11F39 /* MappingEnrollmentModels.swift in Sources */,
 				844702AF29C2EE430097B028 /* ObjActivityDetailsJsonList.swift in Sources */,
 				84E2EC2529A79E51006C9551 /* ObjCatalogueList1.swift in Sources */,
 				84A601EB29F3E1E4008EEC4C /* KC_DealerHelpTVC.swift in Sources */,
@@ -3371,7 +3423,6 @@
 				840F25E729AE210E00736786 /* LstCustParentChildMapping4.swift in Sources */,
 				84DA342429AF164500078CF2 /* ObjHelpTopicList.swift in Sources */,
 				8457DBD92995238D007F6A43 /* CustomerTypeModels.swift in Sources */,
-				840F25DA29ADD72700736786 /* PendingClaimSubmissionModel.swift in Sources */,
 				840CC62529A732E0005B438D /* ProductCategoryModel.swift in Sources */,
 				843395E4299BC2650041685B /* OTPModel.swift in Sources */,
 				25DC5BE2295C1A3F00818258 /* AppDelegate.swift in Sources */,
@@ -3381,6 +3432,7 @@
 				84E2EC2129A78F91006C9551 /* KC_ProductCatalgoueDetailsVM.swift in Sources */,
 				8497569D29754820007B7C4A /* KC_LodgeQueryVC.swift in Sources */,
 				8453ABE1295EFF6800EA82CE /* Constant.swift in Sources */,
+				2581765C2A13C60D00459AAC /* DeleteAccountModels.swift in Sources */,
 				840F25ED29AE2DA700736786 /* KC_SubmitNewExecutiveVM.swift in Sources */,
 				84C0C36329AC8EE600F615C4 /* KC_CashTransferSubmissionVM.swift in Sources */,
 				8457DBDB29952600007F6A43 /* KC_WelcomeTVC.swift in Sources */,
@@ -3406,8 +3458,8 @@
 				84E2EC1B29A7761C006C9551 /* KC_MyCartVM.swift in Sources */,
 				8446E8322962D61F003B01E8 /* KC_SignUpVC.swift in Sources */,
 				840F25E229AE0B5400736786 /* KC_ClaimHistoryVM.swift in Sources */,
-				84C0C36629ACA47300F615C4 /* CashSubmissionModel.swift in Sources */,
 				8432BD82296438BC00C88179 /* KC_MyPurchaseClaimVC.swift in Sources */,
+				25624A122A0E224F00B6E68C /* ClaimPurchaseSubmissionModel.swift in Sources */,
 				84EF80B629C1A3B7004AD75B /* ObjCatalogueFixedPoints.swift in Sources */,
 				8418EE0029C4878E0083498D /* MSP_MyDreamGiftDetailsVC.swift in Sources */,
 				843D62C92A09259900BDCD5F /* ClaimRedemptionOTPModel.swift in Sources */,
@@ -3426,6 +3478,7 @@
 				84F316B029692C17000C7B77 /* KC_MyCartVC.swift in Sources */,
 				25DC5BE4295C1A3F00818258 /* SceneDelegate.swift in Sources */,
 				84C0C35D29AC7C1F00F615C4 /* KC_CashTransferDetailsVC.swift in Sources */,
+				25624A132A0E224F00B6E68C /* LstVehicles.swift in Sources */,
 				25DC5C47295C1C4B00818258 /* SpinnerView.swift in Sources */,
 				848A4EED299E57F8002280C0 /* KC_DOBVC.swift in Sources */,
 				842BAFAF29AA074D003BD356 /* LstCustParentChildMapping3.swift in Sources */,
@@ -3442,6 +3495,7 @@
 				84BCCC1B29C581C000DAB3BD /* ObjCatalogueFixedPoints1.swift in Sources */,
 				84AF5557296BD1DC00D52E44 /* KC_CashTranferPopUpVC.swift in Sources */,
 				843C300A29D1BE45005A6C35 /* ObjCatalogueList01.swift in Sources */,
+				2560D8D02A0FAAF80009256C /* StockDetailsModel.swift in Sources */,
 				840CC62629A732E0005B438D /* ObjCatalogueCategoryListJson.swift in Sources */,
 				8451D558296BF74900208317 /* KC_UserDetailsVC.swift in Sources */,
 				8457DBDE29952856007F6A43 /* KC_CustomerTypeVM.swift in Sources */,
@@ -3485,6 +3539,7 @@
 				84CA8E3C299CA409000692F4 /* KC_DropDownVM.swift in Sources */,
 				840CC63129A73735005B438D /* KC_ProductCatalogueListVM.swift in Sources */,
 				84CA8E4A299CAA68000692F4 /* LstTaluk.swift in Sources */,
+				2598FC752A1230FD0050B801 /* LstVehicles2.swift in Sources */,
 				25DC5C2D295C1BEF00818258 /* ServiceError.swift in Sources */,
 				84C27AB629A356B700536992 /* MappedDealerandSubDealerModel.swift in Sources */,
 				843147F229C48AE500704584 /* DreamGiftListingViewModel.swift in Sources */,
@@ -3496,12 +3551,15 @@
 				84F78F2429CC8F7900E14197 /* LstCashTransfer.swift in Sources */,
 				25DC5C4B295C1C4B00818258 /* GrandientExtension.swift in Sources */,
 				84DA346029AF6A2C00078CF2 /* KC_ReferandEarnVM.swift in Sources */,
+				258176592A13C15100459AAC /* KC_DeleteAccountVC.swift in Sources */,
 				8418EDF629C485E80083498D /* OffersandPromotionsVM.swift in Sources */,
 				8432DFAA29717F3E00AA2079 /* KC_ClaimHistoryVC.swift in Sources */,
 				842BAFA329A9D80E003BD356 /* KC_MyRedemptionListVM.swift in Sources */,
 				84DA346329AF6C6D00078CF2 /* ReferandEarnSubmissionModel.swift in Sources */,
 				842BAFAB29AA06CE003BD356 /* KC_MappedCustomerListVM.swift in Sources */,
+				2560D8CF2A0FAAF80009256C /* LstVehicles1.swift in Sources */,
 				25DC5C31295C1BEF00818258 /* Reach.swift in Sources */,
+				25F3A6742A0E0E3400E11F39 /* EnrollmentPopupMessageVC.swift in Sources */,
 				84EF80B729C1A3B7004AD75B /* ProductCatalogueListModel.swift in Sources */,
 				8433C15529C472710043E553 /* HR_TermsandCondtionVC.swift in Sources */,
 				84F841FA29A87A0C00377B26 /* HR_RedemptionPlannerVC.swift in Sources */,
@@ -3537,6 +3595,8 @@
 				84BCCC2829C58C2900DAB3BD /* QS_Vouchers_TVC.swift in Sources */,
 				8432DFAC29717F5800AA2079 /* KC_CashTranferHistoryVC.swift in Sources */,
 				848A4EE8299E47A9002280C0 /* RegistrationModel.swift in Sources */,
+				2560D8D42A0FB76A0009256C /* PendingClaimSubmissionModel.swift in Sources */,
+				2598FC742A1230FD0050B801 /* ClaimPurchaseDataModels.swift in Sources */,
 				844702AE29C2EE430097B028 /* LstCustomerFeedBackJsonApi.swift in Sources */,
 				84F78F2A29CC9B9C00E14197 /* CashTrasnSubmissionModel.swift in Sources */,
 				840F25DE29AE070D00736786 /* CustomerBasicInfoListJson8.swift in Sources */,
@@ -3610,11 +3670,11 @@
 				84E94F4429A8DB6A002B4DED /* KC_RedemptionOTPVM.swift in Sources */,
 				843147F429C48AED00704584 /* DreamGiftDetailsViewModel.swift in Sources */,
 				84DA347229AF803C00078CF2 /* ActivateSubmissionModel.swift in Sources */,
+				258176562A13A93E00459AAC /* CashSubmissionModel.swift in Sources */,
 				25DC5C48295C1C4B00818258 /* String + Font Extension.swift in Sources */,
 				84B87DC029A4A30500CF5226 /* CustomerBasicInfoListJson.swift in Sources */,
 				25DC5C4A295C1C4B00818258 /* ImageExtension.swift in Sources */,
 				840CC63E29A76024005B438D /* ProductAddToPlannerModel.swift in Sources */,
-				84C27AC229A3830500536992 /* ClaimPurchaseSubmissionModel.swift in Sources */,
 				8461FDC029F40E9B002A229A /* NotificationModels.swift in Sources */,
 				84741DBE299F358C00F0A53E /* ForgetPasswordModel.swift in Sources */,
 				840CC63629A74AFB005B438D /* ProductMyCartListModel.swift in Sources */,
@@ -3628,12 +3688,12 @@
 				844702B029C2EE430097B028 /* DashBoardModel.swift in Sources */,
 				844702B529C2FEA00097B028 /* MyEarningListModel.swift in Sources */,
 				84A601F729F3F823008EEC4C /* MappedUserNameModel.swift in Sources */,
-				841AE9FD29C07086008C45A2 /* Json4Swift_Base-66.swift in Sources */,
 				84F8432B2968320B000ABA34 /* KC_EvoucherPopUpVC.swift in Sources */,
 				843395D9299BAA140041685B /* UserList.swift in Sources */,
 				84EF80B829C1A3B7004AD75B /* ObjCatalogueList.swift in Sources */,
 				25DC5C4D295C1C4B00818258 /* ColorExtension.swift in Sources */,
 				84C0C37629ACE40300F615C4 /* LstTransactionApprovalDetails2.swift in Sources */,
+				2560D8D32A0FB76A0009256C /* LstTransactionApprovalDetails.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3842,14 +3902,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = KeshavCement/KeshavCement.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HG885J5KS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KeshavCement/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Kashev Cement";
+				INFOPLIST_KEY_CFBundleDisplayName = "Keshav Club";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Kashev Need to Access the camera to upload profile Image and Customer support";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Kashev Need to access the location upload profile Image  and Customer support";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Kashev Need to Access the Photo Library to upload profile Image  and Customer support";
@@ -3868,7 +3928,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "loyltwo3ks-Pvt-Ltd.KeshavCement";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Kashev_Dev_Cer;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Kashev_AppStore;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3884,14 +3944,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = KeshavCement/KeshavCement.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HG885J5KS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KeshavCement/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Kashev Cement";
+				INFOPLIST_KEY_CFBundleDisplayName = "Keshav Club";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Kashev Need to Access the camera to upload profile Image and Customer support";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Kashev Need to access the location upload profile Image  and Customer support";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Kashev Need to Access the Photo Library to upload profile Image  and Customer support";
@@ -3910,7 +3970,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "loyltwo3ks-Pvt-Ltd.KeshavCement";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Kashev_Dev_Cer;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Kashev_AppStore;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3997,7 +4057,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
@@ -4016,7 +4076,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "loyltwo3ks-Pvt-Ltd.KeshavCement.NotificationService";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = KashevDevCertificate;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = KashevNotification_AppStore;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -4028,7 +4088,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
@@ -4047,7 +4107,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "loyltwo3ks-Pvt-Ltd.KeshavCement.NotificationService";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = KashevDevCertificate;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = KashevNotification_AppStore;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

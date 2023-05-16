@@ -54,6 +54,7 @@ class KC_EvoucherPopUpVC: BaseViewController, DPOTPViewDelegate{
     var productsParameter:JSON?
     var sentSMSParameter:JSON?
     var partyLoyaltyId = ""
+//    UserDefaults.standard.setValue(result?.lstCustomerFeedBackJsonApi?[0].loyaltyId, forKey: "LoyaltyId")
     var loyaltyID = UserDefaults.standard.string(forKey: "LoyaltyId") ?? ""
     var mobilenumber = UserDefaults.standard.string(forKey: "CustomerMobileNumber") ?? ""
     let emailID = UserDefaults.standard.string(forKey: "CustomerEmail") ?? ""
@@ -189,7 +190,7 @@ class KC_EvoucherPopUpVC: BaseViewController, DPOTPViewDelegate{
 //                "UserName": loyaltyId,
 //                "Name": self.customerName
                 
-                "MerchantUserName": "KeshavCementDemo",
+                "MerchantUserName": MerchantUserName,
                 "MobileNo": mobilenumber,
                 "OTPType": "OTPForRewardCardsENCashAuthorization",
                 "UserId": userId,
@@ -212,18 +213,34 @@ class KC_EvoucherPopUpVC: BaseViewController, DPOTPViewDelegate{
         
         self.VM.timer.invalidate()
         if self.contractorName == ""{
-            productsParameter = [
-                "ActionType": 51,
-                "ActorId": userID,
-                "MemberName": "\(self.customerName)",
-                "DealerLoyaltyId": loyaltyId,
-                "ObjCatalogueDetails": [
-                            "DomainName": "KESHAV_CEMENT"
+            if partyLoyaltyId == "" {
+                productsParameter = [
+                    "ActionType": 51,
+                    "ActorId": userID,
+                    "MemberName": "\(self.customerName)",
+                    "DealerLoyaltyId": loyaltyId,
+                    "ObjCatalogueDetails": [
+                                "DomainName": "KESHAV_CEMENT"
+                        ],
+                    "ObjCatalogueList": self.VM.newproductArray  as [[String: Any]],
+                    "ObjCustShippingAddressDetails":["Address1":"\(self.address1)","CityId":"\(self.cityID)", "CityName":"\(self.cityName)","CountryId":"15","StateName": "\(self.stateName)","StateId":"\(self.stateID)","Zip":"\(self.pincode)","Email":"\(self.emailId)","FullName":"\(self.customerName)","Mobile": self.mobile],"SourceMode":5
+                ]
+                print(productsParameter ?? [])
+            }else{
+                
+                productsParameter = [
+                    "ActionType": 51,
+                    "ActorId": userID,
+                    "MemberName": "\(self.customerName)",
+                    "DealerLoyaltyId": loyaltyID,
+                    "ObjCatalogueDetails": [
+                        "DomainName": "KESHAV_CEMENT"
                     ],
-                "ObjCatalogueList": self.VM.newproductArray  as [[String: Any]],
-                "ObjCustShippingAddressDetails":["Address1":"\(self.address1)","CityId":"\(self.cityID)", "CityName":"\(self.cityName)","CountryId":"15","StateName": "\(self.stateName)","StateId":"\(self.stateID)","Zip":"\(self.pincode)","Email":"\(self.emailId)","FullName":"\(self.customerName)","Mobile": self.mobile],"SourceMode":5
-            ]
-            print(productsParameter ?? [])
+                    "ObjCatalogueList": self.VM.newproductArray  as [[String: Any]],
+                    "ObjCustShippingAddressDetails":["Address1":"\(self.address1)","CityId":"\(self.cityID)", "CityName":"\(self.cityName)","CountryId":"15","StateName": "\(self.stateName)","StateId":"\(self.stateID)","Zip":"\(self.pincode)","Email":"\(self.emailId)","FullName":"\(self.customerName)","Mobile": self.mobile],"SourceMode":5
+                ]
+                print(productsParameter ?? [])
+            }
         }else{
             self.productsParameter = [
                     "ActionType": 51,

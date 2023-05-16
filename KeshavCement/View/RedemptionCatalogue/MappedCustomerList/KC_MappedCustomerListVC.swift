@@ -19,6 +19,7 @@ class KC_MappedCustomerListVC: BaseViewController {
     var noofelements = 0
     var startIndex = 1
     var itsFrom = ""
+    var firstName = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         self.VM.VC = self
@@ -73,7 +74,7 @@ extension KC_MappedCustomerListVC: UITableViewDelegate, UITableViewDataSource{
         let receivedImage = String(self.VM.mappedCustomerListArray[indexPath.row].customerImage ?? "").dropFirst(1)
         let totalImgURL = PROMO_IMG1 + receivedImage
         print(totalImgURL)
-        cell.userImage.sd_setImage(with: URL(string: totalImgURL), placeholderImage: UIImage(named: "ic_default_img"))
+        cell.userImage.sd_setImage(with: URL(string: totalImgURL), placeholderImage: UIImage(named: "Mask Group 1"))
         cell.ptslbl.text = "\(self.VM.mappedCustomerListArray[indexPath.row].totalPointsBalance ?? 0)"
         cell.userNameLbl.text = self.VM.mappedCustomerListArray[indexPath.row].firstName ?? ""
         cell.mobileLbl.text = self.VM.mappedCustomerListArray[indexPath.row].mobile ?? ""
@@ -99,6 +100,10 @@ extension KC_MappedCustomerListVC: UITableViewDelegate, UITableViewDataSource{
                 vc.productTotalPoints = self.VM.mappedCustomerListArray[indexPath.row].totalPointsBalance ?? 0
                 vc.mappedUserId = self.VM.mappedCustomerListArray[indexPath.row].userID ?? -1
                 vc.mobile = self.VM.mappedCustomerListArray[indexPath.row].mobile ?? ""
+                vc.firstNAME = self.VM.mappedCustomerListArray[indexPath.row].firstName ?? ""
+                vc.emailData = self.VM.mappedCustomerListArray[indexPath.row].email ?? ""
+             
+              
                 self.navigationController?.pushViewController(vc, animated: true)
             case "WISHLIST":
                 let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "HR_RedemptionPlannerVC") as! HR_RedemptionPlannerVC

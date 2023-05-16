@@ -105,10 +105,10 @@ extension KC_EnrollmentListVC: UITableViewDelegate, UITableViewDataSource{
             
             let receivedImage = String(self.VM.enrollmentListArray[indexPath.row].customerImage ?? "").dropFirst(1)
             let userImage = URL(string: "\(PROMO_IMG1)\(receivedImage)")
-            cell.userImage.kf.setImage(with: userImage, placeholder: UIImage(named: "ic_default_img"))
+            cell.userImage.kf.setImage(with: userImage, placeholder: UIImage(named: "Mask Group 1"))
             
         }else{
-            cell.userImage.image = UIImage(named: "ic_default_img")
+            cell.userImage.image = UIImage(named: "Mask Group 1")
         }
         
         

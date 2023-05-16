@@ -235,6 +235,22 @@ class RestAPI_Requests {
             }
         }
     }
+    
+    func claimPurchaseSubmissionApi1(parameters: JSON, completion: @escaping (ClaimPurchaseDataModels?, Error?) -> ()) -> URLSessionDataTask? {
+        return client.load(path: claimPurchaseSubmission_URLMethod, method: .post, params: parameters) { data, error in
+            do{
+                if data != nil{
+                    let result1 =  try JSONDecoder().decode(ClaimPurchaseDataModels?.self, from: data as! Data)
+                    completion(result1, nil)
+                }
+            }catch{
+                completion(nil, error)
+            }
+        }
+    }
+    
+    
+    
     func checkQuantityApi(parameters: JSON, completion: @escaping (StockDetailsModel?, Error?) -> ()) -> URLSessionDataTask? {
         return client.load(path: claimPurchaseSubmission_URLMethod, method: .post, params: parameters) { data, error in
             do{
@@ -1609,4 +1625,33 @@ class RestAPI_Requests {
            }
        }
     }
+    
+    
+    func mappingDetailsAPI(parameters: JSON, completion: @escaping (MappingEnrollmentModels?, Error?) -> ()) -> URLSessionDataTask? {
+        return client.load(path: saveParentAndChildMapping_URLMethodName, method: .post, params: parameters) { data, error in
+            do{
+                if data != nil{
+                    let result1 =  try JSONDecoder().decode(MappingEnrollmentModels?.self, from: data as! Data)
+                    completion(result1, nil)
+                }
+            }catch{
+                completion(nil, error)
+            }
+        }
+    }
+    func deleteAccount(parameters: JSON, completion: @escaping (DeleteAccountModels?, Error?) -> ()) -> URLSessionDataTask? {
+        return client.load(path: deleteAccount_URLMethodName, method: .post, params: parameters) { data, error in
+            do{
+                if data != nil{
+                    let result1 =  try JSONDecoder().decode(DeleteAccountModels.self, from: data as! Data)
+                    completion(result1, nil)
+                }
+            }catch{
+                completion(nil, error)
+            }
+        }
+    }
+    
+    
+    
 }
