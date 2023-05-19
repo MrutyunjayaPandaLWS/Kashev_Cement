@@ -51,6 +51,8 @@ class KC_LanguageVC: BaseViewController, UITableViewDelegate, UITableViewDataSou
             
         case "हिंदी":
             self.view.makeToast("ComingSoon".localiz(), duration: 2.0, position: .bottom)
+            let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_ComingSoonVC") as! KC_ComingSoonVC
+            self.navigationController?.pushViewController(vc, animated: true)
 //            UserDefaults.standard.set("2", forKey: "LanguageLocalizable")
 //            LanguageManager.shared.setLanguage(language: .hi)
 //            UserDefaults.standard.synchronize()
@@ -59,6 +61,8 @@ class KC_LanguageVC: BaseViewController, UITableViewDelegate, UITableViewDataSou
             return
         case "ಕನ್ನಡ":
             self.view.makeToast("ComingSoon".localiz(), duration: 2.0, position: .bottom)
+            let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_ComingSoonVC") as! KC_ComingSoonVC
+            self.navigationController?.pushViewController(vc, animated: true)
 //            UserDefaults.standard.set("3", forKey: "LanguageLocalizable")
 //            LanguageManager.shared.setLanguage(language: .knIn)
 //            UserDefaults.standard.synchronize()

@@ -15,9 +15,12 @@
 		2560D8D42A0FB76A0009256C /* PendingClaimSubmissionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560D8D22A0FB76A0009256C /* PendingClaimSubmissionModel.swift */; };
 		25624A122A0E224F00B6E68C /* ClaimPurchaseSubmissionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25624A102A0E224E00B6E68C /* ClaimPurchaseSubmissionModel.swift */; };
 		25624A132A0E224F00B6E68C /* LstVehicles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25624A112A0E224F00B6E68C /* LstVehicles.swift */; };
+		2575B0932A15F14300BE0EC4 /* KC_ComingSoonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2575B0922A15F14300BE0EC4 /* KC_ComingSoonVC.swift */; };
+		2575B0A12A1608D900BE0EC4 /* ghgMRzxUJT.json in Resources */ = {isa = PBXBuildFile; fileRef = 2575B0A02A1608D900BE0EC4 /* ghgMRzxUJT.json */; };
 		258176562A13A93E00459AAC /* CashSubmissionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258176552A13A93E00459AAC /* CashSubmissionModel.swift */; };
 		258176592A13C15100459AAC /* KC_DeleteAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258176582A13C15100459AAC /* KC_DeleteAccountVC.swift */; };
 		2581765C2A13C60D00459AAC /* DeleteAccountModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2581765B2A13C60D00459AAC /* DeleteAccountModels.swift */; };
+		258E63AA2A14932E00A1DD2B /* cash_voucher_instruction.html in Resources */ = {isa = PBXBuildFile; fileRef = 258E63A92A14932E00A1DD2B /* cash_voucher_instruction.html */; };
 		2598BF4829BA11C2003CD01E /* KC_MyActivityTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2598BF4729BA11C2003CD01E /* KC_MyActivityTVC.swift */; };
 		2598BF4B29BA12A5003CD01E /* KC_MyActivityVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2598BF4A29BA12A4003CD01E /* KC_MyActivityVM.swift */; };
 		2598FC742A1230FD0050B801 /* ClaimPurchaseDataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2598FC722A1230FC0050B801 /* ClaimPurchaseDataModels.swift */; };
@@ -439,9 +442,12 @@
 		2560D8D22A0FB76A0009256C /* PendingClaimSubmissionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingClaimSubmissionModel.swift; sourceTree = "<group>"; };
 		25624A102A0E224E00B6E68C /* ClaimPurchaseSubmissionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimPurchaseSubmissionModel.swift; sourceTree = "<group>"; };
 		25624A112A0E224F00B6E68C /* LstVehicles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LstVehicles.swift; sourceTree = "<group>"; };
+		2575B0922A15F14300BE0EC4 /* KC_ComingSoonVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KC_ComingSoonVC.swift; sourceTree = "<group>"; };
+		2575B0A02A1608D900BE0EC4 /* ghgMRzxUJT.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ghgMRzxUJT.json; sourceTree = "<group>"; };
 		258176552A13A93E00459AAC /* CashSubmissionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CashSubmissionModel.swift; sourceTree = "<group>"; };
 		258176582A13C15100459AAC /* KC_DeleteAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_DeleteAccountVC.swift; sourceTree = "<group>"; };
 		2581765B2A13C60D00459AAC /* DeleteAccountModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteAccountModels.swift; sourceTree = "<group>"; };
+		258E63A92A14932E00A1DD2B /* cash_voucher_instruction.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = cash_voucher_instruction.html; sourceTree = "<group>"; };
 		2598BF4729BA11C2003CD01E /* KC_MyActivityTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_MyActivityTVC.swift; sourceTree = "<group>"; };
 		2598BF4A29BA12A4003CD01E /* KC_MyActivityVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_MyActivityVM.swift; sourceTree = "<group>"; };
 		2598FC722A1230FC0050B801 /* ClaimPurchaseDataModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimPurchaseDataModels.swift; sourceTree = "<group>"; };
@@ -1163,6 +1169,7 @@
 		25DC5C19295C1B2900818258 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2575B0922A15F14300BE0EC4 /* KC_ComingSoonVC.swift */,
 				258176572A13C13300459AAC /* DeleteAccount */,
 				844EF95E2A064A67007719A4 /* RedemptionType */,
 				84A601FA29F40C71008EEC4C /* HistoryNotifications */,
@@ -1290,6 +1297,7 @@
 		25DC5C50295C1C9600818258 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				2575B0A02A1608D900BE0EC4 /* ghgMRzxUJT.json */,
 				844856BF2964287F00210DE1 /* 11514-swipe-down-arrows.json */,
 				84DC9F1D2975275200C7A94E /* 43623-call-center.json */,
 			);
@@ -2509,6 +2517,7 @@
 			isa = PBXGroup;
 			children = (
 				84C0C35F29AC822500F615C4 /* cash_transfer_instruction.html */,
+				258E63A92A14932E00A1DD2B /* cash_voucher_instruction.html */,
 			);
 			path = HTMLFiles;
 			sourceTree = "<group>";
@@ -3255,6 +3264,7 @@
 				8419A4D2295EDFF8000A0AAB /* Poppins-Medium.ttf in Resources */,
 				84ED836229645EE700DDA353 /* KC_OffersandpromotionsTVC.xib in Resources */,
 				84DC9F1E2975275200C7A94E /* 43623-call-center.json in Resources */,
+				2575B0A12A1608D900BE0EC4 /* ghgMRzxUJT.json in Resources */,
 				848A516129F6539C00D911F4 /* GoogleService-Info.plist in Resources */,
 				84DA344229AF2BBC00078CF2 /* senderInfoTableViewCell.xib in Resources */,
 				84905A8729A484A1004C6330 /* LICENSE in Resources */,
@@ -3272,6 +3282,7 @@
 				84AAEA5B29645A9E00F930D9 /* KC_MyEarningTVC.xib in Resources */,
 				84DA343C29AF2BBC00078CF2 /* senderInfoImageTableViewCell.xib in Resources */,
 				84AAEA5529645A8E00F930D9 /* KC_MyRedemptionTVC.xib in Resources */,
+				258E63AA2A14932E00A1DD2B /* cash_voucher_instruction.html in Resources */,
 				25DC5BE9295C1A3F00818258 /* Main.storyboard in Resources */,
 				84DA343D29AF2BBC00078CF2 /* senderImageTableViewCell.xib in Resources */,
 				8419A4CF295EDFF8000A0AAB /* Poppins-Bold.ttf in Resources */,
@@ -3462,6 +3473,7 @@
 				25624A122A0E224F00B6E68C /* ClaimPurchaseSubmissionModel.swift in Sources */,
 				84EF80B629C1A3B7004AD75B /* ObjCatalogueFixedPoints.swift in Sources */,
 				8418EE0029C4878E0083498D /* MSP_MyDreamGiftDetailsVC.swift in Sources */,
+				2575B0932A15F14300BE0EC4 /* KC_ComingSoonVC.swift in Sources */,
 				843D62C92A09259900BDCD5F /* ClaimRedemptionOTPModel.swift in Sources */,
 				840F25E629AE210E00736786 /* SupportExecutiveModel.swift in Sources */,
 				84DA342A29AF1D2A00078CF2 /* KC_NewQuerySubmissionVM.swift in Sources */,
@@ -3904,7 +3916,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HG885J5KS;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -3946,7 +3958,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HG885J5KS;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -4059,7 +4071,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HG885J5KS;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -4090,7 +4102,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HG885J5KS;
 				GENERATE_INFOPLIST_FILE = YES;

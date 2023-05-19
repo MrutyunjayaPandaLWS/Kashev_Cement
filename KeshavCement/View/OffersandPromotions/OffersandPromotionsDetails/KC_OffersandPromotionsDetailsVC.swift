@@ -21,7 +21,15 @@ class KC_OffersandPromotionsDetailsVC: BaseViewController {
     @IBOutlet weak var shortDescriptionLbl: UILabel!
     @IBOutlet weak var descriptionWK: UIWebView!
     
-    
+//    if data.HTML != ""{
+//        let htmlString = data.HTML ?? ""
+//        print(htmlString,"dlkshfug")
+//    self.termsandconditionswebview.loadHTMLString(htmlString , baseURL:nil)
+//        let content = "<html><body><p><font size=5>" + data.HTML + "</font></p></body></html>"
+//        self.termsandconditionswebview.loadHTMLString(content, baseURL: nil)
+//    }else{
+//        print("Data Wrong")
+//    }
 //    var VM1 = HistoryNotificationsViewModel()
 //    let loyaltyId = UserDefaults.standard.string(forKey: "LoyaltyID") ?? ""
 //    let userID = UserDefaults.standard.string(forKey: "UserID") ?? ""

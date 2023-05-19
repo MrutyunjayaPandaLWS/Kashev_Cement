@@ -84,14 +84,19 @@ class KC_CashTransferVC: BaseViewController, CashTranferDelegate{
             self.headerLbl.text = "CashVoucher".localiz()
             self.categoryId = 9
             self.cashTranferApi(categoryId: self.categoryId, startIndex: 1)
+            let url = Bundle.main.url(forResource: "cash_voucher_instruction", withExtension:"html")
+            let request = NSURLRequest(url: url!)
+            instructionWebView.loadRequest(request as URLRequest)
         }else{
             self.categoryId = 8
             self.headerLbl.text = "CashTransfer".localiz()
             self.cashTranferApi(categoryId: self.categoryId, startIndex: 1)
+            
+            let url = Bundle.main.url(forResource: "cash_transfer_instruction", withExtension:"html")
+            let request = NSURLRequest(url: url!)
+            instructionWebView.loadRequest(request as URLRequest)
         }
-        let url = Bundle.main.url(forResource: "cash_transfer_instruction", withExtension:"html")
-        let request = NSURLRequest(url: url!)
-        instructionWebView.loadRequest(request as URLRequest)
+        
         
     }
     
