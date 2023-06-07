@@ -284,7 +284,7 @@ class EgiftVoucherDetailsVC: BaseViewController, UITextFieldDelegate, pointsDele
             if self.selectAmountButton.currentTitle == "Amount"{
                 self.alertmsg(alertmsg: "Select_Amount_to_Redeem".localiz(), buttonalert: "OK".localiz())
             }else{
-                if Int((UserDefaults.standard.string(forKey:"PointsBalance") ?? ""))! >= self.selectedPoints{
+                if (Int((UserDefaults.standard.string(forKey: "RedeemablePointBalance") ?? "")) ?? 0) >= self.selectedPoints{
                     if MyCommonFunctionalUtilities.isInternetCallTheApi() == false{
                         DispatchQueue.main.async{
                             let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "RGT_popupAlertOne_VC") as? RGT_popupAlertOne_VC

@@ -11,7 +11,7 @@ import LanguageManager_iOS
 import DPOTPView
 import Kingfisher
 
-class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataSource, vouchersDelegate, pointsDelegate, popUpAlertDelegate, DPOTPViewDelegate{
+class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataSource, vouchersDelegate, popUpAlertDelegate, DPOTPViewDelegate, pointsDelegate{
     func popupAlertDidTap(_ vc: RGT_popupAlertOne_VC) {}
     
     func enteredAmount(_ cell: QS_Vouchers_TVC) {
@@ -55,7 +55,16 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
     func selectPointsDidTap(_ VC: QS_redeemQuantity_VC) {
         self.selectedPoints = VC.selectedpoints
         self.productcodeselected = VC.productCodefromPrevious
-        NotificationCenter.default.post(name: Notification.Name("SHOWDATA23"), object: self)
+        print(VC.selectedpoints)
+        print(VC.productCodefromPrevious)
+        print(productcodeselected,"sdkjdn")
+        self.myVouchersTableview.reloadData()
+       // self.delegate.sendDatatoTVC(self)
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: .SHOWDATA23 , object: self)
+        }
+        
+        //NotificationCenter.default.post(name: Notification.Name("SHOWDATA23"), object: self)
     }
     
     func redeemDidTap(_ cell: QS_Vouchers_TVC) {
@@ -157,9 +166,10 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
 
     
     func amountDidTap(_ cell: QS_Vouchers_TVC) {
+        guard let tappedIndexPath = self.myVouchersTableview.indexPath(for: cell) else {return}
         DispatchQueue.main.async{
             let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "QS_redeemQuantity_VC") as? QS_redeemQuantity_VC
-            vc!.productCodefromPrevious = cell.vouchersdata[0].productCode ?? ""
+            vc!.productCodefromPrevious = self.vm.myvouchersArray[tappedIndexPath.row].productCode ?? ""
             vc!.delegate = self
             vc!.modalPresentationStyle = .overCurrentContext
             vc!.modalTransitionStyle = .crossDissolve

@@ -265,7 +265,7 @@ extension KC_MyRedemptionVC: UITableViewDelegate,UITableViewDataSource{
                 cell.quantityHeadingLbl.isHidden = true
                 cell.qtyLbl.isHidden = true
                 cell.productHeaderLbl.isHidden = true
-                cell.productTitle.text = "Gift Voucher"
+                cell.productTitle.text = "e-Voucher"
             }else{
                 cell.quantityHeadingLbl.isHidden = true
                 cell.qtyLbl.isHidden = true
@@ -432,12 +432,17 @@ extension KC_MyRedemptionVC: UITableViewDelegate,UITableViewDataSource{
             
             
             let imageURL = self.VM.myredemptionListArray[indexPath.row].productImage ?? ""
-            if imageURL != ""{
-                let urltoUse = String(productCatalogueImgURL + imageURL).replacingOccurrences(of: " ", with: "%20")
-                let urlt = URL(string: "\(urltoUse)")
-                cell.productImageView.sd_setImage(with: urlt!, placeholderImage: #imageLiteral(resourceName: "ic_default_img"))
+            if self.VM.myredemptionListArray[indexPath.row].catalogueType ?? "" == "Gift Voucher"{
+                let urlt = URL(string: "\(imageURL)")
+                cell.productImageView.sd_setImage(with: urlt, placeholderImage: #imageLiteral(resourceName: "ic_default_img"))
             }else{
-                cell.productImageView.image = UIImage(named: "ic_default_img")
+                if imageURL != ""{
+                    let urltoUse = String(productCatalogueImgURL + imageURL).replacingOccurrences(of: " ", with: "%20")
+                    let urlt = URL(string: "\(urltoUse)")
+                    cell.productImageView.sd_setImage(with: urlt!, placeholderImage: #imageLiteral(resourceName: "ic_default_img"))
+                }else{
+                    cell.productImageView.image = UIImage(named: "ic_default_img")
+                }
             }
         }
         return cell

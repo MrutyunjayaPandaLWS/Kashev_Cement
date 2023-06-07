@@ -28,33 +28,52 @@ class QS_Vouchers_TVC: UITableViewCell, UITextFieldDelegate {
     var delegate:vouchersDelegate?
     var alertMsg = ""
     var selectedPoints = 0
+    var myvouchersArray = [ObjCatalogueList2]()
 
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .none
         self.amounttf.delegate = self
-        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("SHOWDATA23"), object: nil)
+        //NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("SHOWDATA23"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(methodOfReceivedNotification(notification:)), name: Notification.Name.SHOWDATA23, object: nil)
     }
+    
+    
+    
     @objc func methodOfReceivedNotification(notification: Notification) {
-        guard let yourPassedObject = notification.object as? QS_MyVouchers_VC else {return}
-        if self.vouchersdata[0].productCode == yourPassedObject.productcodeselected{
-        self.selectedPoints = yourPassedObject.selectedPoints
-        self.amount.setTitle(String(self.selectedPoints), for: .normal)
-        NotificationCenter.default.removeObserver(self)
+        DispatchQueue.main.async {
+            guard let yourPassedObject = notification.object as? QS_MyVouchers_VC else {return}
+            print(self.vouchersdata[0].productCode,"cxjhbcjh")
+            print(yourPassedObject.productcodeselected,"skjdhks")
+            print(self.selectedPoints,"skjdhjkdh")
+            if self.vouchersdata[0].productCode == yourPassedObject.productcodeselected {
+            self.selectedPoints = yourPassedObject.selectedPoints
+                self.vouchersdata[0].selectedAmount = yourPassedObject.selectedPoints
+                if self.vouchersdata[0].selectedAmount != 0 {
+                    self.amount.setTitle("\(self.vouchersdata[0].selectedAmount)", for: .normal)
+                }
+            NotificationCenter.default.removeObserver(self)
+            }else{
+                print("NoData","sjdhgd")
+            }
         }
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+    
+    
+    
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField == amounttf{
+        if textField == amounttf {
             guard let textFieldText = amounttf.text,
-                   let rangeOfTextToReplace = Range(range, in: textFieldText) else {
-                       return false
-               }
+                   let rangeOfTextToReplace = Range(range, in: textFieldText) else {return false}
                let substringToReplace = textFieldText[rangeOfTextToReplace]
                let count = textFieldText.count - substringToReplace.count + string.count
-               return count <= 6        }
+               return count <= 6
+        }
         return true
     }
 //    func setdata(redemablePoints:Int){

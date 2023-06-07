@@ -13,6 +13,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 import Foundation
 struct ObjCatalogueList2 : Codable {
+    var selectedAmount = 0
 	let catalogueId : Int?
 	let catalogueName : Int?
 	let productName : String?

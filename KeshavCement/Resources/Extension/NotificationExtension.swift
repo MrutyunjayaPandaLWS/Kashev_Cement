@@ -34,4 +34,6 @@ extension Notification.Name{
     static let showPopUp = Notification.Name(rawValue: "showPopUp")
     static let deleteAccount = Notification.Name(rawValue: "deleteAccount")
     
+    static let SHOWDATA23 = Notification.Name(rawValue: "SHOWDATA23")
+    
 }
