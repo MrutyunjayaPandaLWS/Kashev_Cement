@@ -151,10 +151,14 @@ class KC_CashTranferApprovalVC: BaseViewController, DPOTPViewDelegate, CashTrans
             self.view.makeToast("EnterOTP".localiz(), duration: 2.0, position: .bottom)
         }else if self.enteredValue.count != 6{
             self.view.makeToast("EntervalidOTP".localiz(), duration: 2.0, position: .bottom)
-        }else if self.receivedOTP != self.enteredValue{
-            self.view.makeToast("EntercorrectOTP".localiz(), duration: 2.0, position: .bottom)
-        }else{
-            self.cashTransferSubmissionApi(partyLoyalty: self.customerLoyaltyId, remarks: self.remarks, status: self.status, cashTransferId: self.cashTransferId)
+        }
+//        else if self.receivedOTP != self.enteredValue{
+//            self.view.makeToast("EntercorrectOTP".localiz(), duration: 2.0, position: .bottom)
+//        }
+        else{
+            
+            self.VM.serverOTP(mobileNumber: self.customerMobile, otpNumber: enteredValue)
+            
         }
     }
     

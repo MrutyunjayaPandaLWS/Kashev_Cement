@@ -137,29 +137,37 @@ class KC_RegisterVC:  BaseViewController, UITextFieldDelegate {
                 self.view.makeToast("EnterOTP".localiz(), duration: 2.0, position: .bottom)
             }else if self.enteredValue.count != 6{
                 self.view.makeToast("EntervalidOTP".localiz(), duration: 2.0, position: .bottom)
-            }else if self.receivedOTP != self.enteredValue{
-                self.view.makeToast("EntercorrectOTP".localiz(), duration: 2.0, position: .bottom)
-            }else{
+            }
+//            else if self.receivedOTP != self.enteredValue{
+//                self.view.makeToast("EntercorrectOTP".localiz(), duration: 2.0, position: .bottom)
+//            }
+            else{
                 self.VM.timer.invalidate()
-                if self.categoryId == 1 || self.categoryId == 2{
-                    let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_RegistrationReferralCodeVC") as! KC_RegistrationReferralCodeVC
-                    vc.referralCode = "Check"
-                    vc.enteredMobile = self.mobileNumberTF.text ?? ""
-                    vc.customerTypeName = self.filterLbl.text ?? ""
-                    print(self.filterLbl.text ?? "", "asdfkasdhlfahksdflahlksdfhklads")
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }else{
-                    let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_SignUpVC") as! KC_SignUpVC
-                    vc.enteredMobile = self.mobileNumberTF.text ?? ""
-                    vc.customerTypeName = self.filterLbl.text ?? ""
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
+                self.VM.serverOTP(mobileNumber: self.mobileNumberTF.text ?? "", otpNumber: enteredValue)
                 
             }
 
         }
 
     }
+    
+    func submitToRegistorData(){
+        if self.categoryId == 1 || self.categoryId == 2{
+            let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_RegistrationReferralCodeVC") as! KC_RegistrationReferralCodeVC
+            vc.referralCode = "Check"
+            vc.enteredMobile = self.mobileNumberTF.text ?? ""
+            vc.customerTypeName = self.filterLbl.text ?? ""
+            print(self.filterLbl.text ?? "", "asdfkasdhlfahksdflahlksdfhklads")
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_SignUpVC") as! KC_SignUpVC
+            vc.enteredMobile = self.mobileNumberTF.text ?? ""
+            vc.customerTypeName = self.filterLbl.text ?? ""
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    
     
     @IBAction func resendOTPBtn(_ sender: Any) {
         

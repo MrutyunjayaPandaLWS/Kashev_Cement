@@ -143,16 +143,21 @@ class KC_EvoucherPopUpVC: BaseViewController, DPOTPViewDelegate{
                 self.view.makeToast("EnterOTP".localiz(), duration: 2.0, position: .bottom)
             }else if self.enteredValue.count != 6{
                 self.view.makeToast("EntervalidOTP".localiz(), duration: 2.0, position: .bottom)
-            }else if self.receivedOTP != self.enteredValue{
-                self.view.makeToast("EntercorrectOTP".localiz(), duration: 2.0, position: .bottom)
-            }else{
+            }
+//            else if self.receivedOTP != self.enteredValue{
+//                self.view.makeToast("EntercorrectOTP".localiz(), duration: 2.0, position: .bottom)
+//            }
+            else{
                 self.VM.timer.invalidate()
-            
-                if self.partyLoyaltyId == ""{
-                    self.redemptionSubmissionApi(loyaltyId: self.loyaltyID, userID: self.userID)
-                }else{
-                    self.redemptionSubmissionApi(loyaltyId: self.partyLoyaltyId, userID: String(self.mappedUserId))
+                
+                if self.itsComeFrom == "CashTransfer"{
+                    self.VM.serverOTP(mobileNumber: self.mobilenumber, otpNumber: self.enteredValue)
+                }else if self.itsComeFrom == "REDEMPTIONSUBMISSION"{
+                    self.VM.serverOTP(mobileNumber: self.mobile, otpNumber: self.enteredValue)
                 }
+                
+               
+                
             }
 
         }else{

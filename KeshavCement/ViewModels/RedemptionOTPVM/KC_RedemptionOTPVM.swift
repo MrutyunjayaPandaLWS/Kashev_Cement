@@ -302,6 +302,7 @@ class KC_RedemptionOTPVM{
 //                        self.VC?.receivedOTP = "123456"
                         let response = result?.returnMessage ?? ""
                         self.VC?.receivedOTP = response
+                        print(response,"Response OTP")
                        
                     }
                 }else{
@@ -359,6 +360,61 @@ class KC_RedemptionOTPVM{
        }
        
        }
+    
+    
+    func serverOTP(mobileNumber : String, otpNumber : String) {
+        DispatchQueue.main.async {
+            self.VC?.startLoading()
+        }
+        let parameters = [
+                "ActionType":"Get Encrypted OTP",
+                "MobileNo": mobileNumber,
+                "OTP": otpNumber,
+                "UserName":""
+        ] as [String: Any]
+        print(parameters)
+        self.requestAPIs.serverOTP_API(parameters: parameters) { (result, error) in
+            if error == nil{
+                if result != nil{
+                    DispatchQueue.main.async {
+                    let response = result?.returnMessage ?? ""
+                        print(response, "- OTP")
+                        if response > "0"{
+                            
+                            if self.VC?.partyLoyaltyId == ""{
+                                self.VC?.redemptionSubmissionApi(loyaltyId: self.VC?.loyaltyID ?? "", userID: self.VC?.userID ?? "")
+                            }else{
+                                self.VC?.redemptionSubmissionApi(loyaltyId: self.VC?.partyLoyaltyId ?? "", userID: String(self.VC?.mappedUserId ?? 0))
+                            }
+                            
+                        }else{
+                            DispatchQueue.main.async{
+                                self.VC?.view.makeToast("Invalid OTP".localiz(), duration: 2.0, position: .bottom)
+//                                let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "HR_PopUpVC") as? HR_PopUpVC
+//                                vc!.delegate = self
+//                                vc!.titleInfo = ""
+//                                vc!.descriptionInfo = "Invalid OTP"
+//                                vc!.modalPresentationStyle = .overCurrentContext
+//                                vc!.modalTransitionStyle = .crossDissolve
+//                                self.VC?.present(vc!, animated: true, completion: nil)
+                            }
+                        }
+                        self.VC?.stopLoading()
+                    }
+                }else{
+                    DispatchQueue.main.async {
+                        self.VC?.stopLoading()
+                    }
+                }
+            }else{
+                DispatchQueue.main.async {
+                    self.VC?.stopLoading()
+                }
+            }
+        }
+    }
+    
+    
     
     
 }

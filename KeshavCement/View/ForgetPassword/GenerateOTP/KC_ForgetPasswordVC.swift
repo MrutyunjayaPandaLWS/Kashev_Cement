@@ -145,27 +145,36 @@ class KC_ForgetPasswordVC: BaseViewController, DPOTPViewDelegate{
                     self.view.makeToast("EnterOTP".localiz(), duration: 2.0, position: .bottom)
                 }else if self.enteredValue.count != 6{
                     self.view.makeToast("EntervalidOTP".localiz(), duration: 2.0, position: .bottom)
-                }else if self.receivedOTP != self.enteredValue{
-                    self.view.makeToast("EntercorrectOTP".localiz(), duration: 2.0, position: .bottom)
-                }else{
+                }
+//            else if self.receivedOTP != self.enteredValue{
+//                    self.view.makeToast("EntercorrectOTP".localiz(), duration: 2.0, position: .bottom)
+//                }
+            else{
                     self.VM.timer.invalidate()
-                    let parameter = [
-                        "Password": "123456",
-                        "UserName": "\(self.mobileNumberTF.text ?? "")",
-                            "UserActionType": "GetPasswordDetails",
-                            "Browser": "iOS",
-                            "LoggedDeviceName": "iOS",
-                            "PushID": "vfd87vuifu",
-                            "UserType": "Customer"
-                    ] as [String: Any]
-                    print(parameter)
-                    self.VM.loginSubmissionApi(parameter: parameter)
+                    self.VM.serverOTP(mobileNumber: self.mobileNumberTF.text ?? "", otpNumber: enteredValue)
                    
                 }
 
             }
 
         }
+    
+    
+    
+    
+    func submitAPI(){
+        let parameter = [
+            "Password": "123456",
+            "UserName": "\(self.mobileNumberTF.text ?? "")",
+                "UserActionType": "GetPasswordDetails",
+                "Browser": "iOS",
+                "LoggedDeviceName": "iOS",
+                "PushID": "vfd87vuifu",
+                "UserType": "Customer"
+        ] as [String: Any]
+        print(parameter)
+        self.VM.loginSubmissionApi(parameter: parameter)
+    }
 
     
     

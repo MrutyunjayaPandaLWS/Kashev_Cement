@@ -192,27 +192,43 @@ class KC_CashTranferPopUpVC: BaseViewController, DPOTPViewDelegate, SelectedData
                 self.view.makeToast("EnterOTP".localiz(), duration: 2.0, position: .bottom)
             }else if self.enteredValue.count != 6{
                 self.view.makeToast("EntervalidOTP".localiz(), duration: 2.0, position: .bottom)
-            }else if self.receivedOTP != self.enteredValue{
-                self.view.makeToast("EntercorrectOTP".localiz(), duration: 2.0, position: .bottom)
-            }else{
+            }
+//        else if self.receivedOTP != self.enteredValue{
+//                self.view.makeToast("EntercorrectOTP".localiz(), duration: 2.0, position: .bottom)
+//            }
+        else{
+            self.VM.serverOTP(mobileNumber: self.mobile, otpNumber: self.enteredValue)
+            self.VM.timer.invalidate()
                 
-                print(self.stateID)
-                print(self.mobile)
-                print(self.address1)
-                print(self.stateName)
-                print(self.cityID)
-                print(self.cityName)
-                print(self.pincode)
-                print(self.customerName)
-                print(self.emailId)
-                self.VM.timer.invalidate()
-                if Int(self.noOfPointsRequired)! <= Int(self.pointBalance)!{
-                    self.cashTransferSubmissionApi(noOfPointsRequired: self.noOfPointsRequired, productCode: self.productCode, productImage: self.productImage, productName: self.productName, categoryId: Int(self.categoryId)!, termsandCondition: self.termsandCondition, vendorId: Int(self.vendorId)!, vendorName: self.vendorName)
-                }else{
-                    self.view.makeToast("Insufficentpointbalance".localiz(), duration: 2.0, position: .bottom)
-                }
+//                print(self.stateID)
+//                print(self.mobile)
+//                print(self.address1)
+//                print(self.stateName)
+//                print(self.cityID)
+//                print(self.cityName)
+//                print(self.pincode)
+//                print(self.customerName)
+//                print(self.emailId)
+
+//                if Int(self.noOfPointsRequired)! <= Int(self.pointBalance)!{
+//                    self.cashTransferSubmissionApi(noOfPointsRequired: self.noOfPointsRequired, productCode: self.productCode, productImage: self.productImage, productName: self.productName, categoryId: Int(self.categoryId)!, termsandCondition: self.termsandCondition, vendorId: Int(self.vendorId)!, vendorName: self.vendorName)
+//                }else{
+//                    self.view.makeToast("Insufficentpointbalance".localiz(), duration: 2.0, position: .bottom)
+//                }
             }
     }
+    
+    func cashVoucher(){
+        if Int(self.noOfPointsRequired)! <= Int(self.pointBalance)!{
+            self.cashTransferSubmissionApi(noOfPointsRequired: self.noOfPointsRequired, productCode: self.productCode, productImage: self.productImage, productName: self.productName, categoryId: Int(self.categoryId)!, termsandCondition: self.termsandCondition, vendorId: Int(self.vendorId)!, vendorName: self.vendorName)
+        }else{
+            self.view.makeToast("Insufficentpointbalance".localiz(), duration: 2.0, position: .bottom)
+        }
+    }
+    
+    
+    
+    
     @IBAction func okBtn(_ sender: Any) {
         self.VM.timer.invalidate()
         self.cashTransferView.isHidden = true

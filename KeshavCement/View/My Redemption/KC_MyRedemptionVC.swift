@@ -230,8 +230,8 @@ extension KC_MyRedemptionVC: UITableViewDelegate,UITableViewDataSource{
             
             if redemptionDate.count != 0 {
                 
-                let dateFormatted = convertDateFormater(String(redemptionDate[0]), fromDate: "MM/dd/yyyy", toDate: "dd/MM/yyyy")
-                cell.redemptionDateLbl.text = "\(dateFormatted)"
+               // let dateFormatted = convertDateFormater(String(redemptionDate[0]), fromDate: "MM/dd/yyyy", toDate: "dd/MM/yyyy")
+                cell.redemptionDateLbl.text = "\(redemptionDate[0])"
             }else{
                 cell.redemptionDateLbl.text = "-"
             }

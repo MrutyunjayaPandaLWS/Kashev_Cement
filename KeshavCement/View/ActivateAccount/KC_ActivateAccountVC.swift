@@ -146,12 +146,14 @@ class KC_ActivateAccountVC: BaseViewController, UITextFieldDelegate {
                 self.view.makeToast("EnterOTP".localiz(), duration: 2.0, position: .bottom)
             }else if self.enteredValue.count != 6{
                 self.view.makeToast("EntervalidOTP".localiz(), duration: 2.0, position: .bottom)
-            }else if self.receivedOTP != self.enteredValue{
-                self.view.makeToast("EntercorrectOTP".localiz(), duration: 2.0, position: .bottom)
-            }else{
+            }
+//            else if self.receivedOTP != self.enteredValue{
+//                self.view.makeToast("EntercorrectOTP".localiz(), duration: 2.0, position: .bottom)
+//            }
+            else{
                 self.VM.timer.invalidate()
-                self.getAccountDetailsApi()
-               
+//                self.getAccountDetailsApi()
+                self.VM.serverOTP(mobileNumber: self.mobileNumberTF.text ?? "", otpNumber: enteredValue)
                
             }
 

@@ -81,3 +81,4 @@ let getProductDetails_URLMethodName = "GetProductDetails"
 let saveParentAndChildMapping_URLMethodName = "SaveParentAndChildMapping"
 
 let deleteAccount_URLMethodName = "CustomerAccountDelete"
+let isvalidateOTP_URLMethode = "IsvalidateOTP"

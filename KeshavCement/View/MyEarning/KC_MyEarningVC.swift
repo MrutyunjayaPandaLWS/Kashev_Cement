@@ -147,10 +147,10 @@ extension KC_MyEarningVC : UITableViewDelegate,UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "KC_MyEarningTVC") as! KC_MyEarningTVC
         cell.selectionStyle = .none
         let receivedDate = String(self.VM.myEarningListArray[indexPath.row].jTranDate ?? "-").split(separator: " ")
-        let convertedFormat = convertDateFormater(String(receivedDate[0]), fromDate: "MM/dd/yyyy", toDate: "dd/MM/yyyy")
+        //let convertedFormat = convertDateFormater(String(receivedDate[0]), fromDate: "MM/dd/yyyy", toDate: "dd/MM/yyyy")
        
         if receivedDate.count != 0 {
-            cell.dateHeaderLbl.text = convertedFormat
+            cell.dateHeaderLbl.text = "\(receivedDate[0])"
             //cell.timeLbl.text = "\(receivedDate[1])"
         }else{
             cell.dateHeaderLbl.text = "-"

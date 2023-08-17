@@ -24,6 +24,8 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
                 print(Int(self.vm.myvouchersArray[tappedIndexPath.row].min_points!)!)
                 print(Int(self.vm.myvouchersArray[tappedIndexPath.row].max_points!)!)
                 print(amt)
+                self.mimPoints = self.vm.myvouchersArray[tappedIndexPath.row].min_points ?? ""
+                self.maxPoints = self.vm.myvouchersArray[tappedIndexPath.row].max_points ?? ""
                 if amt < Int(self.vm.myvouchersArray[tappedIndexPath.row].min_points!)! || amt > Int(self.vm.myvouchersArray[tappedIndexPath.row].max_points!)!{
 //                    cell.filter.backgroundColor = UIColor.gray
 //                    cell.filter.isEnabled = false
@@ -68,9 +70,16 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
     }
     
     func redeemDidTap(_ cell: QS_Vouchers_TVC) {
-        print(cell.vouchersdata[0].min_points ?? "-1")
+        print(cell.vouchersdata[0].min_points ?? "-1","minPoints")
+        print(cell.vouchersdata[0].max_points ?? "-1","maxPoints")
         if cell.vouchersdata[0].min_points ?? "-1" != "-1" || cell.vouchersdata[0].max_points ?? "-1" != "-1"{
-            if cell.amounttf.text?.count == 0{
+            
+            let amt = Int(cell.amounttf.text ?? "0") ?? 0
+            self.mimPoints = cell.vouchersdata[0].min_points ?? ""
+            self.maxPoints = cell.vouchersdata[0].max_points ?? ""
+            print(self.mimPoints,"khubu")
+            print(self.maxPoints,"kmhjopgjfnio")
+            if amt < Int(cell.vouchersdata[0].min_points ?? "")! || amt > Int(cell.vouchersdata[0].max_points ?? "")! || cell.amounttf.text?.count == 0{
                 self.alertmsg(alertmsg: "Enter_amount_to_redeem".localiz(), buttonalert: "OK")
             }else{
                 if Int(self.overAllPts)! >= Int(cell.amounttf.text ?? "0")!{
@@ -85,6 +94,8 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
                             self.present(vc!, animated: true, completion: nil)
                         }
                     }else{
+                        print(self.mimPoints,"MimPoints")
+                        print(self.maxPoints,"MaxPoints")
                         self.popView.isHidden = false
                         
                         if self.mobile == ""{
@@ -221,7 +232,8 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
     var receivedOTP = ""
     var mobile = ""
     var firstNAME = ""
-    
+    var mimPoints = ""
+    var maxPoints = ""
     var partyLoyaltyId = ""
     let vm = QS_Vouchers_VM()
     var filteredArray = [GetDataFromVoucher]()
@@ -375,22 +387,29 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
             self.view.makeToast("EnterOTP".localiz(), duration: 2.0, position: .bottom)
         }else if self.enteredValue.count != 6{
             self.view.makeToast("EntervalidOTP".localiz(), duration: 2.0, position: .bottom)
-        }else if self.receivedOTP != self.enteredValue{
-            self.view.makeToast("EntercorrectOTP".localiz(), duration: 2.0, position: .bottom)
-        }else{
+        }
+//        else if self.receivedOTP != self.enteredValue{
+//            self.view.makeToast("EntercorrectOTP".localiz(), duration: 2.0, position: .bottom)
+//        }
+        else{
             let yesterday = "\(Calendar.current.date(byAdding: .day, value: 0, to: Date())!)"
             let today = yesterday.split(separator: " ")
             let desiredDateFormat = self.convertDateFormater("\(today[0])", fromDate: "yyyy-MM-dd", toDate: "yyyy-MM-dd")
            print("\(desiredDateFormat)")
             print(layaltyID,"dlksd")
             
+            self.vm.serverOTP(mobileNumber: self.receiverMobile, otpNumber: self.enteredValue)
             
-            self.vm.voucherSubmission(ReceiverMobile: self.receiverMobile, ActorId: self.actorId, CountryID: self.countryID, MerchantId: Int(self.merchantId)!, CatalogueId: self.catalogueId, DeliveryType: self.deliveryType, pointsrequired: self.pointsrequired, ProductCode: self.productCode, ProductImage: self.productImage, ProductName: self.productName, NoOfQuantity: "1", VendorId: Int(self.vendorId)!, VendorName: self.vendorName, ReceiverEmail: self.receiverEmail, ReceiverName: self.firstname, LoyaltyId: layaltyID)
+            
             
         }
         
     }
     
+    
+    func voucherSubmitAPI(){
+        self.vm.voucherSubmission(ReceiverMobile: self.receiverMobile, ActorId: self.actorId, CountryID: self.countryID, MerchantId: Int(self.merchantId)!, CatalogueId: self.catalogueId, DeliveryType: self.deliveryType, pointsrequired: self.pointsrequired, ProductCode: self.productCode, ProductImage: self.productImage, ProductName: self.productName, NoOfQuantity: "1", VendorId: Int(self.vendorId)!, VendorName: self.vendorName, ReceiverEmail: self.receiverEmail, ReceiverName: self.firstname, LoyaltyId: layaltyID)
+    }
 
     
     func generateOTPApi(mobilenumber: String,userID: String,loyaltyId: String, firstname: String){

@@ -213,4 +213,55 @@ class QS_Vouchers_VM{
         }
     }
     
+    func serverOTP(mobileNumber : String, otpNumber : String) {
+        DispatchQueue.main.async {
+            self.VC?.startLoading()
+        }
+        let parameters = [
+                "ActionType":"Get Encrypted OTP",
+                "MobileNo": mobileNumber,
+                "OTP": otpNumber,
+                "UserName":""
+        ] as [String: Any]
+        print(parameters)
+        self.requestAPIs.serverOTP_API(parameters: parameters) { (result, error) in
+            if error == nil{
+                if result != nil{
+                    DispatchQueue.main.async {
+                    let response = result?.returnMessage ?? ""
+                        print(response, "- OTP")
+                        if response > "0"{
+                            self.VC?.voucherSubmitAPI()
+                            //self.voucherSubmission(ReceiverMobile: self.VC?.receiverMobile, ActorId: self.VC?.actorId, CountryID: self.VC?.countryID, MerchantId: Int(self.VC?.merchantId)!, CatalogueId: self.VC?.catalogueId, DeliveryType: self.VC?.deliveryType, pointsrequired: self.pointsrequired, ProductCode: self.productCode, ProductImage: self.productImage, ProductName: self.productName, NoOfQuantity: "1", VendorId: Int(self.vendorId)!, VendorName: self.vendorName, ReceiverEmail: self.receiverEmail, ReceiverName: self.firstname, LoyaltyId: self.VC?.layaltyID)
+                            
+                        }else{
+                            DispatchQueue.main.async{
+                                self.VC?.view.makeToast("Invalid OTP".localiz(), duration: 2.0, position: .bottom)
+//                                let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "HR_PopUpVC") as? HR_PopUpVC
+//                                vc!.delegate = self
+//                                vc!.titleInfo = ""
+//                                vc!.descriptionInfo = "Invalid OTP"
+//                                vc!.modalPresentationStyle = .overCurrentContext
+//                                vc!.modalTransitionStyle = .crossDissolve
+//                                self.VC?.present(vc!, animated: true, completion: nil)
+                            }
+                        }
+                        self.VC?.stopLoading()
+                    }
+                }else{
+                    DispatchQueue.main.async {
+                        self.VC?.stopLoading()
+                    }
+                }
+            }else{
+                DispatchQueue.main.async {
+                    self.VC?.stopLoading()
+                }
+            }
+        }
+    }
+    
+    
+    
+    
 }
