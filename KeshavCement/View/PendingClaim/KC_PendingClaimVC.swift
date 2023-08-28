@@ -230,15 +230,23 @@ class KC_PendingClaimVC: BaseViewController, DataUpdateDelegate, DPOTPViewDelega
             self.view.makeToast("EnterOTP".localiz(), duration: 2.0, position: .bottom)
         }else if self.enteredValue.count != 6{
             self.view.makeToast("EntervalidOTP".localiz(), duration: 2.0, position: .bottom)
-        }else if self.receivedOTP != self.enteredValue{
-            self.view.makeToast("EntercorrectOTP".localiz(), duration: 2.0, position: .bottom)
-        }else{
-            let yesterday = "\(Calendar.current.date(byAdding: .day, value: 0, to: Date())!)"
-            let today = yesterday.split(separator: " ")
-            let desiredDateFormat = self.convertDateFormater("\(today[0])", fromDate: "yyyy-MM-dd", toDate: "yyyy-MM-dd")
-           print("\(desiredDateFormat)")
-            self.pendingClaimSubmissionApi()
         }
+//        else if self.receivedOTP != self.enteredValue{
+//            self.view.makeToast("EntercorrectOTP".localiz(), duration: 2.0, position: .bottom)
+//        }
+        else{
+            self.VM.serverOTP(mobileNumber: self.claimedMobileNumber, otpNumber: enteredValue)
+        }
+    }
+    
+    
+    
+    func submitClaimsAPI(){
+        let yesterday = "\(Calendar.current.date(byAdding: .day, value: 0, to: Date())!)"
+        let today = yesterday.split(separator: " ")
+        let desiredDateFormat = self.convertDateFormater("\(today[0])", fromDate: "yyyy-MM-dd", toDate: "yyyy-MM-dd")
+       print("\(desiredDateFormat)")
+        self.pendingClaimSubmissionApi()
     }
     
     

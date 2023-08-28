@@ -80,12 +80,14 @@ class EgiftVoucherDetailsVC: BaseViewController, UITextFieldDelegate, pointsDele
     var mobile = ""
     var firstNAME = ""
     
+    var actorId = ""
+    
     var mappedUserId = -1
     var vm = QS_VouchersDetails_VM()
     var recieverMobile = ""
     let redemablePointBalance = UserDefaults.standard.integer(forKey: "PointsBalance")
 //    let userID = UserDefaults.standard.string(forKey: "UserID") ?? "-1"
-    let layaltyID = UserDefaults.standard.string(forKey: "LoyaltyID") ?? ""
+    let layaltyID = UserDefaults.standard.string(forKey: "LoyaltyId") ?? ""
 //    var mobilenumber = UserDefaults.standard.string(forKey: "Mobile") ?? ""
     var emailid = UserDefaults.standard.string(forKey: "CustomerEmail") ?? ""
     var firstname = UserDefaults.standard.string(forKey: "FirstName") ?? ""
@@ -99,6 +101,7 @@ class EgiftVoucherDetailsVC: BaseViewController, UITextFieldDelegate, pointsDele
         super.viewDidLoad()
         self.vm.VC = self
         self.popView.isHidden = true
+        print(actorId,"jdfgiuh")
         localization()
 //        myVouchersDetailsTableView.delegate = self
 //        myVouchersDetailsTableView.dataSource = self
@@ -265,11 +268,13 @@ class EgiftVoucherDetailsVC: BaseViewController, UITextFieldDelegate, pointsDele
                             }
                         }else{
                             self.popView.isHidden = false
-                            if self.mobile == ""{
+                            print(recieverMobile,"dflkjggkf")
+                            print(mappedUserId,"fkdhgfuhh")
+                            if self.recieverMobile == ""{
                                 self.generateOTPApi(mobilenumber: mobilenumber , userID: self.userID, firstname: firstname)
                                 
                             }else{
-                                self.generateOTPApi(mobilenumber: mobile , userID: "\(self.mappedUserId)", firstname: firstNAME)
+                                self.generateOTPApi(mobilenumber: recieverMobile , userID: "\(self.mappedUserId)", firstname: firstNAME)
                             }
                             
                             
@@ -297,11 +302,13 @@ class EgiftVoucherDetailsVC: BaseViewController, UITextFieldDelegate, pointsDele
                         }
                     }else{
                         self.popView.isHidden = false
-                        if self.mobile == ""{
+                        print(recieverMobile,"dflkjggkf")
+                        print(mappedUserId,"fkdhgfuhh")
+                        if self.recieverMobile == ""{
                             self.generateOTPApi(mobilenumber: mobilenumber , userID: self.userID, firstname: firstname)
                             
                         }else{
-                            self.generateOTPApi(mobilenumber: mobile , userID: "\(self.mappedUserId)", firstname: firstNAME)
+                            self.generateOTPApi(mobilenumber: recieverMobile , userID: "\(self.mappedUserId)", firstname: firstNAME)
                         }
                     }
                 }else{
@@ -312,7 +319,7 @@ class EgiftVoucherDetailsVC: BaseViewController, UITextFieldDelegate, pointsDele
     }
     @IBAction func enteramounttf(_ sender: Any) {
         if amounttextfield.text != ""{
-            let amt = Int(amounttextfield.text ?? "0")!
+            let amt = Int(amounttextfield.text ?? "0") ?? 0
             if amt < Int(voucherMinPoints)! || amt > Int(voucherMaxPoints)!{
                 self.redeemButton.backgroundColor = UIColor.lightGray
                 self.redeemButton.isEnabled = false
@@ -334,11 +341,12 @@ class EgiftVoucherDetailsVC: BaseViewController, UITextFieldDelegate, pointsDele
     
     @IBAction func resendOTPBtn(_ sender: Any) {
             self.vm.timer.invalidate()
-        if self.mobile == ""{
+        
+        if self.recieverMobile == ""{
             self.generateOTPApi(mobilenumber: mobilenumber , userID: self.userID, firstname: firstname)
             
         }else{
-            self.generateOTPApi(mobilenumber: mobile , userID: "\(self.mappedUserId)", firstname: firstNAME)
+            self.generateOTPApi(mobilenumber: recieverMobile , userID: "\(self.mappedUserId)", firstname: firstNAME)
         }
     }
     @IBAction func closeBtn(_ sender: Any) {
@@ -351,22 +359,37 @@ class EgiftVoucherDetailsVC: BaseViewController, UITextFieldDelegate, pointsDele
             self.view.makeToast("EnterOTP".localiz(), duration: 2.0, position: .bottom)
         }else if self.enteredValue.count != 6{
             self.view.makeToast("EntervalidOTP".localiz(), duration: 2.0, position: .bottom)
-        }else if self.receivedOTP != self.enteredValue{
-            self.view.makeToast("EntercorrectOTP".localiz(), duration: 2.0, position: .bottom)
-        }else{
-            let yesterday = "\(Calendar.current.date(byAdding: .day, value: 0, to: Date())!)"
-            let today = yesterday.split(separator: " ")
-            let desiredDateFormat = self.convertDateFormater("\(today[0])", fromDate: "yyyy-MM-dd", toDate: "yyyy-MM-dd")
-            print("\(desiredDateFormat)")
+        }
+//        else if self.receivedOTP != self.enteredValue{
+//            self.view.makeToast("EntercorrectOTP".localiz(), duration: 2.0, position: .bottom)
+//        }
+        else{
             if self.recieverMobile == ""{
-                self.vm.voucherSubmission(ReceiverMobile: mobilenumber, ActorId: userID, CountryID: voucherCountryID, MerchantId: merchantID, CatalogueId: voucherID, DeliveryType: voucherdelivarytype, pointsrequired: String(selectedPoints), ProductCode: voucherCode, ProductImage: voucherImag, ProductName: voucherName, NoOfQuantity: "1", VendorId: vouchervendorID, VendorName: vouchervendorname, ReceiverEmail: emailid, ReceiverName: firstname, LoyaltyId: layaltyID)
+                self.vm.serverOTP(mobileNumber: self.mobilenumber, otpNumber: enteredValue)
             }else{
-                self.vm.voucherSubmission(ReceiverMobile: self.recieverMobile, ActorId: "\(self.mappedUserId)", CountryID: voucherCountryID, MerchantId: merchantID, CatalogueId: voucherID, DeliveryType: voucherdelivarytype, pointsrequired: String(selectedPoints), ProductCode: voucherCode, ProductImage: voucherImag, ProductName: voucherName, NoOfQuantity: "1", VendorId: vouchervendorID, VendorName: vouchervendorname, ReceiverEmail: emailid, ReceiverName: firstname, LoyaltyId: layaltyID)
+                self.vm.serverOTP(mobileNumber: self.recieverMobile, otpNumber: enteredValue)
             }
             
         }
         
     }
+    
+    
+    func submitVoucherAPI(){
+        let yesterday = "\(Calendar.current.date(byAdding: .day, value: 0, to: Date())!)"
+        let today = yesterday.split(separator: " ")
+        let desiredDateFormat = self.convertDateFormater("\(today[0])", fromDate: "yyyy-MM-dd", toDate: "yyyy-MM-dd")
+        print("\(desiredDateFormat)")
+        print(recieverMobile,"dflkjggkf")
+        print(mappedUserId,"fkdhgfuhh")
+        if self.mappedUserId == -1{
+            self.vm.voucherSubmission(ReceiverMobile: mobilenumber, ActorId: userID, CountryID: voucherCountryID, MerchantId: merchantID, CatalogueId: voucherID, DeliveryType: voucherdelivarytype, pointsrequired: String(selectedPoints), ProductCode: voucherCode, ProductImage: voucherImag, ProductName: voucherName, NoOfQuantity: "1", VendorId: vouchervendorID, VendorName: vouchervendorname, ReceiverEmail: emailid, ReceiverName: firstname, LoyaltyId: layaltyID)
+        }else{
+            self.vm.voucherSubmission(ReceiverMobile: self.recieverMobile, ActorId: "\(self.mappedUserId)", CountryID: voucherCountryID, MerchantId: merchantID, CatalogueId: voucherID, DeliveryType: voucherdelivarytype, pointsrequired: String(selectedPoints), ProductCode: voucherCode, ProductImage: voucherImag, ProductName: voucherName, NoOfQuantity: "1", VendorId: vouchervendorID, VendorName: vouchervendorname, ReceiverEmail: emailid, ReceiverName: firstname, LoyaltyId: layaltyID)
+        }
+    }
+    
+    
     
 
     

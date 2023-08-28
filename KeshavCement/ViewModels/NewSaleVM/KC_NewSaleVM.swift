@@ -161,5 +161,46 @@ class KC_NewSaleVM{
         }
         
     }
+    
+    func serverOTP(mobileNumber : String, otpNumber : String) {
+        DispatchQueue.main.async {
+            self.VC?.startLoading()
+        }
+        let parameters = [
+            "ActionType":"Get Encrypted OTP",
+            "MobileNo": mobileNumber,
+            "OTP": otpNumber,
+            "UserName":""
+        ] as [String: Any]
+        print(parameters)
+        self.requestAPIs.serverOTP_API(parameters: parameters) { (result, error) in
+            if error == nil{
+                if result != nil{
+                    DispatchQueue.main.async {
+                        let response = result?.returnMessage ?? ""
+                        print(response, "- OTP")
+                        if response > "0"{
+                            self.VC?.claimSubmissionWithOTP()
+                        }else{
+                            DispatchQueue.main.async{
+                                self.VC?.view.makeToast("Invalid OTP".localiz(), duration: 2.0, position: .bottom)
+                            }
+                        }
+                        self.VC?.stopLoading()
+                    }
+                }else{
+                    DispatchQueue.main.async {
+                        self.VC?.stopLoading()
+                    }
+                }
+            }else{
+                DispatchQueue.main.async {
+                    self.VC?.stopLoading()
+                }
+            }
+        }
+    }
+    
+    
 }
 

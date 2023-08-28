@@ -257,10 +257,10 @@ extension KC_RedemptionTypeVC: UITableViewDelegate,UITableViewDataSource{
 //        if  self.VM.myredemptionListArray.count != 0 {
             let redemptionDate = "\(self.VM.myredemptionListArray[indexPath.row].jRedemptionDate ?? "-")".split(separator: " ")
     
-        let convertedFormat = convertDateFormater(String(redemptionDate[0]), fromDate: "MM/dd/yyyy", toDate: "dd/MM/yyyy")
+        //let convertedFormat = convertDateFormater(String(redemptionDate[0]), fromDate: "MM/dd/yyyy", toDate: "dd/MM/yyyy")
         
             if redemptionDate.count != 0 {
-                cell.currentTransferDateLbl.text = "\(convertedFormat)"
+                cell.currentTransferDateLbl.text = "\(redemptionDate[0])"
             }else{
                 cell.currentTransferDateLbl.text = "-"
             }

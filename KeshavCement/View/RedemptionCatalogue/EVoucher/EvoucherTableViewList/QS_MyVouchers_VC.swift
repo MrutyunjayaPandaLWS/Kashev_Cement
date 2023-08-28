@@ -524,6 +524,7 @@ extension QS_MyVouchers_VC{
             vc?.voucherdelivarytype = self.vm.myvouchersArray[indexPath.row].deliveryType ?? ""
             vc?.mappedUserId = self.mappedUserId
             vc?.firstNAME = self.firstNAME
+            vc?.actorId = self.actorId
             print(self.mobile)
             if self.mobile == ""{
                 vc?.recieverMobile = self.mobilenumber

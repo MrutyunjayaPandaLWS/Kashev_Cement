@@ -83,7 +83,7 @@ class QS_VouchersDetails_VM{
                         "ProductCode": ProductCode,
                         "ProductImage": ProductImage,
                         "ProductName": ProductName,
-                        "RedemptionId": 1,
+                        "RedemptionId": 0,
                         "RedemptionTypeId": 4,
                         "NoOfQuantity": 1,
                         "Status": 0,
@@ -102,7 +102,7 @@ class QS_VouchersDetails_VM{
             if error == nil {
                 if result != nil{
                     DispatchQueue.main.async {
-                        print(result?.returnMessage ?? "")
+                        print(result?.returnMessage ?? "","Return Message")
                         let message = result?.returnMessage ?? ""
 
                         if message.count != 0 {
@@ -169,5 +169,56 @@ class QS_VouchersDetails_VM{
             }
         }
     }
+    
+    
+    
+    
+    func serverOTP(mobileNumber : String, otpNumber : String) {
+        DispatchQueue.main.async {
+            self.VC?.startLoading()
+        }
+        let parameters = [
+                "ActionType":"Get Encrypted OTP",
+                "MobileNo": mobileNumber,
+                "OTP": otpNumber,
+                "UserName":""
+        ] as [String: Any]
+        print(parameters)
+        self.requestAPIs.serverOTP_API(parameters: parameters) { (result, error) in
+            if error == nil{
+                if result != nil{
+                    DispatchQueue.main.async {
+                    let response = result?.returnMessage ?? ""
+                        print(response, "- OTP")
+                        if response > "0"{
+                            self.VC?.submitVoucherAPI()
+                            //self.VC?.cashTransferSubmissionApi(partyLoyalty: self.VC?.customerLoyaltyId ?? "", remarks: self.VC?.remarks ?? "", status: self.VC?.status ?? 0, cashTransferId: self.VC?.cashTransferId ?? 0)
+                        }else{
+                            DispatchQueue.main.async{
+                                self.VC?.view.makeToast("Invalid OTP".localiz(), duration: 2.0, position: .bottom)
+//                                let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "HR_PopUpVC") as? HR_PopUpVC
+//                                vc!.delegate = self
+//                                vc!.titleInfo = ""
+//                                vc!.descriptionInfo = "Invalid OTP"
+//                                vc!.modalPresentationStyle = .overCurrentContext
+//                                vc!.modalTransitionStyle = .crossDissolve
+//                                self.VC?.present(vc!, animated: true, completion: nil)
+                            }
+                        }
+                        self.VC?.stopLoading()
+                    }
+                }else{
+                    DispatchQueue.main.async {
+                        self.VC?.stopLoading()
+                    }
+                }
+            }else{
+                DispatchQueue.main.async {
+                    self.VC?.stopLoading()
+                }
+            }
+        }
+    }
+    
     
 }

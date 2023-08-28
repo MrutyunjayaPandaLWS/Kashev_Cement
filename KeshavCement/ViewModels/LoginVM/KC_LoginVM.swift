@@ -12,6 +12,7 @@ class KC_LoginVM {
     weak var VC: KC_LoginVC?
     var requestAPIs = RestAPI_Requests()
     var customerTypeArray = [LstAttributesDetails]()
+    
     func verifyMobileNumberAPI(paramters: JSON){
         DispatchQueue.main.async {
             self.VC?.startLoading()

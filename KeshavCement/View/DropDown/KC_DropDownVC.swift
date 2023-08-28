@@ -61,6 +61,7 @@ class KC_DropDownVC: BaseViewController,UISearchBarDelegate {
     var dealerEnrollmentArray = ["Engineer", "Mason", "Sub Dealer"]
     var subDealerEnrollmentArray = ["Engineer", "Mason"]
     var catalogueListTypeArray = ["Select Catalogue Type","Catalogue", "eVouchers", "Dream Gift"]
+    var catalogueListTypeArray1 = ["Select Catalogue Type","Catalogue", "eVouchers", "Dream Gift","Cash Voucher"]
     var cashTransferFilterArray = ["Pending","Approved","Rejected"]
 //    var customerType = ""
     var selectedUserTypeName = ""
@@ -322,7 +323,11 @@ extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
         }else if self.itsFrom == "CLAIMPURCHSSS"{
             return self.VM.mapppedUserNameListArray1.count
         }else if self.itsFrom == "CATALOGUELIST"{
-            return self.catalogueListTypeArray.count
+            if self.customerTypeId == "3"{
+                return self.catalogueListTypeArray1.count
+            }else{
+                return self.catalogueListTypeArray.count
+            }
         }else if self.itsFrom == "STATUSLISTS"{
             return self.cashTransferFilterArray.count
         }else{
@@ -394,12 +399,21 @@ extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
         }else if self.itsFrom == "CASHPOINTS"{
             cell.selectedTitleLbl.text = "\(self.VM.cashDetailsListArray[indexPath.row].amount ?? -1)"
         }else if self.itsFrom == "CATALOGUELIST"{
-            cell.selectedTitleLbl.text = "\(self.catalogueListTypeArray[indexPath.row])"
-            if self.catalogueListTypeArray.count <= 20{
-                self.tableViewHeightConstraint.constant = CGFloat(self.catalogueListTypeArray.count * 40)
+            if self.customerTypeId == "3"{
+                cell.selectedTitleLbl.text = "\(self.catalogueListTypeArray1[indexPath.row])"
+                if self.catalogueListTypeArray1.count <= 20{
+                    self.tableViewHeightConstraint.constant = CGFloat(self.catalogueListTypeArray1.count * 40)
+                }
             }else{
-                self.tableViewHeightConstraint.constant = CGFloat(500)
+                cell.selectedTitleLbl.text = "\(self.catalogueListTypeArray[indexPath.row])"
+                if self.catalogueListTypeArray.count <= 20{
+                    self.tableViewHeightConstraint.constant = CGFloat(self.catalogueListTypeArray.count * 40)
+                }else{
+                    self.tableViewHeightConstraint.constant = CGFloat(500)
+                }
             }
+            
+            
         }else if self.itsFrom == "STATUSLISTS" {
             cell.selectedTitleLbl.text = self.cashTransferFilterArray[indexPath.row]
             self.tableViewHeightConstraint.constant = CGFloat(self.cashTransferFilterArray.count * 40)
@@ -512,19 +526,34 @@ extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
             self.delegate?.didTapMappedUserName!(self)
             self.dismiss(animated: true)
         }else if self.itsFrom == "CATALOGUELIST"{
-            
-            self.selectedCatalogueType = self.catalogueListTypeArray[indexPath.row]
-            if self.selectedCatalogueType == "Select Catalogue Type"{
-                self.selectedCatalogueTypeId = -1
-            }else if self.selectedCatalogueType == "Catalogue"{
-                self.selectedCatalogueTypeId = 1
-            }else if self.selectedCatalogueType == "eVouchers"{
-                self.selectedCatalogueTypeId = 4
-            }else if self.selectedCatalogueType == "Dream Gift"{
-                self.selectedCatalogueTypeId = 3
-            }else if self.selectedCatalogueType == "Cash Voucher"{
-                self.selectedCatalogueTypeId = 9
+            if self.customerTypeId == "3"{
+                self.selectedCatalogueType = self.catalogueListTypeArray1[indexPath.row]
+                if self.selectedCatalogueType == "Select Catalogue Type"{
+                    self.selectedCatalogueTypeId = -1
+                }else if self.selectedCatalogueType == "Catalogue"{
+                    self.selectedCatalogueTypeId = 1
+                }else if self.selectedCatalogueType == "eVouchers"{
+                    self.selectedCatalogueTypeId = 4
+                }else if self.selectedCatalogueType == "Dream Gift"{
+                    self.selectedCatalogueTypeId = 3
+                }else if self.selectedCatalogueType == "Cash Voucher"{
+                    self.selectedCatalogueTypeId = 9
+                }
+            }else{
+                self.selectedCatalogueType = self.catalogueListTypeArray[indexPath.row]
+                if self.selectedCatalogueType == "Select Catalogue Type"{
+                    self.selectedCatalogueTypeId = -1
+                }else if self.selectedCatalogueType == "Catalogue"{
+                    self.selectedCatalogueTypeId = 1
+                }else if self.selectedCatalogueType == "eVouchers"{
+                    self.selectedCatalogueTypeId = 4
+                }else if self.selectedCatalogueType == "Dream Gift"{
+                    self.selectedCatalogueTypeId = 3
+                }else if self.selectedCatalogueType == "Cash Voucher"{
+                    self.selectedCatalogueTypeId = 9
+                }
             }
+            
             self.delegate?.didCatalogueType!(self)
             self.dismiss(animated: true)
         }else if self.itsFrom == "STATUSLISTS" {

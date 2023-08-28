@@ -304,10 +304,12 @@ class KC_NewSaleVC: BaseViewController, SelectedDataDelegate, DPOTPViewDelegate{
             self.view.makeToast("EnterOTP".localiz(), duration: 2.0, position: .bottom)
         }else if self.enteredValue.count != 6{
             self.view.makeToast("EntervalidOTP".localiz(), duration: 2.0, position: .bottom)
-        }else if self.receivedOTP != self.enteredValue{
-            self.view.makeToast("EntercorrectOTP".localiz(), duration: 2.0, position: .bottom)
-        }else{
-            self.claimSubmissionWithOTP()
+        }
+//        else if self.receivedOTP != self.enteredValue{
+//            self.view.makeToast("EntercorrectOTP".localiz(), duration: 2.0, position: .bottom)
+//        }
+        else{
+            self.VM.serverOTP(mobileNumber: self.mobilenumber, otpNumber: enteredValue)
         }
         
         
