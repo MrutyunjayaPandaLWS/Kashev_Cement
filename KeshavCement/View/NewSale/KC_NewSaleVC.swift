@@ -309,7 +309,7 @@ class KC_NewSaleVC: BaseViewController, SelectedDataDelegate, DPOTPViewDelegate{
 //            self.view.makeToast("EntercorrectOTP".localiz(), duration: 2.0, position: .bottom)
 //        }
         else{
-            self.VM.serverOTP(mobileNumber: self.mobilenumber, otpNumber: enteredValue)
+            self.VM.serverOTP(mobileNumber: self.mappedUserMobile, otpNumber: enteredValue)
         }
         
         
