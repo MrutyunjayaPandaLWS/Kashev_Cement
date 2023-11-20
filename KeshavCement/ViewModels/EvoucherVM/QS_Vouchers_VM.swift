@@ -158,7 +158,15 @@ class QS_Vouchers_VM{
                         print(result?.returnMessage ?? "")
                         let message = result?.returnMessage ?? ""
                         let separatedmessage = message.split(separator: "-")
-                        if separatedmessage[1] == "0"{
+                        if separatedmessage.count < 2{
+                            let alertController = UIAlertController(title: "Oops".localiz(), message: "somethingwentWrong".localiz(), preferredStyle: .alert)
+                            let okAction = UIAlertAction(title: "OK".localiz(), style: UIAlertAction.Style.default) {
+                                   UIAlertAction in
+                                self.VC!.navigationController?.popViewController(animated: true)
+                               }
+                               alertController.addAction(okAction)
+                            self.VC!.present(alertController, animated: true, completion: nil)
+                        }else if separatedmessage[1] == "0"{
                             let alertController = UIAlertController(title: "Oops".localiz(), message: "Youdonsufficientvoucher".localiz(), preferredStyle: .alert)
                             let okAction = UIAlertAction(title: "OK".localiz(), style: UIAlertAction.Style.default) {
                                    UIAlertAction in

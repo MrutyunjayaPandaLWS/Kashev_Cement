@@ -40,12 +40,14 @@ class WorkSiteDetailsVM{
                             self.VC!.present(vc, animated: true)
                         }else{
                             self.VC!.view.makeToast("Submissionfailed".localiz(), duration: 2.0, position: .bottom)
+                            self.VC?.submitBtnStatus = true
                           
                         }
                     }
                 }else{
                     DispatchQueue.main.async {
-                        print(error)
+                        self.VC!.view.makeToast("Submissionfailed".localiz(), duration: 2.0, position: .bottom)
+                        self.VC?.submitBtnStatus = true
                         self.VC?.stopLoading()
                     }
                 }

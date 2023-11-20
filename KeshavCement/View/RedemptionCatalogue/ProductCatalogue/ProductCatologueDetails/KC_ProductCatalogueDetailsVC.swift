@@ -219,12 +219,17 @@ class KC_ProductCatalogueDetailsVC: BaseViewController{
                 self.view.makeToast("Alreadyaddedtoplanner".localiz(), duration: 2.0, position: .bottom)
         }
         }else{
-            if self.customerTypeId ?? "" == "3" && self.partyLoyaltyId != "" || self.customerTypeId ?? "" == "4" && self.partyLoyaltyId != ""{
-                    self.VM.addedToPlanner(PartyLoyaltyID: self.partyLoyaltyId)
+            if self.customerTypeId  == "3" || self.customerTypeId == "4"{
+                if self.mappedUserId == -1{
+                    self.VM.addedToPlanner(PartyLoyaltyID: self.loyaltyId,userId: Int(self.userID)!)
+                }else{
+                    self.VM.addedToPlanner(PartyLoyaltyID: self.loyaltyId,userId: self.mappedUserId)
+                }
+                    
             }else if self.customerTypeId ?? "" == "3" && self.partyLoyaltyId == "" || self.customerTypeId ?? "" == "4" && self.partyLoyaltyId == ""{
-                self.VM.addedToPlanner(PartyLoyaltyID: "")
+                self.VM.addedToPlanner(PartyLoyaltyID: "", userId: Int(self.userID)!)
             }else{
-                self.VM.addedToPlanner(PartyLoyaltyID: "")
+                self.VM.addedToPlanner(PartyLoyaltyID: "", userId: Int(self.userID)!)
             }
         }
     }

@@ -132,7 +132,7 @@ class KC_RedemptionTypeVC: BaseViewController, DateSelectedDelegate, SelectedDat
 //        self.pendingBtn.setTitleColor(.white, for: .normal)
 //        self.approvedBtn.setTitleColor(.white, for: .normal)
 //        self.rejectedBtn.setTitleColor(.white, for: .normal)
-     
+        self.selectStatusLbl.text = "Select Status"
         self.selectedStatusId = -1
         self.selectFromDate.text = "SelectFromDate".localiz()
         self.selectToDate.text = "SelectToDate".localiz()

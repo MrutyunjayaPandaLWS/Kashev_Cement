@@ -293,6 +293,7 @@
 "WorkDetails" = "कार्य विवरण";
 "WorkLevel" = "कार्य स्तर";
 "SelectLevel" = "स्तर चुनें";
+"PleaseSelectLevel" = "Please Select Level";
 "TentativeDateofcompletion" = "पूर्ण होने की संभावित तिथि";
 "SelectDate" = "तारीख़ चुनें";
 "Remarks" = "टिप्पणियां";

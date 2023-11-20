@@ -33,7 +33,9 @@ class KC_SiteDetailsVC: BaseViewController, UIImagePickerControllerDelegate,UINa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        picker.delegate = self
+        DispatchQueue.main.async {
+            self.picker.delegate = self
+        }
         self.headerLbl.text = "UploadSiteImages".localiz()
         self.infoLbl.text = "CapturesiteImagestosubmitthedetails".localiz()
         self.changeImageBtn.setTitle("ChangeImage".localiz(), for: .normal)

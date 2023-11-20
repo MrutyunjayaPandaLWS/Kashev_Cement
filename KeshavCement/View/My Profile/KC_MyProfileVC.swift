@@ -17,9 +17,19 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
             self.selectedDOB = vc.selectedDate
             print(selectedDOB, "Selected Date")
         }else if vc.isComeFrom == "ANNIVERSARY"{
+            let dateFormat = DateFormatter()
+            dateFormat.dateFormat = "dd/mm/yyyy"
+            let dateFormat2 = DateFormatter()
+            dateFormat2.dateFormat = "yyyy-mm-dd"
             
             print(vc.selectedDate)
-            if self.dobTF.text ?? "" >= vc.selectedDate{
+            var dateOfBirth = dateFormat.date(from: "\(self.dobTF.text ?? "")")
+            let aniversaryDate = dateFormat.date(from: vc.selectedDate)
+            if dateOfBirth == nil {
+                dateOfBirth = dateFormat2.date(from: "\(self.dobTF.text ?? "")")
+            }
+//            if self.dobTF.text ?? "" >= vc.selectedDate{
+            if dateOfBirth! >= aniversaryDate!{
                 vc.selectedDate = ""
                 self.view.makeToast("AnniversaryDateofbirth".localiz(), duration: 2.0, position: .bottom)
             }else{
@@ -119,6 +129,7 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
     var mobile = ""
     var stateId = ""
     var talukId = ""
+    var cityID = ""
     var zip = ""
     var aadharNumber = ""
     var dob = ""
@@ -128,7 +139,7 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
     var selectedCustomerTypeId = ""
     var selectedCustomerTypeName = ""
     
-    let picker = UIImagePickerController()
+    lazy var picker = UIImagePickerController()
     var strBase64 = ""
     var VM = KC_MyProfileVM()
     var aadharcarNumber = ""
@@ -149,18 +160,25 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
         self.dobTF.isUserInteractionEnabled = false
         mobileNumberTF.delegate = self
         pincodeTF.delegate = self
+        self.mobileNumberTF.keyboardType = .numberPad
+        self.pincodeTF.keyboardType = .numberPad
         headerView.layer.masksToBounds = false
         headerView.layer.shadowRadius = 2
         headerView.layer.shadowOpacity = 0.2
         headerView.layer.shadowColor = UIColor.gray.cgColor
         headerView.layer.shadowOffset = CGSize(width: 0 , height:2)
-        self.picker.delegate = self
+        self.aadharNumberTF.delegate = self
+        DispatchQueue.main.async {
+            self.picker.delegate = self
+        }
         if self.customerTypeId == "1" || self.customerTypeId == "2"{
             self.aadharNumberLbl.text = "AadharNumber".localiz()
+            self.aadharNumberTF.keyboardType = .numberPad
             self.aadharNumberTF.placeholder = "Enteraadharnumber".localiz()
         }else if self.customerTypeId == "3" || self.customerTypeId == "4"{
             self.aadharNumberLbl.text = "GSTNumber".localiz()
             self.aadharNumberTF.placeholder = "EnterGSTnumber".localiz()
+            self.aadharNumberTF.keyboardType = .default
         }
         self.myProfileDetailsApi()
         self.selectedCustomerTypeId = self.customerTypeId
@@ -274,12 +292,14 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
     }
     
     @IBAction func doAButton(_ sender: Any) {
+        /*
         let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "KC_DOBVC") as! KC_DOBVC
         vc.isComeFrom = "ANNIVERSARY"
         vc.delegate = self
         vc.modalTransitionStyle = .coverVertical
         vc.modalPresentationStyle = .overFullScreen
         self.present(vc, animated: true)
+         */
     }
     @IBAction func AadharNumberEditingDidEnd(_ sender: Any) {
         if self.selectedCustomerTypeId == "1" || self.selectedCustomerTypeId == "2"{
@@ -353,6 +373,7 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
                         "Mobile": self.mobileNumberTF.text ?? "",
                         "RELATED_PROJECT_TYPE": "KESHAV_CEMENT",
                         "StateId": "\(self.stateId)",
+                        "CityId": "\(self.cityID)",
                         "TalukId": "\(self.talukId)",
                         "Zip": self.pincodeTF.text ?? "",
                         "AadharNumber": self.aadharNumberTF.text ?? "",
@@ -381,6 +402,7 @@ class KC_MyProfileVC: BaseViewController,DateSelectedDelegate, UITextFieldDelega
                         "Mobile": self.mobileNumberTF.text ?? "",
                         "RELATED_PROJECT_TYPE": "KESHAV_CEMENT",
                         "StateId": "\(self.stateId)",
+                        "CityId": "\(self.cityID)",
                         "TalukId": "\(self.talukId)",
                         "Zip": self.pincodeTF.text ?? "",
                         "AadharNumber": "",
@@ -592,25 +614,26 @@ extension KC_MyProfileVC: UIImagePickerControllerDelegate, UINavigationControlle
         }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-      let aSet = NSCharacterSet(charactersIn:"0123456789").inverted
-      let compSepByCharInSet = string.components(separatedBy: aSet)
-      let numberFiltered = compSepByCharInSet.joined(separator: "")
-      if string == numberFiltered {
-          if textField == mobileNumberTF{
-              let currentText = mobileNumberTF.text ?? ""
-              guard let stringRange = Range(range, in: currentText) else { return false }
-              let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
-              return updatedText.count <= 10
-          }else if textField == pincodeTF {
-              let currentText = pincodeTF.text ?? ""
-              guard let stringRange = Range(range, in: currentText) else { return false }
-              let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
-              return updatedText.count <= 6
-          }
-      
-      } else {
-        return false
-      }
-        return false
+        
+        let currentString: NSString = textField.text! as NSString
+        let newString: NSString =  currentString.replacingCharacters(in: range, with: string) as NSString
+        
+        if textField == mobileNumberTF{
+            return newString.length <= 10
+        }else if textField == pincodeTF {
+            return newString.length <= 6
+        }else if textField == aadharNumberTF{
+                if self.customerTypeId == "3" || self.customerTypeId == "4"{
+                    let alphanumericCharacterSet = CharacterSet.alphanumerics.union(CharacterSet.letters).union(CharacterSet.capitalizedLetters)
+                    let currentText = aadharNumberTF.text ?? ""
+                    let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
+                    if newString.length > 15 || newText.rangeOfCharacter(from: alphanumericCharacterSet.inverted) != nil {
+                        return false
+                    }
+                }else if self.selectedCustomerTypeId == "1" || self.selectedCustomerTypeId == "2"{
+                    return newString.length <= 12
+                }
+            }
+        return true
     }
 }

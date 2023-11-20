@@ -101,6 +101,8 @@ class KC_MyEarningVC: BaseViewController, DateSelectedDelegate {
         self.selectFromDateLbl.text = "SelectFromDate".localiz()
         self.selectToDateLbl.text = "SelectToDate".localiz()
         self.startIndex = 1
+        selectedFromDate = ""
+        selectedToDate = ""
         self.VM.myEarningListArray.removeAll()
         self.myEarningListApi(StartIndex: self.startIndex, fromDate: self.selectedFromDate, toDate: self.selectedToDate)
     }

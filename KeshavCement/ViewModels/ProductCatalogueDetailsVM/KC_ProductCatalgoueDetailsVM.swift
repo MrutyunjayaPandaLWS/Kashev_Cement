@@ -273,12 +273,12 @@ class KC_ProductCatalgoueDetailsVM{
       
     }
     
-    func addedToPlanner(PartyLoyaltyID: String){
+    func addedToPlanner(PartyLoyaltyID: String,userId: Int){
         self.VC?.startLoading()
         let parameters = [
             "ActionType": 0,
             "PartyLoyaltyID": PartyLoyaltyID,
-              "ActorId": "\(userID)",
+              "ActorId": "\(userId)",
               "ObjCatalogueDetails": [
                   "CatalogueId": self.VC!.plannerProductId
               ]
@@ -295,6 +295,8 @@ class KC_ProductCatalgoueDetailsVM{
                                let alert = UIAlertController(title: "", message: "ProductisaddedintothePlanner".localiz(), preferredStyle: UIAlertController.Style.alert)
                                alert.addAction(UIAlertAction(title: "OK".localiz(), style: .default, handler: nil))
                                self.VC?.present(alert, animated: true, completion: nil)
+                               self.VC?.addedToPlannerBTN.isHidden = false
+                               self.VC?.addToPlanner.isHidden = true
                             }
                         }else{
                             DispatchQueue.main.async{

@@ -45,11 +45,13 @@ class KC_MyProfileVM{
                             self.VC?.customerId = "\(response[0].customerId ?? -1)"
                             self.VC?.districtId = "\(response[0].districtId ?? -1)"
                             self.VC?.stateId = "\(response[0].stateId ?? -1)"
+                            self.VC?.cityID = "\(response[0].cityId ?? -1)"
                             self.VC?.talukId = "\(response[0].talukId ?? -1)"
                             self.VC?.cityTF.text = "\(response[0].cityName ?? "")"
                             let dateOfBirth = (response[0].jdob)?.split(separator: " ")
                             let aniv = (response[0].anniversary)?.split(separator: " ")
                             self.VC?.dobTF.text = "\(dateOfBirth?[0] ?? "")"
+                            self.VC?.selectedDOB = "\(self.VC?.convertDateFormater("\(dateOfBirth?[0] ?? "")", fromDate: "dd/mm/yyyy", toDate: "yyyy-mm-dd") ?? "")"//"\(dateOfBirth?[0] ?? "")"
                             self.VC?.dateOfAnniverseryTF.text = "\(aniv?[0] ?? "")"
                             
                             let customerImage = String(response[0].profilePicture ?? "").dropFirst(1)

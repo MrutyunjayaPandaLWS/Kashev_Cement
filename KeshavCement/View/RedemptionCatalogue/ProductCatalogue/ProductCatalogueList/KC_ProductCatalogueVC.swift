@@ -656,9 +656,9 @@ extension KC_ProductCatalogueVC: UICollectionViewDelegate, UICollectionViewDataS
                             }
                             if filterCategory1.count > 0 {
                                 cell.addedToCartBtn.isHidden = true
-                                cell.addToPlannerBtn.isHidden = false
+                                cell.addToPlannerBtn.isHidden = true
                                 cell.addToCartBtn.isHidden = true
-                                cell.addedToPlannerBtn.isHidden = true
+                                cell.addedToPlannerBtn.isHidden = false
                             }
                         }
                     }else{
@@ -691,9 +691,9 @@ extension KC_ProductCatalogueVC: UICollectionViewDelegate, UICollectionViewDataS
                             }
                             if filterCategory1.count > 0 {
                                 cell.addedToCartBtn.isHidden = true
-                                cell.addToPlannerBtn.isHidden = false
+                                cell.addToPlannerBtn.isHidden = true
                                 cell.addToCartBtn.isHidden = true
-                                cell.addedToPlannerBtn.isHidden = true
+                                cell.addedToPlannerBtn.isHidden = false
                             }
                         }
                     }
@@ -761,10 +761,10 @@ extension KC_ProductCatalogueVC: UICollectionViewDelegate, UICollectionViewDataS
                         self.productCategoryCollectionView.reloadData()
                         if self.mappedUserId == -1{
                             self.VM.productCategoryApi(userId: Int(self.userID)!)
-                            self.VM.catalogueListApi(searchText: self.searchProductTF.text ?? "", startIndex: self.startIndex, userId: Int(self.userID)!)
+//                            self.VM.catalogueListApi(searchText: self.searchProductTF.text ?? "", startIndex: self.startIndex, userId: Int(self.userID)!)
                         }else{
                             self.VM.productCategoryApi(userId: self.mappedUserId)
-                            self.VM.catalogueListApi(searchText: self.searchProductTF.text ?? "", startIndex: self.startIndex, userId: self.mappedUserId)
+//                            self.VM.catalogueListApi(searchText: self.searchProductTF.text ?? "", startIndex: self.startIndex, userId: self.mappedUserId)
                         }
                         
                     }
@@ -788,14 +788,14 @@ extension KC_ProductCatalogueVC: UICollectionViewDelegate, UICollectionViewDataS
             vc.isPlanner = self.VM.catalgoueListArray[indexPath.row].isPlanner ?? false
             vc.productCategory = self.VM.catalgoueListArray[indexPath.row].catogoryName ?? ""
             vc.is_Reedemable = self.VM.catalgoueListArray[indexPath.row].is_Redeemable ?? 0
-            vc.plannerProductId = self.VM.catalgoueListArray[indexPath.row].redemptionPlannerId ?? 0
+            vc.plannerProductId = self.VM.catalgoueListArray[indexPath.row].catalogueId ?? 0
             vc.categoryId = self.categoryId
             vc.pointsRangePts = self.selectedPtsRange
             vc.sortedBy = self.sortedBy
             vc.itsFrom = self.itsFrom
             vc.partyLoyaltyId = self.partyLoyaltyId
             vc.productTotalPoints = self.productTotalPoints
-      //      vc.mappedUserId = self.mappedUserId
+            vc.mappedUserId = self.mappedUserId
             self.navigationController?.pushViewController(vc, animated: true)
             
         }

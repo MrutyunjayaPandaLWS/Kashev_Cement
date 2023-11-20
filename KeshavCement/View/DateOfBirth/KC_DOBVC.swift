@@ -68,17 +68,17 @@ class KC_DOBVC: UIViewController {
             self.dismiss(animated: true, completion: nil)
             
         }else if isComeFrom == "ANNIVERSARY"{
-            if datePicker.date > sevenDaysBeforeToday{
-                let alert = UIAlertController(title: "", message: "ItseemsYouarelessthan18years".localiz(), preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "OK".localiz(), style: UIAlertAction.Style.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-            }else{
+//            if datePicker.date > sevenDaysBeforeToday{
+//                let alert = UIAlertController(title: "", message: "ItseemsYouarelessthan18years".localiz(), preferredStyle: UIAlertController.Style.alert)
+//                alert.addAction(UIAlertAction(title: "OK".localiz(), style: UIAlertAction.Style.default, handler: nil))
+//                self.present(alert, animated: true, completion: nil)
+//            }else{
                 let formatter = DateFormatter()
-                formatter.dateFormat = "yyyy-MM-dd"
+                formatter.dateFormat = "dd/MM/yyyy"
                 selectedDate = formatter.string(from: datePicker.date)
                 self.delegate.acceptDate!(self)
                 self.dismiss(animated: true, completion: nil)
-            }
+//            }
         }else if isComeFrom == "1"{
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd"

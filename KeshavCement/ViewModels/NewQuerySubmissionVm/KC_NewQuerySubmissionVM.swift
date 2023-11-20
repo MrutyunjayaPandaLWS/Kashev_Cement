@@ -28,12 +28,14 @@ class KC_NewQuerySubmissionVM{
                             DispatchQueue.main.async{
                                 self.VC?.stopLoading()
                                 self.VC?.view.makeToast("Supportticketsubmissionfailed!!".localiz(),duration: 2.0,position: .bottom)
+                                self.VC?.submitBtnStatus = true
                             }
                         }else{
                             self.VC?.stopLoading()
                             self.VC?.view.makeToast("Supporttickethasbeensubmittedsuccessfully!!".localiz(),duration: 2.0,position: .bottom)
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                                 self.VC?.stopLoading()
+                                self.VC?.navigationController?.popViewController(animated: true)
 //                                for controller in self.VC?.navigationController!.viewControllers as Array {
 //                                    if controller.isKind(of: KC_LodgeQueryVC.self) {
 //                                        self.VC?.navigationController!.popToViewController(controller, animated: true)

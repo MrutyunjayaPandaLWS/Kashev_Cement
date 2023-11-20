@@ -42,13 +42,15 @@ class KC_LoginVM {
             do{
                 let str = String(decoding: data, as: UTF8.self) as String?
                  print(str, "- Mobile Number Exists")
-                if str ?? "" == "0"{
+                if (str ?? "") == "1"{
+                    self.VC?.stopLoading()
+                }else if (str ?? "") == "0" || (str ?? "") == "4" || (str ?? "") == "3" {
                     DispatchQueue.main.async{
                         self.VC?.stopLoading()
-                        self.VC?.view.makeToast("Mobilenumberdoesntexists".localiz(), duration: 2.0, position: .bottom)
+                        self.VC?.view.makeToast("YouraccountisverificationpendingKindlycontactyouradministrator".localiz(), duration: 2.0, position: .bottom)
                         self.VC?.mobileTF.text = ""
                     }
-                }else if str ?? "" == "3"{
+                }else if str ?? "" == "6"{
                     DispatchQueue.main.async{
                         self.VC?.stopLoading()
                         self.VC?.view.makeToast("Invaildcustomertype".localiz(), duration: 2.0, position: .bottom)
@@ -57,7 +59,14 @@ class KC_LoginVM {
                 }else{
                     DispatchQueue.main.async{
                         self.VC?.stopLoading()
-                       
+                        self.VC?.view.makeToast("Mobilenumberdoesntexists".localiz(), duration: 2.0, position: .bottom)
+                        self.VC?.mobileTF.text = ""
+                        
+                        
+//                        1 - allow
+//                        2 - YouraccounthasbeendeactivatedKindlycontactyouradministrator
+//                        6 - Incorrect account type!
+//                        4 or 0 or 3 - YouraccountisverificationpendingKindlycontactyouradministrator!
                     }
                 }
                  }catch{

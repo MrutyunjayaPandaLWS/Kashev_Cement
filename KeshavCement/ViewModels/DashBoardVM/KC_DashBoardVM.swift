@@ -129,11 +129,11 @@ class KC_DashBoardVM: SendNewPasswordDelegate{
                         print(result?.objCustomerDashboardList?[0].memberSince ?? "", "Membersince")
                         print(result?.objCustomerDashboardList?[0].notificationCount ?? "", "NotificationCount")
                         print(result?.objCustomerDashboardList?[0].redeemablePointsBalance ?? "", "totalpoints")
-                        UserDefaults.standard.setValue(Int(result?.objCustomerDashboardList?[0].redeemablePointsBalance ?? 0.0) ?? 0, forKey: "RedeemablePointBalance")
+                        UserDefaults.standard.setValue(Int(result?.objCustomerDashboardList?[0].redeemablePointsBalance ?? 0.0) , forKey: "RedeemablePointBalance")
                         
-                        UserDefaults.standard.setValue(Int(result?.objCustomerDashboardList?[0].overAllPoints ?? 0) ?? 0, forKey: "OverallPoints")
+                        UserDefaults.standard.setValue(Int(result?.objCustomerDashboardList?[0].overAllPoints ?? 0) , forKey: "OverallPoints")
                         UserDefaults.standard.synchronize()
-                        self.VC?.pointBalanceLbl.text = "\(Int(result?.objCustomerDashboardList?[0].redeemablePointsBalance ?? 0.0) ?? 0)"
+                        self.VC?.pointBalanceLbl.text = "\(Int(result?.objCustomerDashboardList?[0].redeemablePointsBalance ?? 0.0) )"
                     }
                     
                     let customerFeedbakcJSON = result?.lstCustomerFeedBackJsonApi ?? []
@@ -174,11 +174,12 @@ class KC_DashBoardVM: SendNewPasswordDelegate{
                             self.VC?.whenPurchaseLbl.text = "EarnPointsWhenPurchase".localiz()
                             self.VC?.claimPurchaseLbl.text = "ClaimPurchase".localiz()
                         }else if result?.lstCustomerFeedBackJsonApi?[0].customerTypeId ?? -1 == 3 || result?.lstCustomerFeedBackJsonApi?[0].customerTypeId ?? -1 == 4{
-                            if result?.lstCustomerFeedBackJsonApi?[0].customerTypeId ?? -1 == 3{
-                                self.VC?.helpButton.isHidden = false
-                            }else{
-                                self.VC?.helpButton.isHidden = true
-                            }
+//                            if result?.lstCustomerFeedBackJsonApi?[0].customerTypeId ?? -1 == 3{
+//                                self.VC?.helpButton.isHidden = false
+//                            }else{
+//                                self.VC?.helpButton.isHidden = true
+//                            }
+                            self.VC?.helpButton.isHidden = false
                             self.VC?.whenPurchaseLbl.text = "Sales&Earn".localiz()
                             self.VC?.claimPurchaseLbl.text = "StartEarning".localiz()
                         }else if result?.lstCustomerFeedBackJsonApi?[0].customerTypeId ?? -1 == 5{
@@ -189,6 +190,7 @@ class KC_DashBoardVM: SendNewPasswordDelegate{
                                     self.VC?.raiseaTicketView.isHidden = true
                                     self.VC?.logoutBtn.isHidden = false
                                     self.VC?.languageTrailingSpace.constant = 62
+                                    self.VC?.slideMenuController()?.removeLeftGestures()
                                     UserDefaults.standard.set(result?.lstCustomerFeedBackJsonApi?[0].mappedCustomerId ?? -1, forKey: "mappedCustomerId")
                                     let mappedData = (result?.lstCustomerFeedBackJsonApi?[0].mappedCustomerName ?? "").split(separator: "~")
                                     let mappedCustomerType = result?.lstCustomerFeedBackJsonApi?[0].mappedCustomerType ?? ""
@@ -197,7 +199,11 @@ class KC_DashBoardVM: SendNewPasswordDelegate{
                                     
                                     self.VC?.whenPurchaseLbl.text = "StartSelling".localiz()
                                     self.VC?.claimPurchaseLbl.text = "ClickHere".localiz()
-                                    self.VC?.pointBalanceLbl.text = "\(mappedCustomerType) "+"\(mappedData[1])"
+                                    if mappedData.count > 1{
+                                        self.VC?.pointBalanceLbl.text = "\(mappedCustomerType) "+"\(mappedData[1])"
+                                    }else{
+                                        self.VC?.pointBalanceLbl.text = "\(mappedCustomerType)"
+                                    }
                                     self.VC?.pointBalanceTitle.text = "Created By"
                                     
                                     self.VC?.pointBalanceIcon.isHidden = true

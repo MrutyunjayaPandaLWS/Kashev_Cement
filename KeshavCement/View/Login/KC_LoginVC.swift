@@ -215,7 +215,7 @@ class KC_LoginVC: BaseViewController, UITextFieldDelegate, CheckBoxSelectDelegat
             self.view.makeToast("Selectcustomertype".localiz(), duration: 2.0, position: .bottom)
         }else{
             let parameter = [
-                "ActionType":"65",
+                "ActionType":"61",
                 "ActorId": self.categoryId,
                 "Location":[
                     "UserName":"\(self.mobileTF.text ?? "")"

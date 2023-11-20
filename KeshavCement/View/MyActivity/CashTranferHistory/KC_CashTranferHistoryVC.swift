@@ -317,7 +317,7 @@ extension KC_CashTranferHistoryVC: UITableViewDelegate, UITableViewDataSource{
         }
         
         cell.categoryLbl.text = self.VM.cashTransferApprovalListingArray[indexPath.row].customerType ?? ""
-        cell.productNameLbl.text = "\(self.VM.cashTransferApprovalListingArray[indexPath.row].transferedPointsinAmount ?? 0)"
+        cell.productNameLbl.text = "₹ \(self.VM.cashTransferApprovalListingArray[indexPath.row].transferedPointsinAmount ?? 0)"
         cell.orderedQty.text = "\(self.VM.cashTransferApprovalListingArray[indexPath.row].points ?? 0)"
         cell.remarks.text = "  \(self.VM.cashTransferApprovalListingArray[indexPath.row].remarks ?? "-")"
         cell.remarks.textColor = .darkGray

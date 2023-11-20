@@ -82,6 +82,11 @@
 		840F25F029AE2E2A00736786 /* NewSupportExecutiveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840F25EF29AE2E2A00736786 /* NewSupportExecutiveModel.swift */; };
 		840F25F329AE37B400736786 /* SupportDeactivateStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840F25F229AE37B400736786 /* SupportDeactivateStatusModel.swift */; };
 		840F706329640606004A5D36 /* KC_CategoryCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840F706229640606004A5D36 /* KC_CategoryCVC.swift */; };
+		8415A0EA2AFCBBA000CC980B /* ReachabilityAutoSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8415A0E92AFCBBA000CC980B /* ReachabilityAutoSync.swift */; };
+		8415A0EF2AFCBE4900CC980B /* NoInternet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8415A0EE2AFCBE4900CC980B /* NoInternet.storyboard */; };
+		8415A0F12AFCC18C00CC980B /* iOS_KC_Cus_NoInternetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8415A0F02AFCC18C00CC980B /* iOS_KC_Cus_NoInternetVC.swift */; };
+		8415A0F32AFCC1B200CC980B /* no_internet_lottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 8415A0F22AFCC1B200CC980B /* no_internet_lottie.json */; };
+		8415A0F62AFCDB7600CC980B /* TokenGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8415A0F52AFCDB7600CC980B /* TokenGeneration.swift */; };
 		8418299929696D0F0065CBBA /* KC_OrderConfirmationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8418299829696D0F0065CBBA /* KC_OrderConfirmationVC.swift */; };
 		8418EDF229C485870083498D /* OffersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8418EDF129C485870083498D /* OffersListViewModel.swift */; };
 		8418EDF529C485E80083498D /* LstPromotionJsonList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8418EDF329C485E80083498D /* LstPromotionJsonList.swift */; };
@@ -516,6 +521,11 @@
 		840F25EF29AE2E2A00736786 /* NewSupportExecutiveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSupportExecutiveModel.swift; sourceTree = "<group>"; };
 		840F25F229AE37B400736786 /* SupportDeactivateStatusModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportDeactivateStatusModel.swift; sourceTree = "<group>"; };
 		840F706229640606004A5D36 /* KC_CategoryCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_CategoryCVC.swift; sourceTree = "<group>"; };
+		8415A0E92AFCBBA000CC980B /* ReachabilityAutoSync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReachabilityAutoSync.swift; path = KeshavCement/Resources/Networking/ReachabilityAutoSync.swift; sourceTree = SOURCE_ROOT; };
+		8415A0EE2AFCBE4900CC980B /* NoInternet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NoInternet.storyboard; sourceTree = "<group>"; };
+		8415A0F02AFCC18C00CC980B /* iOS_KC_Cus_NoInternetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_KC_Cus_NoInternetVC.swift; sourceTree = "<group>"; };
+		8415A0F22AFCC1B200CC980B /* no_internet_lottie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = no_internet_lottie.json; sourceTree = "<group>"; };
+		8415A0F52AFCDB7600CC980B /* TokenGeneration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenGeneration.swift; sourceTree = "<group>"; };
 		8418299829696D0F0065CBBA /* KC_OrderConfirmationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KC_OrderConfirmationVC.swift; sourceTree = "<group>"; };
 		8418EDF129C485870083498D /* OffersListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OffersListViewModel.swift; sourceTree = "<group>"; };
 		8418EDF329C485E80083498D /* LstPromotionJsonList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LstPromotionJsonList.swift; sourceTree = "<group>"; };
@@ -1174,6 +1184,7 @@
 		25DC5C19295C1B2900818258 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8415A0EB2AFCBDF400CC980B /* No Internet */,
 				2575B0922A15F14300BE0EC4 /* KC_ComingSoonVC.swift */,
 				258176572A13C13300459AAC /* DeleteAccount */,
 				844EF95E2A064A67007719A4 /* RedemptionType */,
@@ -1238,6 +1249,7 @@
 		25DC5C1B295C1BEF00818258 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				8415A0E92AFCBBA000CC980B /* ReachabilityAutoSync.swift */,
 				25DC5C22295C1BEF00818258 /* CommonUtilities */,
 				25DC5C24295C1BEF00818258 /* Reachability */,
 				25DC5C1C295C1BEF00818258 /* URLRequest.swift */,
@@ -1302,6 +1314,7 @@
 		25DC5C50295C1C9600818258 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				8415A0F22AFCC1B200CC980B /* no_internet_lottie.json */,
 				2575B0A02A1608D900BE0EC4 /* ghgMRzxUJT.json */,
 				844856BF2964287F00210DE1 /* 11514-swipe-down-arrows.json */,
 				84DC9F1D2975275200C7A94E /* 43623-call-center.json */,
@@ -1460,6 +1473,40 @@
 				840F25F229AE37B400736786 /* SupportDeactivateStatusModel.swift */,
 			);
 			path = SupportDeactivateStatusModel;
+			sourceTree = "<group>";
+		};
+		8415A0EB2AFCBDF400CC980B /* No Internet */ = {
+			isa = PBXGroup;
+			children = (
+				8415A0F42AFCD9BD00CC980B /* TokenApi */,
+				8415A0ED2AFCBE0D00CC980B /* Storyboard */,
+				8415A0EC2AFCBE0300CC980B /* View */,
+			);
+			path = "No Internet";
+			sourceTree = "<group>";
+		};
+		8415A0EC2AFCBE0300CC980B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8415A0F02AFCC18C00CC980B /* iOS_KC_Cus_NoInternetVC.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8415A0ED2AFCBE0D00CC980B /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				8415A0EE2AFCBE4900CC980B /* NoInternet.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		8415A0F42AFCD9BD00CC980B /* TokenApi */ = {
+			isa = PBXGroup;
+			children = (
+				8415A0F52AFCDB7600CC980B /* TokenGeneration.swift */,
+			);
+			path = TokenApi;
 			sourceTree = "<group>";
 		};
 		8418299729696CF40065CBBA /* OrderConfirmation */ = {
@@ -3268,6 +3315,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8415A0EF2AFCBE4900CC980B /* NoInternet.storyboard in Resources */,
+				8415A0F32AFCC1B200CC980B /* no_internet_lottie.json in Resources */,
 				8419A4D1295EDFF8000A0AAB /* OFL.txt in Resources */,
 				84F841FE29A87B5A00377B26 /* HR_RedemptionPlannerTVC.xib in Resources */,
 				844856C02964287F00210DE1 /* 11514-swipe-down-arrows.json in Resources */,
@@ -3538,6 +3587,7 @@
 				844702B129C2EE430097B028 /* ObjCustomerDashboardList.swift in Sources */,
 				84ED836129645EE700DDA353 /* KC_OffersandpromotionsTVC.swift in Sources */,
 				84741DDA299F763700F0A53E /* KC_MyProfileVM.swift in Sources */,
+				8415A0F62AFCDB7600CC980B /* TokenGeneration.swift in Sources */,
 				84DA344429AF2BBC00078CF2 /* otherInfoTableViewCell.swift in Sources */,
 				251C4D29295C201B007939F3 /* PersistanceService.swift in Sources */,
 				84C0C37529ACE40300F615C4 /* PendingClaimRequestModel.swift in Sources */,
@@ -3600,6 +3650,7 @@
 				84DA345A29AF48BC00078CF2 /* LstTermsAndCondition.swift in Sources */,
 				84E94F5029A8F6EE002B4DED /* UserStatusModel.swift in Sources */,
 				25DC5C2A295C1BEF00818258 /* RestAPI_Requests.swift in Sources */,
+				8415A0F12AFCC18C00CC980B /* iOS_KC_Cus_NoInternetVC.swift in Sources */,
 				843147F829C48B9600704584 /* LstDreamGift.swift in Sources */,
 				849756A729754E02007B7C4A /* KC_SelectTopicQueryVC.swift in Sources */,
 				84B87DC129A4A30500CF5226 /* MyPurchaseClaimListModel.swift in Sources */,
@@ -3686,6 +3737,7 @@
 				84BCCC1A29C581C000DAB3BD /* EvoucherListModels.swift in Sources */,
 				84F78F2329CC8F7900E14197 /* CashDetailsModel.swift in Sources */,
 				844702B629C2FEA00097B028 /* LstRewardTransactionBasedonProduct.swift in Sources */,
+				8415A0EA2AFCBBA000CC980B /* ReachabilityAutoSync.swift in Sources */,
 				84DA343B29AF2BBC00078CF2 /* otherImageTableViewCell.swift in Sources */,
 				849756A329754BE6007B7C4A /* KC_AddLodgeQueryVC.swift in Sources */,
 				842668C029718BA400AE48AD /* KC_NewEnrollmentTVC.swift in Sources */,
@@ -3930,11 +3982,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = KeshavCement/KeshavCement.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HG885J5KS;
+				DEVELOPMENT_TEAM = 2HG885J5KS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KeshavCement/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Keshav Club";
@@ -3947,6 +3997,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3956,7 +4007,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "loyltwo3ks-Pvt-Ltd.KeshavCement";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Kashev_Dev_Cer;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3972,11 +4022,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = KeshavCement/KeshavCement.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HG885J5KS;
+				DEVELOPMENT_TEAM = 2HG885J5KS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KeshavCement/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Keshav Club";
@@ -3989,6 +4037,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3998,7 +4047,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "loyltwo3ks-Pvt-Ltd.KeshavCement";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Kashev_Dev_Cer;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -4085,11 +4133,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HG885J5KS;
+				DEVELOPMENT_TEAM = 2HG885J5KS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotificationService/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotificationService;
@@ -4104,7 +4150,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "loyltwo3ks-Pvt-Ltd.KeshavCement.NotificationService";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = KashevDevCertificate;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -4116,11 +4161,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HG885J5KS;
+				DEVELOPMENT_TEAM = 2HG885J5KS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotificationService/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotificationService;
@@ -4135,7 +4178,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "loyltwo3ks-Pvt-Ltd.KeshavCement.NotificationService";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = KashevDevCertificate;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

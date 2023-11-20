@@ -54,6 +54,7 @@ class KC_WorkDetailsVC: BaseViewController, DateSelectedDelegate, SelectedDataDe
     var engineerName = ""
     var engineerNumber = ""
     var siteName = ""
+    var submitBtnStatus = true
 
     
     
@@ -112,12 +113,12 @@ class KC_WorkDetailsVC: BaseViewController, DateSelectedDelegate, SelectedDataDe
         }else if self.engineerNumber == ""{
             self.view.makeToast("Enterengineermobilenumber".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedWordId == -1{
-            self.view.makeToast("Enterownername".localiz(), duration: 2.0, position: .bottom)
+            self.view.makeToast("PleaseSelectLevel".localiz(), duration: 2.0, position: .bottom)
         }else if self.selectedDate == ""{
             self.view.makeToast("Selecttentativedate".localiz(), duration: 2.0, position: .bottom)
         }else if self.remarksTextView.text == ""{
             self.view.makeToast("Enterremarks".localiz(), duration: 2.0, position: .bottom)
-        }else{
+        }else if self.submitBtnStatus{
             print(self.currentLatitude)
             print(self.currentLongitude)
             print(self.ownerName)
@@ -126,6 +127,7 @@ class KC_WorkDetailsVC: BaseViewController, DateSelectedDelegate, SelectedDataDe
             print(self.engineerName)
             print(self.engineerNumber)
             print(self.siteName)
+            self.submitBtnStatus = false
             let parameter = [
                 "SiteName":self.siteName,
                 "CustomerID":self.userID,
@@ -144,7 +146,7 @@ class KC_WorkDetailsVC: BaseViewController, DateSelectedDelegate, SelectedDataDe
                 "ContactPersonName1":self.engineerName,
                 "Remarks":self.remarksTextView.text ?? ""
             ] as [String: Any]
-            print(parameter)
+//            print(parameter)
             self.VM.workSiteDetailsSubmission(parameter: parameter)
             
         }
@@ -161,12 +163,12 @@ class KC_WorkDetailsVC: BaseViewController, DateSelectedDelegate, SelectedDataDe
     }else if self.ownerResidentialDetails == ""{
         self.view.makeToast("Enterownerresidentialdetails".localiz(), duration: 2.0, position: .bottom)
     }else if self.selectedWordId == -1{
-        self.view.makeToast("Enterownername".localiz(), duration: 2.0, position: .bottom)
+        self.view.makeToast("PleaseSelectLevel".localiz(), duration: 2.0, position: .bottom)
     }else if self.selectedDate == ""{
         self.view.makeToast("Selecttentativedate".localiz(), duration: 2.0, position: .bottom)
     }else if self.remarksTextView.text == ""{
         self.view.makeToast("Enterremarks".localiz(), duration: 2.0, position: .bottom)
-    }else{
+    }else if self.submitBtnStatus{
         print(self.currentLatitude)
         print(self.currentLongitude)
         print(self.ownerName)
@@ -175,6 +177,7 @@ class KC_WorkDetailsVC: BaseViewController, DateSelectedDelegate, SelectedDataDe
         print(self.engineerName)
         print(self.engineerNumber)
         print(self.siteName)
+        self.submitBtnStatus = false
         let parameter = [
             "SiteName":self.siteName,
             "CustomerID":self.userID,

@@ -8,7 +8,7 @@
 import UIKit
 import DPOTPView
 import LanguageManager_iOS
-class KC_ForgetPasswordVC: BaseViewController, DPOTPViewDelegate{
+class KC_ForgetPasswordVC: BaseViewController, DPOTPViewDelegate,UITextFieldDelegate{
    
     
     
@@ -73,7 +73,8 @@ class KC_ForgetPasswordVC: BaseViewController, DPOTPViewDelegate{
         self.otpInfoLbl.text = "OTPwillreciev".localiz()
         self.resendOTPBtn.setTitle("ResendOTP".localiz(), for: .normal)
         
-        
+        self.mobileNumberTF.delegate = self
+        self.mobileNumberTF.keyboardType = .numberPad
     }
     
     @IBAction func userNameEditingDidEnd(_ sender: Any) {
@@ -119,6 +120,8 @@ class KC_ForgetPasswordVC: BaseViewController, DPOTPViewDelegate{
         if self.generateOTPBtn.currentTitle == "GenerateOTP".localiz(){
                 if self.mobileNumberTF.text?.count == 0 {
                     self.view.makeToast("EntermemberID".localiz(), duration: 2.0, position: .bottom)
+                }else if (self.mobileNumberTF.text?.count ?? 0) <= 10{
+                    self.view.makeToast("EnterValidmobilenumber".localiz(), duration: 2.0, position: .bottom)
                 }
                
                 else{
@@ -129,7 +132,7 @@ class KC_ForgetPasswordVC: BaseViewController, DPOTPViewDelegate{
                     self.otpInfoLbl2.text = getLastFour
                     
                     let parameter = [
-                        "ActionType":"65",
+                        "ActionType":"61",
                         "ActorId": self.categoryId,
                         "Location":[
                             "UserName":"\(self.mobileNumberTF.text ?? "")"

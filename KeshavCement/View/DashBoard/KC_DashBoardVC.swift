@@ -184,18 +184,26 @@ class KC_DashBoardVC: BaseViewController{
         self.localization()
     }
     @IBAction func hindiButton(_ sender: Any) {
+        /*
         LanguageManager.shared.setLanguage(language: .hi)
             UserDefaults.standard.set("2", forKey: "LanguageLocalizable")
             UserDefaults.standard.synchronize()
         self.languagePopUpView.isHidden = true
         self.localization()
+        */
+        self.languagePopUpView.isHidden = true
+        self.view.makeToast("This language is coming soon")
     }
     @IBAction func kannadaButton(_ sender: Any) {
+        /*
         LanguageManager.shared.setLanguage(language: .knIn)
         UserDefaults.standard.set("3", forKey: "LanguageLocalizable")
         UserDefaults.standard.synchronize()
         self.languagePopUpView.isHidden = true
         self.localization()
+         */
+        self.languagePopUpView.isHidden = true
+        self.view.makeToast("This language is coming soon")
     }
     
     

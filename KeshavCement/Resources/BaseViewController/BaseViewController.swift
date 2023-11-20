@@ -13,6 +13,7 @@ class BaseViewController: UIViewController {
     let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView();
     
 //    var animationView1: AnimationView?
+    var reachability1: ReachabilityAutoSync?
     var myView = UIView()
     var loyaltyId = UserDefaults.standard.string(forKey: "LoyaltyId") ?? ""
     var userID = UserDefaults.standard.string(forKey: "UserID") ?? ""
@@ -26,10 +27,17 @@ class BaseViewController: UIViewController {
     var mappedCustomerType = UserDefaults.standard.string(forKey: "mappedCustomerType") ?? ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
+    
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        reachability1 = try? ReachabilityAutoSync()
+        startMonitoringReachability()
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
@@ -39,12 +47,51 @@ class BaseViewController: UIViewController {
         }
     }
     
+    
+    func startMonitoringReachability() {
+        guard let reachability = reachability1 else { return }
+        reachability1?.whenReachable = { [weak self] reachability in
+            self?.updateReachabilityStatus(reachable: true)
+        }
+        reachability1?.whenUnreachable = { [weak self] _ in
+            self?.updateReachabilityStatus(reachable: false)
+        }
+        do {
+            try reachability1?.startNotifier()
+        } catch {
+            print("Failed to start reachability notifier")
+        }
+    }
+    
+    func updateReachabilityStatus(reachable: Bool) {
+            if reachable {
+                print("Network is reachable")
+//                self.view.window?.rootViewController?.dismiss(animated: true)
+                Token.shared.tokendata()
+            } else {
+                print("Network is unreachable")
+                let vc = UIStoryboard(name: "NoInternet", bundle: nil).instantiateViewController(withIdentifier: "iOS_KC_Cus_NoInternetVC") as? iOS_KC_Cus_NoInternetVC
+                vc?.modalTransitionStyle = .crossDissolve
+                vc?.modalPresentationStyle = .overFullScreen
+                self.present(vc!, animated: true)
+            }
+        }
+    
+    deinit{
+        reachability1?.stopNotifier()
+    }
+    
     func convertDateFormater(_ date: String, fromDate: String, toDate: String) -> String {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = fromDate
-            let date = dateFormatter.date(from: date)
+            let date1 = dateFormatter.date(from: date)
             dateFormatter.dateFormat = toDate
-        return dateFormatter.string(from: date!)
+        if let date1 = date1{
+            return dateFormatter.string(from: date1)
+        }else{
+            return date
+        }
+        
  
         }
     

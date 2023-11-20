@@ -250,10 +250,10 @@ class KC_ClaimPurchaseVC: BaseViewController, SelectedDataDelegate{
                 [
                     "ProductCode": self.selectedProductCode,
                     "Quantity": self.quantity
-                ]
+                ] as [String : Any]
             ],
             "RitailerId": self.mappedUserId,
-            "SourceDevice": 1
+            "SourceDevice": 5
         ] as [String: Any]
         print(parameter)
         self.VM.claimPurchaseSubmissionApi(parameter: parameter)

@@ -245,7 +245,7 @@ class KC_SideMenuVC: BaseViewController, popUpAlertDelegate {
             } else if self.customerTypeIds == 3{
                 
                 self.benefitsItem.append(SecondMenuList(sideMenuItem: "Claim History", sideMenuID: 21, sidemenuImage: "XMLID_91_"))
-                self.benefitsItem.append(SecondMenuList(sideMenuItem: "Claim Transfer History", sideMenuID: 22, sidemenuImage: "XMLID_91_"))
+                self.benefitsItem.append(SecondMenuList(sideMenuItem: "Cash Transfer History", sideMenuID: 22, sidemenuImage: "XMLID_91_"))
                 
                 
                 self.sideMenuItems.append(SideMenuModel(parentName: "Enrollment", parentList:  [], parentID: 1, parentExpand: false, parentImage: "checklist"))
@@ -266,7 +266,7 @@ class KC_SideMenuVC: BaseViewController, popUpAlertDelegate {
             }else if self.customerTypeIds == 4{
                 
                 self.benefitsItem.append(SecondMenuList(sideMenuItem: "Claim History", sideMenuID: 21, sidemenuImage: "XMLID_91_"))
-                self.benefitsItem.append(SecondMenuList(sideMenuItem: "Claim Transfer History", sideMenuID: 22, sidemenuImage: "XMLID_91_"))
+                self.benefitsItem.append(SecondMenuList(sideMenuItem: "Cash Transfer History", sideMenuID: 22, sidemenuImage: "XMLID_91_"))
                 
                 
                 self.sideMenuItems.append(SideMenuModel(parentName: "Enrollment", parentList:  [], parentID: 1, parentExpand: false, parentImage: "checklist"))

@@ -61,21 +61,20 @@ class KC_ForgetPasswordVM{
                        
                         self.VC?.generateOTPApi()
                     }
-                }else if str ?? "" == "2"{
+                }else if (str ?? "") == "0" || (str ?? "") == "4" || (str ?? "") == "3" {
                     DispatchQueue.main.async{
                         self.VC?.stopLoading()
-                        self.VC?.view.makeToast("Youraccounthasbeendeactivated".localiz(), duration: 2.0, position: .bottom)
-                        self.VC?.generateOTPBtn.setTitle("GenerateOTP".localiz(), for: .normal)
+                        self.VC?.view.makeToast("YouraccountisverificationpendingKindlycontactyouradministrator".localiz(), duration: 2.0, position: .bottom)
                         self.VC?.mobileNumberTF.text = ""
                     }
-                }else if str ?? "" == "3"{
+                }else if str ?? "" == "6"{
                     DispatchQueue.main.async{
                         self.VC?.stopLoading()
                         self.VC?.view.makeToast("Invaildcustomertype".localiz(), duration: 2.0, position: .bottom)
                         self.VC?.generateOTPBtn.setTitle("GenerateOTP".localiz(), for: .normal)
                         self.VC?.mobileNumberTF.text = ""
                     }
-                }else if str ?? "" != "1"{
+                }else{
                     DispatchQueue.main.async{
                         self.VC?.stopLoading()
                         self.VC?.view.makeToast("Mobilenumberdoesntexists".localiz(), duration: 2.0, position: .bottom)

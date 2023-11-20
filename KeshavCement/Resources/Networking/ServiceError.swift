@@ -11,6 +11,7 @@ import UIKit
 enum ServiceError: Error {
     case noInternetConnection
     case custom(String)
+    case unAuthorised
     case other
 }
 
@@ -23,6 +24,8 @@ extension ServiceError: LocalizedError {
             return "Something went wrong"
         case .custom(let message):
             return message
+        case .unAuthorised:
+            return "Token is expire"
         }
     }
 }

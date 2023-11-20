@@ -26,7 +26,7 @@ class HR_Chatvc2ViewController: UIViewController, UITextFieldDelegate,UITableVie
     var querydetails = ""
     var requestAPIs = RestAPI_Requests()
     let reachability = Reach()
-    let picker = UIImagePickerController()
+    lazy var picker = UIImagePickerController()
     var FileType = ""
     var strBase64 = ""
     var chatlistingArray = [ObjQueryResponseJsonList]()
@@ -47,7 +47,9 @@ class HR_Chatvc2ViewController: UIViewController, UITextFieldDelegate,UITableVie
         print(CustomerTicketIDchatvc)
         self.commenttextfield.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification1012(notification:)), name: Notification.Name("NotificationIdentifierinternet"), object: nil)
-        picker.delegate = self
+        DispatchQueue.main.async {
+            self.picker.delegate = self
+        }
         tableview12?.delegate = self
         tableview12?.dataSource = self
         print(CustomerTicketIDchatvc)

@@ -90,6 +90,8 @@ class KC_DropDownVC: BaseViewController,UISearchBarDelegate {
     var selectedAmount = 0
     var selectedCashBack = 0
     
+    var supportExeUserID = ""
+    
 //    Engineer - 1
 //    Mason - 2
 //    Dealer - 3
@@ -113,7 +115,11 @@ class KC_DropDownVC: BaseViewController,UISearchBarDelegate {
         }else if self.itsFrom == "TALUK"{
             self.talukListApi()
         }else if self.itsFrom == "MAPPEDUSERS"{
-            self.mappedUserNameList(UserTypeId: self.selectedUserTypeId)
+            if self.customerTypeId == "5"{
+                self.mappedUserNameList(UserTypeId: self.selectedUserTypeId,userId: self.supportExeUserID)
+            }else{
+                self.mappedUserNameList(UserTypeId: self.selectedUserTypeId,userId: self.userID)
+            }
             self.searchBar.isHidden = false
         }else if self.itsFrom == "CLAIMPRODUCTLIST"{
             self.claimProductList()
@@ -209,10 +215,10 @@ class KC_DropDownVC: BaseViewController,UISearchBarDelegate {
         print(parameter)
         self.VM.talukListApi(parameter: parameter)
     }
-    func mappedUserNameList(UserTypeId: Int){
+    func mappedUserNameList(UserTypeId: Int,userId: String){
         let parameter = [
             "ActionType":16,
-            "ActorId":self.userID,
+            "ActorId":userId,
             "SearchText":UserTypeId
         ] as [String: Any]
         print(parameter)
@@ -245,12 +251,12 @@ class KC_DropDownVC: BaseViewController,UISearchBarDelegate {
     
     func cityListingAPI(stateID: Int){
         let parameterJSON = [
-                "ActionType": "2",
-                "IsActive": "true",
-                "SortColumn": "CITY_NAME",
-                "SortOrder": "ASC",
-                "StartIndex": "1",
-                "StateId": stateID
+            "ActionType": "2",
+            "IsActive": "true",
+            "SortColumn": "CITY_NAME",
+            "SortOrder": "ASC",
+            "StartIndex": "1",
+            "StateId": stateID
             ] as  [String:Any]
             self.VM.citylisting(parameters: parameterJSON)
     }
@@ -346,7 +352,7 @@ extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
             cell.selectedTitleLbl.text = self.VM.districtListArray[indexPath.row].districtName ?? ""
         }else if self.itsFrom == "CLAIMPURCHSSS"{
             
-            let firmName = self.VM.mapppedUserNameListArray1[indexPath.row].firmName ?? ""
+            let firmName = self.VM.mapppedUserNameListArray1[indexPath.row].mobile ?? ""
             let firstName = self.VM.mapppedUserNameListArray1[indexPath.row].firstName ?? ""
             cell.selectedTitleLbl.text = firstName + " (\(firmName))"
         }else if self.itsFrom == "TALUK"{
@@ -486,7 +492,7 @@ extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
             
             
         }else if self.itsFrom == "MAPPEDUSERS"{
-            self.mappedUsername = self.VM.mappedListArray[indexPath.row].firstName ?? ""
+            self.mappedUsername = "\(self.VM.mappedListArray[indexPath.row].firstName ?? "")  (\(self.VM.mappedListArray[indexPath.row].mobile ?? ""))"
             self.mappedUserId = self.VM.mappedListArray[indexPath.row].userID ?? -1
             self.mappedMobileNumber = self.VM.mappedListArray[indexPath.row].mobile ?? ""
             self.mappedLoyaltyId = self.VM.mappedListArray[indexPath.row].loyaltyID ?? ""
@@ -519,7 +525,9 @@ extension KC_DropDownVC: UITableViewDelegate, UITableViewDataSource{
             self.delegate?.didTapAmount!(self)
             self.dismiss(animated: true)
         }else if self.itsFrom == "CLAIMPURCHSSS"{
-            self.mappedUsername = self.VM.mapppedUserNameListArray1[indexPath.row].firstName ?? ""
+            let firmName = self.VM.mapppedUserNameListArray1[indexPath.row].mobile ?? ""
+            let firstName = self.VM.mapppedUserNameListArray1[indexPath.row].firstName ?? ""
+            self.mappedUsername = firstName + " (\(firmName))"//self.VM.mapppedUserNameListArray1[indexPath.row].firstName ?? ""
             self.mappedUserId = self.VM.mapppedUserNameListArray1[indexPath.row].userID ?? -1
             self.mappedMobileNumber = self.VM.mapppedUserNameListArray1[indexPath.row].mobile ?? ""
             self.mappedLoyaltyId = self.VM.mapppedUserNameListArray1[indexPath.row].loyaltyID ?? ""

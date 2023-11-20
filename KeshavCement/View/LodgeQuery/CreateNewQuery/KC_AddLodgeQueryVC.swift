@@ -35,9 +35,9 @@ class KC_AddLodgeQueryVC: BaseViewController, SelectedDataDelegate{
     
     @IBOutlet weak var querySummaryLbl: UILabel!
     
-   
+   var submitBtnStatus = true
     var selectedQueryID = 0
-    let picker = UIImagePickerController()
+    lazy var picker = UIImagePickerController()
     var selectedItem = "", strBase64 = "", selectedQueryTopic = ""
     
     var VM = KC_NewQuerySubmissionVM()
@@ -56,7 +56,9 @@ class KC_AddLodgeQueryVC: BaseViewController, SelectedDataDelegate{
         self.selectTopicTitle.text = self.selectedQueryTopic
       //  localization()
       //  self.attachedImgHeightConstraint.constant = 0
-        self.picker.delegate = self
+        DispatchQueue.main.async {
+            self.picker.delegate = self
+        }
      //   self.mainViewHeightConstraint.constant = 380
         
         self.viewTitle.text = "PleaseSubmitYour".localiz()
@@ -122,7 +124,8 @@ class KC_AddLodgeQueryVC: BaseViewController, SelectedDataDelegate{
             self.view.makeToast("EnterQuerySummary".localiz(),duration: 2.0,position: .bottom)
         }else if self.queryDetailsTF.text?.count == 0{
             self.view.makeToast("EnterQueryDetails".localiz(),duration: 2.0,position: .bottom)
-        }else{
+        }else if self.submitBtnStatus{
+            self.submitBtnStatus = false
             var parameterJSON = [
                 "ActionType":"0",
                 "ActorId":"\(self.userID)",

@@ -291,6 +291,7 @@
 "WorkDetails" = "Work Details";
 "WorkLevel" = "Work Level";
 "SelectLevel" = "Select Level";
+"PleaseSelectLevel" = "Please Select Level";
 "TentativeDateofcompletion" = "Tentative Date of completion";
 "SelectDate" = "Select Date";
 "Remarks" = "Remarks";
@@ -393,3 +394,4 @@
 "mobilenumberExistance" = "Your Enterd Mobile Number is already exist, Please try with new number";
 "AccDeleted" = "Account deleted successfully";
 "SureWantToDelete" = "Sure you want to delete ?";
+"EnterValidmobilenumber" = "Enter a Valid mobile number";

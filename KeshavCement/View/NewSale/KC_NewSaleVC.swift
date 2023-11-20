@@ -222,6 +222,7 @@ class KC_NewSaleVC: BaseViewController, SelectedDataDelegate, DPOTPViewDelegate{
             vc.itsFrom = "MAPPEDUSERS"
             vc.delegate = self
             vc.selectedUserTypeId = self.selectedUserTypeId
+            vc.supportExeUserID = UserDefaults.standard.string(forKey: "mappedCustomerId") ?? ""
             vc.modalTransitionStyle = .coverVertical
             vc.modalPresentationStyle = .overFullScreen
             self.present(vc, animated: true)
@@ -345,7 +346,7 @@ class KC_NewSaleVC: BaseViewController, SelectedDataDelegate, DPOTPViewDelegate{
                         ]
                     ],
                     "RitailerId": UserDefaults.standard.string(forKey: "mappedCustomerId") ?? "",
-                    "SourceDevice": 1,
+                    "SourceDevice": 5,
                     "TranDate": "\(desiredDateFormat)",
                     "Approval_Status": "-1"
                 ] as [String: Any]
@@ -361,7 +362,7 @@ class KC_NewSaleVC: BaseViewController, SelectedDataDelegate, DPOTPViewDelegate{
                         ]
                     ],
                     "RitailerId": self.userID,
-                    "SourceDevice": 1,
+                    "SourceDevice": 5,
                     "TranDate": "\(desiredDateFormat)",
                     "Approval_Status": "-1"
                 ] as [String: Any]
@@ -427,7 +428,7 @@ class KC_NewSaleVC: BaseViewController, SelectedDataDelegate, DPOTPViewDelegate{
                     ]
                 ],
                 "RitailerId": self.userID,
-                "SourceDevice": 1,
+                "SourceDevice": 5,
                 "TranDate": "\(desiredDateFormat)",
                 "Approval_Status": "1"
             ] as [String: Any]
@@ -443,7 +444,7 @@ class KC_NewSaleVC: BaseViewController, SelectedDataDelegate, DPOTPViewDelegate{
                     ]
                 ],
                 "RitailerId": self.userID,
-                "SourceDevice": 1,
+                "SourceDevice": 5,
                 "TranDate": "\(desiredDateFormat)",
                 "Approval_Status": "1"
             ] as [String: Any]
