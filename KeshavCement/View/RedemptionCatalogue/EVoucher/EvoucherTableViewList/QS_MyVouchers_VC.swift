@@ -79,57 +79,58 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
             self.maxPoints = cell.vouchersdata[0].max_points ?? ""
             print(self.mimPoints,"khubu")
             print(self.maxPoints,"kmhjopgjfnio")
+            self.redeemedPoints = amt
             if amt < Int(cell.vouchersdata[0].min_points ?? "")! || amt > Int(cell.vouchersdata[0].max_points ?? "")! || cell.amounttf.text?.count == 0{
                 self.alertmsg(alertmsg: "Enter_amount_to_redeem".localiz(), buttonalert: "OK")
             }else{
-                if Int(self.overAllPts)! >= Int(cell.amounttf.text ?? "0")!{
-                    if MyCommonFunctionalUtilities.isInternetCallTheApi() == false{
-                        DispatchQueue.main.async{
-                            let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "RGT_popupAlertOne_VC") as? RGT_popupAlertOne_VC
-                            vc!.delegate = self
-                            vc!.titleInfo = ""
-                            vc!.descriptionInfo = "No Internet. Please check your internet connection"
-                            vc!.modalPresentationStyle = .overCurrentContext
-                            vc!.modalTransitionStyle = .crossDissolve
-                            self.present(vc!, animated: true, completion: nil)
+                    if Int(self.overAllPts)! >= Int(cell.amounttf.text ?? "0")!{
+                        if MyCommonFunctionalUtilities.isInternetCallTheApi() == false{
+                            DispatchQueue.main.async{
+                                let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "RGT_popupAlertOne_VC") as? RGT_popupAlertOne_VC
+                                vc!.delegate = self
+                                vc!.titleInfo = ""
+                                vc!.descriptionInfo = "No Internet. Please check your internet connection"
+                                vc!.modalPresentationStyle = .overCurrentContext
+                                vc!.modalTransitionStyle = .crossDissolve
+                                self.present(vc!, animated: true, completion: nil)
+                            }
+                        }else{
+                            print(self.mimPoints,"MimPoints")
+                            print(self.maxPoints,"MaxPoints")
+                            self.popView.isHidden = false
+                            
+                            if self.mobile == ""{
+                                self.receiverMobile = self.mobilenumber
+                                self.generateOTPApi(mobilenumber: self.mobilenumber, userID: self.userID, loyaltyId: self.loyaltyId, firstname: self.firstname)
+                                self.actorId = userID
+                                self.receiverEmail = emailid
+                                self.receiverName = firstname
+                            }else{
+                                self.receiverMobile = self.mobile
+                                self.generateOTPApi(mobilenumber: self.mobile, userID: "\(self.mappedUserId)", loyaltyId: self.partyLoyaltyId, firstname: self.firstNAME)
+                                self.actorId = "\(self.mappedUserId)"
+                                self.receiverEmail = self.emailData
+                                self.receiverName = firstNAME
+                            }
+                            
+                            self.countryID = cell.vouchersdata[0].countryID ?? -1
+                            self.merchantId = "\(self.merchantID)"
+                            self.catalogueId = cell.vouchersdata[0].catalogueId ?? -1
+                            self.deliveryType = cell.vouchersdata[0].deliveryType ?? ""
+                            self.pointsrequired = cell.amounttf.text ?? "0"
+                            self.productCode = cell.vouchersdata[0].productCode ?? ""
+                            self.productImage = cell.vouchersdata[0].productImage ?? ""
+                            print(self.productImage)
+                            self.productName = cell.vouchersdata[0].productName ?? ""
+                            self.noOfQuantity = "1"
+                            self.vendorId = "\(cell.vouchersdata[0].vendorId ?? -1)"
+                            self.vendorName = cell.vouchersdata[0].vendorName ?? ""
+                            
+                            
                         }
                     }else{
-                        print(self.mimPoints,"MimPoints")
-                        print(self.maxPoints,"MaxPoints")
-                        self.popView.isHidden = false
-                        
-                        if self.mobile == ""{
-                            self.receiverMobile = self.mobilenumber
-                            self.generateOTPApi(mobilenumber: self.mobilenumber, userID: self.userID, loyaltyId: self.loyaltyId, firstname: self.firstname)
-                            self.actorId = userID
-                            self.receiverEmail = emailid
-                            self.receiverName = firstname
-                        }else{
-                            self.receiverMobile = self.mobile
-                            self.generateOTPApi(mobilenumber: self.mobile, userID: "\(self.mappedUserId)", loyaltyId: self.partyLoyaltyId, firstname: self.firstNAME)
-                            self.actorId = "\(self.mappedUserId)"
-                            self.receiverEmail = self.emailData
-                            self.receiverName = firstNAME
-                        }
-                       
-                        self.countryID = cell.vouchersdata[0].countryID ?? -1
-                        self.merchantId = "\(self.merchantID)"
-                        self.catalogueId = cell.vouchersdata[0].catalogueId ?? -1
-                        self.deliveryType = cell.vouchersdata[0].deliveryType ?? ""
-                        self.pointsrequired = cell.amounttf.text ?? "0"
-                        self.productCode = cell.vouchersdata[0].productCode ?? ""
-                        self.productImage = cell.vouchersdata[0].productImage ?? ""
-                        print(self.productImage)
-                        self.productName = cell.vouchersdata[0].productName ?? ""
-                        self.noOfQuantity = "1"
-                        self.vendorId = "\(cell.vouchersdata[0].vendorId ?? -1)"
-                        self.vendorName = cell.vouchersdata[0].vendorName ?? ""
-                        
-         
+                        self.alertmsg(alertmsg: "InsufficientPointBalance".localiz(), buttonalert: "OK".localiz())
                     }
-                }else{
-                    self.alertmsg(alertmsg: "InsufficientPointBalance".localiz(), buttonalert: "OK".localiz())
-                }
             }
         }else{
             if cell.amount.currentTitle == "Amount"{
@@ -273,6 +274,8 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
         var receiverName = ""
     var mappedUserId = -1
     var productTotalPoints = 0
+    var redeemedPoints = 0
+    var myVoucherDataSelect = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -397,7 +400,7 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
             let desiredDateFormat = self.convertDateFormater("\(today[0])", fromDate: "yyyy-MM-dd", toDate: "yyyy-MM-dd")
            print("\(desiredDateFormat)")
             print(layaltyID,"dlksd")
-            
+            self.myVoucherDataSelect = 1
             self.vm.serverOTP(mobileNumber: self.receiverMobile, otpNumber: self.enteredValue)
             
             
@@ -410,8 +413,20 @@ class QS_MyVouchers_VC: BaseViewController, UITableViewDelegate,UITableViewDataS
     func voucherSubmitAPI(){
         self.vm.voucherSubmission(ReceiverMobile: self.receiverMobile, ActorId: self.actorId, CountryID: self.countryID, MerchantId: Int(self.merchantId)!, CatalogueId: self.catalogueId, DeliveryType: self.deliveryType, pointsrequired: self.pointsrequired, ProductCode: self.productCode, ProductImage: self.productImage, ProductName: self.productName, NoOfQuantity: "1", VendorId: Int(self.vendorId)!, VendorName: self.vendorName, ReceiverEmail: self.receiverEmail, ReceiverName: self.firstname, LoyaltyId: layaltyID)
     }
-
     
+    func sendSuccessMessage(loyaltyId: String, mobile: String){
+       let parameter =  [
+                "CustomerName": "\(firstname)",
+                "EmailID": "",
+                "LoyaltyID": "\(loyaltyId)",
+                "Mobile": mobile,
+                "PointBalance": "\(self.pointBalance)",
+                "RedeemedPoint": "\(self.redeemedPoints)"
+            ] as [String:Any]
+        print(parameter)
+        self.vm.sendSMSApi(parameter: parameter)
+        }
+
     func generateOTPApi(mobilenumber: String,userID: String,loyaltyId: String, firstname: String){
         let parameter = [
             "MerchantUserName": MerchantUserName,

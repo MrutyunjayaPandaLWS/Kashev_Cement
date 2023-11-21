@@ -280,6 +280,7 @@ class KC_EvoucherPopUpVC: BaseViewController, DPOTPViewDelegate{
             ] as [String: Any]
             print(self.productsParameter ?? [], "Dream Gift")
         }
+        print(productsParameter)
         
         self.VM.redemptionSubmissionApi(parameter: self.productsParameter!)
         

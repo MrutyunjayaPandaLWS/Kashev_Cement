@@ -18,6 +18,7 @@ class KC_LodgeQueryTVC: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .none
+        self.queryStatus.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

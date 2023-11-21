@@ -58,6 +58,16 @@ class KC_DashBoardVC: BaseViewController{
     @IBOutlet weak var cashTransferLbl: UILabel!
     @IBOutlet weak var otherRedemptionsLbl: UILabel!
     
+    @IBOutlet weak var maintenanceView: UIView!
+    @IBOutlet weak var underMaintenance: LottieAnimationView!
+    
+    private var animationView: LottieAnimationView?
+    
+    
+    
+    
+    
+    
     
    // var userID = UserDefaults.standard.string(forKey: "UserID") ?? ""
     var sourceArray = [AlamofireSource]()
@@ -86,11 +96,12 @@ class KC_DashBoardVC: BaseViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.VM.VC = self
-        
+        self.maintenanceView.isHidden = true
         self.helpButton.isHidden = true
         self.languageTrailingSpace.constant = 16
         self.languagePopUpView.isHidden = true
         self.dashBoardId = -1
+        self.countLbl.clipsToBounds = true
         categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self
         self.countLbl.isHidden = true
@@ -137,6 +148,8 @@ class KC_DashBoardVC: BaseViewController{
         self.redemptionTypeView.isHidden = true
         self.tokendata()
         self.localization()
+        self.maintenanceAPI()
+        self.isUpdateAvailable()
         
 //        NotificationCenter.default.addObserver(self, selector: #selector(changePassword), name: Notification.Name.navigateToChangePassword, object: nil)
        
@@ -389,6 +402,93 @@ class KC_DashBoardVC: BaseViewController{
             task.resume()
         }
         }
+    
+    func maintenanceAPI(){
+        let bundleId = Bundle.main.infoDictionary!["CFBundleIdentifier"] as! String
+        print(bundleId,"BundleIDs")
+        guard let url = URL(string: "http://appupdate.arokiait.com/updates/serviceget?pid=\(bundleId)") else {return}
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let dataResponse = data,
+                  error == nil else {
+                print(error?.localizedDescription ?? "Response Error")
+                return }
+            do{
+                //here dataResponse received from a network request
+                let jsonResponse = try JSONSerialization.jsonObject(with:
+                                                                        dataResponse, options: [])
+                print(jsonResponse)
+                let isMaintenanceValue = ((jsonResponse as AnyObject).value(forKeyPath: "Result.is_maintenance") as? String)!
+                let forceupdatevalue = ((jsonResponse as AnyObject).value(forKeyPath: "Result.version_number") as? String)!
+                print(forceupdatevalue)
+                if isMaintenanceValue == "1"{
+                    print(isMaintenanceValue)
+                    DispatchQueue.main.async {
+                        self.maintenanceView.isHidden = false
+                        self.playAnimation()
+                        self.slideMenuController()?.removeLeftGestures()
+
+                    }
+                }else if isMaintenanceValue == "0"{
+                    self.tokendata()
+                    self.animationView?.stop()
+                    self.slideMenuController()?.addLeftGestures()
+                }
+            } catch let parsingError {
+                print("Error", parsingError)
+            }
+        }
+        task.resume()
+    }
+    
+    func playAnimation(){
+        animationView = .init(name: "27592-maintenance")
+        animationView!.frame = underMaintenance.bounds
+          // 3. Set animation content mode
+        animationView!.contentMode = .scaleAspectFit
+          // 4. Set animation loop mode
+        animationView!.loopMode = .loop
+          // 5. Adjust animation speed
+        animationView!.animationSpeed = 1
+        underMaintenance.addSubview(animationView!)
+          // 6. Play animation
+        animationView!.play()
+
+    }
+    func isUpdateAvailable() {
+        let bundleId = Bundle.main.infoDictionary!["CFBundleIdentifier"] as! String
+        print(bundleId)
+        Alamofire.request("https://itunes.apple.com/in/lookup?bundleId=\(bundleId)").responseJSON { response in
+            if let json = response.result.value as? NSDictionary, let results = json["results"] as? NSArray, let entry = results.firstObject as? NSDictionary, let appStoreVersion = entry["version"] as? String,let appstoreid = entry["trackId"], let trackUrl = entry["trackViewUrl"], let installedVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+                let installed = Int(installedVersion.replacingOccurrences(of: ".", with: "")) ?? 0
+                print(installed)
+                let appStore = Int(appStoreVersion.replacingOccurrences(of: ".", with: "")) ?? 0
+                print(appStore)
+                print(appstoreid)
+                if appStore>installed {
+                        let alertController = UIAlertController(title: "New update Available!", message: "Update is available to download. Downloading the latest update you will get the latest features, improvements and bug fixes of Keshav Club", preferredStyle: .alert)
+
+                        // Create the actions
+                        let okAction = UIAlertAction(title: "Update Now", style: UIAlertAction.Style.default) {
+                            UIAlertAction in
+                            UIApplication.shared.openURL(NSURL(string: "\(trackUrl)")! as URL)
+
+                        }
+                        //                     Add the actions
+                        alertController.addAction(okAction)
+                        // Present the controller
+                        self.present(alertController, animated: true, completion: nil)
+
+                }else{
+                    print("no updates")
+
+                }
+            }
+        }
+    }
+    
+    
+    
+    
     
 }
 extension KC_DashBoardVC: UICollectionViewDelegate, UICollectionViewDataSource{

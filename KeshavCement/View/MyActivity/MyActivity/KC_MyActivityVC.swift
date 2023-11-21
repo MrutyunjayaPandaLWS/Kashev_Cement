@@ -276,8 +276,9 @@ extension KC_MyActivityVC: UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "KC_MyActivityTVC", for: indexPath) as! KC_MyActivityTVC
         
         let receivedDate = String(self.VM.claimHistoryListArray[indexPath.row].trxnDate ?? "").split(separator: " ")
-        if receivedDate.count != 0 {
-            cell.dateLbl.text = "\(receivedDate[0])"
+        let convertFormatter = self.convertDateFormater("\(receivedDate[0])", fromDate: "MM-dd-yyyy", toDate: "dd/MM/yyyy")
+        if convertFormatter.count != 0 {
+            cell.dateLbl.text = "\(convertFormatter)"
         }else{
             cell.dateLbl.text = "-"
         }

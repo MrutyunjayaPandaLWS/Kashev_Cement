@@ -230,8 +230,8 @@ extension KC_MyRedemptionVC: UITableViewDelegate,UITableViewDataSource{
             
             if redemptionDate.count != 0 {
                 
-               // let dateFormatted = convertDateFormater(String(redemptionDate[0]), fromDate: "MM/dd/yyyy", toDate: "dd/MM/yyyy")
-                cell.redemptionDateLbl.text = "\(redemptionDate[0])"
+                let dateFormatted = convertDateFormater(String(redemptionDate[0]), fromDate: "MM/dd/yyyy", toDate: "dd/MM/yyyy")
+                cell.redemptionDateLbl.text = "\(dateFormatted)"
             }else{
                 cell.redemptionDateLbl.text = "-"
             }
@@ -463,19 +463,14 @@ extension KC_MyRedemptionVC: UITableViewDelegate,UITableViewDataSource{
         vc.status = "\(self.VM.myredemptionListArray[indexPath.item].status ?? 0)"
         vc.customerId = "\(self.userID)"
         let strDate = self.VM.myredemptionListArray[indexPath.row].jRedemptionDate ?? "01/01/0001  00:00:00"
-        print(strDate)
         let array = strDate.components(separatedBy: " ")
-        print(array[0])
-        //        let inputFormatter = DateFormatter()
-        //        inputFormatter.dateFormat = "MM/dd/yyyy"
-        //        let outputFormatter = DateFormatter()
-        //        outputFormatter.dateFormat = "dd/MM/yyyy"
-        //        let showDate = inputFormatter.date(from: array[0])!
-        //        let resultString = outputFormatter.string(from: showDate)
-        //vc.redemptionsDate = "\(resultString)"
-        
-        vc.redemptionsDate = "\(array[0])"
-        vc.redemptionsstatus = String(self.VM.myredemptionListArray[indexPath.row].status ?? 0) ?? ""
+        if array.count != 0{
+            let dateFormatted = convertDateFormater(String(array[0]), fromDate: "MM/dd/yyyy", toDate: "dd/MM/yyyy")
+            vc.redemptionsDate = "\(dateFormatted)"
+        }else{
+            vc.redemptionsDate = "-"
+        }
+        vc.redemptionsstatus = String(self.VM.myredemptionListArray[indexPath.row].status ?? 0) 
         
        // vc.cartCounts = self.cartCount.text!
         vc.redemptionId = "\(self.VM.myredemptionListArray[indexPath.item].redemptionId ?? 0)"

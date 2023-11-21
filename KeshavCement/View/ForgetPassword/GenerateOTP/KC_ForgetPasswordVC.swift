@@ -120,7 +120,7 @@ class KC_ForgetPasswordVC: BaseViewController, DPOTPViewDelegate,UITextFieldDele
         if self.generateOTPBtn.currentTitle == "GenerateOTP".localiz(){
                 if self.mobileNumberTF.text?.count == 0 {
                     self.view.makeToast("EntermemberID".localiz(), duration: 2.0, position: .bottom)
-                }else if (self.mobileNumberTF.text?.count ?? 0) <= 10{
+                }else if (self.mobileNumberTF.text?.count ?? 0) < 10{
                     self.view.makeToast("EnterValidmobilenumber".localiz(), duration: 2.0, position: .bottom)
                 }
                

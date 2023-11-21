@@ -310,8 +310,9 @@ extension KC_CashTranferHistoryVC: UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "KC_CashTranferHistoryTVC", for: indexPath) as! KC_CashTranferHistoryTVC
         cell.selectionStyle = .none
         let receivedDate = String(self.VM.cashTransferApprovalListingArray[indexPath.row].createdDate ?? "").split(separator: " ")
-        if receivedDate.count != 0 {
-            cell.dateLbl.text = "\(receivedDate[0])"
+        if receivedDate.count > 0{
+            let convertFormatter = self.convertDateFormater("\(receivedDate[0])", fromDate: "MM-dd-yyyy", toDate: "dd/MM/yyyy")
+            cell.dateLbl.text = "\(convertFormatter)"
         }else{
             cell.dateLbl.text = "-"
         }

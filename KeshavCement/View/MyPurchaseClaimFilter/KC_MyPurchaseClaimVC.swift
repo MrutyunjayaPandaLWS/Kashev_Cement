@@ -238,8 +238,9 @@ extension KC_MyPurchaseClaimVC: UITableViewDelegate, UITableViewDataSource{
         cell.delegate = self
         if self.VM.myPurchaseListArray.count != 0{
             let trxnDate = String(self.VM.myPurchaseListArray[indexPath.row].trxnDate ?? "-").split(separator: " ")
-            if trxnDate.count != 0{
-                cell.createdDateLbl.text = "\(trxnDate[0])"
+            let convertFormatter = self.convertDateFormater("\(trxnDate[0])", fromDate: "MM-dd-yyyy", toDate: "dd/MM/yyyy")
+            if convertFormatter.count != 0{
+                cell.createdDateLbl.text = "\(convertFormatter)"
             }else{
                 cell.createdDateLbl.text = "-"
             }

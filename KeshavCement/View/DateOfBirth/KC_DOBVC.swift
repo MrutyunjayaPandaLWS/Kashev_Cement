@@ -74,7 +74,7 @@ class KC_DOBVC: UIViewController {
 //                self.present(alert, animated: true, completion: nil)
 //            }else{
                 let formatter = DateFormatter()
-                formatter.dateFormat = "dd/MM/yyyy"
+                formatter.dateFormat = "yyyy-MM-dd"
                 selectedDate = formatter.string(from: datePicker.date)
                 self.delegate.acceptDate!(self)
                 self.dismiss(animated: true, completion: nil)

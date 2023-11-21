@@ -376,12 +376,12 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
         else{
             let parameter = [
                 
-                    "actiontype": "0",
+                    "Actiontype": "0",
                     "lstidentityinfo": [
                         [
-                            "identityid": "2",
-                            "identityno": "\(self.aadharcarNumber)",
-                            "identitytype": "2"
+                            "Identityid": "2",
+                            "Identityno": "\(self.aadharcarNumber)",
+                            "Identitytype": "2"
                         ]
                     ],
                     "objcustomer": [
@@ -406,35 +406,6 @@ class KC_SignUpVC: BaseViewController, SelectedDataDelegate, DateSelectedDelegat
                         "CompanyName": "\(self.firmNameTF.text ?? "" )",
                         "OfficialGSTNumber": "\(self.gstNumber)"
                     ]
-                
-                
-//                "ActionType": "0",
-//                "ObjCustomer": [
-//                    "FirstName": "\(self.fullNameTF.text ?? "")",
-//                    "CustomerMobile": "\(self.mobileTF.text ?? "")",
-//                    "CustomerEmail": "\(self.emailTF.text ?? "")",
-//                    "CustomerStateId": "\(self.selectedStateId )",
-//                    "DistrictId": "\(self.selectedDistrictId)",
-//                    "TalukId": "\(self.selectedTalukId)",
-//                    "RegistrationSource": "3",
-//                    "CustomerZip": "\(self.pincodeTF.text ?? "")",
-//                    "Address": "\(self.addressTF.text ?? "")",
-//                    "MerchantId": "1",
-//                    "ReferrerCode": self.referralCode,
-//                    "IsActive": "1",
-//                    "CustomerTypeID": "\(self.selectedCustomerTypeId)",
-//                    "Anniversary": "\(self.selectedAnniversary)",
-//                    "DOB": "\(self.selectedDOB)"
-//                ],
-//                "ObjCustomerOfficalInfo": [
-//                    "CompanyName": "\(self.firmNameTF.text ?? "" )", //Firm Name
-//                    "SAPCode": "\(self.memberTF.text ?? "")" //Member ID
-//                ],
-//                "lstIdentityInfo": [
-//                    "IdentityID": "2",
-//                    "IdentityType": "4",
-//                    "IdentityNo":"\(self.aadharNumberTF.text ?? "")",
-//                ]
             ] as [String: Any]
             print(parameter)
             self.VM.registrationSubmission(parameter: parameter)

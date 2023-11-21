@@ -173,10 +173,20 @@ class MSP_MyDreamGiftDetailsVC: BaseViewController{
             let splitData = response?.lstDreamGift?[0].jDesiredDate ?? ""
             let separateData = splitData.split(separator: " ")
             print(separateData[0],"sjhdj")
-            self.averagePointsLbl3.text = "\(separateData[0])"
+            if separateData.count != 0{
+                let convertedFormat = self.convertDateFormater(String(separateData[0]), fromDate: "MM/dd/yyyy", toDate: "dd/MM/yyyy")
+                self.averagePointsLbl3.text = "\(convertedFormat)"
+                self.expectedRedemptionLbl3.text =  "\(convertedFormat)"
+            }else{
+                self.averagePointsLbl3.text = "-"
+            }
+            
+            
+            
+//            self.averagePointsLbl3.text = "\(separateData[0])"
             self.expectedRedemptionLbl1.text = "\(response?.lstDreamGift?[0].pointsRequiredPerDay ?? "")"
             self.expectedRedemptionLbl2.text = "\(response?.lstDreamGift?[0].daysRequiredToAchieve ?? 0)"
-            self.expectedRedemptionLbl3.text =  "\(separateData[0])"
+           // self.expectedRedemptionLbl3.text =  "\(separateData[0])"
             
             self.pointsReqLbl.text = "\(response?.lstDreamGift?[0].pointsRequired ?? 0)"
             

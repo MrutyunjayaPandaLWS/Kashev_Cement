@@ -155,8 +155,23 @@ extension KC_LodgeQueryVC: UITableViewDelegate, UITableViewDataSource{
         let strDate = self.VM.queryListArray[indexPath.row].jCreatedDate ?? "01/01/0001  00:00:00"
         print(strDate)
         let array = strDate.components(separatedBy: " ")
-        cell.queryDate.text = "\(array[0])"
-        cell.queryTime.text = "\(array[1])"
+        
+        
+        if array.count != 0{
+            let convertFormatter = self.convertDateFormater("\(array[0])", fromDate: "MM-dd-yyyy", toDate: "dd/MM/yyyy")
+            cell.queryDate.text = "\(convertFormatter)"
+            cell.queryTime.text = "\(array[1])"
+        }else{
+            cell.queryDate.text = "-"
+            cell.queryTime.text = "-"
+        }
+        
+        
+        
+        
+        
+//        cell.queryDate.text = "\(array[0])"
+//        cell.queryTime.text = "\(array[1])"
         return cell
     }
     

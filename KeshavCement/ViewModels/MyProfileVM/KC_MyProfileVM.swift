@@ -51,7 +51,7 @@ class KC_MyProfileVM{
                             let dateOfBirth = (response[0].jdob)?.split(separator: " ")
                             let aniv = (response[0].anniversary)?.split(separator: " ")
                             self.VC?.dobTF.text = "\(dateOfBirth?[0] ?? "")"
-                            self.VC?.selectedDOB = "\(self.VC?.convertDateFormater("\(dateOfBirth?[0] ?? "")", fromDate: "dd/mm/yyyy", toDate: "yyyy-mm-dd") ?? "")"//"\(dateOfBirth?[0] ?? "")"
+                            self.VC?.selectedDOB = "\(self.VC?.convertDateFormater("\(dateOfBirth?[0] ?? "")", fromDate: "mm/dd/yyyy", toDate: "yyyy-mm-dd") ?? "")"//"\(dateOfBirth?[0] ?? "")"
                             self.VC?.dateOfAnniverseryTF.text = "\(aniv?[0] ?? "")"
                             
                             let customerImage = String(response[0].profilePicture ?? "").dropFirst(1)
@@ -71,7 +71,14 @@ class KC_MyProfileVM{
                         if self.VC?.customerTypeId == "1" || self.VC?.customerTypeId == "2"{
                             let response2 = result?.lstCustomerIdentityInfo ?? []
                             if response2.count != 0 {
-                                self.VC?.aadharNumberTF.text = response2[0].identityNo ?? ""
+                                for data in response2{
+                                    if data.identityID == 2{
+                                        self.VC?.aadharNumberTF.text = data.identityNo ?? ""
+                                    }else{
+                                        self.VC?.aadharNumberTF.text = "-"
+                                    }
+                                }
+                                
                             }
                             
                         }else{

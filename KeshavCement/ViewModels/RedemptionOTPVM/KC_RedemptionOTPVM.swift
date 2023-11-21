@@ -197,9 +197,9 @@ class KC_RedemptionOTPVM{
                                 }
                                 
                                 if self.VC?.partyLoyaltyId == ""{
-                                    self.VC!.sendSuccessMessage(loyaltyId: self.VC!.loyaltyID, mobile: self.VC!.mobilenumber)
+                                    self.VC?.sendSuccessMessage(loyaltyId: self.VC!.loyaltyID, mobile: self.VC!.mobilenumber)
                                 }else{
-                                    self.VC!.sendSuccessMessage(loyaltyId: self.VC!.partyLoyaltyId, mobile: self.VC!.mobile)
+                                    self.VC?.sendSuccessMessage(loyaltyId: self.VC!.partyLoyaltyId, mobile: self.VC!.mobile)
                                 }
                             }
                         }else{

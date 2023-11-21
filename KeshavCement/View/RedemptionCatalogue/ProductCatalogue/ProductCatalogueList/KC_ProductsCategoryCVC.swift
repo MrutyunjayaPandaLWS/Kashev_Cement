@@ -17,4 +17,9 @@ class KC_ProductsCategoryCVC: UICollectionViewCell {
 
         }
     }
+    
+    override func awakeFromNib() {
+        self.categoryLbl.clipsToBounds = true
+    }
+    
 }

@@ -196,7 +196,13 @@ class QS_Vouchers_VM{
 //                            vc!.modalPresentationStyle = .overCurrentContext
 //                            vc!.modalTransitionStyle = .crossDissolve
 //                            self.VC?.present(vc!, animated: true, completion: nil)
-                            self.VC?.successPopupView.isHidden = false
+                            
+                            
+                            if self.VC?.partyLoyaltyId == ""{
+                                self.VC?.sendSuccessMessage(loyaltyId: self.VC!.layaltyID, mobile: self.VC!.mobilenumber)
+                            }else{
+                                self.VC?.sendSuccessMessage(loyaltyId: self.VC!.partyLoyaltyId, mobile: self.VC!.mobile)
+                            }
                             
                         }
                         
@@ -221,6 +227,63 @@ class QS_Vouchers_VM{
         }
     }
     
+    
+    
+    
+    
+    func sendSMSApi(parameter: JSON){
+        DispatchQueue.main.async {
+            self.VC?.startLoading()
+        }
+     
+            let url = URL(string: sendSMSToUserURL)!
+            let session = URLSession.shared
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+
+            do {
+                request.httpBody = try JSONSerialization.data(withJSONObject: parameter, options: .prettyPrinted)
+            } catch let error {
+                print(error.localizedDescription)
+            }
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+            request.setValue("Bearer \(UserDefaults.standard.string(forKey: "TOKEN") ?? "")", forHTTPHeaderField: "Authorization")
+
+            let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
+
+                guard error == nil else {
+                    return
+                }
+                guard let data = data else {
+                    return
+                }
+                do{
+                    let str = String(decoding: data, as: UTF8.self) as String?
+                     print(str, "- response")
+                    if str ?? "" == "true"{
+                        DispatchQueue.main.async {
+                            self.VC?.stopLoading()
+                            self.VC?.successPopupView.isHidden = false
+                            }
+                    }else{
+                        DispatchQueue.main.async{
+                            self.VC?.stopLoading()
+                            self.VC!.view.makeToast("RedemptionFailed!".localiz(), duration: 2.0, position: .bottom)
+                        }
+                    }
+                     }catch{
+                         DispatchQueue.main.async{
+                             self.VC?.stopLoading()
+                             print("parsing Error")
+                         }
+                }
+            })
+            task.resume()
+        }
+    
+    
+    
     func serverOTP(mobileNumber : String, otpNumber : String) {
         DispatchQueue.main.async {
             self.VC?.startLoading()
@@ -239,7 +302,10 @@ class QS_Vouchers_VM{
                     let response = result?.returnMessage ?? ""
                         print(response, "- OTP")
                         if response > "0"{
-                            self.VC?.voucherSubmitAPI()
+                            if self.VC?.myVoucherDataSelect == 1{
+                                self.VC?.myVoucherDataSelect = 0
+                                self.VC?.voucherSubmitAPI()
+                            }
                             //self.voucherSubmission(ReceiverMobile: self.VC?.receiverMobile, ActorId: self.VC?.actorId, CountryID: self.VC?.countryID, MerchantId: Int(self.VC?.merchantId)!, CatalogueId: self.VC?.catalogueId, DeliveryType: self.VC?.deliveryType, pointsrequired: self.pointsrequired, ProductCode: self.productCode, ProductImage: self.productImage, ProductName: self.productName, NoOfQuantity: "1", VendorId: Int(self.vendorId)!, VendorName: self.vendorName, ReceiverEmail: self.receiverEmail, ReceiverName: self.firstname, LoyaltyId: self.VC?.layaltyID)
                             
                         }else{

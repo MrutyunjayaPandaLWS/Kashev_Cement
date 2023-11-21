@@ -38,6 +38,8 @@ class KC_MyActivityTVC: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .none
+        self.statusLbl.clipsToBounds = true
+        self.remarks.clipsToBounds = true
     }
 
 }

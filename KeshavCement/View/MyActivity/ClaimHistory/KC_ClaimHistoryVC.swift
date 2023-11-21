@@ -303,11 +303,19 @@ extension KC_ClaimHistoryVC: UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "KC_ClaimHistoryTVC", for: indexPath) as! KC_ClaimHistoryTVC
         
         let receivedDate = String(self.VM.claimHistoryListArray[indexPath.row].trxnDate ?? "").split(separator: " ")
-        if receivedDate.count != 0 {
-            cell.dateLbl.text = "\(receivedDate[0])"
+        if receivedDate.count != 0{
+            let convertFormatter = self.convertDateFormater("\(receivedDate[0])", fromDate: "MM-dd-yyyy", toDate: "dd/MM/yyyy")
+            cell.dateLbl.text = "\(convertFormatter)"
         }else{
             cell.dateLbl.text = "-"
         }
+        
+//        
+//        if receivedDate.count != 0 {
+//            cell.dateLbl.text = "\(receivedDate[0])"
+//        }else{
+//            cell.dateLbl.text = "-"
+//        }
         cell.categoryLbl.text = self.VM.claimHistoryListArray[indexPath.row].customer_Type ?? ""
         cell.userNameLbl.text = self.VM.claimHistoryListArray[indexPath.row].salesPersonsName ?? ""
         if self.VM.claimHistoryListArray[indexPath.row].status ?? "" == "Pending"{

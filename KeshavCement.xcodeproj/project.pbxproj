@@ -63,6 +63,7 @@
 		25F3A6722A0E04F500E11F39 /* MappingEnrollmentModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F3A6712A0E04F500E11F39 /* MappingEnrollmentModels.swift */; };
 		25F3A6742A0E0E3400E11F39 /* EnrollmentPopupMessageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F3A6732A0E0E3400E11F39 /* EnrollmentPopupMessageVC.swift */; };
 		3E6EC6F5A6C16076FE9B3309 /* Pods_KeshavCement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B467AA392AE23C7BC4DC69 /* Pods_KeshavCement.framework */; };
+		4343CB572B0B260500B49F1B /* 27592-maintenance.json in Resources */ = {isa = PBXBuildFile; fileRef = 4343CB562B0B260400B49F1B /* 27592-maintenance.json */; };
 		8400469429C59641007DC492 /* SubmitVoucherModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400469329C59641007DC492 /* SubmitVoucherModels.swift */; };
 		8400469629C59700007DC492 /* QS_SuccessTransfer_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400469529C59700007DC492 /* QS_SuccessTransfer_VC.swift */; };
 		840CC62529A732E0005B438D /* ProductCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840CC62329A732E0005B438D /* ProductCategoryModel.swift */; };
@@ -501,6 +502,7 @@
 		25F3A6712A0E04F500E11F39 /* MappingEnrollmentModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingEnrollmentModels.swift; sourceTree = "<group>"; };
 		25F3A6732A0E0E3400E11F39 /* EnrollmentPopupMessageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollmentPopupMessageVC.swift; sourceTree = "<group>"; };
 		3B61DF5F9C162E24326C4C39 /* Pods-KeshavCement.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KeshavCement.release.xcconfig"; path = "Target Support Files/Pods-KeshavCement/Pods-KeshavCement.release.xcconfig"; sourceTree = "<group>"; };
+		4343CB562B0B260400B49F1B /* 27592-maintenance.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "27592-maintenance.json"; sourceTree = "<group>"; };
 		8400469329C59641007DC492 /* SubmitVoucherModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitVoucherModels.swift; sourceTree = "<group>"; };
 		8400469529C59700007DC492 /* QS_SuccessTransfer_VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QS_SuccessTransfer_VC.swift; sourceTree = "<group>"; };
 		8407AB9729DC351100C8B612 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
@@ -1318,6 +1320,7 @@
 				2575B0A02A1608D900BE0EC4 /* ghgMRzxUJT.json */,
 				844856BF2964287F00210DE1 /* 11514-swipe-down-arrows.json */,
 				84DC9F1D2975275200C7A94E /* 43623-call-center.json */,
+				4343CB562B0B260400B49F1B /* 27592-maintenance.json */,
 			);
 			path = Animations;
 			sourceTree = "<group>";
@@ -3318,6 +3321,7 @@
 				8415A0EF2AFCBE4900CC980B /* NoInternet.storyboard in Resources */,
 				8415A0F32AFCC1B200CC980B /* no_internet_lottie.json in Resources */,
 				8419A4D1295EDFF8000A0AAB /* OFL.txt in Resources */,
+				4343CB572B0B260500B49F1B /* 27592-maintenance.json in Resources */,
 				84F841FE29A87B5A00377B26 /* HR_RedemptionPlannerTVC.xib in Resources */,
 				844856C02964287F00210DE1 /* 11514-swipe-down-arrows.json in Resources */,
 				84B02C4D296BEA3D00124C11 /* KC_WorksiteDetailsTVC.xib in Resources */,
@@ -3982,9 +3986,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = KeshavCement/KeshavCement.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = 2HG885J5KS;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HG885J5KS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KeshavCement/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Keshav Club";
@@ -4003,10 +4009,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "loyltwo3ks-Pvt-Ltd.KeshavCement";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Kashev_AppStore;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -4022,9 +4029,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = KeshavCement/KeshavCement.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = 2HG885J5KS;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HG885J5KS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KeshavCement/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Keshav Club";
@@ -4043,10 +4052,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "loyltwo3ks-Pvt-Ltd.KeshavCement";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Kashev_AppStore;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -4133,14 +4143,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = 2HG885J5KS;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HG885J5KS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotificationService/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotificationService;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4150,6 +4162,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "loyltwo3ks-Pvt-Ltd.KeshavCement.NotificationService";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = KashevNotification_AppStore;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -4161,14 +4174,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = 2HG885J5KS;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2HG885J5KS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotificationService/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotificationService;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4178,6 +4193,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "loyltwo3ks-Pvt-Ltd.KeshavCement.NotificationService";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = KashevNotification_AppStore;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

@@ -359,7 +359,8 @@ extension KC_PendingClaimVC: UITableViewDelegate, UITableViewDataSource{
         cell.delegate = self
         let receivedTransactionDate = String(self.claimPurchaseListArray[indexPath.row].transactionDate ?? "").split(separator: " ")
         if receivedTransactionDate.count != 0 {
-            cell.claimDateLbl.text = "\(receivedTransactionDate[0])"
+            let convertedFormat = convertDateFormater(String(receivedTransactionDate[0]), fromDate: "MM/dd/yyyy", toDate: "dd/MM/yyyy")
+            cell.claimDateLbl.text = "\(convertedFormat)"
         }else{
             cell.claimDateLbl.text = "-"
         }

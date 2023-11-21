@@ -43,7 +43,9 @@ class KC_LoginVM {
                 let str = String(decoding: data, as: UTF8.self) as String?
                  print(str, "- Mobile Number Exists")
                 if (str ?? "") == "1"{
-                    self.VC?.stopLoading()
+                    DispatchQueue.main.async{
+                        self.VC?.stopLoading()
+                    }
                 }else if (str ?? "") == "0" || (str ?? "") == "4" || (str ?? "") == "3" {
                     DispatchQueue.main.async{
                         self.VC?.stopLoading()

@@ -94,7 +94,10 @@ class HR_Chatvc2ViewController: UIViewController, UITextFieldDelegate,UITableVie
         if verifyusertype == "Customer" || verifyusertype == "CUSTOMER"{
             if self.chatlistingArray[indexPath.row].queryResponseInfo != nil  && self.chatlistingArray[indexPath.row].imageUrl == nil ||  self.chatlistingArray[indexPath.row].queryResponseInfo != ""  && self.chatlistingArray[indexPath.row].imageUrl == "" {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "senderInfoTableViewCell") as? senderInfoTableViewCell
-                cell?.itemTime.text = self.chatlistingArray[indexPath.row].jCreatedDate ?? ""
+                let receivedDate = self.chatlistingArray[indexPath.row].jCreatedDate ?? ""
+               
+                let convertedFormat = convertDateFormater(receivedDate)
+                cell?.itemTime.text = convertedFormat
                 cell?.itemcustomer.text = self.chatlistingArray[indexPath.row].repliedBy ?? ""
                 cell?.itemText.text = self.chatlistingArray[indexPath.row].queryResponseInfo ?? ""
                 cell?.layoutIfNeeded()
@@ -105,7 +108,9 @@ class HR_Chatvc2ViewController: UIViewController, UITextFieldDelegate,UITableVie
             }else if self.chatlistingArray[indexPath.row].queryResponseInfo == nil  && self.chatlistingArray[indexPath.row].imageUrl != nil || self.chatlistingArray[indexPath.row].queryResponseInfo == ""  && self.chatlistingArray[indexPath.row].imageUrl != ""{
                 print("Imageasdfasdfs")
                 let cell = tableView.dequeueReusableCell(withIdentifier: "senderImageTableViewCell") as? senderImageTableViewCell
-                cell?.itemTime.text = self.chatlistingArray[indexPath.row].jCreatedDate ?? ""
+                let receivedDate = self.chatlistingArray[indexPath.row].jCreatedDate ?? ""
+                let convertedFormat = convertDateFormater(receivedDate)
+                cell?.itemTime.text = convertedFormat//self.chatlistingArray[indexPath.row].jCreatedDate ?? ""
                 cell?.itemcustomer.text = self.chatlistingArray[indexPath.row].repliedBy ?? ""
                 var secondaryIMG = (self.chatlistingArray[indexPath.item].imageUrl ?? "").dropFirst(2)
                 let splited = secondaryIMG
@@ -115,7 +120,9 @@ class HR_Chatvc2ViewController: UIViewController, UITextFieldDelegate,UITableVie
             }else if self.chatlistingArray[indexPath.row].queryResponseInfo != nil  && self.chatlistingArray[indexPath.row].imageUrl != nil || self.chatlistingArray[indexPath.row].queryResponseInfo != ""  && self.chatlistingArray[indexPath.row].imageUrl != ""{
                 print("Check Again")
                 let cell = tableView.dequeueReusableCell(withIdentifier: "otherInfoImageTableViewCell") as? otherInfoImageTableViewCell
-                cell?.itemTime.text = self.chatlistingArray[indexPath.row].jCreatedDate ?? ""
+                let receivedDate = self.chatlistingArray[indexPath.row].jCreatedDate ?? ""
+                let convertedFormat = convertDateFormater(receivedDate)
+                cell?.itemTime.text = convertedFormat //self.chatlistingArray[indexPath.row].jCreatedDate ?? ""
                 cell?.itemcustomer.text = self.chatlistingArray[indexPath.row].repliedBy ?? ""
                 cell?.itemtext.text = self.chatlistingArray[indexPath.row].queryResponseInfo ?? ""
                 var secondaryIMG = self.chatlistingArray[indexPath.item].imageUrl ?? ""
@@ -124,7 +131,10 @@ class HR_Chatvc2ViewController: UIViewController, UITextFieldDelegate,UITableVie
                 return cell!
             }else{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "senderInfoTableViewCell") as? senderInfoTableViewCell
-                cell?.itemTime.text = self.chatlistingArray[indexPath.row].jCreatedDate ?? ""
+                let receivedDate = self.chatlistingArray[indexPath.row].jCreatedDate ?? ""
+                let convertedFormat = convertDateFormater(receivedDate)
+                cell?.itemTime.text = convertedFormat //self.chatlistingArray[indexPath.row].jCreatedDate ?? ""
+                
                 cell?.itemcustomer.text = self.chatlistingArray[indexPath.row].repliedBy ?? ""
                 cell?.itemText.text = self.chatlistingArray[indexPath.row].queryResponseInfo ?? ""
                 return cell!
@@ -132,14 +142,23 @@ class HR_Chatvc2ViewController: UIViewController, UITextFieldDelegate,UITableVie
         }else if verifyusertype == "Merchant" || verifyusertype == "SuperAdmin" || verifyusertype == "User" || verifyusertype == "Location" || verifyusertype == "" {
             if self.chatlistingArray[indexPath.row].queryResponseInfo != nil  && self.chatlistingArray[indexPath.row].imageUrl == nil{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "otherInfoTableViewCell") as? otherInfoTableViewCell
-                cell?.itemTime.text = self.chatlistingArray[indexPath.row].createdDate ?? ""
+                let receivedDate = self.chatlistingArray[indexPath.row].createdDate ?? ""
+                let convertedFormat = convertDateFormater(receivedDate)
+                cell?.itemTime.text = convertedFormat //self.chatlistingArray[indexPath.row].jCreatedDate ?? ""
+                
+//                cell?.itemTime.text = self.chatlistingArray[indexPath.row].createdDate ?? ""
                 cell?.itemcustomer.text = self.chatlistingArray[indexPath.row].repliedBy ?? ""
                 cell?.itemText.text = self.chatlistingArray[indexPath.row].queryResponseInfo ?? ""
                 cell?.totalArrayCount = self.chatlistingArray.count
                 return cell!
             }else if self.chatlistingArray[indexPath.row].queryResponseInfo != nil  && self.chatlistingArray[indexPath.row].imageUrl != nil{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "senderInfoImageTableViewCell") as? senderInfoImageTableViewCell
-                cell?.itemTime.text = self.chatlistingArray[indexPath.row].createdDate ?? ""
+                let receivedDate = self.chatlistingArray[indexPath.row].createdDate ?? ""
+                let convertedFormat = convertDateFormater(receivedDate)
+                cell?.itemTime.text = convertedFormat
+                
+                
+                //cell?.itemTime.text = self.chatlistingArray[indexPath.row].createdDate ?? ""
                 cell?.itemcustomer.text = self.chatlistingArray[indexPath.row].repliedBy ?? ""
                 cell?.itemtext.text = self.chatlistingArray[indexPath.row].queryResponseInfo ?? ""
                 var secondaryIMG = self.chatlistingArray[indexPath.item].imageUrl ?? ""
@@ -148,7 +167,12 @@ class HR_Chatvc2ViewController: UIViewController, UITextFieldDelegate,UITableVie
                 return cell!
             }else if self.chatlistingArray[indexPath.row].queryResponseInfo == nil  && self.chatlistingArray[indexPath.row].imageUrl != nil{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "otherImageTableViewCell") as? otherImageTableViewCell
-                cell?.itemTime.text = self.chatlistingArray[indexPath.row].createdDate ?? ""
+                
+                let receivedDate = self.chatlistingArray[indexPath.row].createdDate ?? ""
+                let convertedFormat = convertDateFormater(receivedDate)
+                cell?.itemTime.text = convertedFormat
+                
+                //cell?.itemTime.text = self.chatlistingArray[indexPath.row].createdDate ?? ""
                 cell?.itemcustomer.text = self.chatlistingArray[indexPath.row].repliedBy ?? ""
                 var secondaryIMG = self.chatlistingArray[indexPath.item].imageUrl ?? ""
                 let splited = secondaryIMG.components(separatedBy: "~")
@@ -156,7 +180,12 @@ class HR_Chatvc2ViewController: UIViewController, UITextFieldDelegate,UITableVie
                 return cell!
             }else{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "otherInfoTableViewCell") as? otherInfoTableViewCell
-                cell?.itemTime.text = self.chatlistingArray[indexPath.row].jCreatedDate ?? ""
+                
+                let receivedDate = self.chatlistingArray[indexPath.row].createdDate ?? ""
+                let convertedFormat = convertDateFormater(receivedDate)
+                cell?.itemTime.text = convertedFormat
+                
+               //cell?.itemTime.text = self.chatlistingArray[indexPath.row].jCreatedDate ?? ""
                 cell?.itemcustomer.text = self.chatlistingArray[indexPath.row].repliedBy ?? ""
                 cell?.itemText.text = self.chatlistingArray[indexPath.row].queryResponseInfo ?? ""
                 return cell!
@@ -165,7 +194,13 @@ class HR_Chatvc2ViewController: UIViewController, UITextFieldDelegate,UITableVie
 
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "otherInfoTableViewCell") as? otherInfoTableViewCell
-            cell?.itemTime.text = convertDateFormater(self.chatlistingArray[indexPath.row].jCreatedDate ?? "")
+            
+            let receivedDate = self.chatlistingArray[indexPath.row].jCreatedDate ?? ""
+            let convertedFormat = convertDateFormater(receivedDate)
+            cell?.itemTime.text = convertedFormat
+            
+            
+            //cell?.itemTime.text = convertDateFormater(self.chatlistingArray[indexPath.row].jCreatedDate ?? "")
             cell?.itemcustomer.text = self.chatlistingArray[indexPath.row].repliedBy ?? ""
             cell?.itemText.text = self.chatlistingArray[indexPath.row].queryResponseInfo ?? ""
             return cell!
@@ -574,9 +609,9 @@ extension HR_Chatvc2ViewController{
     func convertDateFormater(_ date: String) -> String
         {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MM/dd/yyyy HH:mm:ss a"
+            dateFormatter.dateFormat = "MM/dd/yyyy HH:mm:ss"
             let date = dateFormatter.date(from: date)
-            dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss a"
+            dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
             return  dateFormatter.string(from: date!)
 
         }

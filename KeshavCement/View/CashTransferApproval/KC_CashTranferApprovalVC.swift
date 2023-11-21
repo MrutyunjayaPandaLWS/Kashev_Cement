@@ -247,11 +247,20 @@ extension KC_CashTranferApprovalVC : UITableViewDelegate, UITableViewDataSource{
         cell.pointLbl.text = "\(self.VM.cashTransferApprovalListingArray[indexPath.row].points ?? -1)"
         cell.voucherLbl.text = "\(self.VM.cashTransferApprovalListingArray[indexPath.row].transferedPointsinAmount ?? -1)"
         let receivedDate = String(self.VM.cashTransferApprovalListingArray[indexPath.row].createdDate ?? "").split(separator: " ")
-        if receivedDate.count != 0 {
-            cell.dateLbl.text = "\(receivedDate[0])"
+        
+        if receivedDate.count != 0{
+            let convertFormatter = self.convertDateFormater("\(receivedDate[0])", fromDate: "MM-dd-yyyy", toDate: "dd/MM/yyyy")
+            cell.dateLbl.text = "\(convertFormatter)"
         }else{
             cell.dateLbl.text = "-"
         }
+        
+//        let convertFormatter = self.convertDateFormater("\(receivedDate[0])", fromDate: "MM-dd-yyyy", toDate: "dd/MM/yyyy")
+//        if convertFormatter.count != 0 {
+//            cell.dateLbl.text = "\(convertFormatter)"
+//        }else{
+//            cell.dateLbl.text = "-"
+//        }
         if self.VM.cashTransferApprovalListingArray[indexPath.row].dispalyImage ?? "" != ""{
             
             let receivedImage = String(self.VM.cashTransferApprovalListingArray[indexPath.row].dispalyImage ?? "").dropFirst(1)

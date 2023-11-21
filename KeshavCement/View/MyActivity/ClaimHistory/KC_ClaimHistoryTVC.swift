@@ -36,6 +36,9 @@ class KC_ClaimHistoryTVC: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .none
+        self.statusLbl.clipsToBounds = true
+        self.statusLbl.cornerRadius = 8
+        self.remarks.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

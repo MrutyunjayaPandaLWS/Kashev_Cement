@@ -383,7 +383,11 @@ extension HRD_MyRedemptionDetailsVC: UITableViewDelegate, UITableViewDataSource{
         }
         
         let receivedDate = "\(self.VM.myredemptionArray[indexPath.row].createdDate ?? "")".components(separatedBy: " ")
-        cell.createdDate.text = "  \(receivedDate[0])"
+        
+        if receivedDate.count > 0{
+            let dateFormatted = convertDateFormater(String(receivedDate[0]), fromDate: "MM/dd/yyyy", toDate: "dd/MM/yyyy")
+            cell.createdDate.text = "  \(dateFormatted)"
+        }else{cell.createdDate.text = "-"}
         
         return cell
     }

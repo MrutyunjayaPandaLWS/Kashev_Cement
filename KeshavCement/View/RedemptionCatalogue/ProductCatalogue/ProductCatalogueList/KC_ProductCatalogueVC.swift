@@ -583,8 +583,9 @@ extension KC_ProductCatalogueVC: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == productCategoryCollectionView{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "KC_ProductsCategoryCVC", for: indexPath) as! KC_ProductsCategoryCVC
-            cell.categoryLbl.text = "\(self.VM.productCategoryListArray[indexPath.row].productCategorName ?? "")      ".capitalized
+            
             if self.categoriesId == 1{
+                cell.categoryLbl.text = "\(self.VM.productCategoryListArray[indexPath.row].productCategorName ?? "")      ".capitalized
                 if self.categoryId == Int(self.VM.productCategoryListArray[indexPath.item].productCategoryId!) ?? -1{
                      cell.categoryLbl.textColor = UIColor.black
                      cell.categoryLbl.backgroundColor = #colorLiteral(red: 1, green: 0.9877298474, blue: 0.5554133654, alpha: 1)
